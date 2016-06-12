@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Vesea_Columbia/ScrollViewController.swift"
+            timestampString = "485982957.755878"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "13"
+            endingLineNumber = "13"
+            landmarkName = "ScrollViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Vesea_Columbia.ScrollViewController.scrollView.getter : weak Swift.ImplicitlyUnwrappedOptional&lt;__ObjC.UIScrollView&gt;"
+                  moduleName = "Vesea_Columbia"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lahavlipson/Desktop/SwiftFiles/Vesea_Columbia/Vesea_Columbia/ScrollViewController.swift"
+                  timestampString = "485982957.764457"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "40">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Vesea_Columbia.ScrollViewController.scrollView.setter : weak Swift.ImplicitlyUnwrappedOptional&lt;__ObjC.UIScrollView&gt;"
+                  moduleName = "Vesea_Columbia"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lahavlipson/Desktop/SwiftFiles/Vesea_Columbia/Vesea_Columbia/ScrollViewController.swift"
+                  timestampString = "485982957.765027"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "52">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Vesea_Columbia.ScrollViewController.init (nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.NSBundle&gt;) -&gt; Vesea_Columbia.ScrollViewController"
+                  moduleName = "Vesea_Columbia"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lahavlipson/Desktop/SwiftFiles/Vesea_Columbia/Vesea_Columbia/ScrollViewController.swift"
+                  timestampString = "485982957.765486"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "76">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Vesea_Columbia.ScrollViewController.init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;Vesea_Columbia.ScrollViewController&gt;"
+                  moduleName = "Vesea_Columbia"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lahavlipson/Desktop/SwiftFiles/Vesea_Columbia/Vesea_Columbia/ScrollViewController.swift"
+                  timestampString = "485982957.765688"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "36">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Vesea_Columbia/MajorChooser.swift"
+            timestampString = "486798236.664166"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
+            landmarkName = "loadViewFromNib()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Vesea_Columbia/BarChartQuestionViewController.swift"
+            timestampString = "487228539.84879"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "220"
+            endingLineNumber = "220"
+            landmarkName = "BarChartQuestionViewController"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Vesea_Columbia/BarChartQuestionViewController.swift"
+            timestampString = "487228542.342282"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "224"
+            endingLineNumber = "224"
+            landmarkName = "calcGranularity(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Vesea_Columbia/BarChartQuestionViewController.swift"
+            timestampString = "487228545.221247"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "222"
+            endingLineNumber = "222"
+            landmarkName = "calcGranularity(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
