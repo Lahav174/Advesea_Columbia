@@ -25,6 +25,7 @@
 		CD892F1C1CF15C1900DF5D24 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD892F1B1CF15C1900DF5D24 /* TableViewCell.swift */; };
 		CD892F1E1CF168B100DF5D24 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD892F1D1CF168B100DF5D24 /* ListViewController.swift */; };
 		CDB82A281D05F46E00F01678 /* MajorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB82A271D05F46E00F01678 /* MajorTableViewCell.swift */; };
+		CDEC2D731D10FE6E009951A3 /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEC2D721D10FE6E009951A3 /* QuestionViewController.swift */; };
 		CDFF9FD81CF394AE00E64650 /* ScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFF9FD71CF394AE00E64650 /* ScrollViewController.swift */; };
 		CDFF9FDA1CF6D02500E64650 /* TestGraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFF9FD91CF6D02500E64650 /* TestGraphViewController.swift */; };
 		CDFF9FDC1CF8C9D500E64650 /* HBarChartQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFF9FDB1CF8C9D500E64650 /* HBarChartQuestionViewController.swift */; };
@@ -86,6 +87,7 @@
 		CD892F1B1CF15C1900DF5D24 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		CD892F1D1CF168B100DF5D24 /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		CDB82A271D05F46E00F01678 /* MajorTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MajorTableViewCell.swift; sourceTree = "<group>"; };
+		CDEC2D721D10FE6E009951A3 /* QuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
 		CDFF9FD71CF394AE00E64650 /* ScrollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollViewController.swift; sourceTree = "<group>"; };
 		CDFF9FD91CF6D02500E64650 /* TestGraphViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestGraphViewController.swift; sourceTree = "<group>"; };
 		CDFF9FDB1CF8C9D500E64650 /* HBarChartQuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HBarChartQuestionViewController.swift; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 				CD892F191CF1181500DF5D24 /* mainLabel.swift */,
 				CDFF9FF61D01211200E64650 /* ChooserViews */,
 				CD892EDB1CEBB8CD00DF5D24 /* Main.storyboard */,
+				CDEC2D721D10FE6E009951A3 /* QuestionViewController.swift */,
 				CDFF9FD71CF394AE00E64650 /* ScrollViewController.swift */,
 				CD2312A01D04A21400ED6D0D /* MajorChooserViewController.swift */,
 				CD892F131CEFA16600DF5D24 /* FrontViewController.swift */,
@@ -429,6 +432,7 @@
 			files = (
 				CD892F081CEBBF9A00DF5D24 /* BarChartQuestionViewController.swift in Sources */,
 				CDFF9FDE1CF8DE5700E64650 /* ScrollView.swift in Sources */,
+				CDEC2D731D10FE6E009951A3 /* QuestionViewController.swift in Sources */,
 				CD892F061CEBBEE700DF5D24 /* PageViewController.swift in Sources */,
 				CD892F141CEFA16600DF5D24 /* FrontViewController.swift in Sources */,
 				CDB82A281D05F46E00F01678 /* MajorTableViewCell.swift in Sources */,
