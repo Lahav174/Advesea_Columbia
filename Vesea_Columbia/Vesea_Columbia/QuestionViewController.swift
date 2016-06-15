@@ -125,7 +125,7 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate {
         switch preset {
         case 0:
             questionLabel = QuestionLabel0(frame: frame)
-            //(questionLabel as! QuestionLabel0).delegateViewController = self
+            (questionLabel as! QuestionLabel0).delegateViewController = self
         case 2:
             questionLabel = QuestionLabel2(frame: frame)
         default:

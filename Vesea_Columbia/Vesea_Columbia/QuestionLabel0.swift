@@ -10,8 +10,8 @@ import UIKit
 
 @IBDesignable class QuestionLabel0: UIView {
     
-    var delegateViewController = BarChartQuestionViewController()
-
+    var delegateViewController = QuestionViewController()
+    
     var view: UIView!
     
     var nibName: String = "QuestionLabel0"
@@ -21,14 +21,14 @@ import UIKit
     var class1Name: String = ""
     
     var class2Name: String = ""
-
+    
     @IBOutlet weak var class1Button: UIButton!
     
     @IBOutlet weak var class2Button: UIButton!
     
     @IBAction func class1ButtonPressed(sender: AnyObject) {
         print("class1Button pressed")
-        delegateViewController.animateContainerIn()
+        //delegateViewController.animateContainerIn()
     }
     
     @IBAction func class2ButtonPressed(sender: AnyObject) {
@@ -95,6 +95,6 @@ import UIKit
         let view = nib.instantiateWithOwner(self, options: nil)[0] as! UIView
         return view
     }
-
+    
 }
  
