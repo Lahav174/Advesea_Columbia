@@ -27,9 +27,15 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate {
     
     var yConstraint = NSLayoutConstraint()
     
+//    @IBOutlet weak var container: UIView!
+//    @IBOutlet weak var graphBackground: UIView!
+//    @IBOutlet weak var graphBackgroundLabel: UILabel!
+    
     @IBOutlet weak var container: UIView!
     @IBOutlet weak var graphBackground: UIView!
     @IBOutlet weak var graphBackgroundLabel: UILabel!
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
