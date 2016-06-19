@@ -26,9 +26,9 @@ class MajorChooserViewController: UIViewController, UITableViewDelegate, UITable
     @IBOutlet weak var searchBar: UITextField!
     
     @IBAction func removeButtonPressed(sender: AnyObject) {
-        if (delegateViewController.isKindOfClass(BarChartQuestionViewController)){
-            let vc = delegateViewController as! BarChartQuestionViewController
-            vc.animateContainerOut()
+        if (delegateViewController.isKindOfClass(QuestionViewController)){
+            let vc = delegateViewController as! QuestionViewController
+            //vc.animateContainerOut()
         }
     }
     
