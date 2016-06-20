@@ -43,7 +43,7 @@ class TableViewCell: UITableViewCell {
         let xVelocity = recognizer.velocityInView(superview!).x
         if recognizer.state == .Began {
             originalCenter = center
-            self.delegateController?.delegate.resetQuestionViewController(self.indexPath.row)
+            //self.delegateController?.delegate.resetQuestionViewController(self.indexPath.row)
         }
         if recognizer.state == .Changed {
             let originalOffset : CGFloat = 50

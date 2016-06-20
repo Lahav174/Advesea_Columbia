@@ -11,7 +11,7 @@ import UIKit
 @IBDesignable class QuestionLabel0: UIView {
     
     var delegateViewController = QuestionViewController()
-    
+
     var view: UIView!
     
     var nibName: String = "QuestionLabel0"
@@ -21,7 +21,7 @@ import UIKit
     var class1Name: String = ""
     
     var class2Name: String = ""
-    
+
     @IBOutlet weak var class1Button: UIButton!
     
     @IBOutlet weak var class2Button: UIButton!
@@ -95,6 +95,6 @@ import UIKit
         let view = nib.instantiateWithOwner(self, options: nil)[0] as! UIView
         return view
     }
-    
+
 }
  

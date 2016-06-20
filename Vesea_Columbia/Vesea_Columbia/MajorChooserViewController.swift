@@ -48,7 +48,7 @@ class MajorChooserViewController: UIViewController, UITableViewDelegate, UITable
         for e in majorArrayFromDefaults{
             majors.append(Major(courseName: e.objectForKey("name") as! String, school: e.objectForKey("school") as! String, code: e.objectForKey("code") as! String))
         }
-        
+                
         tableView.delegate = self
         tableView.dataSource = self
         searchBar.delegate = self
@@ -66,7 +66,6 @@ class MajorChooserViewController: UIViewController, UITableViewDelegate, UITable
         border.borderWidth = width
         self.view.layer.addSublayer(border)
         self.view.layer.masksToBounds = true
-        
     }
     
     func selectCellsWithCodes(codes: [String])
