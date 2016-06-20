@@ -103,8 +103,13 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
             questionViewController!.chart?.removeFromSuperview()
             questionViewController!.chart = nil
         }
+        var width = questionViewController?.graphBackgroundWidth
+        var height = questionViewController?.graphBackgroundHeight
+        width?.constant = questionViewController!.view.frame.width - 30
+        
         switch preset {
         case 0:
+            height?.constant = 200
             param0 = "Bar Chart"
             param1 = NSNumberFormatter()
             param1.numberStyle = NSNumberFormatterStyle.PercentStyle
@@ -115,6 +120,7 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
             //questionViewController.addLabel(0, frame: frame)
             break;
         case 1:
+            height?.constant = 200
             param0 = "Horizontal Bar Chart"
             param1 = NSNumberFormatter()
             param1.numberStyle = NSNumberFormatterStyle.PercentStyle
@@ -125,6 +131,7 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
             //questionViewController.addLabel(1, frame: frame)
             break;
         case 2:
+            height?.constant = 200
             param0 = "Bar Chart"
             param1.numberStyle = NSNumberFormatterStyle.NoStyle
             param1.multiplier = 1
@@ -135,6 +142,7 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
             //questionViewController.addLabel(2, frame: frame)
             break;
         case 3:
+            height?.constant = 200
             param0 = "Pie Chart"
             param1 = NSNumberFormatter()
             param1.numberStyle = NSNumberFormatterStyle.PercentStyle
@@ -143,6 +151,7 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
             param3 = [("Computer Science", 40),("Mathematics", 30),("Physics", 20),("Other", 10)]
             break;
         case 4:
+            height?.constant = 200
             param1.numberStyle = NSNumberFormatterStyle.PercentStyle
             param1.multiplier = 1
             param1.minimumFractionDigits = 0
@@ -150,6 +159,7 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
             param3 = [("W4323", 80),("W3211", 90),("1334", 70)]
             break;
         case 5:
+            height?.constant = 200
             param0 = "Bar Chart"
             param1.numberStyle = NSNumberFormatterStyle.PercentStyle
             param1.multiplier = 1
@@ -160,6 +170,7 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
         default:
             break
         }
+        questionViewController?.chart?.layoutIfNeeded()
         questionViewController!.customInitializer(param0, valueFormatter: param1, titleTxt: param2, xyValues: param3)
     }
     

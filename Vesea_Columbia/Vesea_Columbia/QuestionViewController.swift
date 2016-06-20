@@ -30,6 +30,9 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var graphBackground: UIView!
     @IBOutlet weak var graphBackgroundLabel: UILabel!
     
+    @IBOutlet weak var graphBackgroundHeight: NSLayoutConstraint!
+    @IBOutlet weak var graphBackgroundWidth: NSLayoutConstraint!
+ 
     
    
     override func viewDidLoad() {
@@ -57,7 +60,7 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate {
         let param2 = "Term"
         let param3 : [(x: String, y: Double)] = [("Spring 2015", 80),("Fall 2015", 100),("Spring2016", 70)]
         
-        customInitializer("Bar Chart", valueFormatter: param1, titleTxt: param2, xyValues: param3)
+        //customInitializer("Bar Chart", valueFormatter: param1, titleTxt: param2, xyValues: param3)
     }
     
     func customInitializer(chartKind: String, valueFormatter: NSNumberFormatter,titleTxt: String, xyValues: [(x: String, y: Double)]){
@@ -91,29 +94,47 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate {
         for i in 0...values.count-1{
             yValues.append(BarChartDataEntry(value: Double(values[i].y), xIndex: i))
         }
-        let dataSet = BarChartDataSet(yVals: yValues, label: "")
-        dataSet.colors = [UIColor(red: 1, green: 1, blue: 1, alpha: 0.5)]
-        dataSet.valueFormatter = formatter
-        dataSet.barSpace = 0.4
-        let data = BarChartData(xVals: xValues, dataSet: dataSet)
-        data.setDrawValues(false)
-        if chartType == "Horizontal Bar Chart"{
+        
+        switch self.chartType! {
+        case "Horizontal Bar Chart":
+            let dataSet = BarChartDataSet(yVals: yValues, label: "")
+            dataSet.colors = [UIColor(red: 1, green: 1, blue: 1, alpha: 0.5)]
+            dataSet.valueFormatter = formatter
+            dataSet.barSpace = 0.4
+            let data = BarChartData(xVals: xValues, dataSet: dataSet)
+            data.setDrawValues(false)
             let graph = (chart as! HorizontalBarChartView)
             graph.data = data
             graph.rightAxis.valueFormatter = formatter
             graph.rightAxis.valueFormatter?.minimumFractionDigits=0
-        } else if chartType == "Pie Chart"{
-            (chart as! PieChartView).data = data
-        } else {
+            break
+        case "Bar Chart":
+            let dataSet = BarChartDataSet(yVals: yValues, label: "")
+            dataSet.colors = [UIColor(red: 1, green: 1, blue: 1, alpha: 0.5)]
+            dataSet.valueFormatter = formatter
+            dataSet.barSpace = 0.4
+            let data = BarChartData(xVals: xValues, dataSet: dataSet)
+            data.setDrawValues(false)
             let graph = (chart as! BarChartView)
             graph.data = data
             graph.leftAxis.valueFormatter = formatter
             graph.leftAxis.valueFormatter?.minimumFractionDigits=0
+            break
+        case "Pie Chart":
+            let dataSet = PieChartDataSet(yVals: yValues, label: "")
+            dataSet.colors = [UIColor(red: 1, green: 1, blue: 1, alpha: 0.5)]
+            dataSet.valueFormatter = formatter
+            let data = PieChartData(xVals: xValues, dataSet: dataSet)
+            data.setDrawValues(false)
+            (chart as! PieChartView).data = data
+            break
+        default: break
         }
+
         configureChartSettings(chartType)
-        
+
         self.view.addSubview(chart!)
-        constrainChart(self.chartType!)
+        constrainChart()
         
         //Testing if I need this...
         
@@ -127,47 +148,42 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate {
             let graph = (chart as! BarChartView)
             graph.notifyDataSetChanged()
         }
-    }
-    
-    func addLabel(preset: Int, frame: CGRect){
-        switch preset {
-        case 0:
-            questionLabel = QuestionLabel0(frame: frame)
-            (questionLabel as! QuestionLabel0).delegateViewController = self
-        case 2:
-            questionLabel = QuestionLabel2(frame: frame)
-        default:
-            questionLabel = QuestionLabel0(frame: frame)
-        }
-        //self.view.addSubview(questionLabel)
-        //self.view.insertSubview(questionLabel, belowSubview: container)
-        questionLabel.translatesAutoresizingMaskIntoConstraints = false
-        let yConstraint = NSLayoutConstraint(item: questionLabel, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: chart, attribute: NSLayoutAttribute.Top, multiplier: 1, constant: -70)
-        let widthConstraint = NSLayoutConstraint(item: questionLabel, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Width, multiplier: 1, constant: -60)
-        let heightConstraint = NSLayoutConstraint(item: questionLabel, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: 150)
-        let centerXConstraint = NSLayoutConstraint(item: questionLabel, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0)
-        self.view.addConstraints([yConstraint, centerXConstraint, widthConstraint, heightConstraint])
+        print("#2")
     }
     
     // MARK: - Chart Setup
     
-    func constrainChart(type: String){
+    func constrainChart(){
+        chart!.translatesAutoresizingMaskIntoConstraints = false
+        var leftConstraint : NSLayoutConstraint?
+        var rightConstraint : NSLayoutConstraint?
+        var topConstraint : NSLayoutConstraint?
+        var bottomConstraint : NSLayoutConstraint?
         
-        if type == "Bar Chart"{
-            
-            //chart!.frame = frame
-            
-            chart!.translatesAutoresizingMaskIntoConstraints = false
-            let leftConstraint = NSLayoutConstraint(item: self.chart!, attribute: NSLayoutAttribute.Left, relatedBy: NSLayoutRelation.Equal, toItem: self.graphBackground, attribute: NSLayoutAttribute.Left, multiplier: 1, constant: 0)
-            let rightConstraint = NSLayoutConstraint(item: self.chart!, attribute: NSLayoutAttribute.Right, relatedBy: NSLayoutRelation.Equal, toItem: self.graphBackground, attribute: NSLayoutAttribute.Right, multiplier: 1, constant: 0)
-            let topConstraint = NSLayoutConstraint(item: self.chart!, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: self.graphBackground, attribute: NSLayoutAttribute.Top, multiplier: 1, constant: 0)
-            let bottomConstraint = NSLayoutConstraint(item: self.chart!, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: self.graphBackground, attribute: NSLayoutAttribute.Bottom, multiplier: 1, constant: -25)
-            self.view.addConstraints([leftConstraint,rightConstraint,topConstraint,bottomConstraint])
-        } else if type == "Horizontal Bar Chart"{
-        } else if type == "Pie Chart"{
-        } else {
-            
+        switch self.chartType! {
+        case "Bar Chart":
+            leftConstraint = NSLayoutConstraint(item: self.chart!, attribute: NSLayoutAttribute.Left, relatedBy: NSLayoutRelation.Equal, toItem: self.graphBackground, attribute: NSLayoutAttribute.Left, multiplier: 1, constant: 0)
+            rightConstraint = NSLayoutConstraint(item: self.chart!, attribute: NSLayoutAttribute.Right, relatedBy: NSLayoutRelation.Equal, toItem: self.graphBackground, attribute: NSLayoutAttribute.Right, multiplier: 1, constant: 0)
+            topConstraint = NSLayoutConstraint(item: self.chart!, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: self.graphBackground, attribute: NSLayoutAttribute.Top, multiplier: 1, constant: 0)
+            bottomConstraint = NSLayoutConstraint(item: self.chart!, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: self.graphBackground, attribute: NSLayoutAttribute.Bottom, multiplier: 1, constant: -25)
+            break
+        case "Horizontal Bar Chart":
+            leftConstraint = NSLayoutConstraint(item: self.chart!, attribute: NSLayoutAttribute.Left, relatedBy: NSLayoutRelation.Equal, toItem: self.graphBackground, attribute: NSLayoutAttribute.Left, multiplier: 1, constant: 10)
+            rightConstraint = NSLayoutConstraint(item: self.chart!, attribute: NSLayoutAttribute.Right, relatedBy: NSLayoutRelation.Equal, toItem: self.graphBackground, attribute: NSLayoutAttribute.Right, multiplier: 1, constant: -10)
+            topConstraint = NSLayoutConstraint(item: self.chart!, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: self.graphBackground, attribute: NSLayoutAttribute.Top, multiplier: 1, constant: 0)
+            bottomConstraint = NSLayoutConstraint(item: self.chart!, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: self.graphBackground, attribute: NSLayoutAttribute.Bottom, multiplier: 1, constant: -25)
+            break
+        case "Pie Chart":
+            leftConstraint = NSLayoutConstraint(item: self.chart!, attribute: NSLayoutAttribute.Left, relatedBy: NSLayoutRelation.Equal, toItem: self.graphBackground, attribute: NSLayoutAttribute.Left, multiplier: 1, constant: 0)
+            rightConstraint = NSLayoutConstraint(item: self.chart!, attribute: NSLayoutAttribute.Right, relatedBy: NSLayoutRelation.Equal, toItem: self.graphBackground, attribute: NSLayoutAttribute.Right, multiplier: 1, constant: 0)
+            topConstraint = NSLayoutConstraint(item: self.chart!, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: self.graphBackground, attribute: NSLayoutAttribute.Top, multiplier: 1, constant: 0)
+            bottomConstraint = NSLayoutConstraint(item: self.chart!, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: self.graphBackground, attribute: NSLayoutAttribute.Bottom, multiplier: 1, constant: 0)
+            break
+        default:
+            break
         }
+        
+        self.view.addConstraints([leftConstraint!,rightConstraint!,topConstraint!,bottomConstraint!])
         chart?.layoutIfNeeded()
     }
     
@@ -210,7 +226,6 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate {
             barChart.leftAxis.drawLabelsEnabled = true
             barChart.xAxis.drawLabelsEnabled = true
             barChart.animate(yAxisDuration: 1.5, easingOption: .EaseOutQuart)
-            //barChart.leftAxis.axisMaxValue = 100
         } else if type == "Horizontal Bar Chart"{
             let hBarChart = (chart as! HorizontalBarChartView)
             hBarChart.pinchZoomEnabled = true
@@ -276,6 +291,26 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     // MARK: - Other
+    
+    func addLabel(preset: Int, frame: CGRect){
+        switch preset {
+        case 0:
+            questionLabel = QuestionLabel0(frame: frame)
+            (questionLabel as! QuestionLabel0).delegateViewController = self
+        case 2:
+            questionLabel = QuestionLabel2(frame: frame)
+        default:
+            questionLabel = QuestionLabel0(frame: frame)
+        }
+        //self.view.addSubview(questionLabel)
+        self.view.insertSubview(questionLabel, belowSubview: container)
+        questionLabel.translatesAutoresizingMaskIntoConstraints = false
+        let yConstraint = NSLayoutConstraint(item: questionLabel, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: chart, attribute: NSLayoutAttribute.Top, multiplier: 1, constant: -70)
+        let widthConstraint = NSLayoutConstraint(item: questionLabel, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Width, multiplier: 1, constant: -60)
+        let heightConstraint = NSLayoutConstraint(item: questionLabel, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: 150)
+        let centerXConstraint = NSLayoutConstraint(item: questionLabel, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0)
+        self.view.addConstraints([yConstraint, centerXConstraint, widthConstraint, heightConstraint])
+    }
     
     func calcGranularity(max: Double) -> Double{
         let i = Int(max)

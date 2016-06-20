@@ -397,10 +397,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XRb-Me-5FJ">
-                                <rect key="frame" x="16" y="382" width="343" height="175"/>
+                                <rect key="frame" x="63" y="382" width="250" height="175"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Semester" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0y2-Fv-uPA">
-                                        <rect key="frame" x="135" y="154" width="73" height="21"/>
+                                        <rect key="frame" x="89" y="154" width="73" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -408,9 +408,10 @@
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.7511625502" blue="0.73293727679999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="8Ik-bX-2Mb"/>
                                     <constraint firstItem="0y2-Fv-uPA" firstAttribute="centerX" secondItem="XRb-Me-5FJ" secondAttribute="centerX" id="A1q-9s-R6f"/>
+                                    <constraint firstAttribute="height" constant="175" id="Jiz-tP-l7o"/>
                                     <constraint firstAttribute="bottom" secondItem="0y2-Fv-uPA" secondAttribute="bottom" id="hPY-dN-Ese"/>
-                                    <constraint firstAttribute="width" secondItem="XRb-Me-5FJ" secondAttribute="height" multiplier="280:143" id="mhk-Zq-gfu"/>
                                 </constraints>
                             </view>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NKF-4D-7f1">
@@ -425,11 +426,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="leadingMargin" secondItem="XRb-Me-5FJ" secondAttribute="leading" id="6Fn-5T-2tx"/>
                             <constraint firstItem="PSX-ku-waB" firstAttribute="top" secondItem="XRb-Me-5FJ" secondAttribute="bottom" constant="110" id="AqR-4N-ysQ"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="XRb-Me-5FJ" secondAttribute="trailing" id="KFw-lz-Zv2"/>
                             <constraint firstAttribute="leadingMargin" secondItem="NKF-4D-7f1" secondAttribute="leading" id="LbC-cv-3qt"/>
                             <constraint firstItem="NKF-4D-7f1" firstAttribute="top" secondItem="YRz-2E-b0t" secondAttribute="bottom" constant="243" placeholder="YES" id="Pst-3k-047"/>
+                            <constraint firstItem="XRb-Me-5FJ" firstAttribute="centerX" secondItem="mLj-zi-acl" secondAttribute="centerX" id="SbI-HN-GYU"/>
                             <constraint firstAttribute="trailingMargin" secondItem="NKF-4D-7f1" secondAttribute="trailing" constant="-4" id="dsy-OU-h8s"/>
                         </constraints>
                     </view>
@@ -437,7 +437,9 @@
                     <connections>
                         <outlet property="container" destination="NKF-4D-7f1" id="6QZ-Fz-d45"/>
                         <outlet property="graphBackground" destination="XRb-Me-5FJ" id="64b-ba-CUD"/>
+                        <outlet property="graphBackgroundHeight" destination="Jiz-tP-l7o" id="VLt-cg-Z0k"/>
                         <outlet property="graphBackgroundLabel" destination="0y2-Fv-uPA" id="J8y-Pd-7pe"/>
+                        <outlet property="graphBackgroundWidth" destination="8Ik-bX-2Mb" id="1sA-vJ-pDI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jmM-og-hc2" userLabel="First Responder" sceneMemberID="firstResponder"/>
