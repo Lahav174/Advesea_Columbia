@@ -17,7 +17,7 @@ class BarChartQuestionViewController: UIViewController, UIGestureRecognizerDeleg
     
     @IBOutlet weak var graphBackground: UIView!
     
-    @IBOutlet weak var container: UIView!
+    //@IBOutlet weak var container: UIView!
     
     var questionLabel = UIView()
     
@@ -41,17 +41,17 @@ class BarChartQuestionViewController: UIViewController, UIGestureRecognizerDeleg
         
         setUpBackgroundImages()
         
-        self.container.layer.cornerRadius = 10;
-        self.container.layer.masksToBounds = true;
-        self.container.layer.zPosition = 500
+//        self.container.layer.cornerRadius = 10;
+//        self.container.layer.masksToBounds = true;
+//        self.container.layer.zPosition = 500
         
-        self.container.translatesAutoresizingMaskIntoConstraints = false
-        let heightConstraint = NSLayoutConstraint(item: container, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: 400)
-        heightConstraint.identifier = "CONTAINER HEIGHT CONSTRAINT"
-        yConstraint = NSLayoutConstraint(item: container, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Top, multiplier: 1, constant: 0) //500
-        yConstraint.identifier = "CONTAINER Y CONSTRAINT"
-        self.view.addConstraints([heightConstraint, yConstraint])
-        self.container.layoutIfNeeded()
+        //self.container.translatesAutoresizingMaskIntoConstraints = false
+        //let heightConstraint = NSLayoutConstraint(item: container, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: 400)
+        //heightConstraint.identifier = "CONTAINER HEIGHT CONSTRAINT"
+        //yConstraint = NSLayoutConstraint(item: container, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Top, multiplier: 1, constant: 0) //500
+        //yConstraint.identifier = "CONTAINER Y CONSTRAINT"
+        //self.view.addConstraints([heightConstraint, yConstraint])
+        //self.container.layoutIfNeeded()
         
         let param1 = NSNumberFormatter()
         param1.numberStyle = NSNumberFormatterStyle.PercentStyle
@@ -65,7 +65,7 @@ class BarChartQuestionViewController: UIViewController, UIGestureRecognizerDeleg
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        print(self.container.frame.origin.y)
+        //print(self.container.frame.origin.y)
         
     }
     
@@ -107,14 +107,14 @@ class BarChartQuestionViewController: UIViewController, UIGestureRecognizerDeleg
         switch preset {
         case 0:
             questionLabel = QuestionLabel0(frame: frame)
-            (questionLabel as! QuestionLabel0).delegateViewController = self
+            //(questionLabel as! QuestionLabel0).delegateViewController = self
         case 2:
             questionLabel = QuestionLabel2(frame: frame)
         default:
             questionLabel = QuestionLabel0(frame: frame)
         }
-        //self.view.addSubview(questionLabel)
-        self.view.insertSubview(questionLabel, belowSubview: container)
+        self.view.addSubview(questionLabel)
+        //self.view.insertSubview(questionLabel, belowSubview: container)
         questionLabel.translatesAutoresizingMaskIntoConstraints = false
         let yConstraint = NSLayoutConstraint(item: questionLabel, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: barChart, attribute: NSLayoutAttribute.Top, multiplier: 1, constant: -70)
         let widthConstraint = NSLayoutConstraint(item: questionLabel, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Width, multiplier: 1, constant: -60)
@@ -122,7 +122,7 @@ class BarChartQuestionViewController: UIViewController, UIGestureRecognizerDeleg
         let centerXConstraint = NSLayoutConstraint(item: questionLabel, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0)
         self.view.addConstraints([yConstraint, centerXConstraint, widthConstraint, heightConstraint])
     }
-    
+    /*
     func animateContainerIn(){
         if !(self.chooserBeingDisplayed){
             UIView.animateWithDuration(0.5, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
@@ -156,6 +156,7 @@ class BarChartQuestionViewController: UIViewController, UIGestureRecognizerDeleg
             
         }
     }
+    */
     
     func configureGraphBackground(titleText: String){
         graphBackground.layer.cornerRadius = 10
@@ -211,7 +212,6 @@ class BarChartQuestionViewController: UIViewController, UIGestureRecognizerDeleg
         backGround.image = UIImage(named: "mountainbackground")
         self.view.addSubview(backGround)
         self.view.sendSubviewToBack(backGround)
-        print("All set up!")
     }
     
 //    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
