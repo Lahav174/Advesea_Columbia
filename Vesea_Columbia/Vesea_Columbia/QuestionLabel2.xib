@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="QuestionLabel2" customModule="Vesea_Columbia" customModuleProvider="target">
+            <connections>
+                <outlet property="classButton" destination="kxV-0P-YWS" id="i9Q-dG-BMX"/>
+                <outlet property="variable1Label" destination="1Qp-XP-FE3" id="OEj-pN-0Z3"/>
+                <outlet property="variable2Label" destination="59u-ve-yAb" id="QIq-wp-jLs"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="275" height="120"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kxV-0P-YWS">
+                    <rect key="frame" x="53" y="21" width="73" height="28"/>
+                    <state key="normal">
+                        <attributedString key="attributedTitle">
+                            <fragment content="W3134">
+                                <attributes>
+                                    <font key="NSFont" size="23" name="HelveticaNeue-Light"/>
+                                    <integer key="NSUnderline" value="1"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
+                    </state>
+                    <connections>
+                        <action selector="classButtonPressed:" destination="-1" eventType="touchUpInside" id="9tv-gi-y9Z"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="had" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kXj-1D-rOn">
+                    <rect key="frame" x="131" y="21" width="38" height="28"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="28" id="890-85-mil"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="23"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="112" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Qp-XP-FE3">
+                    <rect key="frame" x="172" y="21" width="32" height="28"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="28" id="fhg-06-Tri"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="23"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="participants in" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hcY-E0-9fS">
+                    <rect key="frame" x="8" y="51" width="135" height="28"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="28" id="e9q-F4-ofh"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="23"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Spring 2016" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="59u-ve-yAb">
+                    <rect key="frame" x="147" y="51" width="118" height="28"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="28" id="a2t-k2-cda"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="23"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="59u-ve-yAb" firstAttribute="top" secondItem="hcY-E0-9fS" secondAttribute="top" id="58R-lu-DnW"/>
+                <constraint firstItem="kXj-1D-rOn" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="AeJ-rD-l16"/>
+                <constraint firstItem="1Qp-XP-FE3" firstAttribute="leading" secondItem="kXj-1D-rOn" secondAttribute="trailing" constant="4" id="FxW-l0-Qrd"/>
+                <constraint firstItem="hcY-E0-9fS" firstAttribute="top" secondItem="kxV-0P-YWS" secondAttribute="bottom" constant="2" id="Gc7-zr-0rP"/>
+                <constraint firstItem="kxV-0P-YWS" firstAttribute="height" secondItem="kXj-1D-rOn" secondAttribute="height" id="LEn-DY-TNx"/>
+                <constraint firstItem="kxV-0P-YWS" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="21" id="NJF-b9-M53"/>
+                <constraint firstItem="kXj-1D-rOn" firstAttribute="leading" secondItem="kxV-0P-YWS" secondAttribute="trailing" constant="4" id="OLk-4u-nOP"/>
+                <constraint firstItem="59u-ve-yAb" firstAttribute="leading" secondItem="hcY-E0-9fS" secondAttribute="trailing" constant="4" id="VTu-N8-tfG"/>
+                <constraint firstItem="59u-ve-yAb" firstAttribute="leading" secondItem="1Qp-XP-FE3" secondAttribute="trailing" constant="-57" id="d7m-nl-XGZ"/>
+                <constraint firstItem="kXj-1D-rOn" firstAttribute="top" secondItem="kxV-0P-YWS" secondAttribute="top" id="lvD-2W-HTl"/>
+                <constraint firstItem="hcY-E0-9fS" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="uCw-AG-lcy"/>
+                <constraint firstItem="1Qp-XP-FE3" firstAttribute="top" secondItem="kXj-1D-rOn" secondAttribute="top" id="w9o-mb-iN6"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="387.5" y="323"/>
+        </view>
+    </objects>
+</document>
