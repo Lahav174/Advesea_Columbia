@@ -128,6 +128,7 @@ class HBarChartQuestionViewController: UIViewController {
         hBarChart.xAxis.drawLabelsEnabled = true
         hBarChart.leftAxis.drawLabelsEnabled = true
         hBarChart.xAxis.drawLabelsEnabled = true
+        
         hBarChart.animate(yAxisDuration: 1.5, easingOption: .EaseOutQuart)
     }
     

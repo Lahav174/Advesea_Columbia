@@ -15,11 +15,12 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
     
     let someText = "hi there"
     
-    //var questionViewController = QuestionViewController()//.init(nibName: nil, bundle: nil)
-    
-    var questionViewController : QuestionViewController? = nil
+    var questionViewController : UIViewController? = nil
     
     var questionViewControllerConstraints = [NSLayoutConstraint]()
+    
+    //var vc0 = UIViewController()
+    //var frontPage = ListViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +42,7 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
         
         vc0.delegate = self
         
+        //VC0 CONSTRAINTS
         
         vc0.view.translatesAutoresizingMaskIntoConstraints = false
         
@@ -56,6 +58,7 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
         let verticalConstraintVC0 = NSLayoutConstraint(item: vc0.view, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: scrollView, attribute: NSLayoutAttribute.Top, multiplier: 1, constant: 0)
         view.addConstraint(verticalConstraintVC0)
         
+        ///////////////////////////////////////////
         
         let vc1 = self.storyboard?.instantiateViewControllerWithIdentifier("listvc") as! ListViewController
         
@@ -69,6 +72,7 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
         vc1.didMoveToParentViewController(self)
         vc1.delegate = self
         
+        //VC1 CONSTRAINTS
         
         vc1.view.translatesAutoresizingMaskIntoConstraints = false
         
@@ -84,98 +88,11 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
         let verticalConstraintVC1 = NSLayoutConstraint(item: vc1.view, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: scrollView, attribute: NSLayoutAttribute.Top, multiplier: 1, constant: 0)
         view.addConstraint(verticalConstraintVC1)
         
-        questionViewController = self.storyboard?.instantiateViewControllerWithIdentifier("chartquestionvc") as! QuestionViewController
-        questionViewController!.delegate = self
-        setUpQuestionFrame(questionViewController!)
+        //resetQuestionViewController(0)
         
     }
     
     func resetQuestionViewController(preset: Int){
-        print("GOT HERE BOIIIII")
-        var param0 = String()
-        var param1 = NSNumberFormatter()
-        var param2 = String()
-        var param3 = [(x: String, y: Double)]()
-        
-        if questionViewController!.chart != nil{
-            print("oyoyoyoy")
-            //questionViewController!.chart!.removeConstraints(questionViewController!.chart!.constraints)
-            questionViewController!.chart?.removeFromSuperview()
-            questionViewController!.chart = nil
-        }
-        var width = questionViewController?.graphBackgroundWidth
-        var height = questionViewController?.graphBackgroundHeight
-        width?.constant = questionViewController!.view.frame.width - 30
-        
-        switch preset {
-        case 0:
-            height?.constant = 200
-            param0 = "Bar Chart"
-            param1 = NSNumberFormatter()
-            param1.numberStyle = NSNumberFormatterStyle.PercentStyle
-            param1.multiplier = 1
-            param2 = "Term"
-            param3 = [("Before", 80),("During", 100),("After", 70)]
-            let frame = CGRect(x: 30, y: questionViewController!.graphBackground.frame.origin.y - questionViewController!.graphBackground.frame.height - 150, width: self.view.frame.width-30, height: 150)
-            //questionViewController.addLabel(0, frame: frame)
-            break;
-        case 1:
-            height?.constant = 200
-            param0 = "Horizontal Bar Chart"
-            param1 = NSNumberFormatter()
-            param1.numberStyle = NSNumberFormatterStyle.PercentStyle
-            param1.multiplier = 1
-            param2 = "Term"
-            param3 = [("W4323", 80),("W3211", 90),("1334", 70)]
-            let frame = CGRect(x: 30, y: questionViewController!.graphBackground.frame.origin.y - questionViewController!.graphBackground.frame.height - 150, width: self.view.frame.width-30, height: 150)
-            //questionViewController.addLabel(1, frame: frame)
-            break;
-        case 2:
-            height?.constant = 200
-            param0 = "Bar Chart"
-            param1.numberStyle = NSNumberFormatterStyle.NoStyle
-            param1.multiplier = 1
-            param1.minimumFractionDigits = 0
-            param2 = "Term"
-            param3 = [("Spring 2015", 80),("Fall 2015", 100),("Spring 2016", 70)]
-            let frame = CGRect(x: 30, y: questionViewController!.graphBackground.frame.origin.y - questionViewController!.graphBackground.frame.height - 150, width: self.view.frame.width-30, height: 70)
-            //questionViewController.addLabel(2, frame: frame)
-            break;
-        case 3:
-            height?.constant = 200
-            param0 = "Pie Chart"
-            param1 = NSNumberFormatter()
-            param1.numberStyle = NSNumberFormatterStyle.PercentStyle
-            param1.multiplier = 1
-            param2 = ""
-            param3 = [("Computer Science", 40),("Mathematics", 30),("Physics", 20),("Other", 10)]
-            break;
-        case 4:
-            height?.constant = 200
-            param1.numberStyle = NSNumberFormatterStyle.PercentStyle
-            param1.multiplier = 1
-            param1.minimumFractionDigits = 0
-            param2 = "Term"
-            param3 = [("W4323", 80),("W3211", 90),("1334", 70)]
-            break;
-        case 5:
-            height?.constant = 200
-            param0 = "Bar Chart"
-            param1.numberStyle = NSNumberFormatterStyle.PercentStyle
-            param1.multiplier = 1
-            param1.minimumFractionDigits = 0
-            param2 = "Semester"
-            param3 = [("6", 2),("7", 6),("8", 85),("9", 7)]
-            break;
-        default:
-            break
-        }
-        questionViewController?.chart?.layoutIfNeeded()
-        questionViewController!.customInitializer(param0, valueFormatter: param1, titleTxt: param2, xyValues: param3)
-    }
-    
-/*
-    func rresetQuestionViewController(preset: Int){
         
         if (questionViewController != nil){
             questionViewController!.removeFromParentViewController()
@@ -259,10 +176,12 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
         }
         
     }
-  */
+    
     func setUpQuestionFrame(newViewController: UIViewController){
         
-       // newViewController.view.frame.origin.x = self.view.frame.size.width*2
+        var frame = newViewController.view.frame
+        frame.origin.x = self.view.frame.size.width*2
+        newViewController.view.frame = frame
         
         self.addChildViewController(newViewController)
         self.scrollView.addSubview(newViewController.view)
@@ -276,11 +195,11 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
         let heightConstraintVCBAR = NSLayoutConstraint(item: view, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: newViewController.view, attribute: NSLayoutAttribute.Height, multiplier: 1, constant: 0)
         view.addConstraint(heightConstraintVCBAR)
         
-        let horizontalConstraintVCBAR = NSLayoutConstraint(item: newViewController.view, attribute: NSLayoutAttribute.Left, relatedBy: NSLayoutRelation.Equal, toItem: scrollView, attribute: NSLayoutAttribute.Right, multiplier: 1, constant: self.view.frame.size.width*2)
+        let horizontalConstraintVCBAR = NSLayoutConstraint(item: newViewController.view, attribute: NSLayoutAttribute.Left, relatedBy: NSLayoutRelation.Equal, toItem: scrollView, attribute: NSLayoutAttribute.Right, multiplier: 1, constant: self.view.frame.width*2)
         view.addConstraint(horizontalConstraintVCBAR)
-        print(self.view.frame.size.width*2)
+        
         let verticalConstraintVCBAR = NSLayoutConstraint(item:  newViewController.view, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: scrollView, attribute: NSLayoutAttribute.Top, multiplier: 1, constant: 0)
-        //view.addConstraint(verticalConstraintVCBAR)can live w/o?
+        view.addConstraint(verticalConstraintVCBAR)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -292,6 +211,7 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
         if (scrollView.contentOffset.x == self.view.frame.width){
             scrollView.panGestureRecognizer.enabled = false
+            print("scrolling disabled")
         }
     }
     
