@@ -142,7 +142,7 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
             //questionViewController.addLabel(2, frame: frame)
             break;
         case 3:
-            height?.constant = 200
+            height?.constant = 250
             param0 = "Pie Chart"
             param1 = NSNumberFormatter()
             param1.numberStyle = NSNumberFormatterStyle.PercentStyle
