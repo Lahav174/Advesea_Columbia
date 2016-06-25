@@ -86,14 +86,6 @@ class MajorChooserViewController: UIViewController, UITableViewDelegate, UITable
         return 2
     }
     
-//    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        if section == 0{
-//            return "Favorites"
-//        } else {
-//            return "All Courses"
-//        }
-//    }
-    
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView?
     {
         let headerView = UILabel(frame: CGRectMake(0, 0, tableView.bounds.size.width, 30))
