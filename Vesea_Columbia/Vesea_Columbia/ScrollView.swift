@@ -12,17 +12,20 @@ import Charts
 class ScrollView: UIScrollView, UIGestureRecognizerDelegate {
     
     
-//    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-//        print("ScrollView Touched")
-//    }
+    override func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
+        let velocity = panGestureRecognizer.velocityInView(self)
+        print(fabs(velocity.y) < fabs(velocity.x))
+        return fabs(velocity.y) < fabs(velocity.x)
+    }
     
     
     func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRequireFailureOfGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        if (otherGestureRecognizer.delegate?.isKindOfClass(BarChartView) == true){
+        if (otherGestureRecognizer.delegate?.isKindOfClass(BarChartView) == true || otherGestureRecognizer.delegate?.isKindOfClass(HorizontalBarChartView) == true  || otherGestureRecognizer.delegate?.isKindOfClass(PieChartView) == true ){
             return true
         } else {
             return false
         }
     }
+ 
 
 }
