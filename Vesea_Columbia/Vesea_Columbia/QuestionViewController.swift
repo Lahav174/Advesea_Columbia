@@ -37,8 +37,9 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate {
    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.blackColor()
         setUpBackgroundImages()
+        
+        configureGraphBackground("")
         
         self.container.layer.cornerRadius = 10;
         self.container.layer.masksToBounds = true;
@@ -283,31 +284,68 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate {
         
         let backGround = UIImageView(frame: self.view.frame)
         backGround.image = UIImage(named: "mountainbackground")
-        //self.view.addSubview(backGround)
+        self.view.addSubview(backGround)
         self.view.sendSubviewToBack(backGround)
     }
     
     func configureGraphBackground(titleText: String){
         graphBackground.layer.cornerRadius = 10
         graphBackground.layer.masksToBounds = true
-        graphBackground.backgroundColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 0.5)
+        graphBackground.backgroundColor = K.colors.fadedgray
         graphBackgroundLabel.text = titleText
         graphBackgroundLabel.font = UIFont(name: "HelveticaNeue-Light", size: 16)!
     }
     
-    // MARK: - Other
+    // MARK: - Chooser
+    
+    func animateContainerIn(){
+        if !(self.chooserBeingDisplayed){
+            UIView.animateWithDuration(0.5, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+                self.container.frame.origin.y = 100
+                }, completion: { (true) in
+                    self.chooserBeingDisplayed = true
+            })
+        }
+        
+        
+    }
+    
+    func animateContainerOut(){
+        if (self.chooserBeingDisplayed){
+            UIView.animateWithDuration(0.5, delay: 0, options: UIViewAnimationOptions.CurveEaseIn, animations: {
+                self.container.frame.origin.y = -400
+                }, completion: { (true) in
+                    self.chooserBeingDisplayed = false
+            })
+        }
+    }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        
+        for touch: AnyObject! in touches {
+            let touchLocation = touch.locationInView(self.view)
+            print("Touched")
+            if !(self.container.frame.contains(touchLocation)) && chooserBeingDisplayed && self.container.frame.origin.y == 100{
+                animateContainerOut()
+            }
+            
+        }
+    }
     
     func addLabel(preset: Int, frame: CGRect){
         questionLabel = QuestionLabel0(frame: frame)
-        //self.view.addSubview(questionLabel!)
+        (questionLabel as! QuestionLabel0).delegateViewController = self
+        
         self.view.insertSubview(questionLabel!, belowSubview: container)
         questionLabel!.translatesAutoresizingMaskIntoConstraints = false
         let labelyConstraint = NSLayoutConstraint(item: questionLabel!, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: graphBackground, attribute: NSLayoutAttribute.Top, multiplier: 1, constant: -70)
         let labelWidthConstraint = NSLayoutConstraint(item: questionLabel!, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Width, multiplier: 1, constant: -60)
         let labelHeightConstraint = NSLayoutConstraint(item: questionLabel!, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: 150)
         let labelCenterXConstraint = NSLayoutConstraint(item: questionLabel!, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0)
-        self.view.addConstraints([labelWidthConstraint, labelCenterXConstraint, labelyConstraint])
+        self.view.addConstraints([labelWidthConstraint, labelCenterXConstraint, labelyConstraint, labelHeightConstraint])
     }
+    
+    // MARK: - Other
     
     func calcGranularity(max: Double) -> Double{
         let i = Int(max)

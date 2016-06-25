@@ -28,7 +28,7 @@ import UIKit
     
     @IBAction func class1ButtonPressed(sender: AnyObject) {
         print("class1Button pressed")
-        //delegateViewController.animateContainerIn()
+        delegateViewController!.animateContainerIn()
     }
     
     @IBAction func class2ButtonPressed(sender: AnyObject) {

@@ -327,3 +327,13 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
     }
 
 }
+
+struct K {
+    struct Others {
+        static let Welcome = "kWelcomeNotif"
+    }
+    
+    struct colors {
+        static let fadedgray = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 0.5)
+    }
+}

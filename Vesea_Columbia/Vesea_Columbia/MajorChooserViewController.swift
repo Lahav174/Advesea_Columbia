@@ -28,7 +28,7 @@ class MajorChooserViewController: UIViewController, UITableViewDelegate, UITable
     @IBAction func removeButtonPressed(sender: AnyObject) {
         if (delegateViewController.isKindOfClass(QuestionViewController)){
             let vc = delegateViewController as! QuestionViewController
-            //vc.animateContainerOut()
+            vc.animateContainerOut()
         }
     }
     
