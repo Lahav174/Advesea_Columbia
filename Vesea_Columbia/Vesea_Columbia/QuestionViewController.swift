@@ -299,6 +299,9 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate {
     // MARK: - Chooser
     
     func animateContainerIn(){
+        
+        chart?.userInteractionEnabled = false
+        
         if !(self.chooserBeingDisplayed){
             UIView.animateWithDuration(0.5, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
                 self.container.frame.origin.y = 100
@@ -311,6 +314,9 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     func animateContainerOut(){
+        
+        chart?.userInteractionEnabled = true
+        
         if (self.chooserBeingDisplayed){
             UIView.animateWithDuration(0.5, delay: 0, options: UIViewAnimationOptions.CurveEaseIn, animations: {
                 self.container.frame.origin.y = -400
