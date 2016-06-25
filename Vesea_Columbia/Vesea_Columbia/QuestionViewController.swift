@@ -12,7 +12,7 @@ import Charts
 class QuestionViewController: UIViewController, UIGestureRecognizerDelegate {
     var chartType: String? = nil
 
-    var questionLabel = UIView()
+    var questionLabel : UIView?
     
     var chooserBeingDisplayed = false
     
@@ -37,7 +37,7 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate {
    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.view.backgroundColor = UIColor.blackColor()
         setUpBackgroundImages()
         
         self.container.layer.cornerRadius = 10;
@@ -283,7 +283,7 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate {
         
         let backGround = UIImageView(frame: self.view.frame)
         backGround.image = UIImage(named: "mountainbackground")
-        self.view.addSubview(backGround)
+        //self.view.addSubview(backGround)
         self.view.sendSubviewToBack(backGround)
     }
     
@@ -298,23 +298,15 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate {
     // MARK: - Other
     
     func addLabel(preset: Int, frame: CGRect){
-        switch preset {
-        case 0:
-            questionLabel = QuestionLabel0(frame: frame)
-            (questionLabel as! QuestionLabel0).delegateViewController = self
-        case 2:
-            questionLabel = QuestionLabel2(frame: frame)
-        default:
-            questionLabel = QuestionLabel0(frame: frame)
-        }
-        //self.view.addSubview(questionLabel)
-        self.view.insertSubview(questionLabel, belowSubview: container)
-        questionLabel.translatesAutoresizingMaskIntoConstraints = false
-        let yConstraint = NSLayoutConstraint(item: questionLabel, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: chart, attribute: NSLayoutAttribute.Top, multiplier: 1, constant: -70)
-        let widthConstraint = NSLayoutConstraint(item: questionLabel, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Width, multiplier: 1, constant: -60)
-        let heightConstraint = NSLayoutConstraint(item: questionLabel, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: 150)
-        let centerXConstraint = NSLayoutConstraint(item: questionLabel, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0)
-        self.view.addConstraints([yConstraint, centerXConstraint, widthConstraint, heightConstraint])
+        questionLabel = QuestionLabel0(frame: frame)
+        //self.view.addSubview(questionLabel!)
+        self.view.insertSubview(questionLabel!, belowSubview: container)
+        questionLabel!.translatesAutoresizingMaskIntoConstraints = false
+        let labelyConstraint = NSLayoutConstraint(item: questionLabel!, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: graphBackground, attribute: NSLayoutAttribute.Top, multiplier: 1, constant: -70)
+        let labelWidthConstraint = NSLayoutConstraint(item: questionLabel!, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Width, multiplier: 1, constant: -60)
+        let labelHeightConstraint = NSLayoutConstraint(item: questionLabel!, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: 150)
+        let labelCenterXConstraint = NSLayoutConstraint(item: questionLabel!, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0)
+        self.view.addConstraints([labelWidthConstraint, labelCenterXConstraint, labelyConstraint])
     }
     
     func calcGranularity(max: Double) -> Double{

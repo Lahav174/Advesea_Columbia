@@ -117,7 +117,7 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
             param2 = "Term"
             param3 = [("Before", 80),("During", 100),("After", 70)]
             let frame = CGRect(x: 30, y: questionViewController!.graphBackground.frame.origin.y - questionViewController!.graphBackground.frame.height - 150, width: self.view.frame.width-30, height: 150)
-            //questionViewController.addLabel(0, frame: frame)
+            questionViewController!.addLabel(0, frame: frame)
             break;
         case 1:
             height?.constant = 200
@@ -280,7 +280,7 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
         view.addConstraint(horizontalConstraintVCBAR)
         print(self.view.frame.size.width*2)
         let verticalConstraintVCBAR = NSLayoutConstraint(item:  newViewController.view, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: scrollView, attribute: NSLayoutAttribute.Top, multiplier: 1, constant: 0)
-        //view.addConstraint(verticalConstraintVCBAR)can live w/o?
+        view.addConstraint(verticalConstraintVCBAR)
     }
     
     override func viewDidAppear(animated: Bool) {
