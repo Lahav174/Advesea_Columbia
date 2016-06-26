@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MajorChooserViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
+class MajorChooserViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UINavigationBarDelegate {
     
     var selectedCellCodes = [String]()
     
@@ -38,12 +38,18 @@ class MajorChooserViewController: UIViewController, UITableViewDelegate, UITable
         self.tableView.reloadData()
     }
     
+    func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
+        return UIBarPosition.Top
+    }
+    
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated);
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationController!.navigationBar.delegate = self
         
         for e in majorArrayFromDefaults{
             majors.append(Major(courseName: e.objectForKey("name") as! String, school: e.objectForKey("school") as! String, code: e.objectForKey("code") as! String))

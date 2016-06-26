@@ -36,7 +36,6 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
     
     @IBAction func backButtonPressed(sender: AnyObject) {
         let menuPage = CGPoint(x: self.view.frame.width, y: 0)
-        
         UIView.animateWithDuration(0.2, animations: {
             self.delegate?.scrollView.contentOffset = menuPage
         }) { (true) in
@@ -53,8 +52,8 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
         navigationBar.delegate = self
         configureGraphBackground("")
         
-        self.container.layer.cornerRadius = 10;
-        self.container.layer.masksToBounds = true;
+//        self.container.layer.cornerRadius = 10;
+//        self.container.layer.masksToBounds = true;
         self.container.layer.zPosition = 500
         
         self.container.translatesAutoresizingMaskIntoConstraints = false
@@ -327,6 +326,7 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
                 self.container.frame.origin.y = 100
                 }, completion: { (true) in
                     self.chooserBeingDisplayed = true
+                    self.yConstraint.constant = 500
             })
         }
     }
@@ -338,6 +338,7 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
                 self.container.frame.origin.y = -400
                 }, completion: { (true) in
                     self.chooserBeingDisplayed = false
+                    self.yConstraint.constant = 0
             })
         }
     }
