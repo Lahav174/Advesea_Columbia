@@ -423,14 +423,23 @@
                                     <segue destination="UcJ-CK-jea" kind="embed" identifier="MajorChooser" id="JJd-kT-gLe"/>
                                 </connections>
                             </containerView>
+                            <navigationBar clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r8g-xd-i1B">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <items>
+                                    <navigationItem title="Title" id="oT3-jJ-QD7"/>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="PSX-ku-waB" firstAttribute="top" secondItem="XRb-Me-5FJ" secondAttribute="bottom" constant="110" id="AqR-4N-ysQ"/>
                             <constraint firstAttribute="leadingMargin" secondItem="NKF-4D-7f1" secondAttribute="leading" id="LbC-cv-3qt"/>
+                            <constraint firstItem="r8g-xd-i1B" firstAttribute="top" secondItem="YRz-2E-b0t" secondAttribute="bottom" id="NOo-kO-sR9"/>
                             <constraint firstItem="NKF-4D-7f1" firstAttribute="top" secondItem="YRz-2E-b0t" secondAttribute="bottom" constant="243" placeholder="YES" id="Pst-3k-047"/>
                             <constraint firstItem="XRb-Me-5FJ" firstAttribute="centerX" secondItem="mLj-zi-acl" secondAttribute="centerX" id="SbI-HN-GYU"/>
                             <constraint firstAttribute="trailingMargin" secondItem="NKF-4D-7f1" secondAttribute="trailing" constant="-4" id="dsy-OU-h8s"/>
+                            <constraint firstItem="r8g-xd-i1B" firstAttribute="centerX" secondItem="mLj-zi-acl" secondAttribute="centerX" id="fHS-qV-aid"/>
+                            <constraint firstItem="r8g-xd-i1B" firstAttribute="width" secondItem="mLj-zi-acl" secondAttribute="width" id="qet-kM-ysa"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
@@ -440,11 +449,12 @@
                         <outlet property="graphBackgroundHeight" destination="Jiz-tP-l7o" id="VLt-cg-Z0k"/>
                         <outlet property="graphBackgroundLabel" destination="0y2-Fv-uPA" id="J8y-Pd-7pe"/>
                         <outlet property="graphBackgroundWidth" destination="8Ik-bX-2Mb" id="1sA-vJ-pDI"/>
+                        <outlet property="navigationBar" destination="r8g-xd-i1B" id="ZI9-Fg-386"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jmM-og-hc2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="673.5" y="3853.5"/>
+            <point key="canvasLocation" x="673.5" y="3805.5"/>
         </scene>
         <!--HBarChartQuestionViewController-->
         <scene sceneID="5tQ-a0-fMD">

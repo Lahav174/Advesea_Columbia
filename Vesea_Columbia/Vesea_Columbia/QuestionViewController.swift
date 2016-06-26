@@ -9,7 +9,7 @@
 import UIKit
 import Charts
 
-class QuestionViewController: UIViewController, UIGestureRecognizerDelegate {
+class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UINavigationBarDelegate {
     var chartType: String? = nil
 
     var questionLabel : UIView?
@@ -29,16 +29,15 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var container: UIView!
     @IBOutlet weak var graphBackground: UIView!
     @IBOutlet weak var graphBackgroundLabel: UILabel!
+    @IBOutlet weak var navigationBar: UINavigationBar!
     
     @IBOutlet weak var graphBackgroundHeight: NSLayoutConstraint!
     @IBOutlet weak var graphBackgroundWidth: NSLayoutConstraint!
- 
-    
    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpBackgroundImages()
-        
+        navigationBar.delegate = self
         configureGraphBackground("")
         
         self.container.layer.cornerRadius = 10;
@@ -261,7 +260,6 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate {
             hBarChart.xAxis.drawLabelsEnabled = true
             hBarChart.leftAxis.drawLabelsEnabled = true
             hBarChart.xAxis.drawLabelsEnabled = true
-            hBarChart.rightAxis.axisMaxValue = 100
             hBarChart.animate(yAxisDuration: 1.5, easingOption: .EaseOutQuart)
         } else if type == "Pie Chart"{
             let pieChart = (chart as! PieChartView)
@@ -296,12 +294,14 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate {
         graphBackgroundLabel.font = UIFont(name: "HelveticaNeue-Light", size: 16)!
     }
     
+    func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
+        return UIBarPosition.TopAttached
+    }
+    
     // MARK: - Chooser
     
     func animateContainerIn(){
-        
         chart?.userInteractionEnabled = false
-        
         if !(self.chooserBeingDisplayed){
             UIView.animateWithDuration(0.5, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
                 self.container.frame.origin.y = 100
@@ -309,14 +309,10 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate {
                     self.chooserBeingDisplayed = true
             })
         }
-        
-        
     }
     
     func animateContainerOut(){
-        
         chart?.userInteractionEnabled = true
-        
         if (self.chooserBeingDisplayed){
             UIView.animateWithDuration(0.5, delay: 0, options: UIViewAnimationOptions.CurveEaseIn, animations: {
                 self.container.frame.origin.y = -400
