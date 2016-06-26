@@ -176,7 +176,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LWX-9S-ai9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-194.5" y="1239.5"/>
+            <point key="canvasLocation" x="-282.5" y="-48.5"/>
         </scene>
         <!--BarChartQuestionViewController-->
         <scene sceneID="55Q-Kl-d1I">
@@ -236,7 +236,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="75f-DZ-H1y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-137.5" y="4586.5"/>
+            <point key="canvasLocation" x="750.5" y="210.5"/>
         </scene>
         <!--Scroll View Controller-->
         <scene sceneID="Ae8-qh-EHY">
@@ -382,7 +382,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dac-zl-obh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="119.5" y="3805.5"/>
+            <point key="canvasLocation" x="1007.5" y="-570.5"/>
         </scene>
         <!--Question View Controller-->
         <scene sceneID="abI-BB-gj5">
@@ -426,7 +426,13 @@
                             <navigationBar clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r8g-xd-i1B">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <items>
-                                    <navigationItem title="Title" id="oT3-jJ-QD7"/>
+                                    <navigationItem title="Title Goes Here" id="oT3-jJ-QD7">
+                                        <barButtonItem key="leftBarButtonItem" image="Back Chevron" id="cWe-PV-kWb">
+                                            <connections>
+                                                <action selector="backButtonPressed:" destination="s9z-IS-G7h" id="iCP-Mq-ClG"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
                                 </items>
                             </navigationBar>
                         </subviews>
@@ -444,6 +450,7 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="backButton" destination="cWe-PV-kWb" id="dlK-Xh-CzK"/>
                         <outlet property="container" destination="NKF-4D-7f1" id="6QZ-Fz-d45"/>
                         <outlet property="graphBackground" destination="XRb-Me-5FJ" id="64b-ba-CUD"/>
                         <outlet property="graphBackgroundHeight" destination="Jiz-tP-l7o" id="VLt-cg-Z0k"/>
@@ -454,7 +461,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jmM-og-hc2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="673.5" y="3805.5"/>
+            <point key="canvasLocation" x="-446.5" y="2565.5"/>
         </scene>
         <!--HBarChartQuestionViewController-->
         <scene sceneID="5tQ-a0-fMD">
@@ -513,7 +520,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EEb-za-jz8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-310.5" y="3805.5"/>
+            <point key="canvasLocation" x="577.5" y="-570.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="uf5-gH-5JM">
@@ -549,7 +556,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oQJ-tf-VVI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-930" y="2550"/>
+            <point key="canvasLocation" x="158" y="1046"/>
         </scene>
         <!--Choose Major-->
         <scene sceneID="aCo-wG-f3i">
@@ -673,7 +680,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gXH-4X-E99" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="673.5" y="4762"/>
+            <point key="canvasLocation" x="-446.5" y="3522"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="eR5-xg-vlA">
@@ -691,10 +698,11 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6PX-e9-JLi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="673.5" y="4430"/>
+            <point key="canvasLocation" x="-446.5" y="3190"/>
         </scene>
     </scenes>
     <resources>
+        <image name="Back Chevron" width="13" height="21"/>
         <image name="Star_Deselected" width="226" height="227"/>
         <image name="Vesea" width="146" height="39"/>
         <image name="cross" width="14" height="14"/>

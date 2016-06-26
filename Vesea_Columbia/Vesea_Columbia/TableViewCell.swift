@@ -39,11 +39,11 @@ class TableViewCell: UITableViewCell {
     }
     
     func handlePan(recognizer: UIPanGestureRecognizer) {
-        let viewWidth = (delegateController?.delegate.view.frame.width)!
+        let viewWidth = (delegateController?.delegate!.view.frame.width)!
         let xVelocity = recognizer.velocityInView(superview!).x
         if recognizer.state == .Began {
             originalCenter = center
-            self.delegateController?.delegate.resetQuestionViewController(self.indexPath.row)
+            self.delegateController?.delegate!.resetQuestionViewController(self.indexPath.row)
         }
         if recognizer.state == .Changed {
             let originalOffset : CGFloat = 50
@@ -63,7 +63,7 @@ class TableViewCell: UITableViewCell {
                     } else if (translation.x >= 0){
                         center = CGPointMake(originalCenter.x, originalCenter.y)
                     }
-                } else if (xVelocity > 0 && delegateController?.delegate.scrollView.contentOffset.x <= viewWidth) {
+                } else if (xVelocity > 0 && delegateController?.delegate!.scrollView.contentOffset.x <= viewWidth) {
                     //print("#2")
                     if (translation.x < 0){
                         center = CGPointMake(originalCenter.x + translation.x, originalCenter.y)
@@ -72,22 +72,22 @@ class TableViewCell: UITableViewCell {
                         print("2.4: " + String(translation.x))
                         center = originalCenter
                     }
-                    delegateController?.delegate.scrollView.contentOffset.x = viewWidth
+                    delegateController?.delegate!.scrollView.contentOffset.x = viewWidth
                 }
                 else if (center.x < originalCenter.x && center.x - originalCenter.x < -45){
                     //print("#3")
                     frame.origin.x = -originalOffset
-                    if (delegateController?.delegate.scrollView.contentOffset.x >= viewWidth){
-                        delegateController?.delegate.scrollView.contentOffset.x = viewWidth - translation.x - originalOffset
+                    if (delegateController?.delegate!.scrollView.contentOffset.x >= viewWidth){
+                        delegateController?.delegate!.scrollView.contentOffset.x = viewWidth - translation.x - originalOffset
                     } else {
-                        delegateController?.delegate.scrollView.contentOffset.x = viewWidth
+                        delegateController?.delegate!.scrollView.contentOffset.x = viewWidth
                     }
                 }
             } else if (swipingRight!){
                 if (translation.x >= 0){
-                    delegateController?.delegate.scrollView.contentOffset.x = viewWidth - translation.x
+                    delegateController?.delegate!.scrollView.contentOffset.x = viewWidth - translation.x
                 } else {
-                    delegateController?.delegate.scrollView.contentOffset.x = viewWidth
+                    delegateController?.delegate!.scrollView.contentOffset.x = viewWidth
                 }
             }
         }
@@ -95,25 +95,25 @@ class TableViewCell: UITableViewCell {
             let originalFrame = CGRect(x: 0, y: frame.origin.y, width: bounds.size.width, height: bounds.size.height)
             UIView.animateWithDuration(0.2, animations: {self.frame = originalFrame})
             if (!swipingRight!){
-                let scrollToNextPage = (delegateController?.delegate.scrollView.contentOffset.x)! > 1.45*viewWidth
+                let scrollToNextPage = (delegateController?.delegate!.scrollView.contentOffset.x)! > 1.45*viewWidth
                 if (scrollToNextPage || xVelocity < -500){
                     let nextPage = CGPoint(x: viewWidth*2, y: 0)
-                    delegateController?.delegate.scrollView.setContentOffset(nextPage, animated: true)
-                    delegateController?.delegate.scrollView.panGestureRecognizer.enabled = true
+                    delegateController?.delegate!.scrollView.setContentOffset(nextPage, animated: true)
+                    delegateController?.delegate!.scrollView.panGestureRecognizer.enabled = true
                 } else {
                     let thisPage = CGPoint(x: viewWidth, y: 0)
-                    delegateController?.delegate.scrollView.setContentOffset(thisPage, animated: true)
+                    delegateController?.delegate!.scrollView.setContentOffset(thisPage, animated: true)
                 }
             } else if (swipingRight!){
-                print(delegateController?.delegate.scrollView.contentOffset.x)
-                let scrollToPrevPage = (delegateController?.delegate.scrollView.contentOffset.x)! < 0.45*viewWidth
+                print(delegateController?.delegate!.scrollView.contentOffset.x)
+                let scrollToPrevPage = (delegateController?.delegate!.scrollView.contentOffset.x)! < 0.45*viewWidth
                 if (scrollToPrevPage || xVelocity > 500){
                     let prevPage = CGPoint(x: 0, y: 0)
-                    delegateController?.delegate.scrollView.setContentOffset(prevPage, animated: true)
-                    delegateController?.delegate.scrollView.panGestureRecognizer.enabled = true
+                    delegateController?.delegate!.scrollView.setContentOffset(prevPage, animated: true)
+                    delegateController?.delegate!.scrollView.panGestureRecognizer.enabled = true
                 } else {
                     let thisPage = CGPoint(x: viewWidth, y: 0)
-                    delegateController?.delegate.scrollView.setContentOffset(thisPage, animated: true)
+                    delegateController?.delegate!.scrollView.setContentOffset(thisPage, animated: true)
                 }
             }
             swipingRight = nil

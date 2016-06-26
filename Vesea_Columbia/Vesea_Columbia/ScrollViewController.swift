@@ -97,12 +97,6 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
         var param2 = String()
         var param3 = [(x: String, y: Double)]()
         
-        if questionViewController!.chart != nil{
-            print("oyoyoyoy")
-            //questionViewController!.chart!.removeConstraints(questionViewController!.chart!.constraints)
-            questionViewController!.chart?.removeFromSuperview()
-            questionViewController!.chart = nil
-        }
         var width = questionViewController?.graphBackgroundWidth
         var height = questionViewController?.graphBackgroundHeight
         width?.constant = questionViewController!.view.frame.width - 30
@@ -335,6 +329,8 @@ struct K {
     }
     
     struct colors {
-        static let fadedgray = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 0.5)
+        static let fadedGray = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 0.5)
+        static let lightBlack = UIColor(white: 42/255, alpha: 1)
+        static let navBarColor = UIColor(red: 185/255, green: 205/255, blue: 227/255, alpha: 1)
     }
 }

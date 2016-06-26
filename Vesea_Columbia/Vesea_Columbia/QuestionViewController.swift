@@ -30,13 +30,26 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
     @IBOutlet weak var graphBackground: UIView!
     @IBOutlet weak var graphBackgroundLabel: UILabel!
     @IBOutlet weak var navigationBar: UINavigationBar!
-    
+    @IBOutlet weak var backButton: UIBarButtonItem!
     @IBOutlet weak var graphBackgroundHeight: NSLayoutConstraint!
     @IBOutlet weak var graphBackgroundWidth: NSLayoutConstraint!
-   
+    
+    @IBAction func backButtonPressed(sender: AnyObject) {
+        let menuPage = CGPoint(x: self.view.frame.width, y: 0)
+        
+        UIView.animateWithDuration(0.2, animations: {
+            self.delegate?.scrollView.contentOffset = menuPage
+        }) { (true) in
+            self.delegate!.scrollView.panGestureRecognizer.enabled = false
+        }
+        
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpBackgroundImages()
+        setupNavBar()
         navigationBar.delegate = self
         configureGraphBackground("")
         
@@ -64,6 +77,11 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
     }
     
     func customInitializer(chartKind: String, valueFormatter: NSNumberFormatter,titleTxt: String, xyValues: [(x: String, y: Double)]){
+        
+        if chart != nil{
+            chart?.removeFromSuperview()
+            chart = nil
+        }
                 
         formatter = valueFormatter
         titleText = titleTxt
@@ -204,8 +222,6 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
         
         if type == "Bar Chart"{
             let barChart = (chart as! BarChartView)
-            barChart.pinchZoomEnabled = true
-            barChart.doubleTapToZoomEnabled = true
             barChart.drawGridBackgroundEnabled = false
             barChart.descriptionText = ""
             barChart.xAxis.labelPosition = .Bottom
@@ -224,8 +240,8 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
             barChart.leftAxis.labelTextColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.8)
             barChart.leftAxis.labelFont = UIFont(name: "HelveticaNeue-Light", size: 12)!
             barChart.legend.enabled = false
-            barChart.scaleXEnabled = true
-            barChart.scaleYEnabled = true
+            barChart.scaleXEnabled = false
+            barChart.scaleYEnabled = false
             barChart.rightAxis.enabled = false
             barChart.xAxis.drawLabelsEnabled = true
             barChart.leftAxis.drawLabelsEnabled = true
@@ -233,8 +249,6 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
             barChart.animate(yAxisDuration: 1.5, easingOption: .EaseOutQuart)
         } else if type == "Horizontal Bar Chart"{
             let hBarChart = (chart as! HorizontalBarChartView)
-            hBarChart.pinchZoomEnabled = true
-            hBarChart.doubleTapToZoomEnabled = true
             hBarChart.drawGridBackgroundEnabled = false
             hBarChart.descriptionText = ""
             hBarChart.xAxis.labelPosition = .Bottom
@@ -253,8 +267,8 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
             hBarChart.rightAxis.labelTextColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.8)
             hBarChart.rightAxis.labelFont = UIFont(name: "HelveticaNeue-Light", size: 12)!
             hBarChart.legend.enabled = false
-            hBarChart.scaleXEnabled = true
-            hBarChart.scaleYEnabled = true
+            hBarChart.scaleXEnabled = false
+            hBarChart.scaleYEnabled = false
             hBarChart.rightAxis.enabled = true
             hBarChart.leftAxis.enabled = false
             hBarChart.xAxis.drawLabelsEnabled = true
@@ -270,6 +284,7 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
             pieChart.legend.yEntrySpace = 100
             pieChart.holeColor = UIColor.clearColor()
             pieChart.holeRadiusPercent = 0.50
+            pieChart.animate(yAxisDuration: 1.5, easingOption:  .EaseOutQuart)
         }
     }
     
@@ -286,10 +301,15 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
         self.view.sendSubviewToBack(backGround)
     }
     
+    func setupNavBar(){
+        navigationBar.backgroundColor = K.colors.navBarColor
+        backButton.tintColor = K.colors.lightBlack
+    }
+    
     func configureGraphBackground(titleText: String){
         graphBackground.layer.cornerRadius = 10
         graphBackground.layer.masksToBounds = true
-        graphBackground.backgroundColor = K.colors.fadedgray
+        graphBackground.backgroundColor = K.colors.fadedGray
         graphBackgroundLabel.text = titleText
         graphBackgroundLabel.font = UIFont(name: "HelveticaNeue-Light", size: 16)!
     }
@@ -335,16 +355,30 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
     }
     
     func addLabel(preset: Int, frame: CGRect){
-        questionLabel = QuestionLabel0(frame: frame)
-        (questionLabel as! QuestionLabel0).delegateViewController = self
         
-        self.view.insertSubview(questionLabel!, belowSubview: container)
-        questionLabel!.translatesAutoresizingMaskIntoConstraints = false
-        let labelyConstraint = NSLayoutConstraint(item: questionLabel!, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: graphBackground, attribute: NSLayoutAttribute.Top, multiplier: 1, constant: -70)
-        let labelWidthConstraint = NSLayoutConstraint(item: questionLabel!, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Width, multiplier: 1, constant: -60)
-        let labelHeightConstraint = NSLayoutConstraint(item: questionLabel!, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: 150)
-        let labelCenterXConstraint = NSLayoutConstraint(item: questionLabel!, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0)
-        self.view.addConstraints([labelWidthConstraint, labelCenterXConstraint, labelyConstraint, labelHeightConstraint])
+        if questionLabel != nil{
+            questionLabel?.removeFromSuperview()
+            questionLabel = nil
+        }
+        
+        switch preset {
+        case 0:
+            questionLabel = QuestionLabel0(frame: frame)
+            (questionLabel as! QuestionLabel0).delegateViewController = self
+            break
+        default:
+            break
+        }
+        
+        if questionLabel != nil {
+            self.view.insertSubview(questionLabel!, belowSubview: container)
+            questionLabel!.translatesAutoresizingMaskIntoConstraints = false
+            let labelyConstraint = NSLayoutConstraint(item: questionLabel!, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: graphBackground, attribute: NSLayoutAttribute.Top, multiplier: 1, constant: -30)
+            let labelWidthConstraint = NSLayoutConstraint(item: questionLabel!, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Width, multiplier: 1, constant: -60)
+            let labelHeightConstraint = NSLayoutConstraint(item: questionLabel!, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: 150)
+            let labelCenterXConstraint = NSLayoutConstraint(item: questionLabel!, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0)
+            self.view.addConstraints([labelWidthConstraint, labelCenterXConstraint, labelyConstraint, labelHeightConstraint])
+        }
     }
     
     // MARK: - Other
