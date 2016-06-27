@@ -52,8 +52,8 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
         navigationBar.delegate = self
         configureGraphBackground("")
         
-//        self.container.layer.cornerRadius = 10;
-//        self.container.layer.masksToBounds = true;
+        self.container.layer.cornerRadius = 10;
+        self.container.layer.masksToBounds = true;
         self.container.layer.zPosition = 500
         
         self.container.translatesAutoresizingMaskIntoConstraints = false
@@ -406,7 +406,7 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let segueName = segue.identifier
         if (segueName == "MajorChooser"){
-            let destination = (segue.destinationViewController as! UINavigationController).topViewController as! MajorChooserViewController
+            let destination = segue.destinationViewController as! MajorChooserViewController
             destination.delegateViewController = self
         }
     }

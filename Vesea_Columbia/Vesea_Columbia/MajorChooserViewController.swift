@@ -48,9 +48,7 @@ class MajorChooserViewController: UIViewController, UITableViewDelegate, UITable
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        navigationController!.navigationBar.delegate = self
-        
+                
         for e in majorArrayFromDefaults{
             majors.append(Major(courseName: e.objectForKey("name") as! String, school: e.objectForKey("school") as! String, code: e.objectForKey("code") as! String))
         }
@@ -67,7 +65,7 @@ class MajorChooserViewController: UIViewController, UITableViewDelegate, UITable
         let border = CALayer()
         let width = CGFloat(0.5)
         border.borderColor = UIColor.lightGrayColor().CGColor
-        border.frame = CGRect(x: -10, y: searchBar.frame.size.height - width - 43 - 8, width:  view.frame.size.width*2, height: searchBar.frame.size.height+8)
+        border.frame = CGRect(x: -10, y: searchBar.frame.size.height - width - 8, width:  view.frame.size.width*2, height: searchBar.frame.size.height+8)
         
         border.borderWidth = width
         self.view.layer.addSublayer(border)
