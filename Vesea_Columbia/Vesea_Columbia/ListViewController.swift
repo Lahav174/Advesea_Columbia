@@ -8,12 +8,11 @@
 
 import UIKit
 
-class ListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate {
+class ListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UINavigationBarDelegate {
 
     @IBOutlet weak var tableView: UITableView!
-    
-    @IBOutlet weak var advesiaBackground: UIView!
-    
+        
+    @IBOutlet weak var navigationBar: UINavigationBar!
     var delegate : ScrollViewController?
     
     override func viewDidLoad() {
@@ -23,38 +22,9 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tableView.delegate = self
         tableView.registerClass(TableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.backgroundColor = UIColor.purpleColor()
+        navigationBar.delegate = self
         
-        let panRecognizer = UIPanGestureRecognizer(target: self, action: #selector(self.handlePan(_:)))
-        panRecognizer.delegate = self
-        self.advesiaBackground.addGestureRecognizer(panRecognizer)
-    }
-    
-    func handlePan(recognizer: UIPanGestureRecognizer){
-        let xVelocity = recognizer.velocityInView(advesiaBackground).x
-        let viewWidth = self.view.frame.width
-        let scrollToPrevPage = self.delegate!.scrollView.contentOffset.x < 0.45*viewWidth
         
-        if recognizer.state == .Began{
-            
-        }
-        if recognizer.state == .Changed{
-            let translation = recognizer.translationInView(advesiaBackground)
-            if (translation.x >= 0){
-                delegate!.scrollView.contentOffset.x = viewWidth - translation.x
-            } else {
-                delegate!.scrollView.contentOffset.x = viewWidth
-            }
-        }
-        if recognizer.state == .Ended{
-            if (scrollToPrevPage || xVelocity > 500){
-                let prevPage = CGPoint(x: 0, y: 0)
-                delegate!.scrollView.setContentOffset(prevPage, animated: true)
-                delegate!.scrollView.panGestureRecognizer.enabled = true
-            } else {
-                let thisPage = CGPoint(x: viewWidth, y: 0)
-                delegate!.scrollView.setContentOffset(thisPage, animated: true)
-            }
-        }
     }
 
     
@@ -128,8 +98,8 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return (self.view.frame.height-200+22)/7
     }
     
-    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        return true
+    func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
+        return UIBarPosition.TopAttached
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -138,6 +108,37 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         delegate!.scrollView.setContentOffset(nextPage, animated: true)
         delegate!.scrollView.panGestureRecognizer.enabled = true
     }
+    
+    /*
+     
+     func handlePan(recognizer: UIPanGestureRecognizer){
+     let xVelocity = recognizer.velocityInView(advesiaBackground).x
+     let viewWidth = self.view.frame.width
+     let scrollToPrevPage = self.delegate!.scrollView.contentOffset.x < 0.45*viewWidth
+     
+     if recognizer.state == .Began{
+     
+     }
+     if recognizer.state == .Changed{
+     let translation = recognizer.translationInView(advesiaBackground)
+     if (translation.x >= 0){
+     delegate!.scrollView.contentOffset.x = viewWidth - translation.x
+     } else {
+     delegate!.scrollView.contentOffset.x = viewWidth
+     }
+     }
+     if recognizer.state == .Ended{
+     if (scrollToPrevPage || xVelocity > 500){
+     let prevPage = CGPoint(x: 0, y: 0)
+     delegate!.scrollView.setContentOffset(prevPage, animated: true)
+     delegate!.scrollView.panGestureRecognizer.enabled = true
+     } else {
+     let thisPage = CGPoint(x: viewWidth, y: 0)
+     delegate!.scrollView.setContentOffset(thisPage, animated: true)
+     }
+     }
+     }
+     */
     
 
     /*

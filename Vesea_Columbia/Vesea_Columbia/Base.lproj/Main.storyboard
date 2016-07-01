@@ -284,7 +284,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="UIm-og-r7B">
-                                <rect key="frame" x="0.0" y="200" width="600" height="400"/>
+                                <rect key="frame" x="0.0" y="84" width="600" height="516"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Unt-Lv-GW9">
@@ -298,44 +298,32 @@
                                 </prototypes>
                                 <sections/>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IGd-gR-wa8">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="200"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Vesea" translatesAutoresizingMaskIntoConstraints="NO" id="oeP-A3-pvD">
-                                        <rect key="frame" x="218" y="75" width="165" height="50"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="165" id="9Ki-xN-ipT"/>
-                                            <constraint firstAttribute="height" constant="50" id="qJy-yj-KGD"/>
-                                        </constraints>
-                                    </imageView>
-                                </subviews>
-                                <color key="backgroundColor" red="0.42352941179999998" green="0.61960784310000006" blue="0.84313725490000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstItem="oeP-A3-pvD" firstAttribute="centerX" secondItem="IGd-gR-wa8" secondAttribute="centerX" id="ebZ-c6-Vfo"/>
-                                    <constraint firstAttribute="height" constant="200" id="pKd-E5-h8C"/>
-                                    <constraint firstItem="oeP-A3-pvD" firstAttribute="centerY" secondItem="IGd-gR-wa8" secondAttribute="centerY" id="t1y-ow-Ve6"/>
-                                </constraints>
-                            </view>
+                            <navigationBar clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ufk-O4-qUQ">
+                                <rect key="frame" x="0.0" y="40" width="600" height="44"/>
+                                <items>
+                                    <navigationItem title="Title" id="8MI-s3-QFT"/>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="IGd-gR-wa8" firstAttribute="centerX" secondItem="4Bh-4R-7EE" secondAttribute="centerX" id="Q0q-Ky-Kzy"/>
-                            <constraint firstItem="IGd-gR-wa8" firstAttribute="top" secondItem="dtd-d7-NEF" secondAttribute="bottom" constant="-20" id="Yb0-NR-grL"/>
-                            <constraint firstItem="IGd-gR-wa8" firstAttribute="width" secondItem="UIm-og-r7B" secondAttribute="width" id="dYs-Ml-JMt"/>
+                            <constraint firstItem="Ufk-O4-qUQ" firstAttribute="centerX" secondItem="4Bh-4R-7EE" secondAttribute="centerX" id="PYL-A5-E6O"/>
+                            <constraint firstItem="Ufk-O4-qUQ" firstAttribute="top" secondItem="dtd-d7-NEF" secondAttribute="bottom" constant="20" id="Tia-lM-nBN"/>
+                            <constraint firstItem="Ufk-O4-qUQ" firstAttribute="width" secondItem="4Bh-4R-7EE" secondAttribute="width" id="Tr0-Rq-Ox5"/>
                             <constraint firstItem="UIm-og-r7B" firstAttribute="centerX" secondItem="4Bh-4R-7EE" secondAttribute="centerX" id="dhh-wU-FYD"/>
-                            <constraint firstItem="UIm-og-r7B" firstAttribute="top" secondItem="IGd-gR-wa8" secondAttribute="bottom" id="hys-HG-4hT"/>
+                            <constraint firstItem="UIm-og-r7B" firstAttribute="top" secondItem="Ufk-O4-qUQ" secondAttribute="bottom" id="hV9-8Q-eFI"/>
                             <constraint firstItem="G2V-sj-1HW" firstAttribute="top" secondItem="UIm-og-r7B" secondAttribute="bottom" id="qr6-gB-ZYI"/>
                             <constraint firstItem="UIm-og-r7B" firstAttribute="width" secondItem="4Bh-4R-7EE" secondAttribute="width" id="yFq-rW-6zW"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="advesiaBackground" destination="IGd-gR-wa8" id="aC7-Oj-zUU"/>
+                        <outlet property="navigationBar" destination="Ufk-O4-qUQ" id="OXx-jD-z1i"/>
                         <outlet property="tableView" destination="UIm-og-r7B" id="ZIa-jh-wlv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="68b-mx-L2B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1592" y="2564"/>
+            <point key="canvasLocation" x="-962" y="2532"/>
         </scene>
         <!--Pie Chart Question View Controller-->
         <scene sceneID="o4G-iv-T1b">
