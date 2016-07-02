@@ -23,6 +23,7 @@ class TableViewCell: UITableViewCell {
     weak var delegateController = ListViewController()
     var indexPath = NSIndexPath()
     let maxSlidingDistance : CGFloat = -100
+    var slidingImageView : UIImageView?
     
     @IBOutlet weak var slidingView: UIView!
     
@@ -42,6 +43,8 @@ class TableViewCell: UITableViewCell {
     }
     
     func setup(){
+        self.backgroundColor = UIColor.blackColor()
+        
         let panRecognizer = UIPanGestureRecognizer(target: self, action: "handlePan:")
         panRecognizer.delegate = self
         addGestureRecognizer(panRecognizer)
@@ -52,6 +55,7 @@ class TableViewCell: UITableViewCell {
         let xVelocity = recognizer.velocityInView(superview!).x
         if recognizer.state == .Began {
             if (iconView.image == nil){
+                slidingView.clipsToBounds = true
                 iconView.image = UIImage(named: "graph_icon")
             }
             originalSlidingViewOrigin = slidingView.frame.origin
@@ -94,9 +98,15 @@ class TableViewCell: UITableViewCell {
                 }
             }
             
+            let offset = slidingView.frame.origin.x
+            self.slidingImageView?.frame.origin.x = -offset
+            
         }
         if recognizer.state == .Ended {
-            UIView.animateWithDuration(0.2, animations: {self.slidingView.frame.origin.x = 0})
+            UIView.animateWithDuration(0.2, animations: {
+                self.slidingView.frame.origin.x = 0
+                self.slidingImageView?.frame.origin.x = 0
+            })
             if (!swipingRight!){
                 let scrollToNextPage = (delegateController?.delegate!.scrollView.contentOffset.x)! > 1.45*viewWidth
                 if (scrollToNextPage || xVelocity < -500){

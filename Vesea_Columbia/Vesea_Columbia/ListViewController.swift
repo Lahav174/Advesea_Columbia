@@ -118,6 +118,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         slidingImageView.image = self.imageForSection(indexPath.section)
         slidingImageView.contentMode = .ScaleAspectFill
         cell.slidingView.insertSubview(slidingImageView, belowSubview: cell.slidingViewLabel)
+        cell.slidingImageView = slidingImageView
         
         cell.slidingViewLabel.attributedText = myMutableString
         cell.userInteractionEnabled = true
