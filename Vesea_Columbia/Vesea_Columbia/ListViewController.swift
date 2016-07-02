@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import QuartzCore
 
 class ListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UINavigationBarDelegate {
 
@@ -24,15 +25,36 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tableView.backgroundColor = K.colors.tableviewBackgroundColor
         navigationBar.delegate = self
         
+        let headerView = UIView(frame: CGRectMake(0, 0, tableView.bounds.size.width, 20))
+        headerView.backgroundColor = K.colors.tableviewBackgroundColor
+        tableView.tableHeaderView = headerView
         
+        self.navigationBar.layer.shadowColor = UIColor.blackColor().CGColor
+        self.navigationBar.layer.shadowOpacity = 0.6
+        self.navigationBar.layer.shadowRadius = 4
+        self.navigationBar.layer.shadowOffset = CGSizeMake(0, 10)
+        self.navigationBar.layer.masksToBounds = false
+        self.navigationBar.layer.shouldRasterize = true
+        
+        self.navigationBar.layer.zPosition = 999
     }
-
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 6
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+ 
+    func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let headerView = UIImageView(frame: CGRectMake(0, 0, tableView.bounds.size.width, 30))
+        headerView.image = UIImage(named: "shadow_rect")
+        headerView.contentMode = .ScaleToFill
+        return headerView
+    }
+    
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 1
     }
     
@@ -85,6 +107,18 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         default:
             break
         }
+        
+        
+        
+//        cell.layer.shadowOffset = CGSizeMake(10, 0);
+//        cell.layer.shadowColor = UIColor.blackColor().CGColor
+//        cell.layer.shadowRadius = 4
+//        cell.layer.shadowOpacity = 1
+//        
+//        let shadowFrame = cell.layer.bounds;
+//        let shadowPath = UIBezierPath(rect: shadowFrame).CGPath
+//        cell.layer.shadowPath = shadowPath;
+        
         
         cell.slidingViewLabel.attributedText = myMutableString
         //cell.textLabel?.attributedText = myMutableString
