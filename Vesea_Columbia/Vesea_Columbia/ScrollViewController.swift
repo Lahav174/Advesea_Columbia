@@ -144,28 +144,30 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
             param2 = ""
             param3 = [("Computer Science", 40),("Mathematics", 30),("Physics", 20),("Other", 10)]
             break;
-        case 4:
-            height?.constant = 200
-            param1.numberStyle = NSNumberFormatterStyle.PercentStyle
-            param1.multiplier = 1
-            param1.minimumFractionDigits = 0
-            param2 = "Term"
-            param3 = [("W4323", 80),("W3211", 90),("1334", 70)]
-            break;
-        case 5:
-            height?.constant = 200
-            param0 = "Bar Chart"
-            param1.numberStyle = NSNumberFormatterStyle.PercentStyle
-            param1.multiplier = 1
-            param1.minimumFractionDigits = 0
-            param2 = "Semester"
-            param3 = [("6", 2),("7", 6),("8", 85),("9", 7)]
-            break;
+//        case 4:
+//            height?.constant = 200
+//            param1.numberStyle = NSNumberFormatterStyle.PercentStyle
+//            param1.multiplier = 1
+//            param1.minimumFractionDigits = 0
+//            param2 = "Term"
+//            param3 = [("W4323", 80),("W3211", 90),("1334", 70)]
+//            break;
+//        case 5:
+//            height?.constant = 200
+//            param0 = "Bar Chart"
+//            param1.numberStyle = NSNumberFormatterStyle.PercentStyle
+//            param1.multiplier = 1
+//            param1.minimumFractionDigits = 0
+//            param2 = "Semester"
+//            param3 = [("6", 2),("7", 6),("8", 85),("9", 7)]
+//            break;
         default:
             break
         }
+        if preset < 4{
         questionViewController?.chart?.layoutIfNeeded()
         questionViewController!.customInitializer(param0, valueFormatter: param1, titleTxt: param2, xyValues: param3)
+        }
     }
     
 /*

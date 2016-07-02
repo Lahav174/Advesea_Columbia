@@ -22,11 +22,13 @@ class TableViewCell: UITableViewCell {
     var swipingRight : Bool? = nil
     weak var delegateController = ListViewController()
     var indexPath = NSIndexPath()
+    let maxSlidingDistance : CGFloat = -100
     
     @IBOutlet weak var slidingView: UIView!
     
     @IBOutlet weak var slidingViewLabel: UILabel!
     
+    @IBOutlet weak var iconView: UIImageView!
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
         //fatalError("NSCoding not supported")
@@ -43,15 +45,15 @@ class TableViewCell: UITableViewCell {
         let panRecognizer = UIPanGestureRecognizer(target: self, action: "handlePan:")
         panRecognizer.delegate = self
         addGestureRecognizer(panRecognizer)
-        
-        self.backgroundColor = UIColor.orangeColor()
     }
     
     func handlePan(recognizer: UIPanGestureRecognizer){
         let viewWidth = (delegateController?.delegate!.view.frame.width)!
         let xVelocity = recognizer.velocityInView(superview!).x
-        let maxSlidingDistance : CGFloat = -50
         if recognizer.state == .Began {
+            if (iconView.image == nil){
+                iconView.image = UIImage(named: "graph_icon")
+            }
             originalSlidingViewOrigin = slidingView.frame.origin
             self.delegateController?.delegate!.resetQuestionViewController(self.indexPath.section)
         }

@@ -16,6 +16,8 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var navigationBar: UINavigationBar!
     var delegate : ScrollViewController?
     
+    let cellHeight : CGFloat = 100
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,13 +32,16 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tableView.tableHeaderView = headerView
         
         self.navigationBar.layer.shadowColor = UIColor.blackColor().CGColor
-        self.navigationBar.layer.shadowOpacity = 0.6
+        self.navigationBar.layer.shadowOpacity = 0.5
         self.navigationBar.layer.shadowRadius = 4
         self.navigationBar.layer.shadowOffset = CGSizeMake(0, 10)
         self.navigationBar.layer.masksToBounds = false
         self.navigationBar.layer.shouldRasterize = true
         
         self.navigationBar.layer.zPosition = 999
+        
+        let panRecognizer = UIPanGestureRecognizer(target: self, action: "handlePan:")
+        self.view.addGestureRecognizer(panRecognizer)
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -51,11 +56,12 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let headerView = UIImageView(frame: CGRectMake(0, 0, tableView.bounds.size.width, 30))
         headerView.image = UIImage(named: "shadow_rect")
         headerView.contentMode = .ScaleToFill
+        
         return headerView
     }
     
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 1
+        return 0.5
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -114,13 +120,13 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.slidingView.insertSubview(slidingImageView, belowSubview: cell.slidingViewLabel)
         
         cell.slidingViewLabel.attributedText = myMutableString
-        //cell.textLabel?.attributedText = myMutableString
+        cell.userInteractionEnabled = true
         
         return cell
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 70
+        return self.cellHeight
     }
     
     func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
@@ -135,14 +141,14 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func imageForSection(section: Int) -> UIImage{
-        let originalImage = UIImage(named: "citypic")!
+        let originalImage = UIImage(named: "citypic_filtered")!
         let scaledImage = ListViewController.resizeImage(originalImage, newHeight: self.view.frame.height)
         let cgScaledImage = scaledImage.CGImage
         
         
         
-        let croppedImage = CGImageCreateWithImageInRect(cgScaledImage, CGRect(x: 0, y: 70*section, width: Int(self.view.frame.width+0.999), height: 70))
-        let result = UIImage(CGImage: croppedImage!)//ListViewController.addFilter(croppedImage!)
+        let croppedImage = CGImageCreateWithImageInRect(cgScaledImage, CGRect(x: 0, y: self.cellHeight*CGFloat(section), width: self.view.frame.width+0.999, height: self.cellHeight))
+        let result = UIImage(CGImage: croppedImage!)// ListViewController.addFilter(croppedImage!)
         
         return result
     }
@@ -160,47 +166,48 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     class func addFilter(picture: CGImage) -> UIImage{
-        let beginImage = CIImage(CGImage: picture)
-        let filter = CIFilter(name: "CIGaussianBlur")
-        filter!.setValue(beginImage, forKey: "inputImage")
-        filter!.setValue(0.5, forKey: "inputImage")
-        return UIImage(CIImage: (filter?.outputImage)!)
+        let imageToBlur = CIImage(CGImage: picture)
+        var blurfilter = CIFilter(name: "CIGaussianBlur")
+        blurfilter!.setValue(imageToBlur, forKey: "inputImage")
+        blurfilter!.setValue(15, forKey: "inputRadius")
+        var resultImage = blurfilter!.valueForKey("outputImage") as! CIImage
+        var blurredImage = UIImage(CIImage: resultImage)
+        return blurredImage
     }
     
-    /*
-     
-     func handlePan(recognizer: UIPanGestureRecognizer){
-     let xVelocity = recognizer.velocityInView(advesiaBackground).x
-     let viewWidth = self.view.frame.width
-     let scrollToPrevPage = self.delegate!.scrollView.contentOffset.x < 0.45*viewWidth
-     
-     if recognizer.state == .Began{
-     
-     }
-     if recognizer.state == .Changed{
-     let translation = recognizer.translationInView(advesiaBackground)
-     if (translation.x >= 0){
-     delegate!.scrollView.contentOffset.x = viewWidth - translation.x
-     } else {
-     delegate!.scrollView.contentOffset.x = viewWidth
-     }
-     }
-     if recognizer.state == .Ended{
-     if (scrollToPrevPage || xVelocity > 500){
-     let prevPage = CGPoint(x: 0, y: 0)
-     delegate!.scrollView.setContentOffset(prevPage, animated: true)
-     delegate!.scrollView.panGestureRecognizer.enabled = true
-     } else {
-     let thisPage = CGPoint(x: viewWidth, y: 0)
-     delegate!.scrollView.setContentOffset(thisPage, animated: true)
-     }
-     }
-     }
-     */
+    func handlePan(recognizer: UIPanGestureRecognizer){
+        print("Panned!")
+        let xVelocity = recognizer.velocityInView(self.view).x
+        let viewWidth = self.view.frame.width
+        let scrollToPrevPage = self.delegate!.scrollView.contentOffset.x < 0.45*viewWidth
+        
+        if recognizer.state == .Began{
+            
+        }
+        if recognizer.state == .Changed{
+            let translation = recognizer.translationInView(self.view)
+            if (translation.x >= 0){
+                delegate!.scrollView.contentOffset.x = viewWidth - translation.x
+            } else {
+                delegate!.scrollView.contentOffset.x = viewWidth
+            }
+        }
+        if recognizer.state == .Ended{
+            if (scrollToPrevPage || xVelocity > 500){
+                let prevPage = CGPoint(x: 0, y: 0)
+                delegate!.scrollView.setContentOffset(prevPage, animated: true)
+                delegate!.scrollView.panGestureRecognizer.enabled = true
+            } else {
+                let thisPage = CGPoint(x: viewWidth, y: 0)
+                delegate!.scrollView.setContentOffset(thisPage, animated: true)
+            }
+        }
+    }
     
-
+    
+    
     /*
-    // MARK: - Navigation
+     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
