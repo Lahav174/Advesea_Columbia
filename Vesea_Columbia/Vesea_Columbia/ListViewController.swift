@@ -37,7 +37,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! TableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("SwipeCell", forIndexPath: indexPath) as! TableViewCell
         cell.delegateController = self
         cell.indexPath = indexPath
         //var myString:NSString = "I AM KIRIT MODILALALALA"
@@ -89,7 +89,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         
         
-        cell.textLabel?.attributedText = myMutableString
+        //cell.textLabel?.attributedText = myMutableString
         
         return cell
     }

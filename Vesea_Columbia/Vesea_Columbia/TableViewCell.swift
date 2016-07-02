@@ -18,26 +18,107 @@ struct AdvesiaColors {
 class TableViewCell: UITableViewCell {
     
     var originalCenter = CGPoint()
+    var originalSlidingViewOrigin = CGPoint()
     var swipingRight : Bool? = nil
     weak var delegateController = ListViewController()
     var indexPath = NSIndexPath()
     
+    @IBOutlet weak var slidingView: UIView!
+    
     required init(coder aDecoder: NSCoder) {
-        fatalError("NSCoding not supported")
+        super.init(coder: aDecoder)!
+        //fatalError("NSCoding not supported")
+        setup()
     }
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
+        setup()
+    }
+    
+    func setup(){
         let panRecognizer = UIPanGestureRecognizer(target: self, action: "handlePan:")
         panRecognizer.delegate = self
         addGestureRecognizer(panRecognizer)
+        
+        self.backgroundColor = UIColor.orangeColor()
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
+    func handlePan(recognizer: UIPanGestureRecognizer){
+        let viewWidth = (delegateController?.delegate!.view.frame.width)!
+        let xVelocity = recognizer.velocityInView(superview!).x
+        let maxSlidingDistance : CGFloat = -50
+        if recognizer.state == .Began {
+            originalSlidingViewOrigin = slidingView.frame.origin
+            self.delegateController?.delegate!.resetQuestionViewController(self.indexPath.row)
+        }
+        if recognizer.state == .Changed {
+            let translation = recognizer.translationInView(self)
+            if (swipingRight == nil && translation.x > 0){
+                swipingRight = true
+            } else if (swipingRight == nil && translation.x < 0){
+                swipingRight = false
+            }
+            if (!swipingRight!){
+                if (slidingView.frame.origin.x > maxSlidingDistance && xVelocity < 0){
+                    self.slidingView.frame.origin.x = maxSlidingDistance
+                    if (translation.x < 0){
+                        slidingView.frame.origin = CGPoint(x: originalSlidingViewOrigin.x + translation.x, y: originalSlidingViewOrigin.y)
+                    } else if (translation.x >= 0){
+                        slidingView.frame.origin = originalSlidingViewOrigin
+                    }
+                } else if (xVelocity > 0 && delegateController?.delegate!.scrollView.contentOffset.x <= viewWidth){
+                    if (translation.x < 0){
+                        slidingView.frame.origin = CGPoint(x: originalSlidingViewOrigin.x + translation.x, y: originalSlidingViewOrigin.y)
+                    } else if (translation.x >= 0){
+                        slidingView.frame.origin = originalSlidingViewOrigin
+                    }
+                } else if (slidingView.frame.origin.x < originalSlidingViewOrigin.x && slidingView.frame.origin.x - originalSlidingViewOrigin.x < (maxSlidingDistance + 5)){
+                    slidingView.frame.origin.x = maxSlidingDistance
+                    if (delegateController?.delegate!.scrollView.contentOffset.x >= viewWidth){
+                        delegateController?.delegate!.scrollView.contentOffset.x = viewWidth - translation.x + maxSlidingDistance
+                    } else {
+                        delegateController?.delegate!.scrollView.contentOffset.x = viewWidth
+                    }
+                }
+            } else if (swipingRight!){
+                if (translation.x >= 0){
+                    delegateController?.delegate!.scrollView.contentOffset.x = viewWidth - translation.x
+                } else {
+                    delegateController?.delegate!.scrollView.contentOffset.x = viewWidth
+                }
+            }
+            
+        }
+        if recognizer.state == .Ended {
+            UIView.animateWithDuration(0.2, animations: {self.slidingView.frame.origin.x = 0})
+            if (!swipingRight!){
+                let scrollToNextPage = (delegateController?.delegate!.scrollView.contentOffset.x)! > 1.45*viewWidth
+                if (scrollToNextPage || xVelocity < -500){
+                    let nextPage = CGPoint(x: viewWidth*2, y: 0)
+                    delegateController?.delegate!.scrollView.setContentOffset(nextPage, animated: true)
+                    delegateController?.delegate!.scrollView.panGestureRecognizer.enabled = true
+                } else {
+                    let thisPage = CGPoint(x: viewWidth, y: 0)
+                    delegateController?.delegate!.scrollView.setContentOffset(thisPage, animated: true)
+                }
+            } else if (swipingRight!){
+                let scrollToPrevPage = (delegateController?.delegate!.scrollView.contentOffset.x)! < 0.45*viewWidth
+                if (scrollToPrevPage || xVelocity > 500){
+                    let prevPage = CGPoint(x: 0, y: 0)
+                    delegateController?.delegate!.scrollView.setContentOffset(prevPage, animated: true)
+                    delegateController?.delegate!.scrollView.panGestureRecognizer.enabled = true
+                } else {
+                    let thisPage = CGPoint(x: viewWidth, y: 0)
+                    delegateController?.delegate!.scrollView.setContentOffset(thisPage, animated: true)
+                }
+            }
+            swipingRight = nil
+        }
     }
     
+    /*
     func handlePan(recognizer: UIPanGestureRecognizer) {
         let viewWidth = (delegateController?.delegate!.view.frame.width)!
         let xVelocity = recognizer.velocityInView(superview!).x
@@ -61,7 +142,7 @@ class TableViewCell: UITableViewCell {
                     if (translation.x < 0){
                         center = CGPointMake(originalCenter.x + translation.x, originalCenter.y)
                     } else if (translation.x >= 0){
-                        center = CGPointMake(originalCenter.x, originalCenter.y)
+                        center = originalCenter
                     }
                 } else if (xVelocity > 0 && delegateController?.delegate!.scrollView.contentOffset.x <= viewWidth) {
                     //print("#2")
@@ -120,7 +201,7 @@ class TableViewCell: UITableViewCell {
         }
         
     }
-    
+    */
     
     
     override func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {

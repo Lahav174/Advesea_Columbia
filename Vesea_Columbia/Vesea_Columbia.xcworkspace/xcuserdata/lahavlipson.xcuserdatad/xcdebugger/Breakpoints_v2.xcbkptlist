@@ -336,13 +336,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Vesea_Columbia/TableViewCell.swift"
-            timestampString = "488666074.753672"
+            timestampString = "489120436.351639"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
-            landmarkName = "handlePan(_:)"
-            landmarkType = "5">
+            startingLineNumber = "156"
+            endingLineNumber = "156"
+            landmarkName = "TableViewCell"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

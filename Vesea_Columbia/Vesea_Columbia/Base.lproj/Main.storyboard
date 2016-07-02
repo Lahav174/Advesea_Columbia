@@ -287,13 +287,28 @@
                                 <rect key="frame" x="0.0" y="84" width="600" height="516"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Unt-Lv-GW9">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SwipeCell" id="Unt-Lv-GW9" customClass="TableViewCell" customModule="Vesea_Columbia" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Unt-Lv-GW9" id="1G3-vg-hlh">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="McQ-FA-jWK">
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                                    <color key="backgroundColor" red="1" green="0.80303504290000005" blue="0.0001922522367" alpha="1" colorSpace="calibratedRGB"/>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="McQ-FA-jWK" firstAttribute="width" secondItem="1G3-vg-hlh" secondAttribute="width" id="6Qe-xR-90A"/>
+                                                <constraint firstItem="McQ-FA-jWK" firstAttribute="centerX" secondItem="1G3-vg-hlh" secondAttribute="centerX" id="b8J-Zo-YhS"/>
+                                                <constraint firstItem="McQ-FA-jWK" firstAttribute="centerY" secondItem="1G3-vg-hlh" secondAttribute="centerY" id="csd-Ro-N9z"/>
+                                                <constraint firstItem="McQ-FA-jWK" firstAttribute="height" secondItem="1G3-vg-hlh" secondAttribute="height" id="rYa-hf-e4I"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="slidingView" destination="McQ-FA-jWK" id="8Jb-ix-DYP"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <sections/>
