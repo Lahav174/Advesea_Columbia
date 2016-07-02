@@ -142,13 +142,17 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func imageForSection(section: Int) -> UIImage{
+        
         let originalImage = UIImage(named: "citypic_filtered")!
         let scaledImage = ListViewController.resizeImage(originalImage, newHeight: self.view.frame.height)
         let cgScaledImage = scaledImage.CGImage
         
+        var maxNumberOfCells = 0
+        while 130*(maxNumberOfCells+1) < Int(self.view.frame.height) {
+            maxNumberOfCells += 1
+        }
         
-        
-        let croppedImage = CGImageCreateWithImageInRect(cgScaledImage, CGRect(x: 0, y: self.cellHeight*CGFloat(section), width: self.view.frame.width+0.999, height: self.cellHeight))
+        let croppedImage = CGImageCreateWithImageInRect(cgScaledImage, CGRect(x: 0, y: self.cellHeight*CGFloat(section%maxNumberOfCells) + 30*CGFloat(section%maxNumberOfCells), width: self.view.frame.width+0.999, height: self.cellHeight))
         let result = UIImage(CGImage: croppedImage!)// ListViewController.addFilter(croppedImage!)
         
         return result
