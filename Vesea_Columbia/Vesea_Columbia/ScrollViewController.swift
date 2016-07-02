@@ -329,8 +329,9 @@ struct K {
     }
     
     struct colors {
-        static let fadedGray = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 0.5)
+        static let fadedGray = UIColor(white: 0.6, alpha: 0.5)//(red: 0.6, green: 0.6, blue: 0.6, alpha: 0.5)
         static let lightBlack = UIColor(white: 42/255, alpha: 1)
         static let navBarColor = UIColor(red: 185/255, green: 205/255, blue: 227/255, alpha: 1)
+        static let tableviewBackgroundColor = UIColor(red: 140/255, green: 144/255, blue: 178/255, alpha: 1)
     }
 }

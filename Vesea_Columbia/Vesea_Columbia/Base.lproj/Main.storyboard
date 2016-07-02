@@ -296,18 +296,31 @@
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="McQ-FA-jWK">
                                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kb3-bD-y6W">
+                                                            <rect key="frame" x="10" y="11" width="42" height="21"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
                                                     <color key="backgroundColor" red="1" green="0.80303504290000005" blue="0.0001922522367" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstItem="Kb3-bD-y6W" firstAttribute="leading" secondItem="McQ-FA-jWK" secondAttribute="leading" constant="10" id="FcV-1u-Hcz"/>
+                                                        <constraint firstItem="Kb3-bD-y6W" firstAttribute="centerY" secondItem="McQ-FA-jWK" secondAttribute="centerY" id="R9u-Hl-R0z"/>
+                                                    </constraints>
                                                 </view>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="McQ-FA-jWK" firstAttribute="width" secondItem="1G3-vg-hlh" secondAttribute="width" id="6Qe-xR-90A"/>
-                                                <constraint firstItem="McQ-FA-jWK" firstAttribute="centerX" secondItem="1G3-vg-hlh" secondAttribute="centerX" id="b8J-Zo-YhS"/>
+                                                <constraint firstItem="McQ-FA-jWK" firstAttribute="centerX" secondItem="1G3-vg-hlh" secondAttribute="centerX" id="JuG-qz-jlC"/>
                                                 <constraint firstItem="McQ-FA-jWK" firstAttribute="centerY" secondItem="1G3-vg-hlh" secondAttribute="centerY" id="csd-Ro-N9z"/>
                                                 <constraint firstItem="McQ-FA-jWK" firstAttribute="height" secondItem="1G3-vg-hlh" secondAttribute="height" id="rYa-hf-e4I"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="slidingView" destination="McQ-FA-jWK" id="8Jb-ix-DYP"/>
+                                            <outlet property="slidingViewLabel" destination="Kb3-bD-y6W" id="L7g-dw-4fT"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

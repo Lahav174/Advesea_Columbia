@@ -25,6 +25,8 @@ class TableViewCell: UITableViewCell {
     
     @IBOutlet weak var slidingView: UIView!
     
+    @IBOutlet weak var slidingViewLabel: UILabel!
+    
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
         //fatalError("NSCoding not supported")
@@ -51,7 +53,7 @@ class TableViewCell: UITableViewCell {
         let maxSlidingDistance : CGFloat = -50
         if recognizer.state == .Began {
             originalSlidingViewOrigin = slidingView.frame.origin
-            self.delegateController?.delegate!.resetQuestionViewController(self.indexPath.row)
+            self.delegateController?.delegate!.resetQuestionViewController(self.indexPath.section)
         }
         if recognizer.state == .Changed {
             let translation = recognizer.translationInView(self)

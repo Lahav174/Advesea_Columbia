@@ -21,7 +21,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tableView.dataSource = self
         tableView.delegate = self
         tableView.registerClass(TableViewCell.self, forCellReuseIdentifier: "cell")
-        tableView.backgroundColor = UIColor.purpleColor()
+        tableView.backgroundColor = K.colors.tableviewBackgroundColor
         navigationBar.delegate = self
         
         
@@ -29,25 +29,24 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        return 6
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 7
+        return 1
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("SwipeCell", forIndexPath: indexPath) as! TableViewCell
         cell.delegateController = self
         cell.indexPath = indexPath
-        //var myString:NSString = "I AM KIRIT MODILALALALA"
         var myString = NSString()
         cell.textLabel?.numberOfLines = 2
         let courseA : String = "W3134"
         let courseB : String = "W3203"
         let major : String = "Computer Science"
         var myMutableString = NSMutableAttributedString()
-        switch indexPath.row{
+        switch indexPath.section{
         case 0:
              myString = "Do students who take " + courseA + " also take " + courseB + "?"
              myMutableString = NSMutableAttributedString(string: myString as String, attributes: [NSFontAttributeName:UIFont(name: "Georgia", size: 18.0)!])
@@ -87,15 +86,14 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
             break
         }
         
-        
-        
+        cell.slidingViewLabel.attributedText = myMutableString
         //cell.textLabel?.attributedText = myMutableString
         
         return cell
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return (self.view.frame.height-200+22)/7
+        return 70
     }
     
     func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
@@ -103,7 +101,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        delegate!.resetQuestionViewController(indexPath.row)
+        delegate!.resetQuestionViewController(indexPath.section)
         let nextPage = CGPoint(x: self.view.frame.width*2, y: 0)
         delegate!.scrollView.setContentOffset(nextPage, animated: true)
         delegate!.scrollView.panGestureRecognizer.enabled = true
