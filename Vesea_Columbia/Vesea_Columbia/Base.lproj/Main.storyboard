@@ -283,7 +283,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ufk-O4-qUQ">
+                            <navigationBar clipsSubviews="YES" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ufk-O4-qUQ">
                                 <rect key="frame" x="0.0" y="40" width="600" height="44"/>
                                 <items>
                                     <navigationItem title="Title" id="8MI-s3-QFT"/>

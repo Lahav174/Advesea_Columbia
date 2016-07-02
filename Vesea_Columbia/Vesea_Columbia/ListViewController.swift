@@ -108,17 +108,10 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
             break
         }
         
-        
-        
-//        cell.layer.shadowOffset = CGSizeMake(10, 0);
-//        cell.layer.shadowColor = UIColor.blackColor().CGColor
-//        cell.layer.shadowRadius = 4
-//        cell.layer.shadowOpacity = 1
-//        
-//        let shadowFrame = cell.layer.bounds;
-//        let shadowPath = UIBezierPath(rect: shadowFrame).CGPath
-//        cell.layer.shadowPath = shadowPath;
-        
+        let slidingImageView = UIImageView(frame: CGRect(origin: CGPointZero, size: cell.frame.size))
+        slidingImageView.image = self.imageForSection(indexPath.section)
+        slidingImageView.contentMode = .ScaleAspectFill
+        cell.slidingView.insertSubview(slidingImageView, belowSubview: cell.slidingViewLabel)
         
         cell.slidingViewLabel.attributedText = myMutableString
         //cell.textLabel?.attributedText = myMutableString
@@ -139,6 +132,39 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let nextPage = CGPoint(x: self.view.frame.width*2, y: 0)
         delegate!.scrollView.setContentOffset(nextPage, animated: true)
         delegate!.scrollView.panGestureRecognizer.enabled = true
+    }
+    
+    func imageForSection(section: Int) -> UIImage{
+        let originalImage = UIImage(named: "citypic")!
+        let scaledImage = ListViewController.resizeImage(originalImage, newHeight: self.view.frame.height)
+        let cgScaledImage = scaledImage.CGImage
+        
+        
+        
+        let croppedImage = CGImageCreateWithImageInRect(cgScaledImage, CGRect(x: 0, y: 70*section, width: Int(self.view.frame.width+0.999), height: 70))
+        let result = UIImage(CGImage: croppedImage!)//ListViewController.addFilter(croppedImage!)
+        
+        return result
+    }
+    
+    class func resizeImage(image: UIImage, newHeight: CGFloat) -> UIImage {
+        
+        let scale = newHeight / image.size.height
+        let newWidth = image.size.width * scale
+        UIGraphicsBeginImageContext(CGSizeMake(newWidth, newHeight))
+        image.drawInRect(CGRectMake(0, 0, newWidth, newHeight))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage
+    }
+    
+    class func addFilter(picture: CGImage) -> UIImage{
+        let beginImage = CIImage(CGImage: picture)
+        let filter = CIFilter(name: "CIGaussianBlur")
+        filter!.setValue(beginImage, forKey: "inputImage")
+        filter!.setValue(0.5, forKey: "inputImage")
+        return UIImage(CIImage: (filter?.outputImage)!)
     }
     
     /*
