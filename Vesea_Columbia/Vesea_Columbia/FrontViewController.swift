@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FrontViewController: UIViewController {
+class FrontViewController: UIViewController, SlidingSegmentedControlDelegate {
 
     var delegate : ScrollViewController?
     var yConstraint = NSLayoutConstraint()
@@ -17,8 +17,13 @@ class FrontViewController: UIViewController {
         super.viewDidLoad()
         
         let slidingSeg = SlidingSegmentedControl(frame: CGRectMake(0, 100, 300, 50), buttonTitles: ["button1","buttttton2", "but3"])
+        slidingSeg.delegate = self
         self.view.addSubview(slidingSeg)
         
+    }
+    
+    func SlidingSegmentedControlDidSelectIndex(index: Int) {
+        print("The sliding segmented control was selected at index " + String(index))
     }
     
 }

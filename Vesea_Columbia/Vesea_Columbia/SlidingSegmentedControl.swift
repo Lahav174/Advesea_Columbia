@@ -13,6 +13,7 @@ class SlidingSegmentedControl: UIView {
     var selectedSegmentIndex : Int = -1
     var buttons = [UIButton]()
     var underlineBar = UIView()
+    var delegate : SlidingSegmentedControlDelegate?
 
     init(frame: CGRect, buttonTitles: [String]) {
         super.init(frame: frame)
@@ -42,8 +43,6 @@ class SlidingSegmentedControl: UIView {
             buttons.insert(button, atIndex: i)
         }
         let spaceBetweenButtons = (self.frame.width-collectiveButtonWidth)/CGFloat(buttons.count+1)
-        print("Collectivebuttonwidth: " + String(collectiveButtonWidth))
-        print("spaceBetweenButtons: " + String(spaceBetweenButtons))
         var newButtonOriginX : CGFloat = 0 + spaceBetweenButtons
         for i in 0...numberOfSegments-1{
             let buttonSize = buttons[i].frame.size
@@ -64,11 +63,17 @@ class SlidingSegmentedControl: UIView {
         let buttonIndex = buttons.indexOf(sender)
         selectedSegmentIndex = buttonIndex!
         let underlinedButtonFrame = buttons[selectedSegmentIndex].frame
-        print("Button " + String(buttonIndex) + " tapped")
+        
+        if (delegate != nil){
+            delegate?.SlidingSegmentedControlDidSelectIndex(buttonIndex!)
+        }
         
         UIView.animateWithDuration(0.5, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
             self.underlineBar.frame = CGRect(x: underlinedButtonFrame.minX, y: self.frame.height-1, width: underlinedButtonFrame.width, height: 1)
             }, completion: nil)
     }
+}
 
+protocol SlidingSegmentedControlDelegate {
+    func SlidingSegmentedControlDidSelectIndex(index: Int)
 }
