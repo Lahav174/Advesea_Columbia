@@ -10,54 +10,60 @@ import UIKit
 
 class FrontViewController: UIViewController {
 
-    var delegate = ScrollViewController()
+    var delegate : ScrollViewController?
     var yConstraint = NSLayoutConstraint()
-    
-    //@IBOutlet weak var container: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.translatesAutoresizingMaskIntoConstraints = false
-//        yConstraint = NSLayoutConstraint(item: self.container, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Top, multiplier: 1, constant: 0)
-//        self.view.addConstraint(yConstraint)
-        //
-
+        
+        let originalImage = UIImage(named: "citypic")!
+        let modifiedImage = resizeImage(originalImage, newHeight: self.view.frame.height)
+        let newImage = modifiedImage.CGImage
+        
+        
+        
+        let croppedImage = CGImageCreateWithImageInRect(newImage, CGRect(x: 0, y: 100, width: self.view.frame.size.width, height: 200))
+        
+        let result = addFilter(croppedImage!)
+        
+        let v = UIImageView(frame: CGRect(x: 0, y: 100, width: self.view.frame.width, height: 200))
+        v.image = result
+        self.view.addSubview(v)
+        
+        
     }
     
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        UIView.animateWithDuration(3, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
-            //self.view.removeConstraint(self.yConstraint)
-            
-            //self.container.frame.origin.y = 10
-            }, completion: nil)
-        
-    }
-    
-//    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-//        if let touch = touches.first {
-//            let position :CGPoint = touch.locationInView(view)
-//            print(CGRectContainsPoint(self.container.frame, position))
-//            
-//        }
+//    func resizeImage(image: UIImage, newWidth: CGFloat) -> UIImage {
+//        
+//        let scale = newWidth / image.size.width
+//        let newHeight = image.size.height * scale
+//        UIGraphicsBeginImageContext(CGSizeMake(newWidth, newHeight))
+//        image.drawInRect(CGRectMake(0, 0, newWidth, newHeight))
+//        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+//        UIGraphicsEndImageContext()
+//        
+//        return newImage
 //    }
-    
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+
+    func resizeImage(image: UIImage, newHeight: CGFloat) -> UIImage {
+        
+        let scale = newHeight / image.size.height
+        let newWidth = image.size.width * scale
+        UIGraphicsBeginImageContext(CGSizeMake(newWidth, newHeight))
+        image.drawInRect(CGRectMake(0, 0, newWidth, newHeight))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func addFilter(picture: CGImage) -> UIImage{
+        let beginImage = CIImage(CGImage: picture)
+        let filter = CIFilter(name: "CISepiaTone")
+        filter!.setValue(beginImage, forKey: kCIInputImageKey)
+        filter!.setValue(0.5, forKey: kCIInputIntensityKey)
+        return UIImage(CIImage: (filter?.outputImage)!)
     }
-    */
-
+    
 }
