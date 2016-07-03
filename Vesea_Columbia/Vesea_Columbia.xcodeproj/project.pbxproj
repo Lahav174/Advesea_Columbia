@@ -11,6 +11,7 @@
 		CD0BCC621D0DD37B002D7B49 /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0BCC611D0DD37B002D7B49 /* QuestionViewController.swift */; };
 		CD2312A11D04A21400ED6D0D /* MajorChooserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2312A01D04A21400ED6D0D /* MajorChooserViewController.swift */; };
 		CD2C7E161D288E2800FCAD5E /* Courses1.csv in Resources */ = {isa = PBXBuildFile; fileRef = CD2C7E151D288E2800FCAD5E /* Courses1.csv */; };
+		CD2C7E181D2890D100FCAD5E /* Courses1.csv in Resources */ = {isa = PBXBuildFile; fileRef = CD2C7E171D2890D100FCAD5E /* Courses1.csv */; };
 		CD892ED81CEBB8CD00DF5D24 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD892ED71CEBB8CD00DF5D24 /* AppDelegate.swift */; };
 		CD892EDD1CEBB8CD00DF5D24 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD892EDB1CEBB8CD00DF5D24 /* Main.storyboard */; };
 		CD892EDF1CEBB8CD00DF5D24 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD892EDE1CEBB8CD00DF5D24 /* Assets.xcassets */; };
@@ -68,6 +69,7 @@
 		CD0BCC611D0DD37B002D7B49 /* QuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
 		CD2312A01D04A21400ED6D0D /* MajorChooserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MajorChooserViewController.swift; sourceTree = "<group>"; };
 		CD2C7E151D288E2800FCAD5E /* Courses1.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Courses1.csv; path = ../../../../Downloads/Courses1.csv; sourceTree = "<group>"; };
+		CD2C7E171D2890D100FCAD5E /* Courses1.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Courses1.csv; sourceTree = "<group>"; };
 		CD892ED41CEBB8CD00DF5D24 /* Vesea_Columbia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vesea_Columbia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD892ED71CEBB8CD00DF5D24 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CD892EDC1CEBB8CD00DF5D24 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -154,6 +156,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		CD2C7E191D2890DE00FCAD5E /* Files */ = {
+			isa = PBXGroup;
+			children = (
+				CD2C7E171D2890D100FCAD5E /* Courses1.csv */,
+			);
+			name = Files;
+			sourceTree = "<group>";
+		};
 		CD892ECB1CEBB8CD00DF5D24 = {
 			isa = PBXGroup;
 			children = (
@@ -197,6 +207,7 @@
 				CD892F1B1CF15C1900DF5D24 /* TableViewCell.swift */,
 				CDB82A271D05F46E00F01678 /* MajorTableViewCell.swift */,
 				CDFF9FDD1CF8DE5700E64650 /* ScrollView.swift */,
+				CD2C7E191D2890DE00FCAD5E /* Files */,
 				CDFF9FE51CFBC09500E64650 /* QuestionLabels */,
 				CD892EDE1CEBB8CD00DF5D24 /* Assets.xcassets */,
 				CD892EE01CEBB8CD00DF5D24 /* LaunchScreen.storyboard */,
@@ -356,6 +367,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD2C7E161D288E2800FCAD5E /* Courses1.csv in Resources */,
+				CD2C7E181D2890D100FCAD5E /* Courses1.csv in Resources */,
 				CD892EE21CEBB8CD00DF5D24 /* LaunchScreen.storyboard in Resources */,
 				CD892EDF1CEBB8CD00DF5D24 /* Assets.xcassets in Resources */,
 				CD892EDD1CEBB8CD00DF5D24 /* Main.storyboard in Resources */,

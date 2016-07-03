@@ -668,7 +668,9 @@
                                                 <constraint firstItem="Gpk-fX-YwL" firstAttribute="centerY" secondItem="U6p-AR-mEQ" secondAttribute="centerY" id="4Eo-OM-gqD"/>
                                                 <constraint firstItem="WBs-YU-qCS" firstAttribute="top" secondItem="U6p-AR-mEQ" secondAttribute="topMargin" constant="-4" id="5cY-9V-xtK"/>
                                                 <constraint firstItem="OP2-nj-L1c" firstAttribute="top" secondItem="WBs-YU-qCS" secondAttribute="bottom" id="7Zn-Ak-2ig"/>
+                                                <constraint firstItem="OP2-nj-L1c" firstAttribute="trailing" secondItem="WBs-YU-qCS" secondAttribute="trailing" id="Ea6-G5-OR3"/>
                                                 <constraint firstAttribute="leadingMargin" secondItem="WBs-YU-qCS" secondAttribute="leading" id="G6A-Ut-Qwh"/>
+                                                <constraint firstItem="Gpk-fX-YwL" firstAttribute="leading" secondItem="WBs-YU-qCS" secondAttribute="trailing" id="djV-85-Lll"/>
                                                 <constraint firstAttribute="leadingMargin" secondItem="OP2-nj-L1c" secondAttribute="leading" id="myr-BU-8vh"/>
                                             </constraints>
                                         </tableViewCellContentView>

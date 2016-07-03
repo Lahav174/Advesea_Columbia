@@ -48,11 +48,11 @@ class MajorChooserViewController: UIViewController, UITableViewDelegate, UITable
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-                
+        print("#2")
         for e in majorArrayFromDefaults{
-            majors.append(Major(courseName: e.objectForKey("name") as! String, school: e.objectForKey("school") as! String, code: e.objectForKey("code") as! String))
+            majors.append(Major(courseName: e.objectForKey("Name") as! String, school: e.objectForKey("School") as! String, code: e.objectForKey("Call") as! String))
         }
-                
+        print("#3")
         tableView.delegate = self
         tableView.dataSource = self
         searchBar.delegate = self
@@ -62,14 +62,12 @@ class MajorChooserViewController: UIViewController, UITableViewDelegate, UITable
         self.clearButton.hidden = true
         self.searchBar.addTarget(self, action: #selector(self.textfieldtextDidChange(_:)), forControlEvents: UIControlEvents.EditingChanged)
         
-        let border = CALayer()
-        let width = CGFloat(0.5)
-        border.borderColor = UIColor.lightGrayColor().CGColor
-        border.frame = CGRect(x: -10, y: searchBar.frame.size.height - width - 8, width:  view.frame.size.width*2, height: searchBar.frame.size.height+8)
-        
-        border.borderWidth = width
-        self.view.layer.addSublayer(border)
         self.view.layer.masksToBounds = true
+        let border = CALayer()
+        border.backgroundColor = UIColor.lightGrayColor().CGColor
+        border.frame = CGRect(x: 0, y: 88, width: self.view.frame.width, height: CGFloat(0.5))
+        border.borderWidth = 0
+        self.view.layer.addSublayer(border)
     }
     
     func selectCellsWithCodes(codes: [String])

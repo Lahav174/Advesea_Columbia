@@ -8,6 +8,7 @@
 
 import UIKit
 import Charts
+import SwiftCSV
 
 class ScrollViewController: UIViewController, UIScrollViewDelegate {
 
@@ -170,92 +171,6 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
         }
     }
     
-/*
-    func rresetQuestionViewController(preset: Int){
-        
-        if (questionViewController != nil){
-            questionViewController!.removeFromParentViewController()
-            questionViewController!.view.removeFromSuperview()
-        }
-        
-        
-        switch preset {
-        case 0, 2, 5:
-            let newViewController = self.storyboard?.instantiateViewControllerWithIdentifier("barchartvc") as! BarChartQuestionViewController
-            newViewController.delegate = self
-            setUpQuestionFrame(newViewController)
-            var param1 = NSNumberFormatter()
-            var param2 = String()
-            var param3 = [(x: String, y: Double)]()
-            if (preset == 0){
-                param1 = NSNumberFormatter()
-                param1.numberStyle = NSNumberFormatterStyle.PercentStyle
-                param1.multiplier = 1
-                param2 = "Term"
-                param3 = [("Before", 80),("During", 100),("After", 70)]
-                let frame = CGRect(x: 30, y: newViewController.barChart.frame.origin.y - newViewController.barChart.frame.height - 150, width: self.view.frame.width-30, height: 150)
-                newViewController.addLabel(0, frame: frame)
-                
-            } else if (preset == 2){
-                param1.numberStyle = NSNumberFormatterStyle.NoStyle
-                param1.multiplier = 1
-                param1.minimumFractionDigits = 0
-                param2 = "Term"
-                param3 = [("Spring 2015", 80),("Fall 2015", 100),("Spring 2016", 70)]
-                let frame = CGRect(x: 30, y: newViewController.barChart.frame.origin.y - newViewController.barChart.frame.height - 150, width: self.view.frame.width-30, height: 70)
-                newViewController.addLabel(2, frame: frame)
-            } else if (preset == 5){
-                param1.numberStyle = NSNumberFormatterStyle.PercentStyle
-                param1.multiplier = 1
-                param1.minimumFractionDigits = 0
-                param2 = "Semester"
-                param3 = [("6", 2),("7", 6),("8", 85),("9", 7)]
-            }
-            newViewController.customInitializer(param1,titleTxt: param2, xyValues: param3)
-            questionViewController = newViewController
-            break
-        case 3:
-            let newViewController = self.storyboard?.instantiateViewControllerWithIdentifier("piechartvc") as! PieChartQuestionViewController
-            setUpQuestionFrame(newViewController)
-            let param1 = NSNumberFormatter()
-            var param2 = [(x: String, y: Double)]()
-            param1.numberStyle = NSNumberFormatterStyle.PercentStyle
-            param1.multiplier = 1
-            param2 = [("Computer Science", 40),("Mathematics", 30),("Physics", 20),("Other", 10)]
-            newViewController.customInitializer(param1, xyValues: param2)
-            questionViewController = newViewController
-            break
-        case 1, 4:
-            let newViewController = self.storyboard?.instantiateViewControllerWithIdentifier("hbarchartvc") as! HBarChartQuestionViewController
-            newViewController.delegate = self
-            setUpQuestionFrame(newViewController)
-            var param1 = NSNumberFormatter()
-            var param2 = String()
-            var param3 = [(x: String, y: Double)]()
-            if (preset == 1){
-                param1 = NSNumberFormatter()
-                param1.numberStyle = NSNumberFormatterStyle.PercentStyle
-                param1.multiplier = 1
-                param2 = "Term"
-                param3 = [("W4323", 80),("W3211", 90),("1334", 70)]
-                let frame = CGRect(x: 30, y: newViewController.hBarChart.frame.origin.y - newViewController.hBarChart.frame.height - 150, width: self.view.frame.width-30, height: 150)
-                newViewController.addLabel(1, frame: frame)
-            } else if (preset == 4){
-                param1.numberStyle = NSNumberFormatterStyle.PercentStyle
-                param1.multiplier = 1
-                param1.minimumFractionDigits = 0
-                param2 = "Term"
-                param3 = [("W4323", 80),("W3211", 90),("1334", 70)]
-            }
-            newViewController.customInitializer(param1,titleTxt: param2, xyValues: param3)
-            questionViewController = newViewController
-            break;
-        default:
-            print("None")
-        }
-        
-    }
-  */
     func setUpQuestionFrame(newViewController: UIViewController){
         
        // newViewController.view.frame.origin.x = self.view.frame.size.width*2
@@ -291,27 +206,41 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
         }
     }
     
-//      NOT GESTUREREC DELEGATE
-//    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-//        return true
-//    }
-    
     func setUpMajors(){
         let def = NSUserDefaults.standardUserDefaults()
         let key = "majors"
         var majorArray = [NSDictionary]()
         
+        //Note: changing the format of "favorites" in nsuserdefaults will cause a crash because this if-statement will fail, simply because it already exists
         if ((def.arrayForKey(key)) == nil){
             print("This array doesn't exist yet")
-            for i in 0...99{
-                let dict : NSDictionary = ["code":"E54123" + String(i),"name":"Computer Science" + String(i),"school":"Columbia College"]
+            
+            var csvColumns = [String : [String]]()
+            do {
+                let csvURL = NSBundle(forClass: FrontViewController.self).URLForResource("Courses1", withExtension: "csv")!
+                let csv = try CSV(url: csvURL)
+                csvColumns = csv.columns
+                //print(csv.columns["Name"]!)
+            } catch {
+                // Catch errors or something
+                print("Failed!")
+                fatalError("Courses1.csv could not be found")
+            }
+            print("csv collumn count: " + String(csvColumns.count))
+            for i in 0...csvColumns["Name"]!.count-1{
+                let dict : NSDictionary = ["Call":csvColumns["Call"]![i],"Name":csvColumns["Name"]![i],"ID": csvColumns["ID"]![i],"School":"Columbia College"]
                 majorArray.insert(dict, atIndex: i)
             }
+            
             def.setObject(majorArray, forKey: "majors")
+            
+            var favorites = NSMutableArray()
+            let arrayToSet = favorites as NSArray
+            def.setObject(arrayToSet, forKey: "favorites")
         } else {
             print("This array exists now")
         }
-        
+        print("#1")
         
         
 //        if let defArray : AnyObject? = def.objectForKey(key) {

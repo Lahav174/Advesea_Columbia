@@ -18,9 +18,12 @@ class FrontViewController: UIViewController {
         super.viewDidLoad()
         
         do {
-            let csv = try CSV(name: "users.csv")
+            let csvURL = NSBundle(forClass: FrontViewController.self).URLForResource("Courses1", withExtension: "csv")!
+            let csv = try CSV(url: csvURL)
+            //print(csv.columns["Name"]!)
         } catch {
             // Catch errors or something
+            print("Failed!")
         }
         
     }
