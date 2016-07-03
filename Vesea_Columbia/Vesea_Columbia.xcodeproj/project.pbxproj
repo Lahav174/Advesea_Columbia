@@ -10,6 +10,7 @@
 		79ADD0941E4FAD2F6A444B12 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E87648A43FEEA8353C6BC6E /* Pods.framework */; };
 		CD0BCC621D0DD37B002D7B49 /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0BCC611D0DD37B002D7B49 /* QuestionViewController.swift */; };
 		CD2312A11D04A21400ED6D0D /* MajorChooserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2312A01D04A21400ED6D0D /* MajorChooserViewController.swift */; };
+		CD2C7E161D288E2800FCAD5E /* Courses1.csv in Resources */ = {isa = PBXBuildFile; fileRef = CD2C7E151D288E2800FCAD5E /* Courses1.csv */; };
 		CD892ED81CEBB8CD00DF5D24 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD892ED71CEBB8CD00DF5D24 /* AppDelegate.swift */; };
 		CD892EDD1CEBB8CD00DF5D24 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD892EDB1CEBB8CD00DF5D24 /* Main.storyboard */; };
 		CD892EDF1CEBB8CD00DF5D24 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD892EDE1CEBB8CD00DF5D24 /* Assets.xcassets */; };
@@ -66,6 +67,7 @@
 		7A2CE4E5304ECD4D750C6F69 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		CD0BCC611D0DD37B002D7B49 /* QuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
 		CD2312A01D04A21400ED6D0D /* MajorChooserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MajorChooserViewController.swift; sourceTree = "<group>"; };
+		CD2C7E151D288E2800FCAD5E /* Courses1.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Courses1.csv; path = ../../../../Downloads/Courses1.csv; sourceTree = "<group>"; };
 		CD892ED41CEBB8CD00DF5D24 /* Vesea_Columbia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vesea_Columbia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD892ED71CEBB8CD00DF5D24 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CD892EDC1CEBB8CD00DF5D24 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -237,6 +239,7 @@
 		CDFF9FF61D01211200E64650 /* ChooserViews */ = {
 			isa = PBXGroup;
 			children = (
+				CD2C7E151D288E2800FCAD5E /* Courses1.csv */,
 				CDFF9FF21D00DB3A00E64650 /* MajorChooser.swift */,
 				CDFF9FF41D00DB4F00E64650 /* MajorChooser.xib */,
 				CDFF9FEE1CFFB46D00E64650 /* CourseChooser.swift */,
@@ -352,6 +355,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD2C7E161D288E2800FCAD5E /* Courses1.csv in Resources */,
 				CD892EE21CEBB8CD00DF5D24 /* LaunchScreen.storyboard in Resources */,
 				CD892EDF1CEBB8CD00DF5D24 /* Assets.xcassets in Resources */,
 				CD892EDD1CEBB8CD00DF5D24 /* Main.storyboard in Resources */,

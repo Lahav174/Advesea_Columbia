@@ -19,6 +19,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SwiftCSV.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
@@ -27,7 +32,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B6E7A2D1D6064D25038B6B2237A58AA4</key>
+		<key>1FB70B837F9BB8C9691D1AFEB87AB169</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>29B7809E8395A9EA09AD8B89EA8C3C5D</key>
 		<dict>
 			<key>primary</key>
 			<true/>

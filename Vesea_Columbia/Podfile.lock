@@ -17,13 +17,16 @@ PODS:
   - Charts (2.2.4):
     - Charts/Core (= 2.2.4)
   - Charts/Core (2.2.4)
+  - SwiftCSV (0.3.2)
 
 DEPENDENCIES:
   - AFNetworking
   - Charts
+  - SwiftCSV
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   Charts: a9e735c83c6d376ade20f6612dcf0ba217394a49
+  SwiftCSV: 8b64b738fc54567d229acb17ce6d584e0dd27560
 
 COCOAPODS: 0.39.0

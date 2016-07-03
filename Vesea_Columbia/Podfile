@@ -2,6 +2,8 @@ use_frameworks!
 
 pod 'Charts'
 
+pod ‘SwiftCSV’
+
 pod 'AFNetworking'
 
 source 'https://github.com/CocoaPods/Specs.git'
