@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SwiftCSV
 
 class FrontViewController: UIViewController {
 
@@ -17,14 +16,8 @@ class FrontViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        do {
-            let csvURL = NSBundle(forClass: FrontViewController.self).URLForResource("Courses1", withExtension: "csv")!
-            let csv = try CSV(url: csvURL)
-            //print(csv.columns["Name"]!)
-        } catch {
-            // Catch errors or something
-            print("Failed!")
-        }
+        let slidingSeg = SlidingSegmentedControl(frame: CGRectMake(0, 100, 300, 50), buttonTitles: ["button1","buttttton2", "but3"])
+        self.view.addSubview(slidingSeg)
         
     }
     

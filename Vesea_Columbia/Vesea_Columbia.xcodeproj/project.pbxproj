@@ -12,6 +12,7 @@
 		CD2312A11D04A21400ED6D0D /* MajorChooserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2312A01D04A21400ED6D0D /* MajorChooserViewController.swift */; };
 		CD2C7E161D288E2800FCAD5E /* Courses1.csv in Resources */ = {isa = PBXBuildFile; fileRef = CD2C7E151D288E2800FCAD5E /* Courses1.csv */; };
 		CD2C7E181D2890D100FCAD5E /* Courses1.csv in Resources */ = {isa = PBXBuildFile; fileRef = CD2C7E171D2890D100FCAD5E /* Courses1.csv */; };
+		CD2C7E1B1D29B98300FCAD5E /* SlidingSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2C7E1A1D29B98300FCAD5E /* SlidingSegmentedControl.swift */; };
 		CD892ED81CEBB8CD00DF5D24 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD892ED71CEBB8CD00DF5D24 /* AppDelegate.swift */; };
 		CD892EDD1CEBB8CD00DF5D24 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD892EDB1CEBB8CD00DF5D24 /* Main.storyboard */; };
 		CD892EDF1CEBB8CD00DF5D24 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD892EDE1CEBB8CD00DF5D24 /* Assets.xcassets */; };
@@ -70,6 +71,7 @@
 		CD2312A01D04A21400ED6D0D /* MajorChooserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MajorChooserViewController.swift; sourceTree = "<group>"; };
 		CD2C7E151D288E2800FCAD5E /* Courses1.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Courses1.csv; path = ../../../../Downloads/Courses1.csv; sourceTree = "<group>"; };
 		CD2C7E171D2890D100FCAD5E /* Courses1.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Courses1.csv; sourceTree = "<group>"; };
+		CD2C7E1A1D29B98300FCAD5E /* SlidingSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlidingSegmentedControl.swift; sourceTree = "<group>"; };
 		CD892ED41CEBB8CD00DF5D24 /* Vesea_Columbia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vesea_Columbia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD892ED71CEBB8CD00DF5D24 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CD892EDC1CEBB8CD00DF5D24 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 				CD2312A01D04A21400ED6D0D /* MajorChooserViewController.swift */,
 				CD892F131CEFA16600DF5D24 /* FrontViewController.swift */,
 				CD892F1D1CF168B100DF5D24 /* ListViewController.swift */,
+				CD2C7E1A1D29B98300FCAD5E /* SlidingSegmentedControl.swift */,
 				CD892F1B1CF15C1900DF5D24 /* TableViewCell.swift */,
 				CDB82A271D05F46E00F01678 /* MajorTableViewCell.swift */,
 				CDFF9FDD1CF8DE5700E64650 /* ScrollView.swift */,
@@ -465,6 +468,7 @@
 				CDFF9FEB1CFC940C00E64650 /* QuestionLabel2.swift in Sources */,
 				CDFF9FEF1CFFB46D00E64650 /* CourseChooser.swift in Sources */,
 				CDFF9FE01CFA304600E64650 /* QuestionLabel0.swift in Sources */,
+				CD2C7E1B1D29B98300FCAD5E /* SlidingSegmentedControl.swift in Sources */,
 				CD892ED81CEBB8CD00DF5D24 /* AppDelegate.swift in Sources */,
 				CDFF9FDA1CF6D02500E64650 /* TestGraphViewController.swift in Sources */,
 				CD892F1E1CF168B100DF5D24 /* ListViewController.swift in Sources */,
