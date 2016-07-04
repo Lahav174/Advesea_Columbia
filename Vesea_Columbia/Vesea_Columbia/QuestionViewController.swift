@@ -26,6 +26,10 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
     
     var yConstraint = NSLayoutConstraint()
     
+    var currentlyEngagedLabelButton : UIButton?
+    
+    var segmentedControl : SlidingSegmentedControl?
+    
     @IBOutlet weak var container: UIView!
     @IBOutlet weak var graphBackground: UIView!
     @IBOutlet weak var graphBackgroundLabel: UILabel!
@@ -75,7 +79,15 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
         //customInitializer("Bar Chart", valueFormatter: param1, titleTxt: param2, xyValues: param3)
     }
     
-    func customInitializer(chartKind: String, valueFormatter: NSNumberFormatter,titleTxt: String, xyValues: [(x: String, y: Double)]){
+    func customInitializer(chartKind: String, valueFormatter: NSNumberFormatter,titleTxt: String, xyValues: [(x: String, y: Double)], tabLabels: [String]? = nil){
+
+        if (tabLabels != nil){
+            self.segmentedControl = SlidingSegmentedControl(frame: CGRectMake(0, 64, self.view.frame.width, 44), buttonTitles: tabLabels!)
+            self.view.addSubview(segmentedControl!)
+        } else if (tabLabels == nil && self.segmentedControl != nil){
+            self.segmentedControl?.removeFromSuperview()
+            self.segmentedControl = nil
+        }
         
         if chart != nil{
             chart?.removeFromSuperview()
@@ -319,8 +331,10 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
     
     // MARK: - Chooser
     
-    func animateContainerIn(){
+    func animateContainerIn(sender: UIButton){
         chart?.userInteractionEnabled = false
+        self.currentlyEngagedLabelButton = sender
+        self.currentlyEngagedLabelButton?.enabled = false
         if !(self.chooserBeingDisplayed){
             UIView.animateWithDuration(0.5, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
                 self.container.frame.origin.y = 100
@@ -339,6 +353,8 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
                 }, completion: { (true) in
                     self.chooserBeingDisplayed = false
                     self.yConstraint.constant = 0
+                    self.currentlyEngagedLabelButton?.enabled = true
+                    self.currentlyEngagedLabelButton = nil
             })
         }
     }

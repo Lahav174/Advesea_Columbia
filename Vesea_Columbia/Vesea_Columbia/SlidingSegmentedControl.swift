@@ -28,7 +28,7 @@ class SlidingSegmentedControl: UIView {
     }
     
     func setup(buttonTitles: [String]){
-        self.backgroundColor = UIColor.redColor()
+        self.backgroundColor = K.colors.segmentedControlBackgroundColor
         let numberOfSegments = buttonTitles.count
         selectedSegmentIndex = Int((numberOfSegments-1)/2)
         

@@ -97,6 +97,7 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
         var param1 = NSNumberFormatter()
         var param2 = String()
         var param3 = [(x: String, y: Double)]()
+        var param4 : [String]? = nil
         
         var width = questionViewController?.graphBackgroundWidth
         var height = questionViewController?.graphBackgroundHeight
@@ -121,6 +122,7 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
             param1.multiplier = 1
             param2 = "Term"
             param3 = [("W4323", 80),("W3211", 90),("1334", 70)]
+            param4 = ["Before", "Concurrently", "After"]
             let frame = CGRect(x: 30, y: questionViewController!.graphBackground.frame.origin.y - questionViewController!.graphBackground.frame.height - 150, width: self.view.frame.width-30, height: 150)
             break;
         case 2:
@@ -165,7 +167,7 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
         questionViewController!.addLabel(preset)
         if preset < 40{
         questionViewController?.chart?.layoutIfNeeded()
-        questionViewController!.customInitializer(param0, valueFormatter: param1, titleTxt: param2, xyValues: param3)
+        questionViewController!.customInitializer(param0, valueFormatter: param1, titleTxt: param2, xyValues: param3, tabLabels: param4)
         }
     }
     
@@ -262,5 +264,6 @@ struct K {
         static let lightBlack = UIColor(white: 42/255, alpha: 1)
         static let navBarColor = UIColor(red: 185/255, green: 205/255, blue: 227/255, alpha: 1)
         static let tableviewBackgroundColor = UIColor(red: 140/255, green: 144/255, blue: 178/255, alpha: 1)
+        static let segmentedControlBackgroundColor = UIColor(red: 158/255, green: 171/255, blue: 185/255, alpha: 0.77)
     }
 }

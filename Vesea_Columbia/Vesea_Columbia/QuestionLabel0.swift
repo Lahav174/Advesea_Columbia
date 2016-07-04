@@ -28,12 +28,12 @@ import UIKit
     
     @IBAction func class1ButtonPressed(sender: AnyObject) {
         print("class1Button pressed")
-        delegateViewController!.animateContainerIn()
+        delegateViewController!.animateContainerIn(sender as! UIButton)
     }
     
     @IBAction func class2ButtonPressed(sender: AnyObject) {
         print("class2Button pressed")
-        delegateViewController!.animateContainerIn()
+        delegateViewController!.animateContainerIn(sender as! UIButton)
     }
     
     @IBInspectable var variable : Float? {
