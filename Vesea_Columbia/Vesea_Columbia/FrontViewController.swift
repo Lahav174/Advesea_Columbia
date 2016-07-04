@@ -16,7 +16,7 @@ class FrontViewController: UIViewController, SlidingSegmentedControlDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let slidingSeg = SlidingSegmentedControl(frame: CGRectMake(0, 100, 300, 50), buttonTitles: ["button1","buttttton2", "but3"])
+        let slidingSeg = SlidingSegmentedControl(frame: CGRectMake(0, 100, 300, 50), buttonTitles: ["button1","buttttton2", "but23"])
         slidingSeg.delegate = self
         self.view.addSubview(slidingSeg)
         

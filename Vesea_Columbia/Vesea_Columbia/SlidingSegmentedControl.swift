@@ -30,7 +30,7 @@ class SlidingSegmentedControl: UIView {
     func setup(buttonTitles: [String]){
         self.backgroundColor = UIColor.redColor()
         let numberOfSegments = buttonTitles.count
-        selectedSegmentIndex = Int(numberOfSegments/2)
+        selectedSegmentIndex = Int((numberOfSegments-1)/2)
         
         var collectiveButtonWidth : CGFloat = 0
         for i in 0...numberOfSegments-1{
@@ -60,17 +60,19 @@ class SlidingSegmentedControl: UIView {
     }
     
     func buttonAction(sender: UIButton!) {
-        let buttonIndex = buttons.indexOf(sender)
-        selectedSegmentIndex = buttonIndex!
-        let underlinedButtonFrame = buttons[selectedSegmentIndex].frame
-        
-        if (delegate != nil){
-            delegate?.SlidingSegmentedControlDidSelectIndex(buttonIndex!)
+        let buttonIndex = buttons.indexOf(sender)!
+        if (buttonIndex != self.selectedSegmentIndex){
+            selectedSegmentIndex = buttonIndex
+            let underlinedButtonFrame = buttons[selectedSegmentIndex].frame
+            
+            if (delegate != nil){
+                delegate?.SlidingSegmentedControlDidSelectIndex(buttonIndex)
+            }
+            
+            UIView.animateWithDuration(0.5, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
+                self.underlineBar.frame = CGRect(x: underlinedButtonFrame.minX, y: self.frame.height-1, width: underlinedButtonFrame.width, height: 1)
+                }, completion: nil)
         }
-        
-        UIView.animateWithDuration(0.5, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
-            self.underlineBar.frame = CGRect(x: underlinedButtonFrame.minX, y: self.frame.height-1, width: underlinedButtonFrame.width, height: 1)
-            }, completion: nil)
     }
 }
 
