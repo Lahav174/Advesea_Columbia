@@ -33,6 +33,7 @@ import UIKit
     
     @IBAction func class2ButtonPressed(sender: AnyObject) {
         print("class2Button pressed")
+        delegateViewController!.animateContainerIn()
     }
     
     @IBInspectable var variable : Float? {

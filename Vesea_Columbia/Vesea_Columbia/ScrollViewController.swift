@@ -112,7 +112,6 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
             param2 = "Term"
             param3 = [("Before", 80),("During", 100),("After", 70)]
             let frame = CGRect(x: 30, y: questionViewController!.graphBackground.frame.origin.y - questionViewController!.graphBackground.frame.height - 150, width: self.view.frame.width-30, height: 150)
-            questionViewController!.addLabel(0, frame: frame)
             break;
         case 1:
             height?.constant = 200
@@ -123,7 +122,6 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
             param2 = "Term"
             param3 = [("W4323", 80),("W3211", 90),("1334", 70)]
             let frame = CGRect(x: 30, y: questionViewController!.graphBackground.frame.origin.y - questionViewController!.graphBackground.frame.height - 150, width: self.view.frame.width-30, height: 150)
-            //questionViewController.addLabel(1, frame: frame)
             break;
         case 2:
             height?.constant = 200
@@ -134,7 +132,6 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
             param2 = "Term"
             param3 = [("Spring 2015", 80),("Fall 2015", 100),("Spring 2016", 70)]
             let frame = CGRect(x: 30, y: questionViewController!.graphBackground.frame.origin.y - questionViewController!.graphBackground.frame.height - 150, width: self.view.frame.width-30, height: 70)
-            //questionViewController.addLabel(2, frame: frame)
             break;
         case 3:
             height?.constant = 200
@@ -165,6 +162,7 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
         default:
             break
         }
+        questionViewController!.addLabel(preset)
         if preset < 40{
         questionViewController?.chart?.layoutIfNeeded()
         questionViewController!.customInitializer(param0, valueFormatter: param1, titleTxt: param2, xyValues: param3)

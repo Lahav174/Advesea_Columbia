@@ -13,11 +13,11 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="300" height="150"/>
+            <rect key="frame" x="0.0" y="0.0" width="382" height="153"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="88%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZQ2-r1-fIH">
-                    <rect key="frame" x="100" y="5" width="100" height="52"/>
+                    <rect key="frame" x="141" y="5" width="100" height="52"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="100" id="ehg-0Z-Rox"/>
                     </constraints>
@@ -26,7 +26,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="of students who take" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h4O-0y-4JI">
-                    <rect key="frame" x="50" y="65" width="201" height="28"/>
+                    <rect key="frame" x="91" y="65" width="201" height="28"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="28" id="AS4-TZ-y83"/>
                     </constraints>
@@ -35,43 +35,29 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="also take" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EDq-9w-fcW">
-                    <rect key="frame" x="107" y="96" width="86" height="28"/>
+                    <rect key="frame" x="148" y="99" width="86" height="28"/>
                     <fontDescription key="fontDescription" type="system" weight="thin" pointSize="23"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FaB-tB-wWS">
-                    <rect key="frame" x="197" y="96" width="64" height="28"/>
-                    <state key="normal">
-                        <attributedString key="attributedTitle">
-                            <fragment content="class2">
-                                <attributes>
-                                    <color key="NSColor" red="0.0" green="0.40000000000000002" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
-                                    <font key="NSFont" size="23" name="HelveticaNeue-Light"/>
-                                    <integer key="NSUnderline" value="1"/>
-                                </attributes>
-                            </fragment>
-                        </attributedString>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zkD-53-osT">
+                    <rect key="frame" x="32" y="96" width="113" height="35"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="nQM-QW-h0h"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                    <state key="normal" title="   W3134" backgroundImage="course1_button"/>
+                    <connections>
+                        <action selector="class1ButtonPressed:" destination="-1" eventType="touchUpInside" id="8WI-lr-FfF"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FaB-tB-wWS">
+                    <rect key="frame" x="238" y="96" width="113" height="35"/>
+                    <state key="normal" title="   W3203" backgroundImage="course2_button">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
                         <action selector="class2ButtonPressed:" destination="-1" eventType="touchUpInside" id="GSw-Rz-4lZ"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zkD-53-osT">
-                    <rect key="frame" x="40" y="96" width="64" height="28"/>
-                    <state key="normal">
-                        <attributedString key="attributedTitle">
-                            <fragment content="class1">
-                                <attributes>
-                                    <color key="NSColor" red="0.0" green="0.40000000000000002" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
-                                    <font key="NSFont" size="23" name="HelveticaNeue-Light"/>
-                                    <integer key="NSUnderline" value="1"/>
-                                </attributes>
-                            </fragment>
-                        </attributedString>
-                    </state>
-                    <connections>
-                        <action selector="class1ButtonPressed:" destination="-1" eventType="touchUpInside" id="8WI-lr-FfF"/>
                     </connections>
                 </button>
             </subviews>
@@ -79,24 +65,26 @@
             <color key="tintColor" red="1" green="0.79233955540000001" blue="0.34907193790000002" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="zkD-53-osT" firstAttribute="top" secondItem="h4O-0y-4JI" secondAttribute="bottom" constant="3" id="2Ra-4x-jb0"/>
-                <constraint firstItem="FaB-tB-wWS" firstAttribute="top" secondItem="h4O-0y-4JI" secondAttribute="bottom" constant="3" id="7tu-y4-no8"/>
+                <constraint firstItem="EDq-9w-fcW" firstAttribute="leading" secondItem="zkD-53-osT" secondAttribute="trailing" constant="3" id="3Bc-qX-JmO"/>
                 <constraint firstItem="ZQ2-r1-fIH" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="ET2-Xf-ggg"/>
                 <constraint firstItem="h4O-0y-4JI" firstAttribute="top" secondItem="ZQ2-r1-fIH" secondAttribute="bottom" constant="8" id="IrR-Mv-mhQ"/>
                 <constraint firstItem="EDq-9w-fcW" firstAttribute="height" secondItem="h4O-0y-4JI" secondAttribute="height" id="MCE-QI-MKT"/>
-                <constraint firstItem="FaB-tB-wWS" firstAttribute="height" secondItem="h4O-0y-4JI" secondAttribute="height" id="QfA-5s-jq7"/>
                 <constraint firstItem="EDq-9w-fcW" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Thr-kq-BPL"/>
                 <constraint firstAttribute="bottom" secondItem="EDq-9w-fcW" secondAttribute="bottom" constant="26" id="Wpp-RT-qaO"/>
-                <constraint firstItem="EDq-9w-fcW" firstAttribute="leading" secondItem="zkD-53-osT" secondAttribute="trailing" constant="3" id="ang-Ng-Ud8"/>
-                <constraint firstItem="EDq-9w-fcW" firstAttribute="top" secondItem="h4O-0y-4JI" secondAttribute="bottom" constant="3" id="bwW-Zc-6UI"/>
-                <constraint firstItem="EDq-9w-fcW" firstAttribute="top" secondItem="h4O-0y-4JI" secondAttribute="bottom" constant="3" id="kfZ-cH-k1s"/>
-                <constraint firstItem="zkD-53-osT" firstAttribute="height" secondItem="EDq-9w-fcW" secondAttribute="height" id="o6v-vL-ov0"/>
+                <constraint firstItem="FaB-tB-wWS" firstAttribute="top" secondItem="zkD-53-osT" secondAttribute="top" id="XQf-yO-0Qx"/>
+                <constraint firstItem="EDq-9w-fcW" firstAttribute="top" secondItem="h4O-0y-4JI" secondAttribute="bottom" constant="6" id="bwW-Zc-6UI"/>
                 <constraint firstItem="FaB-tB-wWS" firstAttribute="leading" secondItem="EDq-9w-fcW" secondAttribute="trailing" constant="4" id="olO-KQ-ssv"/>
+                <constraint firstItem="FaB-tB-wWS" firstAttribute="height" secondItem="zkD-53-osT" secondAttribute="height" id="tGJ-Qt-ZyW"/>
                 <constraint firstItem="ZQ2-r1-fIH" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="u6g-ha-BZf"/>
                 <constraint firstItem="h4O-0y-4JI" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="urV-q5-hdh"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="503" y="216"/>
+            <point key="canvasLocation" x="515" y="217.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="course1_button" width="113" height="33"/>
+        <image name="course2_button" width="113" height="33"/>
+    </resources>
 </document>

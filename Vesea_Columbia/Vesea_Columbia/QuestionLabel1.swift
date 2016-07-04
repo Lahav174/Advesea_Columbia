@@ -9,6 +9,8 @@
 import UIKit
 
 @IBDesignable class QuestionLabel1: UIView {
+    
+    var delegateViewController : QuestionViewController?
 
     var view: UIView!
     
@@ -34,9 +36,11 @@ import UIKit
     }
     
     @IBAction func class1ButtonPressed(sender: AnyObject) {
+        delegateViewController!.animateContainerIn()
     }
     
     @IBAction func class2ButtonPressed(sender: AnyObject) {
+        delegateViewController!.animateContainerIn()
     }
     
     @IBInspectable var variable : Float? {

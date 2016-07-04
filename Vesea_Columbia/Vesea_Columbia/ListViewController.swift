@@ -143,7 +143,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func imageForSection(section: Int) -> UIImage{
         
-        let originalImage = UIImage(named: "citypic_filtered")!
+        let originalImage = UIImage(named: "citypic_filtered2")!
         let scaledImage = ListViewController.resizeImage(originalImage, newHeight: self.view.frame.height)
         let cgScaledImage = scaledImage.CGImage
         
