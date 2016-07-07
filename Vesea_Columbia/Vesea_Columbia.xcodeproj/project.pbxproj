@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		79ADD0941E4FAD2F6A444B12 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E87648A43FEEA8353C6BC6E /* Pods.framework */; };
 		CD0BCC621D0DD37B002D7B49 /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0BCC611D0DD37B002D7B49 /* QuestionViewController.swift */; };
-		CD2312A11D04A21400ED6D0D /* MajorChooserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2312A01D04A21400ED6D0D /* MajorChooserViewController.swift */; };
+		CD2312A11D04A21400ED6D0D /* CourseChooserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2312A01D04A21400ED6D0D /* CourseChooserViewController.swift */; };
 		CD2C7E161D288E2800FCAD5E /* Courses1.csv in Resources */ = {isa = PBXBuildFile; fileRef = CD2C7E151D288E2800FCAD5E /* Courses1.csv */; };
 		CD2C7E181D2890D100FCAD5E /* Courses1.csv in Resources */ = {isa = PBXBuildFile; fileRef = CD2C7E171D2890D100FCAD5E /* Courses1.csv */; };
 		CD2C7E1B1D29B98300FCAD5E /* SlidingSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2C7E1A1D29B98300FCAD5E /* SlidingSegmentedControl.swift */; };
@@ -68,7 +68,7 @@
 		23849B7DE3C476384B413274 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		7A2CE4E5304ECD4D750C6F69 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		CD0BCC611D0DD37B002D7B49 /* QuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
-		CD2312A01D04A21400ED6D0D /* MajorChooserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MajorChooserViewController.swift; sourceTree = "<group>"; };
+		CD2312A01D04A21400ED6D0D /* CourseChooserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseChooserViewController.swift; sourceTree = "<group>"; };
 		CD2C7E151D288E2800FCAD5E /* Courses1.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Courses1.csv; path = ../../../../Downloads/Courses1.csv; sourceTree = "<group>"; };
 		CD2C7E171D2890D100FCAD5E /* Courses1.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Courses1.csv; sourceTree = "<group>"; };
 		CD2C7E1A1D29B98300FCAD5E /* SlidingSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlidingSegmentedControl.swift; sourceTree = "<group>"; };
@@ -203,7 +203,7 @@
 				CD892EDB1CEBB8CD00DF5D24 /* Main.storyboard */,
 				CD0BCC611D0DD37B002D7B49 /* QuestionViewController.swift */,
 				CDFF9FD71CF394AE00E64650 /* ScrollViewController.swift */,
-				CD2312A01D04A21400ED6D0D /* MajorChooserViewController.swift */,
+				CD2312A01D04A21400ED6D0D /* CourseChooserViewController.swift */,
 				CD892F131CEFA16600DF5D24 /* FrontViewController.swift */,
 				CD892F1D1CF168B100DF5D24 /* ListViewController.swift */,
 				CD2C7E1A1D29B98300FCAD5E /* SlidingSegmentedControl.swift */,
@@ -461,7 +461,7 @@
 				CD892F161CEFB84600DF5D24 /* PieChartQuestionViewController.swift in Sources */,
 				CD892F121CED417300DF5D24 /* ListTableViewController.swift in Sources */,
 				CDFF9FF31D00DB3A00E64650 /* MajorChooser.swift in Sources */,
-				CD2312A11D04A21400ED6D0D /* MajorChooserViewController.swift in Sources */,
+				CD2312A11D04A21400ED6D0D /* CourseChooserViewController.swift in Sources */,
 				CDFF9FE71CFBC0FB00E64650 /* QuestionLabel1.swift in Sources */,
 				CDFF9FD81CF394AE00E64650 /* ScrollViewController.swift in Sources */,
 				CDFF9FDC1CF8C9D500E64650 /* HBarChartQuestionViewController.swift in Sources */,

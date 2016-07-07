@@ -28,6 +28,7 @@ class SlidingSegmentedControl: UIView {
     }
     
     func setup(buttonTitles: [String]){
+        print("Segmented Control initialized!")
         self.backgroundColor = K.colors.segmentedControlBackgroundColor
         let numberOfSegments = buttonTitles.count
         selectedSegmentIndex = Int((numberOfSegments-1)/2)
@@ -46,7 +47,6 @@ class SlidingSegmentedControl: UIView {
         var newButtonOriginX : CGFloat = 0 + spaceBetweenButtons
         for i in 0...numberOfSegments-1{
             let buttonSize = buttons[i].frame.size
-            print(self.frame.height/2 - buttonSize.height/2)
             buttons[i].frame.origin = CGPoint(x: newButtonOriginX, y: self.frame.height/2 - buttonSize.height/2)
             newButtonOriginX += buttonSize.width + spaceBetweenButtons
             self.addSubview(buttons[i])

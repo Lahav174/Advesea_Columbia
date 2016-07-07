@@ -26,7 +26,7 @@ class BarChartQuestionViewController: UIViewController, UIGestureRecognizerDeleg
     var formatter = NSNumberFormatter()
     var titleText = String()
     var values = [(x: String, y: Double)]()
-    var delegate = ScrollViewController()
+    var delegate = UIViewController()//ScrollViewController()
     
     var yConstraint = NSLayoutConstraint()
     
@@ -232,7 +232,7 @@ class BarChartQuestionViewController: UIViewController, UIGestureRecognizerDeleg
 
     
     // MARK: - Navigation
-
+/*
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let segueName = segue.identifier
@@ -241,6 +241,7 @@ class BarChartQuestionViewController: UIViewController, UIGestureRecognizerDeleg
             destination.delegateViewController = self
         }
     }
+*/
  
 
 }

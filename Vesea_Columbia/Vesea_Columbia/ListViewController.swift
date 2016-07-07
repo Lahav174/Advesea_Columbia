@@ -18,8 +18,15 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     let cellHeight : CGFloat = 100
     
+    var courses : [[String : String]]?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        courses = NSUserDefaults.standardUserDefaults().arrayForKey("courses") as? [[String : String]]
+        print(courses![0])
+        
+        self.view.clipsToBounds = true
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -70,31 +77,44 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.indexPath = indexPath
         var myString = NSString()
         cell.textLabel?.numberOfLines = 2
-        let courseA : String = "W3134"
-        let courseB : String = "W3203"
+        
+        let def = NSUserDefaults.standardUserDefaults()
+        let course1Call = def.objectForKey("selectedCourse1") as! String
+        let course2Call = def.objectForKey("selectedCourse2") as! String
+        var course1ID : String = ""
+        var course2ID : String = ""
+        for c in self.courses!{
+            if (c["Call"] == course1Call){
+                course2ID = c["ID"]!
+            } else if (c["Call"] == course2Call){
+                course1ID = c["ID"]!
+            } else if (course1ID != "" && course2ID != ""){
+                break
+            }
+        }
         let major : String = "Computer Science"
         var myMutableString = NSMutableAttributedString()
         switch indexPath.section{
         case 0:
-             myString = "Do students who take " + courseA + " also take " + courseB + "?"
+             myString = "Do students who take " + course1ID + " also take " + course2ID + "?"
              myMutableString = NSMutableAttributedString(string: myString as String, attributes: [NSFontAttributeName:UIFont(name: "Georgia", size: 18.0)!])
-             myMutableString.addAttribute(NSForegroundColorAttributeName, value: UIColor.greenColor(), range: NSRange(location:22,length:courseA.characters.count))
-             myMutableString.addAttribute(NSForegroundColorAttributeName, value: UIColor.orangeColor(), range: NSRange(location:33 + courseA.characters.count,length:courseB.characters.count))
+             myMutableString.addAttribute(NSForegroundColorAttributeName, value: UIColor.greenColor(), range: NSRange(location:22,length:course1ID.characters.count))
+             myMutableString.addAttribute(NSForegroundColorAttributeName, value: UIColor.orangeColor(), range: NSRange(location:33 + course1ID.characters.count,length:course2ID.characters.count))
             break;
         case 1:
-            myString = "What other classes are taken along with " + courseA
+            myString = "What other classes are taken along with " + course1ID
             myMutableString = NSMutableAttributedString(string: myString as String, attributes: [NSFontAttributeName:UIFont(name: "Georgia", size: 18.0)!])
-            myMutableString.addAttribute(NSForegroundColorAttributeName, value: UIColor.greenColor(), range: NSRange(location:40,length:courseA.characters.count))
+            myMutableString.addAttribute(NSForegroundColorAttributeName, value: UIColor.greenColor(), range: NSRange(location:40,length:course1ID.characters.count))
             break;
         case 2:
-            myString = "Enrollment Trends for " + courseA
+            myString = "Enrollment Trends for " + course1ID
             myMutableString = NSMutableAttributedString(string: myString as String, attributes: [NSFontAttributeName:UIFont(name: "Georgia", size: 18.0)!])
-            myMutableString.addAttribute(NSForegroundColorAttributeName, value: UIColor.greenColor(), range: NSRange(location:22,length:courseA.characters.count))
+            myMutableString.addAttribute(NSForegroundColorAttributeName, value: UIColor.greenColor(), range: NSRange(location:22,length:course1ID.characters.count))
             break;
         case 3:
-            myString = "Which majors typically take " + courseA + "?"
+            myString = "Which majors typically take " + course1ID + "?"
             myMutableString = NSMutableAttributedString(string: myString as String, attributes: [NSFontAttributeName:UIFont(name: "Georgia", size: 18.0)!])
-            myMutableString.addAttribute(NSForegroundColorAttributeName, value: UIColor.greenColor(), range: NSRange(location:28,length:courseA.characters.count))
+            myMutableString.addAttribute(NSForegroundColorAttributeName, value: UIColor.greenColor(), range: NSRange(location:28,length:course1ID.characters.count))
             break;
         case 4:
             myString = "What courses do " + major + " majors typically take and when?"
@@ -181,7 +201,6 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func handlePan(recognizer: UIPanGestureRecognizer){
-        print("Panned!")
         let xVelocity = recognizer.velocityInView(self.view).x
         let viewWidth = self.view.frame.width
         let scrollToPrevPage = self.delegate!.scrollView.contentOffset.x < 0.45*viewWidth

@@ -12,7 +12,7 @@ class MajorTableViewCell: UITableViewCell {
 
     var majorObject = Major()
     
-    var delegateViewController = MajorChooserViewController() //make optional
+    var delegateViewController = CourseChooserViewController() //make optional
     
     //var tableView = UITableView()
     

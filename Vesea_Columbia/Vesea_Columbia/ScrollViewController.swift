@@ -16,6 +16,8 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
     
     let someText = "hi there"
     
+    var indexOfActiveQuestion = -1
+    
     //var questionViewController = QuestionViewController()//.init(nibName: nil, bundle: nil)
     
     var questionViewController : QuestionViewController? = nil
@@ -25,7 +27,7 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setUpMajors()
+        setUpCourses()
         
         scrollView.delaysContentTouches = false
                         
@@ -92,7 +94,11 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func resetQuestionViewController(preset: Int){
-        print("GOT HERE BOIIIII")
+        if (preset == self.indexOfActiveQuestion){
+            return
+        }
+        self.indexOfActiveQuestion = preset
+        
         var param0 = String()
         var param1 = NSNumberFormatter()
         var param2 = String()
@@ -101,11 +107,13 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
         
         var width = questionViewController?.graphBackgroundWidth
         var height = questionViewController?.graphBackgroundHeight
+        var yPos = questionViewController?.graphBackgroundY
         width?.constant = questionViewController!.view.frame.width - 30
         
         switch preset {
         case 0:
             height?.constant = 200
+            yPos?.constant = 110
             param0 = "Bar Chart"
             param1 = NSNumberFormatter()
             param1.numberStyle = NSNumberFormatterStyle.PercentStyle
@@ -116,6 +124,7 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
             break;
         case 1:
             height?.constant = 200
+            yPos?.constant = 70
             param0 = "Horizontal Bar Chart"
             param1 = NSNumberFormatter()
             param1.numberStyle = NSNumberFormatterStyle.PercentStyle
@@ -127,6 +136,7 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
             break;
         case 2:
             height?.constant = 200
+            yPos?.constant = 110
             param0 = "Bar Chart"
             param1.numberStyle = NSNumberFormatterStyle.NoStyle
             param1.multiplier = 1
@@ -137,6 +147,7 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
             break;
         case 3:
             height?.constant = 200
+            yPos?.constant = 110
             param0 = "Pie Chart"
             param1.numberStyle = NSNumberFormatterStyle.PercentStyle
             param1.multiplier = 1
@@ -145,6 +156,7 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
             break;
         case 4:
             height?.constant = 200
+            yPos?.constant = 110
             param0 = "Horizontal Bar Chart"
             param1.numberStyle = NSNumberFormatterStyle.PercentStyle
             param1.multiplier = 1
@@ -154,6 +166,7 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
             break;
         case 5:
             height?.constant = 200
+            yPos?.constant = 110
             param0 = "Bar Chart"
             param1.numberStyle = NSNumberFormatterStyle.PercentStyle
             param1.multiplier = 1
@@ -194,25 +207,20 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
         view.addConstraint(verticalConstraintVCBAR)
     }
     
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        print(scrollView.bounds.width/scrollView.contentSize.width)
-    }
-    
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
         if (scrollView.contentOffset.x == self.view.frame.width){
             scrollView.panGestureRecognizer.enabled = false
         }
     }
     
-    func setUpMajors(){
+    func setUpCourses(){ //Called only when update or first time (Not when load)
         let def = NSUserDefaults.standardUserDefaults()
-        let key = "majors"
-        var majorArray = [NSDictionary]()
+        let key = "courses"
+        var courseArray = [NSDictionary]()
         
         //Note: changing the format of "favorites" in nsuserdefaults will cause a crash because this if-statement will fail, simply because it already exists
-        if ((def.arrayForKey(key)) == nil){
+        //if (true){
+        if ((def.arrayForKey(key)) == nil){ //reset courses
             print("This array doesn't exist yet")
             
             var csvColumns = [String : [String]]()
@@ -220,27 +228,31 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
                 let csvURL = NSBundle(forClass: FrontViewController.self).URLForResource("Courses1", withExtension: "csv")!
                 let csv = try CSV(url: csvURL)
                 csvColumns = csv.columns
-                //print(csv.columns["Name"]!)
             } catch {
-                // Catch errors or something
                 print("Failed!")
                 fatalError("Courses1.csv could not be found")
             }
             print("csv collumn count: " + String(csvColumns.count))
             for i in 0...csvColumns["Name"]!.count-1{
                 let dict : NSDictionary = ["Call":csvColumns["Call"]![i],"Name":csvColumns["Name"]![i],"ID": csvColumns["ID"]![i],"School":"Columbia College"]
-                majorArray.insert(dict, atIndex: i)
+                courseArray.insert(dict, atIndex: i)
             }
             
-            def.setObject(majorArray, forKey: "majors")
+            def.setObject(courseArray, forKey: "courses")
             
-            var favorites = NSMutableArray()
+            var favorites = NSMutableArray() //reset favorites MIGHT CHANGE
             let arrayToSet = favorites as NSArray
             def.setObject(arrayToSet, forKey: "favorites")
+            
+            let majorDefault = "Political Science"
+            let course1CallDefault = "61946"
+            let course2CallDefault = "28473"
+            def.setObject(majorDefault, forKey: "selectedMajor")
+            def.setObject(course1CallDefault, forKey: "selectedCourse1")
+            def.setObject(course2CallDefault, forKey: "selectedCourse2")
         } else {
             print("This array exists now")
         }
-        print("#1")
         
         
 //        if let defArray : AnyObject? = def.objectForKey(key) {
@@ -265,5 +277,8 @@ struct K {
         static let navBarColor = UIColor(red: 185/255, green: 205/255, blue: 227/255, alpha: 1)
         static let tableviewBackgroundColor = UIColor(red: 140/255, green: 144/255, blue: 178/255, alpha: 1)
         static let segmentedControlBackgroundColor = UIColor(red: 158/255, green: 171/255, blue: 185/255, alpha: 0.77)
+        static let majorColor = UIColor(red: 191/255, green: 56/255, blue: 26/255, alpha: 1)
+        static let course1Color = UIColor(red: 233/255, green: 175/255, blue: 50, alpha: 1)
+        static let course2Color = UIColor(red: 222/255, green: 116/255, blue: 42/255, alpha: 1)
     }
 }

@@ -37,6 +37,7 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
     @IBOutlet weak var backButton: UIBarButtonItem!
     @IBOutlet weak var graphBackgroundHeight: NSLayoutConstraint!
     @IBOutlet weak var graphBackgroundWidth: NSLayoutConstraint!
+    @IBOutlet weak var graphBackgroundY: NSLayoutConstraint!
     
     @IBAction func backButtonPressed(sender: AnyObject) {
         let menuPage = CGPoint(x: self.view.frame.width, y: 0)
@@ -45,7 +46,6 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
         }) { (true) in
             self.delegate!.scrollView.panGestureRecognizer.enabled = false
         }
-        
     }
     
     
@@ -80,12 +80,16 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
     }
     
     func customInitializer(chartKind: String, valueFormatter: NSNumberFormatter,titleTxt: String, xyValues: [(x: String, y: Double)], tabLabels: [String]? = nil){
-
+        print(tabLabels)
         if (tabLabels != nil){
+            print("#1")
             self.segmentedControl = SlidingSegmentedControl(frame: CGRectMake(0, 64, self.view.frame.width, 44), buttonTitles: tabLabels!)
             self.view.addSubview(segmentedControl!)
-        } else if (tabLabels == nil && self.segmentedControl != nil){
-            self.segmentedControl?.removeFromSuperview()
+        } else if (self.segmentedControl != nil){
+            print("#2")
+            self.segmentedControl!.backgroundColor = UIColor.redColor()
+            self.segmentedControl!.removeFromSuperview()
+            //self.segmentedControl!.hidden = true
             self.segmentedControl = nil
         }
         
@@ -182,7 +186,6 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
             let graph = (chart as! BarChartView)
             graph.notifyDataSetChanged()
         }
-        print("#2")
     }
     
     // MARK: - Chart Setup
@@ -219,12 +222,6 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
         
         self.view.addConstraints([leftConstraint!,rightConstraint!,topConstraint!,bottomConstraint!])
         chart?.layoutIfNeeded()
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        print(chart?.frame.height)
     }
     
     func configureChartSettings(type: String?){
@@ -317,16 +314,18 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
         backButton.tintColor = K.colors.lightBlack
     }
     
+    func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
+        return UIBarPosition.TopAttached
+    }
+    
+    // MARK: - Graph Background
+    
     func configureGraphBackground(titleText: String){
         graphBackground.layer.cornerRadius = 10
         graphBackground.layer.masksToBounds = true
         graphBackground.backgroundColor = K.colors.fadedGray
         graphBackgroundLabel.text = titleText
         graphBackgroundLabel.font = UIFont(name: "HelveticaNeue-Light", size: 16)!
-    }
-    
-    func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
-        return UIBarPosition.TopAttached
     }
     
     // MARK: - Chooser
@@ -395,7 +394,7 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
             (questionLabel as! QuestionLabel1).delegateViewController = self
             self.view.insertSubview(questionLabel!, belowSubview: container)
             questionLabel!.translatesAutoresizingMaskIntoConstraints = false
-            let labelyConstraint = NSLayoutConstraint(item: questionLabel!, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: graphBackground, attribute: NSLayoutAttribute.Top, multiplier: 1, constant: -30)
+            let labelyConstraint = NSLayoutConstraint(item: questionLabel!, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Top, multiplier: 1, constant: 120)
             let labelWidthConstraint = NSLayoutConstraint(item: questionLabel!, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Width, multiplier: 1, constant: -60)
             let labelHeightConstraint = NSLayoutConstraint(item: questionLabel!, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: 175)
             let labelCenterXConstraint = NSLayoutConstraint(item: questionLabel!, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0)
@@ -430,7 +429,7 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let segueName = segue.identifier
         if (segueName == "MajorChooser"){
-            let destination = segue.destinationViewController as! MajorChooserViewController
+            let destination = segue.destinationViewController as! CourseChooserViewController
             destination.delegateViewController = self
         }
     }

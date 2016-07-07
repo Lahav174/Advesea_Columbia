@@ -1,5 +1,5 @@
 //
-//  MajorChooserViewController.swift
+//  CourseChooserViewController.swift
 //  Vesea_Columbia
 //
 //  Created by Lahav Lipson on 6/5/16.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MajorChooserViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UINavigationBarDelegate {
+class CourseChooserViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UINavigationBarDelegate {
     
     var selectedCellCodes = [String]()
     
@@ -48,11 +48,9 @@ class MajorChooserViewController: UIViewController, UITableViewDelegate, UITable
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("#2")
         for e in majorArrayFromDefaults{
             majors.append(Major(courseName: e.objectForKey("Name") as! String, school: e.objectForKey("School") as! String, code: e.objectForKey("Call") as! String))
         }
-        print("#3")
         tableView.delegate = self
         tableView.dataSource = self
         searchBar.delegate = self
