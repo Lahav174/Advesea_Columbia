@@ -12,9 +12,8 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
     
     var selectedCellCodes = [String]()
     
-    var majors = [Course]()
-    let majorArrayFromDefaults = MyVariables.courses//NSUserDefaults.standardUserDefaults().objectForKey("majors") as! NSArray
-    var filteredMajors = [Course]()
+    var courses = [Course]()
+    var filteredCourses = [Course]()
     
     var delegateViewController = UIViewController()
     
@@ -49,8 +48,8 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
     override func viewDidLoad() {
         super.viewDidLoad()
         print("#2")
-        for e in majorArrayFromDefaults!{
-            majors.append(Course(courseName: e.objectForKey("Name") as! String,
+        for e in MyVariables.courses!{
+            courses.append(Course(courseName: e.objectForKey("Name") as! String,
                 courseID: e.objectForKey("ID") as! String,
                 callNumber: e.objectForKey("Call") as! String,
                 credit: Int(e.objectForKey("Credits") as! String)!))
@@ -110,9 +109,9 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (section == 1){
             if searching && searchBar.text != ""{
-                return self.filteredMajors.count
+                return self.filteredCourses.count
             } else {
-                return self.majors.count
+                return self.courses.count
             }
         } else {
             let def = NSUserDefaults.standardUserDefaults()
@@ -135,20 +134,20 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
         cell.indexPath = indexPath
         
         if (indexPath.section == 1){
-            var majorObj = Course()
+            var courseObj = Course()
             if searching && searchBar.text != "" {
-                majorObj = self.filteredMajors[indexPath.row]
-                cell.mainLabel.text = majorObj.name
-                cell.subLabel.text = majorObj.ID
-                cell.majorObject = majorObj
+                courseObj = self.filteredCourses[indexPath.row]
+                cell.mainLabel.text = courseObj.name
+                cell.subLabel.text = courseObj.ID
+                cell.courseObject = courseObj
             } else {
-                majorObj = self.majors[indexPath.row]
-                cell.mainLabel.text = majorObj.name
-                cell.subLabel.text = majorObj.ID
-                cell.majorObject = majorObj
+                courseObj = self.courses[indexPath.row]
+                cell.mainLabel.text = courseObj.name
+                cell.subLabel.text = courseObj.ID
+                cell.courseObject = courseObj
             }
             //Selects the correct cells
-            if (selectedCellCodes.contains(majorObj.call)){
+            if (selectedCellCodes.contains(courseObj.call)){
                 cell.backgroundColor = UIColor(red: 196/255, green: 216/255, blue: 226/255, alpha: 0.6)
             } else {
                 cell.backgroundColor = UIColor.whiteColor()
@@ -156,7 +155,7 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
             //Stars the correct cells
             if ((def.arrayForKey(key)) != nil){
                 let favs = def.arrayForKey(key)! as NSArray
-                cell.setStarImage(favs.containsObject(cell.majorObject.call))
+                cell.setStarImage(favs.containsObject(cell.courseObject.call))
             }
             
             return cell
@@ -164,11 +163,11 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
             if ((def.arrayForKey(key)) != nil){
                 let favs = def.arrayForKey(key)! as NSArray
                 let code = favs[indexPath.row] as! String
-                for fm in self.majors{
+                for fm in self.courses{
                     if fm.call == code{
                         cell.mainLabel.text = fm.name
                         cell.subLabel.text = fm.ID
-                        cell.majorObject = fm
+                        cell.courseObject = fm
                         cell.setStarImage(true)
                         //Selects the correct cells
                         if (selectedCellCodes.contains(fm.call)){
@@ -189,13 +188,13 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
     
     
     func updateSearchResults(){
-        self.filteredMajors.removeAll(keepCapacity: false)
+        self.filteredCourses.removeAll(keepCapacity: false)
         
         let searchPredicate = NSPredicate(format: "SELF.name CONTAINS[c] %@", self.searchBar.text!)
         
-        let array = (self.majors as NSArray).filteredArrayUsingPredicate(searchPredicate)
+        let array = (self.courses as NSArray).filteredArrayUsingPredicate(searchPredicate)
         
-        self.filteredMajors = array as! [Course]
+        self.filteredCourses = array as! [Course]
         
         self.tableView.reloadData()
     }
