@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MajorTableViewCell: UITableViewCell {
+class CourseTableViewCell: UITableViewCell {
 
     var majorObject = Major()
     

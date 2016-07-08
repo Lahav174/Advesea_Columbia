@@ -127,7 +127,7 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let def = NSUserDefaults.standardUserDefaults()
         let key = "favorites"
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! MajorTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! CourseTableViewCell
         cell.delegateViewController = self
         cell.indexPath = indexPath
         
