@@ -10,6 +10,10 @@ import UIKit
 import Charts
 import SwiftCSV
 
+struct MyVariables {
+    static var courses : [NSDictionary]?
+}
+
 class ScrollViewController: UIViewController, UIScrollViewDelegate {
 
     @IBOutlet weak var scrollView: ScrollView!
@@ -26,6 +30,8 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        checkForUpdate()
         
         setUpCourses()
         
@@ -213,32 +219,31 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
         }
     }
     
-    func setUpCourses(){ //Called only when update or first time (Not when load)
-        let def = NSUserDefaults.standardUserDefaults()
-        let key = "courses"
+    func setUpCourses(){
         var courseArray = [NSDictionary]()
+        var csvColumns = [String : [String]]()
+        do {
+            let csvURL = NSBundle(forClass: FrontViewController.self).URLForResource("Courses1", withExtension: "csv")!
+            let csv = try CSV(url: csvURL)
+            csvColumns = csv.columns
+        } catch {
+            print("Failed!")
+            fatalError("Courses1.csv could not be found")
+        }
+        print("csv collumn count: " + String(csvColumns.count))
+        for i in 0...csvColumns["Name"]!.count-1{
+            let dict : NSDictionary = ["Call":csvColumns["Call"]![i] as! String,"Name":csvColumns["Name"]![i] as! String,"ID": csvColumns["ID"]![i] as! String,"School":"Columbia College"]
+            courseArray.insert(dict, atIndex: i)
+        }
+        MyVariables.courses = courseArray
+    }
+    
+    func checkForUpdate(){ //Called only when update or first time (Not when load)
+        let def = NSUserDefaults.standardUserDefaults()
         
         //Note: changing the format of "favorites" in nsuserdefaults will cause a crash because this if-statement will fail, simply because it already exists
-        //if (true){
-        if ((def.arrayForKey(key)) == nil){ //reset courses
-            print("This array doesn't exist yet")
-            
-            var csvColumns = [String : [String]]()
-            do {
-                let csvURL = NSBundle(forClass: FrontViewController.self).URLForResource("Courses1", withExtension: "csv")!
-                let csv = try CSV(url: csvURL)
-                csvColumns = csv.columns
-            } catch {
-                print("Failed!")
-                fatalError("Courses1.csv could not be found")
-            }
-            print("csv collumn count: " + String(csvColumns.count))
-            for i in 0...csvColumns["Name"]!.count-1{
-                let dict : NSDictionary = ["Call":csvColumns["Call"]![i],"Name":csvColumns["Name"]![i],"ID": csvColumns["ID"]![i],"School":"Columbia College"]
-                courseArray.insert(dict, atIndex: i)
-            }
-            
-            def.setObject(courseArray, forKey: "courses")
+        if (true){
+        //if ((def.arrayForKey(key)) == nil){
             
             var favorites = NSMutableArray() //reset favorites MIGHT CHANGE
             let arrayToSet = favorites as NSArray
@@ -250,18 +255,7 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
             def.setObject(majorDefault, forKey: "selectedMajor")
             def.setObject(course1CallDefault, forKey: "selectedCourse1")
             def.setObject(course2CallDefault, forKey: "selectedCourse2")
-        } else {
-            print("This array exists now")
         }
-        
-        
-//        if let defArray : AnyObject? = def.objectForKey(key) {
-//            //majorArray = defArray! as! [NSDictionary]
-//        } else {
-//            print("This array doesn't exist yet")
-//        }
-        
-        
     }
 
 }

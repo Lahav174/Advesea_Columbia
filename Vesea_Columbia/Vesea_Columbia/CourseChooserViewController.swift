@@ -13,7 +13,7 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
     var selectedCellCodes = [String]()
     
     var majors = [Major]()
-    let majorArrayFromDefaults = NSUserDefaults.standardUserDefaults().objectForKey("majors") as! NSArray
+    let majorArrayFromDefaults = MyVariables.courses//NSUserDefaults.standardUserDefaults().objectForKey("majors") as! NSArray
     var filteredMajors = [Major]()
     
     var delegateViewController = UIViewController()
@@ -48,7 +48,8 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        for e in majorArrayFromDefaults{
+        print("#2")
+        for e in majorArrayFromDefaults!{
             majors.append(Major(courseName: e.objectForKey("Name") as! String, school: e.objectForKey("School") as! String, code: e.objectForKey("Call") as! String))
         }
         tableView.delegate = self

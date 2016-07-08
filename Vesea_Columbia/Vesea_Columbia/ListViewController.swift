@@ -18,12 +18,12 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     let cellHeight : CGFloat = 100
     
-    var courses : [[String : String]]?
+    var courses : [NSDictionary]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        courses = NSUserDefaults.standardUserDefaults().arrayForKey("courses") as? [[String : String]]
+        courses = MyVariables.courses!
         print(courses![0])
         
         self.view.clipsToBounds = true
@@ -84,10 +84,10 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         var course1ID : String = ""
         var course2ID : String = ""
         for c in self.courses!{
-            if (c["Call"] == course1Call){
-                course2ID = c["ID"]!
-            } else if (c["Call"] == course2Call){
-                course1ID = c["ID"]!
+            if (c["Call"] as! String == course1Call){
+                course2ID = c["ID"]! as! String
+            } else if (c["Call"] as! String == course2Call){
+                course1ID = c["ID"]! as! String
             } else if (course1ID != "" && course2ID != ""){
                 break
             }
