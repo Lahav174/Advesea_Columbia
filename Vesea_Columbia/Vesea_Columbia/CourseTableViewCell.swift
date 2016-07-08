@@ -10,7 +10,7 @@ import UIKit
 
 class CourseTableViewCell: UITableViewCell {
 
-    var majorObject = Major()
+    var majorObject = Course()
     
     var delegateViewController = CourseChooserViewController() //make optional
     
@@ -36,21 +36,21 @@ class CourseTableViewCell: UITableViewCell {
             favorites = defArray.mutableCopy() as! NSMutableArray
         }
 
-        if favorites.containsObject(majorObject.code){//It is currently a favorite
+        if favorites.containsObject(majorObject.call){//It is currently a favorite
             print("Un-Favorited!")
             setStarImage(false)
-            favorites.removeObject(majorObject.code)
+            favorites.removeObject(majorObject.call)
         } else { //It is not currently a favorite
             setStarImage(true)
             print("Favorited!")
-            favorites.addObject(majorObject.code)
+            favorites.addObject(majorObject.call)
         }
         let arrayToSet = favorites as NSArray
         def.setObject(arrayToSet, forKey: key)
         
         self.delegateViewController.tableView.reloadData()
         
-        if self.indexPath.section == 1 && favorites.containsObject(majorObject.code){//Just became a favorite (Need to move down)
+        if self.indexPath.section == 1 && favorites.containsObject(majorObject.call){//Just became a favorite (Need to move down)
             let offset = CGPoint(x: 0, y: self.delegateViewController.tableView.contentOffset.y + 44)
             self.delegateViewController.tableView.setContentOffset(offset, animated: false)
         } else if (self.indexPath.section == 1 && self.delegateViewController.tableView.contentOffset.y >= 0){
@@ -93,7 +93,7 @@ class CourseTableViewCell: UITableViewCell {
     
     func handleTap(recognizer: UITapGestureRecognizer){
         print("Tapped")
-        self.delegateViewController.selectCellsWithCodes([self.majorObject.code])
+        self.delegateViewController.selectCellsWithCodes([self.majorObject.call])
     }
     
     func setup(){

@@ -232,8 +232,11 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
         }
         print("csv collumn count: " + String(csvColumns.count))
         for i in 0...csvColumns["Name"]!.count-1{
-            let dict : NSDictionary = ["Call":csvColumns["Call"]![i] as! String,"Name":csvColumns["Name"]![i] as! String,"ID": csvColumns["ID"]![i] as! String,"School":"Columbia College"]
-            courseArray.insert(dict, atIndex: i)
+            let dict : NSDictionary = ["Call":csvColumns["Call"]![i],
+                                       "Name":csvColumns["Name"]![i],
+                                       "ID": csvColumns["ID"]![i],
+                                       "Credits":csvColumns["Credits"]![i]]
+            courseArray.insert(dict, atIndex: i)//
         }
         MyVariables.courses = courseArray
     }
