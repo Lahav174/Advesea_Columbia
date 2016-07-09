@@ -18,7 +18,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     let cellHeight : CGFloat = 100
     
-    var courses : NSDictionary?
+    var courses : OrderedDictionary<NSString,NSDictionary>?
     
     override func viewDidLoad() {
         super.viewDidLoad()

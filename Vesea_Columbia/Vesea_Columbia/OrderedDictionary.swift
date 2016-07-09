@@ -12,6 +12,10 @@ class OrderedDictionary<keyType: NSObject, valueType>: NSObject {
     
     var mutableArray = NSMutableArray()
     
+    var count: Int {
+        return mutableArray.count
+    }
+    
     func insert(value: valueType, forKey key: keyType, atIndex index: Int){
         mutableArray.insertObject(ObjectTuple(first: key, second: value) as AnyObject, atIndex: index)
     }

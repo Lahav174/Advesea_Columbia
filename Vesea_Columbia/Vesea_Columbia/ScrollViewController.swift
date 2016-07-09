@@ -11,7 +11,7 @@ import Charts
 import SwiftCSV
 
 struct MyVariables {
-    static var courses : NSMutableDictionary?
+    static var courses : OrderedDictionary<NSString,NSDictionary>?
 }
 
 class ScrollViewController: UIViewController, UIScrollViewDelegate {
@@ -222,7 +222,7 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func setUpCourses(){
-        var courseDict = NSMutableDictionary()
+        var courseDict = OrderedDictionary<NSString,NSDictionary>()
         var csvColumns = [String : [String]]()
         do {
             let csvURL = NSBundle(forClass: FrontViewController.self).URLForResource("Courses1", withExtension: "csv")!
@@ -235,7 +235,8 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
         for i in 0...csvColumns["Name"]!.count-1{
             let singleCourseDict : NSDictionary = ["Name":csvColumns["Name"]![i],
                                        "Credits":csvColumns["Credits"]![i]]
-            courseDict.setValue(singleCourseDict, forKey: csvColumns["ID"]![i])
+            //courseDict.setValue(singleCourseDict, forKey: csvColumns["ID"]![i])
+            courseDict.add(singleCourseDict, forKey: csvColumns["ID"]![i])
         }
         MyVariables.courses = courseDict
     }
