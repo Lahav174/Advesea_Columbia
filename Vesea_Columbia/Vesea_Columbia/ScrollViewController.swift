@@ -11,7 +11,7 @@ import Charts
 import SwiftCSV
 
 struct MyVariables {
-    static var courses : [NSDictionary]?
+    static var courses : OrderedDictionary<NSString,NSDictionary>?
 }
 
 class ScrollViewController: UIViewController, UIScrollViewDelegate {
@@ -222,7 +222,7 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func setUpCourses(){
-        var courseArray = [NSDictionary]()
+        var courseDict = OrderedDictionary<NSString,NSDictionary>()
         var csvColumns = [String : [String]]()
         do {
             let csvURL = NSBundle(forClass: FrontViewController.self).URLForResource("Courses1", withExtension: "csv")!
@@ -233,13 +233,12 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
             fatalError("Courses1.csv could not be found")
         }
         for i in 0...csvColumns["Name"]!.count-1{
-            let dict : NSDictionary = ["Call":csvColumns["Call"]![i],
-                                       "Name":csvColumns["Name"]![i],
-                                       "ID": csvColumns["ID"]![i],
+            let singleCourseDict : NSDictionary = ["Name":csvColumns["Name"]![i],
                                        "Credits":csvColumns["Credits"]![i]]
-            courseArray.insert(dict, atIndex: i)//
+            //courseDict.setValue(singleCourseDict, forKey: csvColumns["ID"]![i])
+            courseDict.add(singleCourseDict, forKey: csvColumns["ID"]![i])
         }
-        MyVariables.courses = courseArray
+        MyVariables.courses = courseDict
     }
     
     func checkForUpdate(){ //Called only when update or first time (Not when load)
@@ -254,11 +253,11 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
             def.setObject(arrayToSet, forKey: "favorites")
             
             let majorDefault = "Political Science"
-            let course1CallDefault = "61946"//principles of econ
-            let course2CallDefault = "28473"//masterpieces of western art
+            let course1IDDefault = "ECONW1105"
+            let course2IDDefault = "HUMAW1121"
             def.setObject(majorDefault, forKey: "selectedMajor")
-            def.setObject(course1CallDefault, forKey: "selectedCourse1")
-            def.setObject(course2CallDefault, forKey: "selectedCourse2")
+            def.setObject(course1IDDefault, forKey: "selectedCourse1")
+            def.setObject(course2IDDefault, forKey: "selectedCourse2")
         }
     }
 

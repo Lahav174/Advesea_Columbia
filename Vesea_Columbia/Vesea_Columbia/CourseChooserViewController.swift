@@ -12,7 +12,7 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
     
     var courseChooserType = ""
     
-    var selectedCourseCall : String?
+    var selectedCourseID : String?
     
     var courses = [Course]()
     var filteredCourses = [Course]()
@@ -46,12 +46,12 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        for e in MyVariables.courses!{
-            courses.append(Course(courseName: e.objectForKey("Name") as! String,
-                courseID: e.objectForKey("ID") as! String,
-                callNumber: e.objectForKey("Call") as! String,
-                credit: Int(e.objectForKey("Credits") as! String)!))
+        
+        for i in 0...MyVariables.courses!.count-1{
+            let singleCourseDict = MyVariables.courses!.get(i)
+            courses.append(Course(courseName: singleCourseDict.b!["Name"]! as! String, courseID: singleCourseDict.a! as! String, callNumber: "Call", credit: Int(singleCourseDict.b!["Credits"]! as! String)!))
         }
+        
         tableView.delegate = self
         tableView.dataSource = self
         searchBar.delegate = self
@@ -74,25 +74,25 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
         let def = NSUserDefaults.standardUserDefaults()
         
         if (type == "class 1"){
-            self.selectedCourseCall = def.objectForKey("selectedCourse1") as! String
+            self.selectedCourseID = def.objectForKey("selectedCourse1") as! String
         } else if (type == "class 2"){
-            self.selectedCourseCall = def.objectForKey("selectedCourse2") as! String
+            self.selectedCourseID = def.objectForKey("selectedCourse2") as! String
         }
         //print("Currently, the selectedCourseCall is " + self.selectedCourseCall!)
         
         self.tableView.reloadData()
     }
     
-    func selectCellWithCall(call: String)
+    func selectCellWithID(ID: String)
     {
         let def = NSUserDefaults.standardUserDefaults()
         
-        if self.selectedCourseCall != call{
-            selectedCourseCall = call
+        if self.selectedCourseID != ID{
+            selectedCourseID = ID
             if (self.courseChooserType == "class 1"){
-                def.setObject(call, forKey: "selectedCourse1")
+                def.setObject(ID, forKey: "selectedCourse1")
             } else if (self.courseChooserType == "class 2"){
-                def.setObject(call, forKey: "selectedCourse2")
+                def.setObject(ID, forKey: "selectedCourse2")
             }
         }
         
@@ -161,7 +161,7 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
                 cell.courseObject = courseObj
             }
             //Selects the correct cells
-            if (selectedCourseCall == courseObj.call){
+            if (selectedCourseID == courseObj.ID){
                 cell.backgroundColor = UIColor(red: 196/255, green: 216/255, blue: 226/255, alpha: 0.6)
             } else {
                 cell.backgroundColor = UIColor.whiteColor()
@@ -169,22 +169,22 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
             //Stars the correct cells
             if ((def.arrayForKey(key)) != nil){
                 let favs = def.arrayForKey(key)! as NSArray
-                cell.setStarImage(favs.containsObject(cell.courseObject.call))
+                cell.setStarImage(favs.containsObject(cell.courseObject.ID))
             }
             
             return cell
         } else {
             if ((def.arrayForKey(key)) != nil){
                 let favs = def.arrayForKey(key)! as NSArray
-                let code = favs[indexPath.row] as! String
+                let favID = favs[indexPath.row] as! String
                 for fm in self.courses{
-                    if fm.call == code{
+                    if fm.ID == favID{
                         cell.mainLabel.text = fm.name
                         cell.subLabel.text = fm.ID
                         cell.courseObject = fm
                         cell.setStarImage(true)
                         //Selects the correct cells
-                        if (self.selectedCourseCall == fm.call){
+                        if (self.selectedCourseID == fm.ID){
                             cell.backgroundColor = UIColor(red: 196/255, green: 216/255, blue: 226/255, alpha: 0.6)
                         } else {
                             cell.backgroundColor = UIColor.whiteColor()

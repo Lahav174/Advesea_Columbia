@@ -367,7 +367,7 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
                     self.chooserBeingDisplayed = false
                     self.yConstraint.constant = 0
                     self.questionLabel!.userInteractionEnabled = true
-                    self.chooser!.selectedCourseCall = nil
+                    self.chooser!.selectedCourseID = nil
                     
             })
         }

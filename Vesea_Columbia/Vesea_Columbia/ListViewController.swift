@@ -18,7 +18,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     let cellHeight : CGFloat = 100
     
-    var courses : [NSDictionary]?
+    var courses : OrderedDictionary<NSString,NSDictionary>?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,19 +78,9 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.textLabel?.numberOfLines = 2
         
         let def = NSUserDefaults.standardUserDefaults()
-        let course1Call = def.objectForKey("selectedCourse1") as! String
-        let course2Call = def.objectForKey("selectedCourse2") as! String
-        var course1ID : String = ""
-        var course2ID : String = ""
-        for c in self.courses!{
-            if (c["Call"] as! String == course1Call){
-                course2ID = c["ID"]! as! String
-            } else if (c["Call"] as! String == course2Call){
-                course1ID = c["ID"]! as! String
-            } else if (course1ID != "" && course2ID != ""){
-                break
-            }
-        }
+        let course1ID : String = def.objectForKey("selectedCourse1") as! String
+        let course2ID : String = def.objectForKey("selectedCourse2") as! String
+
         let major : String = "Computer Science"
         var myMutableString = NSMutableAttributedString()
         switch indexPath.section{
