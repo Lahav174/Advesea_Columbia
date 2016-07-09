@@ -36,21 +36,21 @@ class CourseTableViewCell: UITableViewCell {
             favorites = defArray.mutableCopy() as! NSMutableArray
         }
 
-        if favorites.containsObject(courseObject.call){//It is currently a favorite
+        if favorites.containsObject(courseObject.ID){//It is currently a favorite
             print("Un-Favorited!")
             setStarImage(false)
-            favorites.removeObject(courseObject.call)
+            favorites.removeObject(courseObject.ID)
         } else { //It is not currently a favorite
             setStarImage(true)
             print("Favorited!")
-            favorites.addObject(courseObject.call)
+            favorites.addObject(courseObject.ID)
         }
         let arrayToSet = favorites as NSArray
         def.setObject(arrayToSet, forKey: key)
         
         self.delegateViewController.tableView.reloadData()
         
-        if self.indexPath.section == 1 && favorites.containsObject(courseObject.call){//Just became a favorite (Need to move down)
+        if self.indexPath.section == 1 && favorites.containsObject(courseObject.ID){//Just became a favorite (Need to move down)
             let offset = CGPoint(x: 0, y: self.delegateViewController.tableView.contentOffset.y + 44)
             self.delegateViewController.tableView.setContentOffset(offset, animated: false)
         } else if (self.indexPath.section == 1 && self.delegateViewController.tableView.contentOffset.y >= 0){
@@ -92,7 +92,7 @@ class CourseTableViewCell: UITableViewCell {
     }
     
     func handleTap(recognizer: UITapGestureRecognizer){
-        self.delegateViewController.selectCellWithCall(self.courseObject.call)
+        self.delegateViewController.selectCellWithID(self.courseObject.ID)
     }
     
     func setup(){
