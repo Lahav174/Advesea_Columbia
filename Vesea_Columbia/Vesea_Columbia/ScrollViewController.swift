@@ -253,8 +253,8 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
             def.setObject(arrayToSet, forKey: "favorites")
             
             let majorDefault = "Political Science"
-            let course1CallDefault = "61946"
-            let course2CallDefault = "28473"
+            let course1CallDefault = "61946"//principles of econ
+            let course2CallDefault = "28473"//masterpieces of western art
             def.setObject(majorDefault, forKey: "selectedMajor")
             def.setObject(course1CallDefault, forKey: "selectedCourse1")
             def.setObject(course2CallDefault, forKey: "selectedCourse2")

@@ -16,6 +16,8 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
     
     var chooserBeingDisplayed = false
     
+    var chooser : CourseChooserViewController?
+    
     var formatter = NSNumberFormatter()
     var titleText = String()
     var values = [(x: String, y: Double)]()
@@ -330,7 +332,21 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
     
     // MARK: - Chooser
     
-    func animateContainerIn(sender: UIButton){
+    func animateContainerIn(sender: UIButton, buttonType: String){
+        let def = NSUserDefaults.standardUserDefaults()
+        if (buttonType == "class 1"){
+            print(def.objectForKey("selectedCourse1") as! String)
+            if (self.chooser!.selectedCourseCall != def.objectForKey("selectedCourse1") as! String){
+                self.chooser!.selectCellsWithCall(def.objectForKey("selectedCourse1") as! String)//selectCellsWithCodes([def.objectForKey("selectedCourse1") as! String])
+            }
+        } else if (buttonType == "class 2"){
+            print(def.objectForKey("selectedCourse2") as! String)
+            if (self.chooser!.selectedCourseCall != def.objectForKey("selectedCourse2") as! String){
+                self.chooser!.selectCellsWithCall(def.objectForKey("selectedCourse2") as! String)//selectCellsWithCodes([def.objectForKey("selectedCourse2") as! String])
+            }
+        }
+        chooser!.courseChooserType = buttonType
+        
         chart?.userInteractionEnabled = false
         self.currentlyEngagedLabelButton = sender
         self.currentlyEngagedLabelButton?.enabled = false
@@ -430,6 +446,7 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
         let segueName = segue.identifier
         if (segueName == "MajorChooser"){
             let destination = segue.destinationViewController as! CourseChooserViewController
+            self.chooser = destination
             destination.delegateViewController = self
         }
     }

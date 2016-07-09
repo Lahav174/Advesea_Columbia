@@ -93,7 +93,15 @@ class CourseTableViewCell: UITableViewCell {
     
     func handleTap(recognizer: UITapGestureRecognizer){
         print("Tapped")
-        self.delegateViewController.selectCellsWithCodes([self.courseObject.call])
+        let callNumber = self.courseObject.call
+        print("Call Number: " + callNumber)
+        let def = NSUserDefaults.standardUserDefaults()
+        if (self.delegateViewController.courseChooserType == "class 1"){
+            def.setObject(callNumber, forKey: "selectedCourse1")
+        } else if (self.delegateViewController.courseChooserType == "class 2"){
+            def.setObject(callNumber, forKey: "selectedCourse2")
+        }
+        self.delegateViewController.selectCellsWithCall(self.courseObject.call)//selectCellsWithCodes([self.courseObject.call])
     }
     
     func setup(){

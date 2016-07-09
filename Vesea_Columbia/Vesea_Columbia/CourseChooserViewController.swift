@@ -10,7 +10,9 @@ import UIKit
 
 class CourseChooserViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UINavigationBarDelegate {
     
-    var selectedCellCodes = [String]()
+    var courseChooserType = ""
+    
+    var selectedCourseCall : String?
     
     var courses = [Course]()
     var filteredCourses = [Course]()
@@ -71,17 +73,24 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
         self.view.layer.addSublayer(border)
     }
     
-    func selectCellsWithCodes(codes: [String])
+    func selectCellsWithCall(call: String)
     {
-        var tempSelectedCellCodes = [String]()
-        for c in codes{
-            if !(self.selectedCellCodes.contains(c)){
-                tempSelectedCellCodes.append(c)
-            }
+        if self.selectedCourseCall == call{
+            selectedCourseCall == nil
+        } else {
+            selectedCourseCall = call
         }
-        selectedCellCodes.removeAll()
-        selectedCellCodes.appendContentsOf(tempSelectedCellCodes)
-        print(selectedCellCodes)
+        
+//        self.selectedCourseCode = codes[0]
+//        var tempSelectedCellCodes = [String]()
+//        for c in codes{
+//            if !(self.selectedCellCodes.contains(c)){
+//                tempSelectedCellCodes.append(c)
+//            }
+//        }
+//        selectedCellCodes.removeAll()
+//        selectedCellCodes.appendContentsOf(tempSelectedCellCodes)
+        
         self.tableView.reloadData()
     }
     
@@ -147,7 +156,7 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
                 cell.courseObject = courseObj
             }
             //Selects the correct cells
-            if (selectedCellCodes.contains(courseObj.call)){
+            if (selectedCourseCall == courseObj.call){
                 cell.backgroundColor = UIColor(red: 196/255, green: 216/255, blue: 226/255, alpha: 0.6)
             } else {
                 cell.backgroundColor = UIColor.whiteColor()
@@ -170,7 +179,7 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
                         cell.courseObject = fm
                         cell.setStarImage(true)
                         //Selects the correct cells
-                        if (selectedCellCodes.contains(fm.call)){
+                        if (self.selectedCourseCall == fm.call){
                             cell.backgroundColor = UIColor(red: 196/255, green: 216/255, blue: 226/255, alpha: 0.6)
                         } else {
                             cell.backgroundColor = UIColor.whiteColor()
