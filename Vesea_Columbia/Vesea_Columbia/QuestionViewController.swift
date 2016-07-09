@@ -14,6 +14,8 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
 
     var questionLabel : UIView?
     
+    var questionNumber = -1
+    
     var chooserBeingDisplayed = false
     
     var chooser : CourseChooserViewController?
@@ -356,6 +358,7 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
     }
     
     func animateContainerOut(){
+        
         chart?.userInteractionEnabled = true
         if (self.chooserBeingDisplayed){
             UIView.animateWithDuration(0.5, delay: 0, options: UIViewAnimationOptions.CurveEaseIn, animations: {

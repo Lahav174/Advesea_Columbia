@@ -105,6 +105,8 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
         }
         self.indexOfActiveQuestion = preset
         
+        questionViewController!.questionNumber = preset
+        
         var param0 = String()
         var param1 = NSNumberFormatter()
         var param2 = String()

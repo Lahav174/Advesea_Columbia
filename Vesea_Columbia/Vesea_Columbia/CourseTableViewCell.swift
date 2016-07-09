@@ -88,17 +88,11 @@ class CourseTableViewCell: UITableViewCell {
     }
     
     func handlePress(recognizer: UILongPressGestureRecognizer){
+        print("Pressed")
     }
     
     func handleTap(recognizer: UITapGestureRecognizer){
-        let callNumber = self.courseObject.call
-        let def = NSUserDefaults.standardUserDefaults()
-//        if (self.delegateViewController.courseChooserType == "class 1"){
-//            def.setObject(callNumber, forKey: "selectedCourse1")
-//        } else if (self.delegateViewController.courseChooserType == "class 2"){
-//            def.setObject(callNumber, forKey: "selectedCourse2")
-//        }
-        self.delegateViewController.selectCellWithCall(self.courseObject.call)//selectCellsWithCodes([self.courseObject.call])
+        self.delegateViewController.selectCellWithCall(self.courseObject.call)
     }
     
     func setup(){

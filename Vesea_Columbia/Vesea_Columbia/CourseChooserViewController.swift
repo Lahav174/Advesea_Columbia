@@ -17,7 +17,7 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
     var courses = [Course]()
     var filteredCourses = [Course]()
     
-    var delegateViewController = UIViewController()
+    var delegateViewController : QuestionViewController?
     
     var searching : Bool = false
     var shouldBeginEditing : Bool = true
@@ -27,10 +27,7 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet weak var searchBar: UITextField!
     
     @IBAction func removeButtonPressed(sender: AnyObject) {
-        if (delegateViewController.isKindOfClass(QuestionViewController)){
-            let vc = delegateViewController as! QuestionViewController
-            vc.animateContainerOut()
-        }
+            delegateViewController!.animateContainerOut()
     }
     
     @IBAction func clearButtonPressed(sender: AnyObject) {
@@ -89,16 +86,8 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
     func selectCellWithCall(call: String)
     {
         let def = NSUserDefaults.standardUserDefaults()
-
-        if self.selectedCourseCall == call{
-            selectedCourseCall = nil
-            if (self.courseChooserType == "class 1"){
-                def.setObject("", forKey: "selectedCourse1")
-            } else if (self.courseChooserType == "class 2"){
-                def.setObject("", forKey: "selectedCourse2")
-            }
-            
-        } else {
+        
+        if self.selectedCourseCall != call{
             selectedCourseCall = call
             if (self.courseChooserType == "class 1"){
                 def.setObject(call, forKey: "selectedCourse1")
@@ -106,16 +95,6 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
                 def.setObject(call, forKey: "selectedCourse2")
             }
         }
-        
-//        self.selectedCourseCode = codes[0]
-//        var tempSelectedCellCodes = [String]()
-//        for c in codes{
-//            if !(self.selectedCellCodes.contains(c)){
-//                tempSelectedCellCodes.append(c)
-//            }
-//        }
-//        selectedCellCodes.removeAll()
-//        selectedCellCodes.appendContentsOf(tempSelectedCellCodes)
         
         self.tableView.reloadData()
     }
