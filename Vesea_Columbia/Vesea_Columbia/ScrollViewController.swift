@@ -230,7 +230,6 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
             print("Failed!")
             fatalError("Courses1.csv could not be found")
         }
-        print("csv collumn count: " + String(csvColumns.count))
         for i in 0...csvColumns["Name"]!.count-1{
             let dict : NSDictionary = ["Call":csvColumns["Call"]![i],
                                        "Name":csvColumns["Name"]![i],

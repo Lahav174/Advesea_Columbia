@@ -28,8 +28,6 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
     
     var yConstraint = NSLayoutConstraint()
     
-    var currentlyEngagedLabelButton : UIButton?
-    
     var segmentedControl : SlidingSegmentedControl?
     
     @IBOutlet weak var container: UIView!
@@ -335,21 +333,18 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
     func animateContainerIn(sender: UIButton, buttonType: String){
         let def = NSUserDefaults.standardUserDefaults()
         if (buttonType == "class 1"){
-            print(def.objectForKey("selectedCourse1") as! String)
-            if (self.chooser!.selectedCourseCall != def.objectForKey("selectedCourse1") as! String){
-                self.chooser!.selectCellsWithCall(def.objectForKey("selectedCourse1") as! String)//selectCellsWithCodes([def.objectForKey("selectedCourse1") as! String])
-            }
+            self.chooser!.loadSelectedCell(buttonType)
+            //print("Should select course with call: " + self.chooser!.selectedCourseCall! != def.objectForKey("selectedCourse1") as! String)
+            
         } else if (buttonType == "class 2"){
-            print(def.objectForKey("selectedCourse2") as! String)
-            if (self.chooser!.selectedCourseCall != def.objectForKey("selectedCourse2") as! String){
-                self.chooser!.selectCellsWithCall(def.objectForKey("selectedCourse2") as! String)//selectCellsWithCodes([def.objectForKey("selectedCourse2") as! String])
-            }
+            self.chooser!.loadSelectedCell(buttonType)
+            //print("Should select course with call: " + self.chooser!.selectedCourseCall! != def.objectForKey("selectedCourse2") as! String)
+            
         }
         chooser!.courseChooserType = buttonType
         
         chart?.userInteractionEnabled = false
-        self.currentlyEngagedLabelButton = sender
-        self.currentlyEngagedLabelButton?.enabled = false
+        self.questionLabel!.userInteractionEnabled = false
         if !(self.chooserBeingDisplayed){
             UIView.animateWithDuration(0.5, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
                 self.container.frame.origin.y = 100
@@ -368,8 +363,9 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
                 }, completion: { (true) in
                     self.chooserBeingDisplayed = false
                     self.yConstraint.constant = 0
-                    self.currentlyEngagedLabelButton?.enabled = true
-                    self.currentlyEngagedLabelButton = nil
+                    self.questionLabel!.userInteractionEnabled = true
+                    self.chooser!.selectedCourseCall = nil
+                    
             })
         }
     }
@@ -378,7 +374,6 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
         
         for touch: AnyObject! in touches {
             let touchLocation = touch.locationInView(self.view)
-            print("Touched")
             if !(self.container.frame.contains(touchLocation)) && chooserBeingDisplayed && self.container.frame.origin.y == 100{
                 animateContainerOut()
             }

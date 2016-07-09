@@ -49,7 +49,6 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("#2")
         for e in MyVariables.courses!{
             courses.append(Course(courseName: e.objectForKey("Name") as! String,
                 courseID: e.objectForKey("ID") as! String,
@@ -73,12 +72,39 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
         self.view.layer.addSublayer(border)
     }
     
-    func selectCellsWithCall(call: String)
+    func loadSelectedCell(type: String){
+        
+        let def = NSUserDefaults.standardUserDefaults()
+        
+        if (type == "class 1"){
+            self.selectedCourseCall = def.objectForKey("selectedCourse1") as! String
+        } else if (type == "class 2"){
+            self.selectedCourseCall = def.objectForKey("selectedCourse2") as! String
+        }
+        //print("Currently, the selectedCourseCall is " + self.selectedCourseCall!)
+        
+        self.tableView.reloadData()
+    }
+    
+    func selectCellWithCall(call: String)
     {
+        let def = NSUserDefaults.standardUserDefaults()
+
         if self.selectedCourseCall == call{
-            selectedCourseCall == nil
+            selectedCourseCall = nil
+            if (self.courseChooserType == "class 1"){
+                def.setObject("", forKey: "selectedCourse1")
+            } else if (self.courseChooserType == "class 2"){
+                def.setObject("", forKey: "selectedCourse2")
+            }
+            
         } else {
             selectedCourseCall = call
+            if (self.courseChooserType == "class 1"){
+                def.setObject(call, forKey: "selectedCourse1")
+            } else if (self.courseChooserType == "class 2"){
+                def.setObject(call, forKey: "selectedCourse2")
+            }
         }
         
 //        self.selectedCourseCode = codes[0]
@@ -250,7 +276,6 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
 //    }
     
     func textFieldDidBeginEditing(textField: UITextField) {
-        print("#1")
         searching = true
     }
     

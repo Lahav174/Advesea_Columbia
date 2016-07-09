@@ -24,7 +24,6 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         super.viewDidLoad()
         
         courses = MyVariables.courses!
-        print(courses![0])
         
         self.view.clipsToBounds = true
         
