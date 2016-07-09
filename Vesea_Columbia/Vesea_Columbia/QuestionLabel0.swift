@@ -50,7 +50,7 @@ import UIKit
         } set (str){
             if str != nil{
                 class1Name = str!
-                class1Button.titleLabel?.text = class1Name
+                class1Button.setTitle(str!, forState: UIControlState.Normal)
             }
         }
     }
@@ -61,7 +61,7 @@ import UIKit
         } set (str){
             if str != nil{
                 class2Name = str!
-                class2Button.titleLabel?.text = class2Name
+                class2Button.setTitle(str!, forState: UIControlState.Normal)
             }
         }
     }
@@ -86,6 +86,9 @@ import UIKit
         //view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
         
         addSubview(view)
+        let def = NSUserDefaults.standardUserDefaults()
+        self.class1 = QuestionViewController.abreviateID(def.objectForKey("selectedCourse1") as! String)
+        self.class2 = QuestionViewController.abreviateID(def.objectForKey("selectedCourse2") as! String)
     }
     
     func loadViewFromNib() -> UIView {

@@ -210,7 +210,6 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
         
         let horizontalConstraintVCBAR = NSLayoutConstraint(item: newViewController.view, attribute: NSLayoutAttribute.Left, relatedBy: NSLayoutRelation.Equal, toItem: scrollView, attribute: NSLayoutAttribute.Right, multiplier: 1, constant: self.view.frame.size.width*2)
         view.addConstraint(horizontalConstraintVCBAR)
-        print(self.view.frame.size.width*2)
         let verticalConstraintVCBAR = NSLayoutConstraint(item:  newViewController.view, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: scrollView, attribute: NSLayoutAttribute.Top, multiplier: 1, constant: 0)
         view.addConstraint(verticalConstraintVCBAR)
     }
@@ -235,7 +234,6 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
         for i in 0...csvColumns["Name"]!.count-1{
             let singleCourseDict : NSDictionary = ["Name":csvColumns["Name"]![i],
                                        "Credits":csvColumns["Credits"]![i]]
-            //courseDict.setValue(singleCourseDict, forKey: csvColumns["ID"]![i])
             courseDict.add(singleCourseDict, forKey: csvColumns["ID"]![i])
         }
         MyVariables.courses = courseDict

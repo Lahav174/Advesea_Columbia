@@ -32,6 +32,8 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
     
     var segmentedControl : SlidingSegmentedControl?
     
+    var currentlyEnabledButton : UIButton?
+    
     @IBOutlet weak var container: UIView!
     @IBOutlet weak var graphBackground: UIView!
     @IBOutlet weak var graphBackgroundLabel: UILabel!
@@ -333,6 +335,7 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
     // MARK: - Chooser
     
     func animateContainerIn(sender: UIButton, buttonType: String){
+        self.currentlyEnabledButton = sender
         let def = NSUserDefaults.standardUserDefaults()
         if (buttonType == "class 1"){
             self.chooser!.loadSelectedCell(buttonType)
@@ -358,6 +361,28 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
     }
     
     func animateContainerOut(){
+        let def = NSUserDefaults.standardUserDefaults()
+        switch self.questionNumber {
+        case 0:
+            let qLabel = questionLabel as! QuestionLabel0
+            if (self.chooser!.courseChooserType == "class 1"){
+                qLabel.class1 = QuestionViewController.abreviateID(def.objectForKey("selectedCourse1") as! String)
+            } else if (self.chooser!.courseChooserType == "class 2"){
+                qLabel.class2 = QuestionViewController.abreviateID(def.objectForKey("selectedCourse2") as! String)
+            }
+            break
+        case 1:
+            let qLabel = questionLabel as! QuestionLabel1
+            if (self.chooser!.courseChooserType == "class 1"){
+                qLabel.class1 = def.objectForKey("selectedCourse1") as! String
+            } else if (self.chooser!.courseChooserType == "class 2"){
+                qLabel.class2 = def.objectForKey("selectedCourse2") as! String
+            }
+            break
+        default:
+            break
+        }
+        
         
         chart?.userInteractionEnabled = true
         if (self.chooserBeingDisplayed){
@@ -382,6 +407,12 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
             }
             
         }
+    }
+    
+    class func abreviateID(ID: String) -> String{
+        let index1 = ID.endIndex.advancedBy(-5)
+        let substring = ID.substringFromIndex(index1)
+        return "    " + substring
     }
     
     func addLabel(preset: Int){

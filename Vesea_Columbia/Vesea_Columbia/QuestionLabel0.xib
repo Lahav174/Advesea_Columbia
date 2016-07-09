@@ -40,24 +40,23 @@
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FaB-tB-wWS">
+                    <rect key="frame" x="238" y="96" width="113" height="35"/>
+                    <state key="normal" title="lalalalala" backgroundImage="course2_button">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="class2ButtonPressed:" destination="-1" eventType="touchUpInside" id="GSw-Rz-4lZ"/>
+                    </connections>
+                </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zkD-53-osT">
                     <rect key="frame" x="32" y="96" width="113" height="35"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="35" id="nQM-QW-h0h"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
-                    <state key="normal" title="   W3134" backgroundImage="course1_button"/>
+                    <state key="normal" title="lalalalalala" backgroundImage="course1_button"/>
                     <connections>
                         <action selector="class1ButtonPressed:" destination="-1" eventType="touchUpInside" id="8WI-lr-FfF"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FaB-tB-wWS">
-                    <rect key="frame" x="238" y="96" width="113" height="35"/>
-                    <state key="normal" title="   W3203" backgroundImage="course2_button">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="class2ButtonPressed:" destination="-1" eventType="touchUpInside" id="GSw-Rz-4lZ"/>
                     </connections>
                 </button>
             </subviews>
