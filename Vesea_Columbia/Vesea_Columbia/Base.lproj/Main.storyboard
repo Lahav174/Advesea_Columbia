@@ -322,17 +322,18 @@
                                                 <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="McQ-FA-jWK">
                                                     <rect key="frame" x="0.0" y="-1" width="600" height="45"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kb3-bD-y6W">
-                                                            <rect key="frame" x="10" y="11" width="42" height="21"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kb3-bD-y6W">
+                                                            <rect key="frame" x="10" y="9" width="582" height="26"/>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="22"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" white="0.16812764518212953" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstItem="Kb3-bD-y6W" firstAttribute="leading" secondItem="McQ-FA-jWK" secondAttribute="leading" constant="10" id="FcV-1u-Hcz"/>
                                                         <constraint firstItem="Kb3-bD-y6W" firstAttribute="centerY" secondItem="McQ-FA-jWK" secondAttribute="centerY" id="R9u-Hl-R0z"/>
+                                                        <constraint firstAttribute="trailing" secondItem="Kb3-bD-y6W" secondAttribute="trailing" constant="8" id="ocz-oQ-bUG"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>

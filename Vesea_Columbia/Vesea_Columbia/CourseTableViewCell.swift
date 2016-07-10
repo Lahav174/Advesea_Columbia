@@ -10,7 +10,7 @@ import UIKit
 
 class CourseTableViewCell: UITableViewCell {
 
-    var courseObject = Course()
+    var courseObject = ObjectTuple<NSString,NSDictionary>()
     
     var delegateViewController = CourseChooserViewController() //make optional
     
@@ -36,21 +36,21 @@ class CourseTableViewCell: UITableViewCell {
             favorites = defArray.mutableCopy() as! NSMutableArray
         }
 
-        if favorites.containsObject(courseObject.ID){//It is currently a favorite
+        if favorites.containsObject(courseObject.a! as! String){//It is currently a favorite
             print("Un-Favorited!")
             setStarImage(false)
-            favorites.removeObject(courseObject.ID)
+            favorites.removeObject(courseObject.a! as! String)
         } else { //It is not currently a favorite
             setStarImage(true)
             print("Favorited!")
-            favorites.addObject(courseObject.ID)
+            favorites.addObject(courseObject.a! as! String)
         }
         let arrayToSet = favorites as NSArray
         def.setObject(arrayToSet, forKey: key)
         
         self.delegateViewController.tableView.reloadData()
         
-        if self.indexPath.section == 1 && favorites.containsObject(courseObject.ID){//Just became a favorite (Need to move down)
+        if self.indexPath.section == 1 && favorites.containsObject(courseObject.a! as! String){//Just became a favorite (Need to move down)
             let offset = CGPoint(x: 0, y: self.delegateViewController.tableView.contentOffset.y + 44)
             self.delegateViewController.tableView.setContentOffset(offset, animated: false)
         } else if (self.indexPath.section == 1 && self.delegateViewController.tableView.contentOffset.y >= 0){
@@ -92,7 +92,7 @@ class CourseTableViewCell: UITableViewCell {
     }
     
     func handleTap(recognizer: UITapGestureRecognizer){
-        self.delegateViewController.selectCellWithID(self.courseObject.ID)
+        self.delegateViewController.selectCellWithID(courseObject.a! as! String)
     }
     
     func setup(){

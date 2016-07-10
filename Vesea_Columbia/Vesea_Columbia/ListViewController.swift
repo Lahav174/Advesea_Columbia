@@ -78,50 +78,59 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.textLabel?.numberOfLines = 2
         
         let def = NSUserDefaults.standardUserDefaults()
-        let course1ID : String = def.objectForKey("selectedCourse1") as! String
-        let course2ID : String = def.objectForKey("selectedCourse2") as! String
+        let course1ID : String = QuestionViewController.abreviateID(def.objectForKey("selectedCourse1") as! String).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+        let course2ID : String = QuestionViewController.abreviateID(def.objectForKey("selectedCourse2") as! String).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+        let course1Color = K.colors.course1Color
+        let course2Color = K.colors.course2Color
+        let majorColor = K.colors.majorColor
 
-        let major : String = "Computer Science"
+        let major : String = def.objectForKey("selectedMajor") as! String
         var myMutableString = NSMutableAttributedString()
         switch indexPath.section{
         case 0:
              myString = "Do students who take " + course1ID + " also take " + course2ID + "?"
-             myMutableString = NSMutableAttributedString(string: myString as String, attributes: [NSFontAttributeName:UIFont(name: "Georgia", size: 18.0)!])
-             myMutableString.addAttribute(NSForegroundColorAttributeName, value: UIColor.greenColor(), range: NSRange(location:22,length:course1ID.characters.count))
-             myMutableString.addAttribute(NSForegroundColorAttributeName, value: UIColor.orangeColor(), range: NSRange(location:33 + course1ID.characters.count,length:course2ID.characters.count))
+             myMutableString = NSMutableAttributedString(string: myString as String, attributes: [NSFontAttributeName:UIFont(name: "HelveticaNeue-Light", size: 22.0)!])
+             myMutableString.addAttribute(NSForegroundColorAttributeName, value: course1Color, range: NSRange(location:21,length:course1ID.characters.count))
+             myMutableString.addAttribute(NSForegroundColorAttributeName, value: course2Color, range: NSRange(location:32 + course1ID.characters.count,length:course2ID.characters.count))
+             myMutableString.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-Medium", size: 22.0)!, range: NSRange(location:21,length:course1ID.characters.count))
+             myMutableString.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-Medium", size: 22.0)!, range: NSRange(location:32 + course1ID.characters.count,length:course2ID.characters.count))
             break;
         case 1:
             myString = "What other classes are taken along with " + course1ID
-            myMutableString = NSMutableAttributedString(string: myString as String, attributes: [NSFontAttributeName:UIFont(name: "Georgia", size: 18.0)!])
-            myMutableString.addAttribute(NSForegroundColorAttributeName, value: UIColor.greenColor(), range: NSRange(location:40,length:course1ID.characters.count))
+            myMutableString = NSMutableAttributedString(string: myString as String, attributes: [NSFontAttributeName:UIFont(name: "HelveticaNeue-Light", size: 22.0)!])
+            myMutableString.addAttribute(NSForegroundColorAttributeName, value: course1Color, range: NSRange(location:40,length:course1ID.characters.count))
+            myMutableString.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-Medium", size: 22.0)!, range: NSRange(location:40,length:course1ID.characters.count))
             break;
         case 2:
             myString = "Enrollment Trends for " + course1ID
-            myMutableString = NSMutableAttributedString(string: myString as String, attributes: [NSFontAttributeName:UIFont(name: "Georgia", size: 18.0)!])
-            myMutableString.addAttribute(NSForegroundColorAttributeName, value: UIColor.greenColor(), range: NSRange(location:22,length:course1ID.characters.count))
+            myMutableString = NSMutableAttributedString(string: myString as String, attributes: [NSFontAttributeName:UIFont(name: "HelveticaNeue-Light", size: 22.0)!])
+            myMutableString.addAttribute(NSForegroundColorAttributeName, value: course1Color, range: NSRange(location:22,length:course1ID.characters.count))
+            myMutableString.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-Medium", size: 22.0)!, range: NSRange(location:22,length:course1ID.characters.count))
             break;
         case 3:
             myString = "Which majors typically take " + course1ID + "?"
-            myMutableString = NSMutableAttributedString(string: myString as String, attributes: [NSFontAttributeName:UIFont(name: "Georgia", size: 18.0)!])
-            myMutableString.addAttribute(NSForegroundColorAttributeName, value: UIColor.greenColor(), range: NSRange(location:28,length:course1ID.characters.count))
+            myMutableString = NSMutableAttributedString(string: myString as String, attributes: [NSFontAttributeName:UIFont(name: "HelveticaNeue-Light", size: 22.0)!])
+            myMutableString.addAttribute(NSForegroundColorAttributeName, value: course1Color, range: NSRange(location:28,length:course1ID.characters.count))
+            myMutableString.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-Medium", size: 22.0)!, range: NSRange(location:28,length:course1ID.characters.count))
             break;
         case 4:
             myString = "What courses do " + major + " majors typically take and when?"
-            myMutableString = NSMutableAttributedString(string: myString as String, attributes: [NSFontAttributeName:UIFont(name: "Georgia", size: 18.0)!])
-            myMutableString.addAttribute(NSForegroundColorAttributeName, value: UIColor.redColor(), range: NSRange(location:16,length:major.characters.count))
+            myMutableString = NSMutableAttributedString(string: myString as String, attributes: [NSFontAttributeName:UIFont(name: "HelveticaNeue-Light", size: 22.0)!])
+            myMutableString.addAttribute(NSForegroundColorAttributeName, value: majorColor, range: NSRange(location:16,length:major.characters.count))
+            myMutableString.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-Medium", size: 22.0)!, range: NSRange(location:16,length:major.characters.count))
             break;
         case 5:
             myString = "How long does it take " + major + " majors to graduate?"
-            myMutableString = NSMutableAttributedString(string: myString as String, attributes: [NSFontAttributeName:UIFont(name: "Georgia", size: 18.0)!])
-            myMutableString.addAttribute(NSForegroundColorAttributeName, value: UIColor.redColor(), range: NSRange(location:32,length:major.characters.count))
-            break;
-        case 6:
-            myString = "Have another question? Type it here and we'll try to add it."
-            myMutableString = NSMutableAttributedString(string: myString as String, attributes: [NSFontAttributeName:UIFont(name: "Georgia", size: 18.0)!])
+            myMutableString = NSMutableAttributedString(string: myString as String, attributes: [NSFontAttributeName:UIFont(name: "HelveticaNeue-Light", size: 22.0)!])
+            myMutableString.addAttribute(NSForegroundColorAttributeName, value: majorColor, range: NSRange(location:22,length:major.characters.count))
+            myMutableString.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-Medium", size: 22.0)!, range: NSRange(location:22,length:major.characters.count))
             break;
         default:
             break
         }
+        var paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 8
+        myMutableString.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: NSMakeRange(0, myString.length))
         
         let slidingImageView = UIImageView(frame: CGRect(origin: CGPointZero, size: cell.frame.size))
         slidingImageView.image = self.imageForSection(indexPath.section)

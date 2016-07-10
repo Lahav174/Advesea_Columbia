@@ -20,6 +20,8 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
     
     let someText = "hi there"
     
+    var vc1 : ListViewController?
+    
     var indexOfActiveQuestion = -1
     
     //var questionViewController = QuestionViewController()//.init(nibName: nil, bundle: nil)
@@ -66,31 +68,31 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
         view.addConstraint(verticalConstraintVC0)
         
         
-        let vc1 = self.storyboard?.instantiateViewControllerWithIdentifier("listvc") as! ListViewController
+        vc1 = self.storyboard?.instantiateViewControllerWithIdentifier("listvc") as! ListViewController
         
-        var frame1 = vc1.view.frame
+        var frame1 = vc1!.view.frame
         
         frame1.origin.x = self.view.frame.size.width
-        vc1.view.frame = frame1
+        vc1!.view.frame = frame1
         
-        self.addChildViewController(vc1)
-        self.scrollView.addSubview(vc1.view)
-        vc1.didMoveToParentViewController(self)
-        vc1.delegate = self
+        self.addChildViewController(vc1!)
+        self.scrollView.addSubview(vc1!.view)
+        vc1!.didMoveToParentViewController(self)
+        vc1!.delegate = self
         
         
-        vc1.view.translatesAutoresizingMaskIntoConstraints = false
+        vc1!.view.translatesAutoresizingMaskIntoConstraints = false
         
-        let widthConstraintVC1 = NSLayoutConstraint(item: view, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: vc1.view, attribute: NSLayoutAttribute.Width, multiplier: 1, constant: 0)
+        let widthConstraintVC1 = NSLayoutConstraint(item: view, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: vc1!.view, attribute: NSLayoutAttribute.Width, multiplier: 1, constant: 0)
         view.addConstraint(widthConstraintVC1)
         
-        let heightConstraintVC1 = NSLayoutConstraint(item: view, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: vc1.view, attribute: NSLayoutAttribute.Height, multiplier: 1, constant: 0)
+        let heightConstraintVC1 = NSLayoutConstraint(item: view, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: vc1!.view, attribute: NSLayoutAttribute.Height, multiplier: 1, constant: 0)
         view.addConstraint(heightConstraintVC1)
         
-        let horizontalConstraintVC1 = NSLayoutConstraint(item: vc1.view, attribute: NSLayoutAttribute.Left, relatedBy: NSLayoutRelation.Equal, toItem: vc0.view, attribute: NSLayoutAttribute.Right, multiplier: 1, constant: 0)
+        let horizontalConstraintVC1 = NSLayoutConstraint(item: vc1!.view, attribute: NSLayoutAttribute.Left, relatedBy: NSLayoutRelation.Equal, toItem: vc0.view, attribute: NSLayoutAttribute.Right, multiplier: 1, constant: 0)
         view.addConstraint(horizontalConstraintVC1)
         
-        let verticalConstraintVC1 = NSLayoutConstraint(item: vc1.view, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: scrollView, attribute: NSLayoutAttribute.Top, multiplier: 1, constant: 0)
+        let verticalConstraintVC1 = NSLayoutConstraint(item: vc1!.view, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: scrollView, attribute: NSLayoutAttribute.Top, multiplier: 1, constant: 0)
         view.addConstraint(verticalConstraintVC1)
         
         questionViewController = self.storyboard?.instantiateViewControllerWithIdentifier("chartquestionvc") as! QuestionViewController
@@ -273,7 +275,7 @@ struct K {
         static let tableviewBackgroundColor = UIColor(red: 140/255, green: 144/255, blue: 178/255, alpha: 1)
         static let segmentedControlBackgroundColor = UIColor(red: 158/255, green: 171/255, blue: 185/255, alpha: 0.77)
         static let majorColor = UIColor(red: 191/255, green: 56/255, blue: 26/255, alpha: 1)
-        static let course1Color = UIColor(red: 233/255, green: 175/255, blue: 50, alpha: 1)
+        static let course1Color = UIColor(red: 233/255, green: 175/255, blue: 50/255, alpha: 1)
         static let course2Color = UIColor(red: 222/255, green: 116/255, blue: 42/255, alpha: 1)
     }
 }

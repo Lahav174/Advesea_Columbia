@@ -14,8 +14,8 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
     
     var selectedCourseID : String?
     
-    var courses = [Course]()
-    var filteredCourses = [Course]()
+    //var courseIDs = [String]()
+    var filteredCourses = [ObjectTuple<NSString,NSDictionary>]()
     
     var delegateViewController : QuestionViewController?
     
@@ -47,10 +47,11 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        for i in 0...MyVariables.courses!.count-1{
-            let singleCourseDict = MyVariables.courses!.get(i)
-            courses.append(Course(courseName: singleCourseDict.b!["Name"]! as! String, courseID: singleCourseDict.a! as! String, callNumber: "Call", credit: Int(singleCourseDict.b!["Credits"]! as! String)!))
-        }
+        
+//        for i in 0...MyVariables.courses!.count-1{
+//            let singleCourseDict = MyVariables.courses!.get(i)
+//            courses.append(Course(courseName: singleCourseDict.b!["Name"]! as! String, courseID: singleCourseDict.a! as! String, callNumber: "Call", credit: Int(singleCourseDict.b!["Credits"]! as! String)!))
+//        }
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -125,7 +126,7 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
             if searching && searchBar.text != ""{
                 return self.filteredCourses.count
             } else {
-                return self.courses.count
+                return (MyVariables.courses?.count)!//self.courses.count
             }
         } else {
             let def = NSUserDefaults.standardUserDefaults()
@@ -146,22 +147,21 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! CourseTableViewCell
         cell.delegateViewController = self
         cell.indexPath = indexPath
-        
         if (indexPath.section == 1){
-            var courseObj = Course()
+            var courseObj = ObjectTuple<NSString,NSDictionary>()
             if searching && searchBar.text != "" {
                 courseObj = self.filteredCourses[indexPath.row]
-                cell.mainLabel.text = courseObj.name
-                cell.subLabel.text = courseObj.ID
+                cell.mainLabel.text = courseObj.b!["Name"]! as! String
+                cell.subLabel.text = courseObj.a! as! String
                 cell.courseObject = courseObj
             } else {
-                courseObj = self.courses[indexPath.row]
-                cell.mainLabel.text = courseObj.name
-                cell.subLabel.text = courseObj.ID
+                courseObj = (MyVariables.courses?.get(indexPath.row))!//self.courses[indexPath.row]
+                cell.mainLabel.text = courseObj.b!["Name"]! as! String
+                cell.subLabel.text = courseObj.a! as! String
                 cell.courseObject = courseObj
             }
             //Selects the correct cells
-            if (selectedCourseID == courseObj.ID){
+            if (selectedCourseID == courseObj.a! as! String){
                 cell.backgroundColor = UIColor(red: 196/255, green: 216/255, blue: 226/255, alpha: 0.6)
             } else {
                 cell.backgroundColor = UIColor.whiteColor()
@@ -169,7 +169,7 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
             //Stars the correct cells
             if ((def.arrayForKey(key)) != nil){
                 let favs = def.arrayForKey(key)! as NSArray
-                cell.setStarImage(favs.containsObject(cell.courseObject.ID))
+                cell.setStarImage(favs.containsObject(cell.courseObject.a! as! String))
             }
             
             return cell
@@ -177,14 +177,15 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
             if ((def.arrayForKey(key)) != nil){
                 let favs = def.arrayForKey(key)! as NSArray
                 let favID = favs[indexPath.row] as! String
-                for fm in self.courses{
-                    if fm.ID == favID{
-                        cell.mainLabel.text = fm.name
-                        cell.subLabel.text = fm.ID
-                        cell.courseObject = fm
+                for i in 0...(MyVariables.courses?.count)!{
+                    let courseDict = MyVariables.courses?.get(i)
+                    if courseDict?.a! as! String == favID{
+                        cell.mainLabel.text = courseDict!.b!["Name"]! as! String
+                        cell.subLabel.text = courseDict!.a! as! String
+                        cell.courseObject = courseDict!
                         cell.setStarImage(true)
                         //Selects the correct cells
-                        if (self.selectedCourseID == fm.ID){
+                        if (self.selectedCourseID == courseDict?.a! as! String){
                             cell.backgroundColor = UIColor(red: 196/255, green: 216/255, blue: 226/255, alpha: 0.6)
                         } else {
                             cell.backgroundColor = UIColor.whiteColor()
@@ -204,16 +205,14 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
     func updateSearchResults(){
         self.filteredCourses.removeAll(keepCapacity: false)
         
-        let searchPredicate = NSPredicate(format: "SELF.name CONTAINS[c] %@", self.searchBar.text!)
+        let searchPredicate = NSPredicate(format: "SELF.b!['Name']! as! String CONTAINS[c] %@", self.searchBar.text!)
         
-        let array = (self.courses as NSArray).filteredArrayUsingPredicate(searchPredicate)
+        let array = ((MyVariables.courses?.mutableArray)! as NSArray).filteredArrayUsingPredicate(searchPredicate)
         
-        self.filteredCourses = array as! [Course]
+        self.filteredCourses = array as! [ObjectTuple<NSString,NSDictionary>]
         
         self.tableView.reloadData()
     }
-    
-    /////
     
     func textfieldtextDidChange(textField: UITextField){
         print("Changed")
@@ -225,44 +224,21 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
         updateSearchResults()
     }
     
-//    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
-//        if !(searchBar.isFirstResponder()){
-//            shouldBeginEditing = false
-//        }
-//        updateSearchResults()
-//    }
-    
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         searchBar.resignFirstResponder()
         return false
     }
-    
-//    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-//        print("Done")
-//        searchBar.resignFirstResponder()
-//    }
-    
+
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
         let boolToReturn = shouldBeginEditing
         shouldBeginEditing = true
         return boolToReturn
     }
     
-//    func searchBarShouldBeginEditing(searchBar: UISearchBar) -> Bool {
-//        let boolToReturn = shouldBeginEditing
-//        shouldBeginEditing = true
-//        return boolToReturn
-//    }
-    
     func textFieldDidBeginEditing(textField: UITextField) {
         searching = true
     }
     
-//    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
-//        print("#1")
-//        searching = true
-//    }
-    //////
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
         searchBar.resignFirstResponder()
@@ -273,38 +249,5 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
-
-class Course : NSObject {
-    
-    var name = String()
-    var call = String()
-    var ID = String()
-    var credits = Int()
-    
-    init(courseName: String, courseID: String, callNumber: String, credit: Int) {
-        super.init()
-        self.name = courseName
-        self.call = callNumber
-        self.ID = courseID
-        self.credits = credit
-    }
-    
-    override init(){
-        super.init()
-    }
-    
-}
-
 

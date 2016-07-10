@@ -374,15 +374,16 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
         case 1:
             let qLabel = questionLabel as! QuestionLabel1
             if (self.chooser!.courseChooserType == "class 1"){
-                qLabel.class1 = def.objectForKey("selectedCourse1") as! String
+                qLabel.class1 = QuestionViewController.abreviateID(def.objectForKey("selectedCourse1") as! String)
             } else if (self.chooser!.courseChooserType == "class 2"){
-                qLabel.class2 = def.objectForKey("selectedCourse2") as! String
+                qLabel.class2 = QuestionViewController.abreviateID(def.objectForKey("selectedCourse2") as! String)
             }
             break
         default:
             break
         }
         
+        self.delegate!.vc1!.tableView.reloadData()
         
         chart?.userInteractionEnabled = true
         if (self.chooserBeingDisplayed){
