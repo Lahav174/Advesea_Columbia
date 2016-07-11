@@ -12,7 +12,7 @@ class CourseTableViewCell: UITableViewCell {
 
     var courseObject = ObjectTuple<NSString,NSDictionary>()
     
-    var delegateViewController = CourseChooserViewController() //make optional
+    var delegateViewController : CourseChooserViewController? //make optional
     
     //var tableView = UITableView()
     
@@ -25,6 +25,11 @@ class CourseTableViewCell: UITableViewCell {
     @IBOutlet weak var subLabel: UILabel!
     
     @IBOutlet weak var starButton: UIButton!
+    
+    @IBAction func infoButtonPressed(sender: AnyObject) {
+       //delegateViewController!.delegateViewController!.addInfoView(courseObject)
+    }
+    
     
     @IBAction func starButtonPressed(sender: AnyObject) {
         let def = NSUserDefaults.standardUserDefaults()
@@ -48,14 +53,14 @@ class CourseTableViewCell: UITableViewCell {
         let arrayToSet = favorites as NSArray
         def.setObject(arrayToSet, forKey: key)
         
-        self.delegateViewController.tableView.reloadData()
+        self.delegateViewController!.tableView.reloadData()
         
         if self.indexPath.section == 1 && favorites.containsObject(courseObject.a! as! String){//Just became a favorite (Need to move down)
-            let offset = CGPoint(x: 0, y: self.delegateViewController.tableView.contentOffset.y + 44)
-            self.delegateViewController.tableView.setContentOffset(offset, animated: false)
-        } else if (self.indexPath.section == 1 && self.delegateViewController.tableView.contentOffset.y >= 0){
-            let offset = CGPoint(x: 0, y: self.delegateViewController.tableView.contentOffset.y - 44)
-            self.delegateViewController.tableView.setContentOffset(offset, animated: false)
+            let offset = CGPoint(x: 0, y: self.delegateViewController!.tableView.contentOffset.y + 44)
+            self.delegateViewController!.tableView.setContentOffset(offset, animated: false)
+        } else if (self.indexPath.section == 1 && self.delegateViewController!.tableView.contentOffset.y >= 0){
+            let offset = CGPoint(x: 0, y: self.delegateViewController!.tableView.contentOffset.y - 44)
+            self.delegateViewController!.tableView.setContentOffset(offset, animated: false)
         }
 
         
@@ -92,7 +97,7 @@ class CourseTableViewCell: UITableViewCell {
     }
     
     func handleTap(recognizer: UITapGestureRecognizer){
-        self.delegateViewController.selectCellWithID(courseObject.a! as! String)
+        self.delegateViewController!.selectCellWithID(courseObject.a! as! String)
     }
     
     func setup(){

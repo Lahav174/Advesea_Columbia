@@ -410,6 +410,16 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
         }
     }
     
+    func addInfoView(course: ObjectTuple<NSString,NSDictionary>){
+        let frame = CGRect(x: 20, y: 300, width: self.view.frame.width-40, height: 150)
+        let infoView = UITextView(frame: frame)
+        infoView.backgroundColor = UIColor(white: 0.3, alpha: 0.5)
+        infoView.textAlignment = NSTextAlignment.Left
+        infoView.textColor = UIColor(white: 0.8, alpha: 0.9)
+        infoView.text = "Hello this is a test"
+        self.view.insertSubview(infoView, aboveSubview: (self.chooser?.searchBar)!)
+    }
+    
     class func abreviateID(ID: String) -> String{
         let index1 = ID.endIndex.advancedBy(-5)
         let substring = ID.substringFromIndex(index1)

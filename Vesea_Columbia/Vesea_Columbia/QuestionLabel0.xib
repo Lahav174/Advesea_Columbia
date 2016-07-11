@@ -40,7 +40,7 @@
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FaB-tB-wWS">
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FaB-tB-wWS">
                     <rect key="frame" x="238" y="96" width="113" height="35"/>
                     <state key="normal" title="lalalalala" backgroundImage="course2_button">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

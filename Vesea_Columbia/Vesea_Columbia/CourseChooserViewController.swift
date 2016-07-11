@@ -47,12 +47,6 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-//        for i in 0...MyVariables.courses!.count-1{
-//            let singleCourseDict = MyVariables.courses!.get(i)
-//            courses.append(Course(courseName: singleCourseDict.b!["Name"]! as! String, courseID: singleCourseDict.a! as! String, callNumber: "Call", credit: Int(singleCourseDict.b!["Credits"]! as! String)!))
-//        }
-        
         tableView.delegate = self
         tableView.dataSource = self
         searchBar.delegate = self
