@@ -113,11 +113,11 @@ class TableViewCell: UITableViewCell {
             if (!swipingRight!){
                 let scrollToNextPage = (delegateController?.delegate!.scrollView.contentOffset.x)! > 1.45*viewWidth
                 if (scrollToNextPage || xVelocity < -500){
-                    let nextPage = CGPoint(x: viewWidth*2, y: 0)
+                    let nextPage = CGPoint(x: viewWidth*2 + K.Others.screenGap*2, y: 0)
                     delegateController?.delegate!.scrollView.setContentOffset(nextPage, animated: true)
                     delegateController?.delegate!.scrollView.panGestureRecognizer.enabled = true
                 } else {
-                    let thisPage = CGPoint(x: viewWidth, y: 0)
+                    let thisPage = CGPoint(x: viewWidth + K.Others.screenGap, y: 0)
                     delegateController?.delegate!.scrollView.setContentOffset(thisPage, animated: true)
                 }
             } else if (swipingRight!){
@@ -127,7 +127,7 @@ class TableViewCell: UITableViewCell {
                     delegateController?.delegate!.scrollView.setContentOffset(prevPage, animated: true)
                     delegateController?.delegate!.scrollView.panGestureRecognizer.enabled = true
                 } else {
-                    let thisPage = CGPoint(x: viewWidth, y: 0)
+                    let thisPage = CGPoint(x: viewWidth + K.Others.screenGap, y: 0)
                     delegateController?.delegate!.scrollView.setContentOffset(thisPage, animated: true)
                 }
             }

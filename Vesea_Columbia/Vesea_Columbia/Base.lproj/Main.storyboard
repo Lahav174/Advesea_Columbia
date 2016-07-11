@@ -249,23 +249,8 @@
                     <view key="view" contentMode="scaleToFill" id="B8g-fZ-Neg">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceHorizontal="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FTf-f1-iYr" customClass="ScrollView" customModule="Vesea_Columbia" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                            </scrollView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="FTf-f1-iYr" secondAttribute="trailing" id="cBV-Na-9VY"/>
-                            <constraint firstItem="FTf-f1-iYr" firstAttribute="leading" secondItem="B8g-fZ-Neg" secondAttribute="leading" id="huN-xE-fXw"/>
-                            <constraint firstItem="FTf-f1-iYr" firstAttribute="top" secondItem="B8g-fZ-Neg" secondAttribute="topMargin" id="i15-44-mDy"/>
-                            <constraint firstItem="GOy-Fl-JmA" firstAttribute="top" secondItem="FTf-f1-iYr" secondAttribute="bottom" id="jZr-D2-tgs"/>
-                            <constraint firstItem="GOy-Fl-JmA" firstAttribute="top" secondItem="FTf-f1-iYr" secondAttribute="bottom" id="ty1-z2-hqW"/>
-                        </constraints>
                     </view>
-                    <connections>
-                        <outlet property="scrollView" destination="FTf-f1-iYr" id="fQc-Ha-49x"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ryp-uG-uMo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -328,11 +313,20 @@
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cell_arrow" translatesAutoresizingMaskIntoConstraints="NO" id="aN4-VI-xbd">
+                                                            <rect key="frame" x="580" y="14" width="12" height="15"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="12" id="XtC-jV-igD"/>
+                                                                <constraint firstAttribute="height" constant="15" id="hYP-Mc-zpi"/>
+                                                            </constraints>
+                                                        </imageView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.16812764518212953" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstItem="Kb3-bD-y6W" firstAttribute="leading" secondItem="McQ-FA-jWK" secondAttribute="leading" constant="10" id="FcV-1u-Hcz"/>
+                                                        <constraint firstItem="aN4-VI-xbd" firstAttribute="centerY" secondItem="McQ-FA-jWK" secondAttribute="centerY" id="JD8-k1-hPt"/>
                                                         <constraint firstItem="Kb3-bD-y6W" firstAttribute="centerY" secondItem="McQ-FA-jWK" secondAttribute="centerY" id="R9u-Hl-R0z"/>
+                                                        <constraint firstAttribute="trailing" secondItem="aN4-VI-xbd" secondAttribute="trailing" constant="8" id="W8r-sH-L0L"/>
                                                         <constraint firstAttribute="trailing" secondItem="Kb3-bD-y6W" secondAttribute="trailing" constant="8" id="ocz-oQ-bUG"/>
                                                     </constraints>
                                                 </view>
@@ -760,6 +754,7 @@
         <image name="Back Chevron" width="13" height="21"/>
         <image name="Star_Deselected" width="226" height="227"/>
         <image name="Vesea" width="146" height="39"/>
+        <image name="cell_arrow" width="8" height="12"/>
         <image name="cross" width="14" height="14"/>
         <image name="ic_info" width="20" height="20"/>
         <image name="ic_remove_circle_outline" width="20" height="20"/>

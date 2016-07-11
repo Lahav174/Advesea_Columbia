@@ -15,8 +15,6 @@ struct MyVariables {
 }
 
 class ScrollViewController: UIViewController, UIScrollViewDelegate {
-
-    @IBOutlet weak var scrollView: ScrollView!
     
     let someText = "hi there"
     
@@ -30,8 +28,33 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
     
     var questionViewControllerConstraints = [NSLayoutConstraint]()
     
+    var scrollView = ScrollView()
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        print("scrollview width: " + String(scrollView.frame.width))
+        print("self view width: " + String(self.view.frame.width))
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //self.view.translatesAutoresizingMaskIntoConstraints = false
+        
+        let size = CGSize(width: self.view.frame.width+K.Others.screenGap, height: self.view.frame.height)
+        
+        self.scrollView.frame = CGRect(origin: CGPointZero, size: size)
+        
+        self.view.addSubview(scrollView)
+        
+        let widthConstraint = NSLayoutConstraint(item: self.scrollView, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Width, multiplier: 1, constant: 5)
+        //self.view.addConstraint(widthConstraint)
+        
+        self.scrollView.pagingEnabled = true
+        
+        self.scrollView.backgroundColor = UIColor.blackColor()
+        
+        self.scrollView.bounces = false
         
         checkForUpdate()
         
@@ -41,7 +64,7 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
                         
         scrollView.delegate = self
         
-        scrollView.contentSize = CGSizeMake(self.view.frame.width * 3, self.view.frame.height);
+        scrollView.contentSize = CGSizeMake(self.view.frame.width * 3 + K.Others.screenGap*2, self.view.frame.height);
         
         
         let vc0 = self.storyboard?.instantiateViewControllerWithIdentifier("frontvc") as! FrontViewController
@@ -89,7 +112,7 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
         let heightConstraintVC1 = NSLayoutConstraint(item: view, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: vc1!.view, attribute: NSLayoutAttribute.Height, multiplier: 1, constant: 0)
         view.addConstraint(heightConstraintVC1)
         
-        let horizontalConstraintVC1 = NSLayoutConstraint(item: vc1!.view, attribute: NSLayoutAttribute.Left, relatedBy: NSLayoutRelation.Equal, toItem: vc0.view, attribute: NSLayoutAttribute.Right, multiplier: 1, constant: 0)
+        let horizontalConstraintVC1 = NSLayoutConstraint(item: vc1!.view, attribute: NSLayoutAttribute.Left, relatedBy: NSLayoutRelation.Equal, toItem: vc0.view, attribute: NSLayoutAttribute.Right, multiplier: 1, constant: K.Others.screenGap)
         view.addConstraint(horizontalConstraintVC1)
         
         let verticalConstraintVC1 = NSLayoutConstraint(item: vc1!.view, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: scrollView, attribute: NSLayoutAttribute.Top, multiplier: 1, constant: 0)
@@ -210,7 +233,7 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
         let heightConstraintVCBAR = NSLayoutConstraint(item: view, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: newViewController.view, attribute: NSLayoutAttribute.Height, multiplier: 1, constant: 0)
         view.addConstraint(heightConstraintVCBAR)
         
-        let horizontalConstraintVCBAR = NSLayoutConstraint(item: newViewController.view, attribute: NSLayoutAttribute.Left, relatedBy: NSLayoutRelation.Equal, toItem: scrollView, attribute: NSLayoutAttribute.Right, multiplier: 1, constant: self.view.frame.size.width*2)
+        let horizontalConstraintVCBAR = NSLayoutConstraint(item: newViewController.view, attribute: NSLayoutAttribute.Left, relatedBy: NSLayoutRelation.Equal, toItem: scrollView, attribute: NSLayoutAttribute.Right, multiplier: 1, constant: self.view.frame.size.width*2 + K.Others.screenGap*2)
         view.addConstraint(horizontalConstraintVCBAR)
         let verticalConstraintVCBAR = NSLayoutConstraint(item:  newViewController.view, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: scrollView, attribute: NSLayoutAttribute.Top, multiplier: 1, constant: 0)
         view.addConstraint(verticalConstraintVCBAR)
@@ -246,8 +269,7 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
         
         //Note: changing the format of "favorites" in nsuserdefaults will cause a crash because this if-statement will fail, simply because it already exists
         if (true){
-        //if ((def.arrayForKey(key)) == nil){
-            
+        
             var favorites = NSMutableArray() //reset favorites MIGHT CHANGE
             let arrayToSet = favorites as NSArray
             def.setObject(arrayToSet, forKey: "favorites")
@@ -265,7 +287,7 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
 
 struct K {
     struct Others {
-        static let Welcome = "kWelcomeNotif"
+        static let screenGap: CGFloat = 1
     }
     
     struct colors {

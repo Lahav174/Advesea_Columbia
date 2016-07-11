@@ -9,84 +9,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Vesea_Columbia/ScrollViewController.swift"
-            timestampString = "489661996.771714"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "18"
-            endingLineNumber = "18"
-            landmarkName = "ScrollViewController"
-            landmarkType = "3">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Vesea_Columbia.ScrollViewController.scrollView.getter : weak Swift.ImplicitlyUnwrappedOptional&lt;__ObjC.UIScrollView&gt;"
-                  moduleName = "Vesea_Columbia"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/lahavlipson/Desktop/SwiftFiles/Vesea_Columbia/Vesea_Columbia/ScrollViewController.swift"
-                  timestampString = "485982957.764457"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "14"
-                  endingLineNumber = "14"
-                  offsetFromSymbolStart = "40">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Vesea_Columbia.ScrollViewController.scrollView.setter : weak Swift.ImplicitlyUnwrappedOptional&lt;__ObjC.UIScrollView&gt;"
-                  moduleName = "Vesea_Columbia"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/lahavlipson/Desktop/SwiftFiles/Vesea_Columbia/Vesea_Columbia/ScrollViewController.swift"
-                  timestampString = "485982957.765027"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "14"
-                  endingLineNumber = "14"
-                  offsetFromSymbolStart = "52">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Vesea_Columbia.ScrollViewController.init (nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.NSBundle&gt;) -&gt; Vesea_Columbia.ScrollViewController"
-                  moduleName = "Vesea_Columbia"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/lahavlipson/Desktop/SwiftFiles/Vesea_Columbia/Vesea_Columbia/ScrollViewController.swift"
-                  timestampString = "485982957.765486"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "14"
-                  endingLineNumber = "14"
-                  offsetFromSymbolStart = "76">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Vesea_Columbia.ScrollViewController.init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;Vesea_Columbia.ScrollViewController&gt;"
-                  moduleName = "Vesea_Columbia"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/lahavlipson/Desktop/SwiftFiles/Vesea_Columbia/Vesea_Columbia/ScrollViewController.swift"
-                  timestampString = "485982957.765688"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "14"
-                  endingLineNumber = "14"
-                  offsetFromSymbolStart = "36">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Vesea_Columbia/MajorChooser.swift"
             timestampString = "486798236.664166"
             startingColumnNumber = "9223372036854775807"
@@ -162,11 +84,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Vesea_Columbia/ScrollViewController.swift"
-            timestampString = "489806889.743941"
+            timestampString = "489956580.679357"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "97"
-            endingLineNumber = "97"
+            startingLineNumber = "120"
+            endingLineNumber = "120"
             landmarkName = "viewDidLoad()"
             landmarkType = "5">
          </BreakpointContent>
@@ -178,11 +100,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Vesea_Columbia/ScrollViewController.swift"
-            timestampString = "489806889.743941"
+            timestampString = "489956580.679357"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "100"
-            endingLineNumber = "100"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
             landmarkName = "viewDidLoad()"
             landmarkType = "5">
          </BreakpointContent>
@@ -194,11 +116,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Vesea_Columbia/ScrollViewController.swift"
-            timestampString = "489806889.743941"
+            timestampString = "489956580.679357"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "101"
-            endingLineNumber = "101"
+            startingLineNumber = "124"
+            endingLineNumber = "124"
             landmarkName = "viewDidLoad()"
             landmarkType = "5">
          </BreakpointContent>
@@ -210,11 +132,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Vesea_Columbia/ScrollViewController.swift"
-            timestampString = "489806889.743941"
+            timestampString = "489953501.997871"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "26"
-            endingLineNumber = "26"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
             landmarkName = "ScrollViewController"
             landmarkType = "3">
             <Locations>
@@ -273,11 +195,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Vesea_Columbia/ScrollViewController.swift"
-            timestampString = "489806889.743941"
+            timestampString = "489953501.997871"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
             landmarkName = "ScrollViewController"
             landmarkType = "3">
             <Locations>

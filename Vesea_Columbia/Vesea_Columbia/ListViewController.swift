@@ -220,7 +220,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 delegate!.scrollView.setContentOffset(prevPage, animated: true)
                 delegate!.scrollView.panGestureRecognizer.enabled = true
             } else {
-                let thisPage = CGPoint(x: viewWidth, y: 0)
+                let thisPage = CGPoint(x: viewWidth + K.Others.screenGap, y: 0)
                 delegate!.scrollView.setContentOffset(thisPage, animated: true)
             }
         }
