@@ -201,32 +201,32 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
     
     
     func updateSearchResults(){
-//        self.filteredCourses.removeAll(keepCapacity: false)
-//        
-//        var arr = [NSDictionary]()
-//        for i in 0...(MyVariables.courses?.count)!-1{
-//            let e = MyVariables.courses?.get(i)
-//            arr.append(["ID":e!.a! as String, "Name":e!.b!["Name"]! as! String])
-//        }
-//        
-//        //let arr: [NSDictionary] = [["Name":"Bob","ID":"12345"],["Name":"Mary","ID":"56789"]]
-//        
-//        let searchText = self.searchBar.text!
-//        
-//        let searchPredicate = NSPredicate(format: "SELF.Name CONTAINS[c] %@ OR SELF.ID CONTAINS[c] %@", searchText, searchText)
-//        
-//        let array = (arr as NSArray).filteredArrayUsingPredicate(searchPredicate)
-//        
-//        var objectTupleArray: [ObjectTuple<NSString,NSDictionary>] = []
-//        for i in array{
-//            let id = (i as! NSDictionary)["ID"] as! String
-//            let dict = MyVariables.courses!.get(id)!
-////            objectTupleArray.append(ObjectTuple(first: id, second: dict))
-//        }
-//        
-//        //self.filteredCourses = objectTupleArray
-//        
-//        //self.tableView.reloadData()
+        self.filteredCourses.removeAll(keepCapacity: false)
+        
+        var arr = [NSDictionary]()
+        for i in 0...(MyVariables.courses?.count)!-1{
+            let e = MyVariables.courses?.get(i)
+            arr.append(["ID":e!.a! as String, "Name":e!.b!["Name"]! as! String])
+        }
+        
+        //let arr: [NSDictionary] = [["Name":"Bob","ID":"12345"],["Name":"Mary","ID":"56789"]]
+        
+        let searchText = self.searchBar.text!
+        
+        let searchPredicate = NSPredicate(format: "SELF.Name CONTAINS[c] %@ OR SELF.ID CONTAINS[c] %@", searchText, searchText)
+        
+        let array = (arr as NSArray).filteredArrayUsingPredicate(searchPredicate)
+        
+        var objectTupleArray: [ObjectTuple<NSString,NSDictionary>] = []
+        for i in array{
+            let id = (i as! NSDictionary)["ID"] as! String
+            let dict = MyVariables.courses!.get(id)!
+            objectTupleArray.append(ObjectTuple(first: id, second: dict))
+        }
+        
+        self.filteredCourses = objectTupleArray
+        
+        self.tableView.reloadData()
     }
     
     func textfieldtextDidChange(textField: UITextField){

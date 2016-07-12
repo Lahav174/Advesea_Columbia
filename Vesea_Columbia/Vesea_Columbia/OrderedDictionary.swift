@@ -8,47 +8,35 @@
 
 import Foundation
 
-class OrderedDictionary<keyType: NSObject, valueType>: NSObject {
+class OrderedDictionary<valueType>: NSObject {
     
-    var mutableArray = NSMutableArray()
+    var mainDictionary = NSMutableDictionary()
+    var mainArray = Array<ObjectTuple<NSString,valueType>>()
     
     var count: Int {
-        return mutableArray.count
+        return mainArray.count
     }
     
-    var keySet: Set<keyType> {
-        var set = Set<keyType>()
-        for e in mutableArray{
-            let o = e as! ObjectTuple<keyType, Any>
-            set.insert(o.a!)
-        }
-        return set
+    func insert(value: valueType, forKey key: NSString, atIndex index: Int){
+        mainDictionary.setValue(ObjectTuple(first: index, second: value) as AnyObject, forKey: String(key))
+        mainArray.insert(ObjectTuple(first: key, second: value), atIndex: index)
     }
     
-    func insert(value: valueType, forKey key: keyType, atIndex index: Int){
-        mutableArray.insertObject(ObjectTuple(first: key, second: value) as AnyObject, atIndex: index)
+    func get(index: Int) -> ObjectTuple<NSString, valueType>?{
+        return mainArray[index]
     }
     
-    func add(value: valueType, forKey key: keyType){
-        self.insert(value, forKey: key, atIndex: mutableArray.count)
-    }
-    
-    func get(index: Int) -> ObjectTuple<keyType, valueType>{
-        return mutableArray[index] as! ObjectTuple<keyType, valueType>
-    }
-    
-    func get(key: keyType) -> valueType?{
-        for e in mutableArray{
-            let pair = e as! ObjectTuple<keyType, valueType>
-            if pair.a!.isEqual(key){
-                return pair.b
-            }
+    func get(key: String) -> valueType?{
+        if let obj = mainDictionary[key] {
+            let tuple = obj as! ObjectTuple<Int,valueType>
+            return tuple.b
         }
         return nil
     }
     
     func removeAll(){
-        mutableArray.removeAllObjects()
+        mainArray.removeAll()
+        mainDictionary.removeAllObjects()
     }
     
 }

@@ -258,11 +258,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Vesea_Columbia/ListViewController.swift"
-            timestampString = "489806382.523359"
+            timestampString = "490039333.664554"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "163"
-            endingLineNumber = "163"
+            startingLineNumber = "159"
+            endingLineNumber = "159"
             landmarkName = "imageForSection(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -290,11 +290,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Vesea_Columbia/OrderedDictionary.swift"
-            timestampString = "489962107.946398"
+            timestampString = "490039333.664554"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
             landmarkName = "ObjectTuple"
             landmarkType = "3">
          </BreakpointContent>
@@ -312,6 +312,22 @@
             startingLineNumber = "191"
             endingLineNumber = "191"
             landmarkName = "tableView(_:cellForRowAtIndexPath:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Vesea_Columbia/ScrollViewController.swift"
+            timestampString = "490039171.531275"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "249"
+            endingLineNumber = "249"
+            landmarkName = "setUpCourses()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
