@@ -16,6 +16,15 @@ class OrderedDictionary<keyType: NSObject, valueType>: NSObject {
         return mutableArray.count
     }
     
+    var keySet: Set<keyType> {
+        var set = Set<keyType>()
+        for e in mutableArray{
+            let o = e as! ObjectTuple<keyType, Any>
+            set.insert(o.a!)
+        }
+        return set
+    }
+    
     func insert(value: valueType, forKey key: keyType, atIndex index: Int){
         mutableArray.insertObject(ObjectTuple(first: key, second: value) as AnyObject, atIndex: index)
     }
@@ -45,6 +54,10 @@ class OrderedDictionary<keyType: NSObject, valueType>: NSObject {
 }
 
 class ObjectTuple<type1, type2>: NSObject {
+    
+    override var description: String {
+        return "(" + String(a!) + ", " + String(b!) + ")"
+    }
     
     var a : type1?
     var b : type2?

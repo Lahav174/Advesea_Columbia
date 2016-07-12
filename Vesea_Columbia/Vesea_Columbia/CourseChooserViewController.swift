@@ -136,6 +136,7 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        print("#1")
         let def = NSUserDefaults.standardUserDefaults()
         let key = "favorites"
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! CourseTableViewCell
@@ -168,52 +169,71 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
             
             return cell
         } else {
+            print("#2")
             if ((def.arrayForKey(key)) != nil){
                 let favs = def.arrayForKey(key)! as NSArray
                 let favID = favs[indexPath.row] as! String
                 for i in 0...(MyVariables.courses?.count)!{
                     let courseDict = MyVariables.courses?.get(i)
                     if courseDict?.a! as! String == favID{
+                        print("#2.5")
                         cell.mainLabel.text = courseDict!.b!["Name"]! as! String
                         cell.subLabel.text = courseDict!.a! as! String
                         cell.courseObject = courseDict!
                         cell.setStarImage(true)
+                        print("#2.7")
                         //Selects the correct cells
                         if (self.selectedCourseID == courseDict?.a! as! String){
                             cell.backgroundColor = UIColor(red: 196/255, green: 216/255, blue: 226/255, alpha: 0.6)
                         } else {
+                            print("2.8.y")
                             cell.backgroundColor = UIColor.whiteColor()
+                            print("2.8.z")
                         }
+                        return cell
                     }
                 }
-                return cell
-            } else {
-                //Won't ever be called
-                return cell
             }
-            
+            //Won't ever be called
+            return cell
         }
     }
     
     
     func updateSearchResults(){
-        self.filteredCourses.removeAll(keepCapacity: false)
-        
-        let searchPredicate = NSPredicate(format: "SELF.b!['Name']! as! String CONTAINS[c] %@", self.searchBar.text!)
-        
-        let array = ((MyVariables.courses?.mutableArray)! as NSArray).filteredArrayUsingPredicate(searchPredicate)
-        
-        self.filteredCourses = array as! [ObjectTuple<NSString,NSDictionary>]
-        
-        self.tableView.reloadData()
+//        self.filteredCourses.removeAll(keepCapacity: false)
+//        
+//        var arr = [NSDictionary]()
+//        for i in 0...(MyVariables.courses?.count)!-1{
+//            let e = MyVariables.courses?.get(i)
+//            arr.append(["ID":e!.a! as String, "Name":e!.b!["Name"]! as! String])
+//        }
+//        
+//        //let arr: [NSDictionary] = [["Name":"Bob","ID":"12345"],["Name":"Mary","ID":"56789"]]
+//        
+//        let searchText = self.searchBar.text!
+//        
+//        let searchPredicate = NSPredicate(format: "SELF.Name CONTAINS[c] %@ OR SELF.ID CONTAINS[c] %@", searchText, searchText)
+//        
+//        let array = (arr as NSArray).filteredArrayUsingPredicate(searchPredicate)
+//        
+//        var objectTupleArray: [ObjectTuple<NSString,NSDictionary>] = []
+//        for i in array{
+//            let id = (i as! NSDictionary)["ID"] as! String
+//            let dict = MyVariables.courses!.get(id)!
+////            objectTupleArray.append(ObjectTuple(first: id, second: dict))
+//        }
+//        
+//        //self.filteredCourses = objectTupleArray
+//        
+//        //self.tableView.reloadData()
     }
     
     func textfieldtextDidChange(textField: UITextField){
-        print("Changed")
         if !(searchBar.isFirstResponder()){
             shouldBeginEditing = false
         }
-        updateSearchResults()
+        //updateSearchResults()
         clearButton.hidden = (textField.text == "")
         updateSearchResults()
     }
