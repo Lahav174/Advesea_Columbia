@@ -136,7 +136,6 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        print("#1")
         let def = NSUserDefaults.standardUserDefaults()
         let key = "favorites"
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! CourseTableViewCell
@@ -169,26 +168,21 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
             
             return cell
         } else {
-            print("#2")
             if ((def.arrayForKey(key)) != nil){
                 let favs = def.arrayForKey(key)! as NSArray
                 let favID = favs[indexPath.row] as! String
                 for i in 0...(MyVariables.courses?.count)!{
                     let courseDict = MyVariables.courses?.get(i)
                     if courseDict?.a! as! String == favID{
-                        print("#2.5")
                         cell.mainLabel.text = courseDict!.b!["Name"]! as! String
                         cell.subLabel.text = courseDict!.a! as! String
                         cell.courseObject = courseDict!
                         cell.setStarImage(true)
-                        print("#2.7")
                         //Selects the correct cells
                         if (self.selectedCourseID == courseDict?.a! as! String){
                             cell.backgroundColor = UIColor(red: 196/255, green: 216/255, blue: 226/255, alpha: 0.6)
                         } else {
-                            print("2.8.y")
                             cell.backgroundColor = UIColor.whiteColor()
-                            print("2.8.z")
                         }
                         return cell
                     }
@@ -256,6 +250,9 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
         searchBar.resignFirstResponder()
+        //let contentOffset = self.tableView.contentOffset.y
+        //let rowsInFirstSection =  CGFloat((self.tableView.numberOfRowsInSection(0))*44 + 25)
+        //print("firstSectionVisible: " + String(contentOffset < rowsInFirstSection))
     }
     
     override func didReceiveMemoryWarning() {

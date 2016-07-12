@@ -30,12 +30,6 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
     
     var scrollView = ScrollView()
     
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        print("scrollview width: " + String(scrollView.frame.width))
-        print("self view width: " + String(self.view.frame.width))
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         

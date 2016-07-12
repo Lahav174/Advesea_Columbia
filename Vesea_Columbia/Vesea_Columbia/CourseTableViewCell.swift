@@ -42,25 +42,35 @@ class CourseTableViewCell: UITableViewCell {
         }
 
         if favorites.containsObject(courseObject.a! as! String){//It is currently a favorite
-            print("Un-Favorited!")
+            //print("Un-Favorited!")
             setStarImage(false)
             favorites.removeObject(courseObject.a! as! String)
         } else { //It is not currently a favorite
             setStarImage(true)
-            print("Favorited!")
+            //print("Favorited!")
             favorites.addObject(courseObject.a! as! String)
         }
         let arrayToSet = favorites as NSArray
         def.setObject(arrayToSet, forKey: key)
         
+        let contentOffset = self.delegateViewController!.tableView.contentOffset.y
+        let rowsInFirstSection =  CGFloat((self.delegateViewController!.tableView.numberOfRowsInSection(0))*44 + 25)
+        
         self.delegateViewController!.tableView.reloadData()
         
-        if self.indexPath.section == 1 && favorites.containsObject(courseObject.a! as! String){//Just became a favorite (Need to move down)
+        let sectionOneIsVisible = rowsInFirstSection > contentOffset
+    
+        if self.indexPath.section == 1 && favorites.containsObject(courseObject.a! as! String) && !sectionOneIsVisible{//Just became a favorite (Need to move down)
             let offset = CGPoint(x: 0, y: self.delegateViewController!.tableView.contentOffset.y + 44)
             self.delegateViewController!.tableView.setContentOffset(offset, animated: false)
-        } else if (self.indexPath.section == 1 && self.delegateViewController!.tableView.contentOffset.y >= 0){
+        }
+        else if (self.indexPath.section == 1 && self.delegateViewController!.tableView.contentOffset.y >= 0){
             let offset = CGPoint(x: 0, y: self.delegateViewController!.tableView.contentOffset.y - 44)
             self.delegateViewController!.tableView.setContentOffset(offset, animated: false)
+        }
+        
+        if (self.delegateViewController!.tableView.contentOffset.y < 0){
+            self.delegateViewController!.tableView.setContentOffset(CGPointZero, animated: false)
         }
 
         
