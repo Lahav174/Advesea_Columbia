@@ -60,11 +60,11 @@ class CourseTableViewCell: UITableViewCell {
         
         let sectionOneIsVisible = rowsInFirstSection > contentOffset
     
-        if self.indexPath.section == 1 && favorites.containsObject(courseObject.a! as! String) && !sectionOneIsVisible{//Just became a favorite (Need to move down)
+        if self.indexPath.section > 0 && favorites.containsObject(courseObject.a! as! String) && !sectionOneIsVisible{//Just became a favorite (Need to move down)
             let offset = CGPoint(x: 0, y: self.delegateViewController!.tableView.contentOffset.y + 44)
             self.delegateViewController!.tableView.setContentOffset(offset, animated: false)
         }
-        else if (self.indexPath.section == 1 && self.delegateViewController!.tableView.contentOffset.y >= 0){
+        else if (self.indexPath.section > 0 && self.delegateViewController!.tableView.contentOffset.y >= 0){
             let offset = CGPoint(x: 0, y: self.delegateViewController!.tableView.contentOffset.y - 44)
             self.delegateViewController!.tableView.setContentOffset(offset, animated: false)
         }

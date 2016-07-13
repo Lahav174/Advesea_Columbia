@@ -15,7 +15,7 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
     var selectedCourseID : String?
     
     var unfilteredCourses = NSMutableDictionary()
-    var filteredCourses = [ObjectTuple<NSString,NSDictionary>]()
+    var filteredCourses = NSMutableDictionary()
     var departmentHeadersInOrder = [String]()
     
     var delegateViewController : QuestionViewController?
@@ -111,7 +111,7 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
     // MARK: - TableView DataSource Methods
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 2
+        return 1 + self.departmentHeadersInOrder.count
     }
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView?
@@ -124,7 +124,7 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
         if section == 0{
             headerView.text = "Favorites"
         } else {
-            headerView.text = "All Courses"
+            headerView.text = self.departmentHeadersInOrder[section-1]
         }
         
         return headerView
@@ -132,13 +132,8 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
     
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if (section == 1){
-            if searching && searchBar.text != ""{
-                return self.filteredCourses.count
-            } else {
-                return (MyVariables.courses?.count)!//self.courses.count
-            }
-        } else {
+        
+        if section == 0{
             let def = NSUserDefaults.standardUserDefaults()
             let key = "favorites"
             
@@ -148,9 +143,71 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
             } else {
                 return 0
             }
+        } else {
+            let deptName = self.departmentHeadersInOrder[section-1]
+            if searching && searchBar.text != ""{
+                return (self.filteredCourses[deptName]! as! [String]).count
+            } else {
+                return (self.unfilteredCourses[deptName]! as! [String]).count
+            }
         }
     }
     
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let def = NSUserDefaults.standardUserDefaults()
+        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! CourseTableViewCell
+        cell.delegateViewController = self
+        cell.indexPath = indexPath
+        if indexPath.section == 0 {
+            let favs = def.arrayForKey("favorites")! as NSArray
+            let favID = favs[indexPath.row] as! String
+            let courseDict = MyVariables.courses?.get(favID)
+            cell.mainLabel.text = courseDict!["Name"]! as! String
+            cell.subLabel.text = favID
+            cell.courseObject = ObjectTuple(first: favID, second: courseDict!)
+            cell.setStarImage(true)
+            //Selects the correct cells
+            if (self.selectedCourseID == favID as! String){
+                cell.backgroundColor = UIColor(red: 196/255, green: 216/255, blue: 226/255, alpha: 0.6)
+            } else {
+                cell.backgroundColor = UIColor.whiteColor()
+            }
+        } else {
+            var courseID = String()
+            let deptName = self.departmentHeadersInOrder[indexPath.section-1]
+            if searching && searchBar.text != "" {
+                courseID = (self.filteredCourses[deptName]! as! [String])[indexPath.row]
+                let courseDict = MyVariables.courses!.get(courseID)!
+                cell.mainLabel.text = courseDict["Name"]! as! String
+                cell.subLabel.text = courseID
+                cell.courseObject = ObjectTuple(first: courseID, second: courseDict)
+            } else {
+                courseID = (self.unfilteredCourses[deptName]! as! [String])[indexPath.row]
+                let courseDict = MyVariables.courses!.get(courseID)!
+                cell.mainLabel.text = courseDict["Name"]! as! String
+                cell.subLabel.text = courseID
+                cell.courseObject = ObjectTuple(first: courseID, second: courseDict)
+                
+            }
+
+            //Selects the correct cells
+            if (selectedCourseID == courseID){
+                cell.backgroundColor = UIColor(red: 196/255, green: 216/255, blue: 226/255, alpha: 0.6)
+            } else {
+                cell.backgroundColor = UIColor.whiteColor()
+            }
+            //Stars the correct cells
+            if ((def.arrayForKey("favorites")) != nil){
+                let favs = def.arrayForKey("favorites")! as NSArray
+                cell.setStarImage(favs.containsObject(courseID))
+            }
+        }
+        
+        
+        return cell
+    }
+    
+    /*
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let def = NSUserDefaults.standardUserDefaults()
         let key = "favorites"
@@ -208,9 +265,10 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
             return cell
         }
     }
+    */
     
     
-    func updateSearchResults(){
+    func updateSearchResults(){/*
         self.filteredCourses.removeAll(keepCapacity: false)
         
         var arr = [NSDictionary]()
@@ -237,7 +295,7 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
         self.filteredCourses = objectTupleArray
         
         self.tableView.reloadData()
-    }
+    */}
     
     // MARK: - Text Field Delegate Methods
     
