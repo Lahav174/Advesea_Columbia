@@ -17,6 +17,10 @@ class OrderedDictionary<valueType>: NSObject {
         return mainArray.count
     }
     
+    var allKeys: [NSString] {
+        return mainDictionary.allKeys as! [NSString]
+    }
+    
     func insert(value: valueType, forKey key: NSString, atIndex index: Int){
         mainDictionary.setValue(ObjectTuple(first: index, second: value) as AnyObject, forKey: String(key))
         mainArray.insert(ObjectTuple(first: key, second: value), atIndex: index)

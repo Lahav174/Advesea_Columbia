@@ -16,6 +16,7 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
     
     var unfilteredCourses = NSMutableDictionary()
     var filteredCourses = [ObjectTuple<NSString,NSDictionary>]()
+    var departmentHeadersInOrder = [String]()
     
     var delegateViewController : QuestionViewController?
     
@@ -70,8 +71,14 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
             } else {
                 self.unfilteredCourses.setValue(NSMutableArray.init(array: [course!.a! as String]), forKey: course!.b!["Department"]! as! String)
             }
+            //self.departmentHeadersInOrder.append(course!.b!["Department"]! as! String)
         }
-        print(self.unfilteredCourses["Electrical Engineering"]!)
+        self.departmentHeadersInOrder = self.unfilteredCourses.allKeys as! [String]
+        self.departmentHeadersInOrder.sortInPlace()
+        self.departmentHeadersInOrder = self.departmentHeadersInOrder.filter{$0 != "Core"}
+        self.departmentHeadersInOrder.insert("Core", atIndex: 0)
+        //print(self.unfilteredCourses["Electrical Engineering"]!)
+        print(self.departmentHeadersInOrder)
     }
     
     func loadSelectedCell(type: String){
