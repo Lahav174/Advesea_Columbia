@@ -27,6 +27,8 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UITextField!
     
+    // MARK: - Buttons
+    
     @IBAction func removeButtonPressed(sender: AnyObject) {
             delegateViewController!.animateContainerOut()
     }
@@ -37,14 +39,8 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
         self.tableView.reloadData()
     }
     
-    func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
-        return UIBarPosition.Top
-    }
+    // MARK: - ViewDidLoad
     
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated);
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -71,7 +67,6 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
             } else {
                 self.unfilteredCourses.setValue(NSMutableArray.init(array: [course!.a! as String]), forKey: course!.b!["Department"]! as! String)
             }
-            //self.departmentHeadersInOrder.append(course!.b!["Department"]! as! String)
         }
         self.departmentHeadersInOrder = self.unfilteredCourses.allKeys as! [String]
         self.departmentHeadersInOrder.sortInPlace()
@@ -80,6 +75,8 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
         //print(self.unfilteredCourses["Electrical Engineering"]!)
         print(self.departmentHeadersInOrder)
     }
+    
+    // MARK: - Other TableView Methods
     
     func loadSelectedCell(type: String){
         
@@ -110,6 +107,8 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
         
         self.tableView.reloadData()
     }
+    
+    // MARK: - TableView DataSource Methods
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 2
@@ -240,6 +239,8 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
         self.tableView.reloadData()
     }
     
+    // MARK: - Text Field Delegate Methods
+    
     func textfieldtextDidChange(textField: UITextField){
         if !(searchBar.isFirstResponder()){
             shouldBeginEditing = false
@@ -264,6 +265,13 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
         searching = true
     }
     
+    // MARK: - Nav Bar Delegate Methods
+    
+    func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
+        return UIBarPosition.Top
+    }
+    
+    // MARK: - Scroll View Delegate Methods
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
         searchBar.resignFirstResponder()
@@ -271,6 +279,8 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
         //let rowsInFirstSection =  CGFloat((self.tableView.numberOfRowsInSection(0))*44 + 25)
         //print("firstSectionVisible: " + String(contentOffset < rowsInFirstSection))
     }
+    
+    // MARK: - Other
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
