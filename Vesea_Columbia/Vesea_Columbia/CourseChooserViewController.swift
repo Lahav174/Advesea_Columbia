@@ -14,7 +14,7 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
     
     var selectedCourseID : String?
     
-    //var courseIDs = [String]()
+    var unfilteredCourses = NSMutableDictionary()
     var filteredCourses = [ObjectTuple<NSString,NSDictionary>]()
     
     var delegateViewController : QuestionViewController?
@@ -62,6 +62,16 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
         border.frame = CGRect(x: 0, y: 88, width: self.view.frame.width, height: CGFloat(0.5))
         border.borderWidth = 0
         self.view.layer.addSublayer(border)
+        
+        for i in 0...MyVariables.courses!.count-1{
+            let course = MyVariables.courses!.get(i)
+            if let arr = self.unfilteredCourses.valueForKey(course!.b!["Department"]! as! String){
+                (arr as! NSMutableArray).addObject(course!.a! as String)
+            } else {
+                self.unfilteredCourses.setValue(NSMutableArray.init(array: [course!.a! as String]), forKey: course!.b!["Department"]! as! String)
+            }
+        }
+        print(self.unfilteredCourses["Electrical Engineering"]!)
     }
     
     func loadSelectedCell(type: String){
@@ -146,16 +156,16 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
             if searching && searchBar.text != "" {
                 courseObj = self.filteredCourses[indexPath.row]
                 cell.mainLabel.text = courseObj.b!["Name"]! as! String
-                cell.subLabel.text = courseObj.a! as! String
+                cell.subLabel.text = courseObj.a! as String
                 cell.courseObject = courseObj
             } else {
                 courseObj = (MyVariables.courses?.get(indexPath.row))!//self.courses[indexPath.row]
                 cell.mainLabel.text = courseObj.b!["Name"]! as! String
-                cell.subLabel.text = courseObj.a! as! String
+                cell.subLabel.text = courseObj.a! as String
                 cell.courseObject = courseObj
             }
             //Selects the correct cells
-            if (selectedCourseID == courseObj.a! as! String){
+            if (selectedCourseID == courseObj.a! as String){
                 cell.backgroundColor = UIColor(red: 196/255, green: 216/255, blue: 226/255, alpha: 0.6)
             } else {
                 cell.backgroundColor = UIColor.whiteColor()
@@ -163,19 +173,19 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
             //Stars the correct cells
             if ((def.arrayForKey(key)) != nil){
                 let favs = def.arrayForKey(key)! as NSArray
-                cell.setStarImage(favs.containsObject(cell.courseObject.a! as! String))
+                cell.setStarImage(favs.containsObject(cell.courseObject.a! as String))
             }
             
             return cell
         } else {
-            if ((def.arrayForKey(key)) != nil){
+            //if ((def.arrayForKey(key)) != nil){
                 let favs = def.arrayForKey(key)! as NSArray
                 let favID = favs[indexPath.row] as! String
                 for i in 0...(MyVariables.courses?.count)!{
                     let courseDict = MyVariables.courses?.get(i)
                     if courseDict?.a! as! String == favID{
                         cell.mainLabel.text = courseDict!.b!["Name"]! as! String
-                        cell.subLabel.text = courseDict!.a! as! String
+                        cell.subLabel.text = courseDict!.a! as String
                         cell.courseObject = courseDict!
                         cell.setStarImage(true)
                         //Selects the correct cells
@@ -187,7 +197,7 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
                         return cell
                     }
                 }
-            }
+            //}
             //Won't ever be called
             return cell
         }
