@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CourseChooserViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UINavigationBarDelegate {
+class CourseChooserViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UINavigationBarDelegate, UIGestureRecognizerDelegate{
     
     var courseChooserType = ""
     
@@ -53,6 +53,10 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
         self.clearButton.hidden = true
         self.searchBar.addTarget(self, action: #selector(self.textfieldtextDidChange(_:)), forControlEvents: UIControlEvents.EditingChanged)
         
+        let pan = UIPanGestureRecognizer(target: self, action: #selector(handlePan(_:)))
+        pan.delegate = self
+        self.tableView.addGestureRecognizer(pan)
+        
         self.view.layer.masksToBounds = true
         let border = CALayer()
         border.backgroundColor = UIColor.lightGrayColor().CGColor
@@ -77,6 +81,14 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     // MARK: - Other TableView Methods
+    
+    func handlePan(recognizer: UIPanGestureRecognizer){
+        searchBar.resignFirstResponder()
+    }
+    
+    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
     
     func loadSelectedCell(type: String){
         
@@ -227,21 +239,9 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
         let searchText = self.searchBar.text!
         
         let searchPredicate = NSPredicate(format: "SELF.Name CONTAINS[c] %@ OR SELF.ID CONTAINS[c] %@", searchText, searchText)
-        print("#1")
         for deptKey in unfilteredCourseDicts.allKeys{
-            print("#2")
           let unfilteredArr = unfilteredCourseDicts[deptKey as! String] as! NSMutableArray
-            print("#3")
             filteredCourseDicts[deptKey as! String] = unfilteredArr.filteredArrayUsingPredicate(searchPredicate)
-//            let unfilteredClassesForSingleDept = NSMutableArray()
-//            for courseID in unfilteredCourseDicts[deptKey as! String] as! [String]{
-//                let courseDict = MyVariables.courses!.get(courseID)!
-//                unfilteredClassesForSingleDept.addObject(["ID":courseID,"Name":courseDict["Name"]!])
-//            }
-//            let filteredClassesForSingleDept = unfilteredClassesForSingleDept.filteredArrayUsingPredicate(searchPredicate)
-//            for courseDict in filteredClassesForSingleDept{
-//                filteredCourseDicts[deptKey as! String]?.addObject((courseDict as! NSDictionary)["ID"])
-//            }
         }
         self.tableView.reloadData()
         
@@ -259,7 +259,6 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        print("Gonna Resign #1")
         searchBar.resignFirstResponder()
         return false
     }
@@ -283,8 +282,6 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
     // MARK: - Scroll View Delegate Methods
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
-        print("Gonna Resign #2")
-        searchBar.resignFirstResponder()
         //let contentOffset = self.tableView.contentOffset.y
         //let rowsInFirstSection =  CGFloat((self.tableView.numberOfRowsInSection(0))*44 + 25)
         //print("firstSectionVisible: " + String(contentOffset < rowsInFirstSection))

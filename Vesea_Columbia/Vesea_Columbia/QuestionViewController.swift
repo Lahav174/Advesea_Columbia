@@ -362,6 +362,7 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
     
     func animateContainerOut(){
         let def = NSUserDefaults.standardUserDefaults()
+        chooser!.searchBar.resignFirstResponder()
         switch self.questionNumber {
         case 0:
             let qLabel = questionLabel as! QuestionLabel0
