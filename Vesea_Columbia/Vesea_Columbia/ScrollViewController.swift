@@ -11,7 +11,7 @@ import Charts
 import SwiftCSV
 
 struct MyVariables {
-    static var courses : OrderedDictionary<NSString,NSDictionary>?
+    static var courses : OrderedDictionary<NSDictionary>?
 }
 
 class ScrollViewController: UIViewController, UIScrollViewDelegate {
@@ -29,12 +29,6 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
     var questionViewControllerConstraints = [NSLayoutConstraint]()
     
     var scrollView = ScrollView()
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        print("scrollview width: " + String(scrollView.frame.width))
-        print("self view width: " + String(self.view.frame.width))
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -246,20 +240,23 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func setUpCourses(){
-        var courseDict = OrderedDictionary<NSString,NSDictionary>()
+        var courseDict = OrderedDictionary<NSDictionary>()
         var csvColumns = [String : [String]]()
+        let coursesFile = "Courses2"
         do {
-            let csvURL = NSBundle(forClass: FrontViewController.self).URLForResource("Courses1", withExtension: "csv")!
+            let csvURL = NSBundle(forClass: FrontViewController.self).URLForResource(coursesFile, withExtension: "csv")!
+            //print("csvURL: " + String(csvURL))
             let csv = try CSV(url: csvURL)
             csvColumns = csv.columns
         } catch {
             print("Failed!")
-            fatalError("Courses1.csv could not be found")
+            fatalError(coursesFile + ".csv could not be found")
         }
         for i in 0...csvColumns["Name"]!.count-1{
             let singleCourseDict : NSDictionary = ["Name":csvColumns["Name"]![i],
-                                       "Credits":csvColumns["Credits"]![i]]
-            courseDict.add(singleCourseDict, forKey: csvColumns["ID"]![i])
+                                       "Credits":csvColumns["Credits"]![i],
+                                       "Department":csvColumns["Department"]![i]]
+            courseDict.insert(singleCourseDict, forKey: csvColumns["ID"]![i], atIndex: i)
         }
         MyVariables.courses = courseDict
     }

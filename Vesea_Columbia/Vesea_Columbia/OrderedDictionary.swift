@@ -8,43 +8,56 @@
 
 import Foundation
 
-class OrderedDictionary<keyType: NSObject, valueType>: NSObject {
+class OrderedDictionary<valueType>: NSObject {
     
-    var mutableArray = NSMutableArray()
+    var mainDictionary = NSMutableDictionary()
+    var mainArray = Array<ObjectTuple<NSString,valueType>>()
     
     var count: Int {
-        return mutableArray.count
+        return mainArray.count
     }
     
-    func insert(value: valueType, forKey key: keyType, atIndex index: Int){
-        mutableArray.insertObject(ObjectTuple(first: key, second: value) as AnyObject, atIndex: index)
+    var allKeys: [NSString] {
+        return mainDictionary.allKeys as! [NSString]
     }
     
-    func add(value: valueType, forKey key: keyType){
-        self.insert(value, forKey: key, atIndex: mutableArray.count)
+    func insert(value: valueType, forKey key: NSString, atIndex index: Int){
+        mainDictionary.setValue(ObjectTuple(first: index, second: value) as AnyObject, forKey: String(key))
+        mainArray.insert(ObjectTuple(first: key, second: value), atIndex: index)
     }
     
-    func get(index: Int) -> ObjectTuple<keyType, valueType>{
-        return mutableArray[index] as! ObjectTuple<keyType, valueType>
+    func get(index: Int) -> ObjectTuple<NSString, valueType>?{
+        return mainArray[index]
     }
     
-    func get(key: keyType) -> valueType?{
-        for e in mutableArray{
-            let pair = e as! ObjectTuple<keyType, valueType>
-            if pair.a!.isEqual(key){
-                return pair.b
-            }
+    func get(key: String) -> valueType?{
+        if let obj = mainDictionary[key] {
+            let tuple = obj as! ObjectTuple<Int,valueType>
+            return tuple.b
         }
         return nil
     }
     
     func removeAll(){
-        mutableArray.removeAllObjects()
+        mainArray.removeAll()
+        mainDictionary.removeAllObjects()
+    }
+    
+    func keyForIndex(index: Int) -> NSString{
+        return mainArray[index].a!
+    }
+    
+    func indexForKey(key: NSString) -> Int{
+        return (mainDictionary[key]! as! ObjectTuple<Int, NSDictionary>).a!
     }
     
 }
 
 class ObjectTuple<type1, type2>: NSObject {
+    
+    override var description: String {
+        return "(" + String(a!) + ", " + String(b!) + ")"
+    }
     
     var a : type1?
     var b : type2?

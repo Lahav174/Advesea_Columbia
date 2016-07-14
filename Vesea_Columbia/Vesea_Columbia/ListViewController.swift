@@ -18,12 +18,8 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     let cellHeight : CGFloat = 100
     
-    var courses : OrderedDictionary<NSString,NSDictionary>?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        courses = MyVariables.courses!
         
         self.view.clipsToBounds = true
         
