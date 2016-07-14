@@ -14,8 +14,8 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
     
     var selectedCourseID : String?
     
-    var unfilteredCourses = NSMutableDictionary()
-    var filteredCourses = NSMutableDictionary()
+    var unfilteredCourseIDs = NSMutableDictionary()
+    var filteredCourseIDs = NSMutableDictionary()
     var departmentHeadersInOrder = [String]()
     
     var delegateViewController : QuestionViewController?
@@ -62,18 +62,18 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
         
         for i in 0...MyVariables.courses!.count-1{
             let course = MyVariables.courses!.get(i)
-            if let arr = self.unfilteredCourses.valueForKey(course!.b!["Department"]! as! String){
+            if let arr = self.unfilteredCourseIDs.valueForKey(course!.b!["Department"]! as! String){
                 (arr as! NSMutableArray).addObject(course!.a! as String)
             } else {
-                self.unfilteredCourses.setValue(NSMutableArray.init(array: [course!.a! as String]), forKey: course!.b!["Department"]! as! String)
+                self.unfilteredCourseIDs.setValue(NSMutableArray.init(array: [course!.a! as String]), forKey: course!.b!["Department"]! as! String)
             }
         }
-        self.departmentHeadersInOrder = self.unfilteredCourses.allKeys as! [String]
+        self.departmentHeadersInOrder = self.unfilteredCourseIDs.allKeys as! [String]
         self.departmentHeadersInOrder.sortInPlace()
         self.departmentHeadersInOrder = self.departmentHeadersInOrder.filter{$0 != "Core"}
         self.departmentHeadersInOrder.insert("Core", atIndex: 0)
-        //print(self.unfilteredCourses["Electrical Engineering"]!)
-        print(self.departmentHeadersInOrder)
+        //print(self.unfilteredCourseIDs["Electrical Engineering"]!)
+        //print(self.departmentHeadersInOrder)
     }
     
     // MARK: - Other TableView Methods
@@ -130,6 +130,18 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
         return headerView
     }
     
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        
+        if section > 0{
+            if searching && searchBar.text != "" {
+                let deptName = self.departmentHeadersInOrder[section-1]
+                if filteredCourseIDs[deptName]?.count == 0{
+                    return 0
+                }
+            }
+        }
+        return 30
+    }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -146,9 +158,9 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
         } else {
             let deptName = self.departmentHeadersInOrder[section-1]
             if searching && searchBar.text != ""{
-                return (self.filteredCourses[deptName]! as! [String]).count
+                return (self.filteredCourseIDs[deptName]! as! [String]).count
             } else {
-                return (self.unfilteredCourses[deptName]! as! [String]).count
+                return (self.unfilteredCourseIDs[deptName]! as! [String]).count
             }
         }
     }
@@ -176,13 +188,13 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
             var courseID = String()
             let deptName = self.departmentHeadersInOrder[indexPath.section-1]
             if searching && searchBar.text != "" {
-                courseID = (self.filteredCourses[deptName]! as! [String])[indexPath.row]
+                courseID = (self.filteredCourseIDs[deptName]! as! [String])[indexPath.row]
                 let courseDict = MyVariables.courses!.get(courseID)!
                 cell.mainLabel.text = courseDict["Name"]! as! String
                 cell.subLabel.text = courseID
                 cell.courseObject = ObjectTuple(first: courseID, second: courseDict)
             } else {
-                courseID = (self.unfilteredCourses[deptName]! as! [String])[indexPath.row]
+                courseID = (self.unfilteredCourseIDs[deptName]! as! [String])[indexPath.row]
                 let courseDict = MyVariables.courses!.get(courseID)!
                 cell.mainLabel.text = courseDict["Name"]! as! String
                 cell.subLabel.text = courseID
@@ -207,95 +219,31 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
         return cell
     }
     
-    /*
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let def = NSUserDefaults.standardUserDefaults()
-        let key = "favorites"
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! CourseTableViewCell
-        cell.delegateViewController = self
-        cell.indexPath = indexPath
-        if (indexPath.section == 1){
-            var courseObj = ObjectTuple<NSString,NSDictionary>()
-            if searching && searchBar.text != "" {
-                courseObj = self.filteredCourses[indexPath.row]
-                cell.mainLabel.text = courseObj.b!["Name"]! as! String
-                cell.subLabel.text = courseObj.a! as String
-                cell.courseObject = courseObj
-            } else {
-                courseObj = (MyVariables.courses?.get(indexPath.row))!//self.courses[indexPath.row]
-                cell.mainLabel.text = courseObj.b!["Name"]! as! String
-                cell.subLabel.text = courseObj.a! as String
-                cell.courseObject = courseObj
-            }
-            //Selects the correct cells
-            if (selectedCourseID == courseObj.a! as String){
-                cell.backgroundColor = UIColor(red: 196/255, green: 216/255, blue: 226/255, alpha: 0.6)
-            } else {
-                cell.backgroundColor = UIColor.whiteColor()
-            }
-            //Stars the correct cells
-            if ((def.arrayForKey(key)) != nil){
-                let favs = def.arrayForKey(key)! as NSArray
-                cell.setStarImage(favs.containsObject(cell.courseObject.a! as String))
-            }
-            
-            return cell
-        } else {
-            //if ((def.arrayForKey(key)) != nil){
-                let favs = def.arrayForKey(key)! as NSArray
-                let favID = favs[indexPath.row] as! String
-                for i in 0...(MyVariables.courses?.count)!{
-                    let courseDict = MyVariables.courses?.get(i)
-                    if courseDict?.a! as! String == favID{
-                        cell.mainLabel.text = courseDict!.b!["Name"]! as! String
-                        cell.subLabel.text = courseDict!.a! as String
-                        cell.courseObject = courseDict!
-                        cell.setStarImage(true)
-                        //Selects the correct cells
-                        if (self.selectedCourseID == courseDict?.a! as! String){
-                            cell.backgroundColor = UIColor(red: 196/255, green: 216/255, blue: 226/255, alpha: 0.6)
-                        } else {
-                            cell.backgroundColor = UIColor.whiteColor()
-                        }
-                        return cell
-                    }
-                }
-            //}
-            //Won't ever be called
-            return cell
-        }
-    }
-    */
-    
-    
-    func updateSearchResults(){/*
-        self.filteredCourses.removeAll(keepCapacity: false)
+    func updateSearchResults(){
+        self.filteredCourseIDs.removeAllObjects()
         
-        var arr = [NSDictionary]()
-        for i in 0...(MyVariables.courses?.count)!-1{
-            let e = MyVariables.courses?.get(i)
-            arr.append(["ID":e!.a! as String, "Name":e!.b!["Name"]! as! String])
+        for key in self.unfilteredCourseIDs.allKeys{
+            filteredCourseIDs.setValue(NSMutableArray(), forKey: key as! String)
         }
-        
-        //let arr: [NSDictionary] = [["Name":"Bob","ID":"12345"],["Name":"Mary","ID":"56789"]]
         
         let searchText = self.searchBar.text!
         
         let searchPredicate = NSPredicate(format: "SELF.Name CONTAINS[c] %@ OR SELF.ID CONTAINS[c] %@", searchText, searchText)
         
-        let array = (arr as NSArray).filteredArrayUsingPredicate(searchPredicate)
-        
-        var objectTupleArray: [ObjectTuple<NSString,NSDictionary>] = []
-        for i in array{
-            let id = (i as! NSDictionary)["ID"] as! String
-            let dict = MyVariables.courses!.get(id)!
-            objectTupleArray.append(ObjectTuple(first: id, second: dict))
+        for deptKey in unfilteredCourseIDs.allKeys{
+            let unfilteredClassesForSingleDept = NSMutableArray()
+            for courseID in unfilteredCourseIDs[deptKey as! String] as! [String]{
+                let courseDict = MyVariables.courses!.get(courseID)!
+                unfilteredClassesForSingleDept.addObject(["ID":courseID,"Name":courseDict["Name"]!])
+            }
+            let filteredClassesForSingleDept = unfilteredClassesForSingleDept.filteredArrayUsingPredicate(searchPredicate)
+            for courseDict in filteredClassesForSingleDept{
+                filteredCourseIDs[deptKey as! String]?.addObject((courseDict as! NSDictionary)["ID"])
+            }
         }
-        
-        self.filteredCourses = objectTupleArray
-        
         self.tableView.reloadData()
-    */}
+        
+    }
     
     // MARK: - Text Field Delegate Methods
     
@@ -309,6 +257,7 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
+        print("Gonna Resign #1")
         searchBar.resignFirstResponder()
         return false
     }
@@ -332,6 +281,7 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
     // MARK: - Scroll View Delegate Methods
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
+        print("Gonna Resign #2")
         searchBar.resignFirstResponder()
         //let contentOffset = self.tableView.contentOffset.y
         //let rowsInFirstSection =  CGFloat((self.tableView.numberOfRowsInSection(0))*44 + 25)
