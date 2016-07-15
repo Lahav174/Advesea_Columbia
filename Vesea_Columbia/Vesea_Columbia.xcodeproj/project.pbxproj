@@ -31,6 +31,8 @@
 		CDB82A281D05F46E00F01678 /* CourseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB82A271D05F46E00F01678 /* CourseTableViewCell.swift */; };
 		CDD865E81D315E9600D942CC /* OrderedDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD865E71D315E9600D942CC /* OrderedDictionary.swift */; };
 		CDD8662C1D35EDF000D942CC /* Courses2.csv in Resources */ = {isa = PBXBuildFile; fileRef = CDD8662B1D35EDF000D942CC /* Courses2.csv */; };
+		CDFCD6D11D3950A300561566 /* CourseInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFCD6D01D3950A300561566 /* CourseInfoView.swift */; };
+		CDFCD6D31D39529300561566 /* CourseInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDFCD6D21D39529300561566 /* CourseInfoView.xib */; };
 		CDFF9FD81CF394AE00E64650 /* ScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFF9FD71CF394AE00E64650 /* ScrollViewController.swift */; };
 		CDFF9FDA1CF6D02500E64650 /* TestGraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFF9FD91CF6D02500E64650 /* TestGraphViewController.swift */; };
 		CDFF9FDC1CF8C9D500E64650 /* HBarChartQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFF9FDB1CF8C9D500E64650 /* HBarChartQuestionViewController.swift */; };
@@ -97,6 +99,8 @@
 		CDB82A271D05F46E00F01678 /* CourseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseTableViewCell.swift; sourceTree = "<group>"; };
 		CDD865E71D315E9600D942CC /* OrderedDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderedDictionary.swift; sourceTree = "<group>"; };
 		CDD8662B1D35EDF000D942CC /* Courses2.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Courses2.csv; sourceTree = "<group>"; };
+		CDFCD6D01D3950A300561566 /* CourseInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseInfoView.swift; sourceTree = "<group>"; };
+		CDFCD6D21D39529300561566 /* CourseInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CourseInfoView.xib; sourceTree = "<group>"; };
 		CDFF9FD71CF394AE00E64650 /* ScrollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollViewController.swift; sourceTree = "<group>"; };
 		CDFF9FD91CF6D02500E64650 /* TestGraphViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestGraphViewController.swift; sourceTree = "<group>"; };
 		CDFF9FDB1CF8C9D500E64650 /* HBarChartQuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HBarChartQuestionViewController.swift; sourceTree = "<group>"; };
@@ -213,6 +217,8 @@
 				CDB82A271D05F46E00F01678 /* CourseTableViewCell.swift */,
 				CDD865E71D315E9600D942CC /* OrderedDictionary.swift */,
 				CDFF9FDD1CF8DE5700E64650 /* ScrollView.swift */,
+				CDFCD6D01D3950A300561566 /* CourseInfoView.swift */,
+				CDFCD6D21D39529300561566 /* CourseInfoView.xib */,
 				CD2C7E191D2890DE00FCAD5E /* Files */,
 				CDFF9FE51CFBC09500E64650 /* QuestionLabels */,
 				CD892EDE1CEBB8CD00DF5D24 /* Assets.xcassets */,
@@ -381,6 +387,7 @@
 				CDFF9FF11CFFB70800E64650 /* CourseChooser.xib in Resources */,
 				CDFF9FF51D00DB4F00E64650 /* MajorChooser.xib in Resources */,
 				CDFF9FE91CFBC13000E64650 /* QuestionLabel1.xib in Resources */,
+				CDFCD6D31D39529300561566 /* CourseInfoView.xib in Resources */,
 				CDFF9FE41CFA347F00E64650 /* QuestionLabel0.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -469,6 +476,7 @@
 				CDFF9FD81CF394AE00E64650 /* ScrollViewController.swift in Sources */,
 				CDFF9FDC1CF8C9D500E64650 /* HBarChartQuestionViewController.swift in Sources */,
 				CDFF9FEB1CFC940C00E64650 /* QuestionLabel2.swift in Sources */,
+				CDFCD6D11D3950A300561566 /* CourseInfoView.swift in Sources */,
 				CDFF9FEF1CFFB46D00E64650 /* CourseChooser.swift in Sources */,
 				CDFF9FE01CFA304600E64650 /* QuestionLabel0.swift in Sources */,
 				CD2C7E1B1D29B98300FCAD5E /* SlidingSegmentedControl.swift in Sources */,

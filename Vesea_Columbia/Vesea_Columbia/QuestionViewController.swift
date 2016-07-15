@@ -18,6 +18,9 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
     
     var chooserBeingDisplayed = false
     
+    var infoViewBeingDisplayed = false
+    var infoView : CourseInfoView?
+    
     var chooser : CourseChooserViewController?
     
     var formatter = NSNumberFormatter()
@@ -62,7 +65,6 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
         
         self.container.layer.cornerRadius = 10;
         self.container.layer.masksToBounds = true;
-        self.container.layer.zPosition = 500
         
         self.container.translatesAutoresizingMaskIntoConstraints = false
         let heightConstraint = NSLayoutConstraint(item: container, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: 400)
@@ -175,7 +177,7 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
 
         configureChartSettings(chartType)
 
-        self.view.addSubview(chart!)
+        self.view.insertSubview(chart!, aboveSubview: graphBackground)
         constrainChart()
         
         //Testing if I need this...
@@ -401,10 +403,20 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        
+        print("Screen touched")
         for touch: AnyObject! in touches {
             let touchLocation = touch.locationInView(self.view)
-            if !(self.container.frame.contains(touchLocation)) && chooserBeingDisplayed && self.container.frame.origin.y == 100{
+            if infoViewBeingDisplayed && !(self.infoView?.frame.contains(touchLocation))! && infoView?.alpha == 1{
+                print("Info View should go away")
+                UIView.animateWithDuration(0.2, animations: {
+                    self.infoView?.alpha = 0
+                    }, completion: { (true) in
+                        self.infoView = nil
+                        self.infoViewBeingDisplayed = false
+                        self.container.userInteractionEnabled = true
+                })
+            }
+            else if !(self.container.frame.contains(touchLocation)) && chooserBeingDisplayed && self.container.frame.origin.y == 100 && !infoViewBeingDisplayed{
                 animateContainerOut()
             }
             
@@ -412,13 +424,18 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
     }
     
     func addInfoView(course: ObjectTuple<NSString,NSDictionary>){
-        let frame = CGRect(x: 20, y: 300, width: self.view.frame.width-40, height: 150)
-        let infoView = UITextView(frame: frame)
-        infoView.backgroundColor = UIColor(white: 0.3, alpha: 0.5)
-        infoView.textAlignment = NSTextAlignment.Left
-        infoView.textColor = UIColor(white: 0.8, alpha: 0.9)
-        infoView.text = "Hello this is a test"
-        self.view.insertSubview(infoView, aboveSubview: (self.chooser?.searchBar)!)
+        self.container.userInteractionEnabled = false
+        let frame = CGRect(x: 20, y: 300, width: self.view.frame.width-40, height: 180)
+        infoView = CourseInfoView(frame: frame)
+        infoView!.alpha = 0
+        infoView!.ID = course.a! as String
+        infoView!.backgroundColor = UIColor(white: 0.3, alpha: 0.7)
+        self.view.insertSubview(infoView!, atIndex: 1000)
+        UIView.animateWithDuration(0.2, animations: {
+            self.infoView?.alpha = 1
+            }) { (true) in
+                self.infoViewBeingDisplayed = true
+        }
     }
     
     class func abreviateID(ID: String) -> String{

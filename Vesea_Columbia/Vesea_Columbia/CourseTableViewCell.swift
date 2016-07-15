@@ -27,7 +27,7 @@ class CourseTableViewCell: UITableViewCell {
     @IBOutlet weak var starButton: UIButton!
     
     @IBAction func infoButtonPressed(sender: AnyObject) {
-       //delegateViewController!.delegateViewController!.addInfoView(courseObject)
+        delegateViewController!.delegateViewController!.addInfoView(courseObject)
     }
     
     
