@@ -411,7 +411,7 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
         print("Screen touched")
         for touch: AnyObject! in touches {
             let touchLocation = touch.locationInView(self.view)
-            if infoViewBeingDisplayed && !(self.infoView?.frame.contains(touchLocation))! && infoView?.alpha == 1{
+            if infoViewBeingDisplayed && !(self.flipView?.frame.contains(touchLocation))! && flipView?.alpha == 1{
                 print("Info View should go away")
                 UIView.animateWithDuration(0.2, animations: {
                     self.flipView?.alpha = 0
@@ -454,6 +454,7 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
         
         
         problemForm = ProblemFormView(frame: CGRect(origin: CGPointZero, size: frame.size))
+        problemForm!.courseID = course.a! as String
         problemForm?.delegate = self
         
     }
@@ -463,8 +464,10 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
             self.infoViewBeingDisplayed = false
             UIView.transitionFromView(infoView!, toView: problemForm!, duration: 0.4, options: UIViewAnimationOptions.TransitionFlipFromTop, completion: { (true) in
                 self.problemFormBeingDisplayed = true
+                self.problemForm?.textView.becomeFirstResponder()
             })
         } else if viewType == "Problem"{
+            self.problemForm?.textView.resignFirstResponder()
             self.problemFormBeingDisplayed = false
             UIView.transitionFromView(problemForm!, toView: infoView!, duration: 0.4, options: UIViewAnimationOptions.TransitionFlipFromBottom, completion: { (true) in
                 self.infoViewBeingDisplayed = true

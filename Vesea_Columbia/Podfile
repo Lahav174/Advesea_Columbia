@@ -4,6 +4,8 @@ pod 'Charts'
 
 pod ‘SwiftCSV’
 
+pod 'Firebase/Database'
+
 pod 'AFNetworking'
 
 source 'https://github.com/CocoaPods/Specs.git'

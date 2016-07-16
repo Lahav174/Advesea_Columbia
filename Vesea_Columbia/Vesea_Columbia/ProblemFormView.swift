@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class ProblemFormView: UIView {
     
@@ -19,6 +20,10 @@ class ProblemFormView: UIView {
     var cancelButton = UIButton()
     
     var sendButton = UIButton()
+    
+    var courseID : String?
+    
+    let ref = FIRDatabase.database().reference()
 
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
@@ -79,9 +84,7 @@ class ProblemFormView: UIView {
         sendButton.setTitleColor(UIColor(red: 49/255, green: 148/255, blue: 1, alpha: 1), forState: UIControlState.Highlighted)
         sendButton.addTarget(self, action: #selector(sendButtonPressed), forControlEvents: .TouchUpInside)
         self.addSubview(sendButton)
-        
-        //textView.becomeFirstResponder()
-        
+                
         self.layer.cornerRadius = 15
         self.layer.masksToBounds = true
         
@@ -108,6 +111,34 @@ class ProblemFormView: UIView {
     
     func sendButtonPressed(sender: UIButton){
         print("Send Button Pressed")
+        
+        var problemType = ""
+        switch self.segmentedControl.selectedSegmentIndex {
+        case 0:
+            problemType = "Other"
+            break
+        case 1:
+            problemType = "Incorrect-Info"
+            break
+        case 2:
+            problemType = "Mislabeled"
+            break
+        default:
+            break
+        }
+        
+        let postRef = ref.child("Problems").child("Course-Specific").child(problemType).child("Some-New-Post")
+        
+        let date = NSDate()
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-dd-MM"
+        
+        let timeFormatter = NSDateFormatter()
+        timeFormatter.dateFormat = "HH:mm:ss.S"
+        
+        postRef.setValue(["Date":"Date","Course ID":self.courseID!,"Text":self.textView.text])
+        postRef.child("Date").setValue(["Date":dateFormatter.stringFromDate(date),"Time":timeFormatter.stringFromDate(date)])
     }
     
     func stylizeFonts(){
