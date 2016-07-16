@@ -54,6 +54,8 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
         
         setUpCourses()
         
+        checkNewUser()
+        
         scrollView.delaysContentTouches = false
                         
         scrollView.delegate = self
@@ -259,6 +261,23 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
             courseDict.insert(singleCourseDict, forKey: csvColumns["ID"]![i], atIndex: i)
         }
         MyVariables.courses = courseDict
+    }
+    
+    func checkNewUser(){
+        let def = NSUserDefaults.standardUserDefaults()
+        if def.objectForKey("Username") == nil{
+            def.setObject(ScrollViewController.generateRandomID(8), forKey: "Username")
+        }
+    }
+    
+    class func generateRandomID(length: Int) -> String {
+        let characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890".characters.map { String($0) }
+        var id = ""
+        for _ in 1...length{
+            id += characters[Int(arc4random_uniform(62))]
+        }
+        print(id)
+        return id
     }
     
     func checkForUpdate(){ //Called only when update or first time (Not when load)

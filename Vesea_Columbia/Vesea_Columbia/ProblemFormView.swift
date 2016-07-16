@@ -118,7 +118,7 @@ class ProblemFormView: UIView {
             problemType = "Other"
             break
         case 1:
-            problemType = "Incorrect-Info"
+            problemType = "Incorrect Info"
             break
         case 2:
             problemType = "Mislabeled"
@@ -127,18 +127,32 @@ class ProblemFormView: UIView {
             break
         }
         
-        let postRef = ref.child("Problems").child("Course-Specific").child(problemType).child("Some-New-Post")
-        
-        let date = NSDate()
-        
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "yyyy-dd-MM"
-        
-        let timeFormatter = NSDateFormatter()
-        timeFormatter.dateFormat = "HH:mm:ss.S"
-        
-        postRef.setValue(["Date":"Date","Course ID":self.courseID!,"Text":self.textView.text])
-        postRef.child("Date").setValue(["Date":dateFormatter.stringFromDate(date),"Time":timeFormatter.stringFromDate(date)])
+        var postTitle = String()
+        let def = NSUserDefaults.standardUserDefaults()
+        let probCountRef = ref.child("Problems").child("Course-Specific").child("Problem Count")
+        probCountRef.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+            var newVal = String()
+            if let val = snapshot.value as? String{
+                newVal = String(Int(val)!+1)
+            } else if let val = snapshot.value as? NSNumber{
+                newVal = String(val.intValue + 1)
+            }
+            postTitle = newVal + " - " + def.stringForKey("Username")!
+            probCountRef.setValue(newVal)
+            
+            let postRef = self.ref.child("Problems").child("Course-Specific").child(problemType).child(postTitle)
+            
+            let date = NSDate()
+            
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "yyyy-dd-MM"
+            
+            let timeFormatter = NSDateFormatter()
+            timeFormatter.dateFormat = "HH:mm:ss.S"
+            
+            postRef.setValue(["Date":"Date","Course ID":self.courseID!,"Text":self.textView.text])
+            postRef.child("Date").setValue(["Date":dateFormatter.stringFromDate(date),"Time":timeFormatter.stringFromDate(date)])
+            }, withCancelBlock: nil)
     }
     
     func stylizeFonts(){
