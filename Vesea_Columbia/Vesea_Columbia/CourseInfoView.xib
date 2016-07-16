@@ -15,7 +15,7 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="394" height="237"/>
+            <rect key="frame" x="0.0" y="0.0" width="394" height="236"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GkY-eu-w7n">
@@ -33,33 +33,33 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="COMSW3134" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JTQ-CF-D7c">
-                    <rect key="frame" x="8" y="43" width="105" height="20"/>
-                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                    <rect key="frame" x="8" y="43" width="93" height="18"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Data Structures and Algorithms in Java" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zd4-e6-5Mf">
-                    <rect key="frame" x="8" y="71" width="378" height="53"/>
+                    <rect key="frame" x="8" y="69" width="378" height="53"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="22"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Course Dir. #: 316267" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yx8-6o-qIG">
-                    <rect key="frame" x="219" y="43" width="167" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <rect key="frame" x="237" y="43" width="149" height="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CVU-88-BXV">
-                    <rect key="frame" x="20" y="192" width="115" height="30"/>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CVU-88-BXV">
+                    <rect key="frame" x="10" y="192" width="115" height="30"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
                     <state key="normal" title="CULPA Reviews"/>
                     <connections>
                         <action selector="openCulpa:" destination="-1" eventType="touchUpInside" id="Irk-dF-6io"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yo9-MU-sIC">
-                    <rect key="frame" x="248" y="192" width="126" height="30"/>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yo9-MU-sIC">
+                    <rect key="frame" x="258" y="192" width="126" height="30"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
                     <state key="normal" title="Report a Problem">
                         <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -71,13 +71,13 @@
                 <constraint firstItem="JTQ-CF-D7c" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="5v4-UH-RBz"/>
                 <constraint firstAttribute="trailing" secondItem="Yx8-6o-qIG" secondAttribute="trailing" constant="8" id="DYl-zv-AHb"/>
                 <constraint firstItem="GkY-eu-w7n" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="Ix1-ei-sHw"/>
-                <constraint firstAttribute="trailing" secondItem="Yo9-MU-sIC" secondAttribute="trailing" constant="20" id="LBi-ko-3l7"/>
+                <constraint firstAttribute="trailing" secondItem="Yo9-MU-sIC" secondAttribute="trailing" constant="10" id="LBi-ko-3l7"/>
                 <constraint firstItem="GkY-eu-w7n" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="MSg-Wg-tmg"/>
                 <constraint firstAttribute="bottom" secondItem="CVU-88-BXV" secondAttribute="bottom" constant="15" id="OJ2-Bw-rde"/>
                 <constraint firstAttribute="bottom" secondItem="Yo9-MU-sIC" secondAttribute="bottom" constant="15" id="RzL-uF-rKV"/>
                 <constraint firstItem="zd4-e6-5Mf" firstAttribute="trailing" secondItem="Yx8-6o-qIG" secondAttribute="trailing" id="UFG-Fn-xqa"/>
                 <constraint firstItem="zd4-e6-5Mf" firstAttribute="top" secondItem="JTQ-CF-D7c" secondAttribute="bottom" constant="8" id="UhD-oB-dH7"/>
-                <constraint firstItem="CVU-88-BXV" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="WKm-eA-nCh"/>
+                <constraint firstItem="CVU-88-BXV" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="WKm-eA-nCh"/>
                 <constraint firstItem="JTQ-CF-D7c" firstAttribute="top" secondItem="GkY-eu-w7n" secondAttribute="bottom" constant="15" id="agb-PR-YfJ"/>
                 <constraint firstItem="zd4-e6-5Mf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="hrT-Db-nIh"/>
                 <constraint firstItem="zd4-e6-5Mf" firstAttribute="top" secondItem="JTQ-CF-D7c" secondAttribute="bottom" constant="8" id="jgA-rN-zbc"/>

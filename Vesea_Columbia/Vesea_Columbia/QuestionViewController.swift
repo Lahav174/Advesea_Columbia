@@ -86,18 +86,6 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
     }
     
     func customInitializer(chartKind: String, valueFormatter: NSNumberFormatter,titleTxt: String, xyValues: [(x: String, y: Double)], tabLabels: [String]? = nil){
-        print(tabLabels)
-        if (tabLabels != nil){
-            print("#1")
-            self.segmentedControl = SlidingSegmentedControl(frame: CGRectMake(0, 64, self.view.frame.width, 44), buttonTitles: tabLabels!)
-            self.view.addSubview(segmentedControl!)
-        } else if (self.segmentedControl != nil){
-            print("#2")
-            self.segmentedControl!.backgroundColor = UIColor.redColor()
-            self.segmentedControl!.removeFromSuperview()
-            //self.segmentedControl!.hidden = true
-            self.segmentedControl = nil
-        }
         
         if chart != nil{
             chart?.removeFromSuperview()
@@ -191,6 +179,18 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
         } else {
             let graph = (chart as! BarChartView)
             graph.notifyDataSetChanged()
+        }
+        
+        if (tabLabels != nil){
+            print("#1")
+            self.segmentedControl = SlidingSegmentedControl(frame: CGRectMake(0, 64, self.view.frame.width, 44), buttonTitles: tabLabels!)
+            self.view.insertSubview(segmentedControl!, aboveSubview: chart!)
+        } else if (self.segmentedControl != nil){
+            print("#2")
+            self.segmentedControl!.backgroundColor = UIColor.redColor()
+            self.segmentedControl!.removeFromSuperview()
+            //self.segmentedControl!.hidden = true
+            self.segmentedControl = nil
         }
     }
     
@@ -425,7 +425,7 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
     
     func addInfoView(course: ObjectTuple<NSString,NSDictionary>){
         self.container.userInteractionEnabled = false
-        let frame = CGRect(x: 20, y: 300, width: self.view.frame.width-40, height: 180)
+        let frame = CGRect(x: 10, y: 300, width: self.view.frame.width-20, height: 180)
         infoView = CourseInfoView(frame: frame)
         infoView!.alpha = 0
         infoView!.ID = course.a! as String
@@ -441,7 +441,7 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
     class func abreviateID(ID: String) -> String{
         let index1 = ID.endIndex.advancedBy(-5)
         let substring = ID.substringFromIndex(index1)
-        return "    " + substring
+        return "   " + substring
     }
     
     func addLabel(preset: Int){

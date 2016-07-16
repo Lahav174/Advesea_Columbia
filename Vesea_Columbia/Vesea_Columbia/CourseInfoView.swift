@@ -10,8 +10,6 @@ import UIKit
 
 @IBDesignable class CourseInfoView: UIView {
     
-    var delegateViewController : QuestionViewController?
-    
     var view: UIView!
     
     var nibName: String = "CourseInfoView"
