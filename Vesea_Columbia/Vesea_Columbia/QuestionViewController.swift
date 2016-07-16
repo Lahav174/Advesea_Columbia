@@ -21,6 +21,11 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
     var infoViewBeingDisplayed = false
     var infoView : CourseInfoView?
     
+    var problemForm : ProblemFormView?
+    var problemFormBeingDisplayed = false
+    
+    var flipView : UIView?
+    
     var chooser : CourseChooserViewController?
     
     var formatter = NSNumberFormatter()
@@ -409,7 +414,7 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
             if infoViewBeingDisplayed && !(self.infoView?.frame.contains(touchLocation))! && infoView?.alpha == 1{
                 print("Info View should go away")
                 UIView.animateWithDuration(0.2, animations: {
-                    self.infoView?.alpha = 0
+                    self.flipView?.alpha = 0
                     }, completion: { (true) in
                         self.infoView = nil
                         self.infoViewBeingDisplayed = false
@@ -424,17 +429,46 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
     }
     
     func addInfoView(course: ObjectTuple<NSString,NSDictionary>){
+        print("Hey")
         self.container.userInteractionEnabled = false
-        let frame = CGRect(x: 10, y: 300, width: self.view.frame.width-20, height: 180)
-        infoView = CourseInfoView(frame: frame)
-        infoView!.alpha = 0
+        let frame = CGRect(x: 10, y: 80, width: self.view.frame.width-20, height: 180)
+        self.flipView = UIView(frame: frame)
+        infoView = CourseInfoView(frame: CGRect(origin: CGPointZero, size: frame.size))
+        
+        flipView?.backgroundColor = UIColor.blueColor()
+        flipView!.layer.cornerRadius = 15
+        flipView!.layer.masksToBounds = true
+        
+        infoView?.delegate = self
+        flipView!.alpha = 0
         infoView!.ID = course.a! as String
         infoView!.backgroundColor = UIColor(white: 0.3, alpha: 0.7)
-        self.view.insertSubview(infoView!, atIndex: 1000)
+        self.flipView?.addSubview(infoView!)
+        self.view.insertSubview(flipView!, atIndex: 1000)
         UIView.animateWithDuration(0.2, animations: {
-            self.infoView?.alpha = 1
+            self.flipView?.alpha = 1
             }) { (true) in
                 self.infoViewBeingDisplayed = true
+        }
+        
+        
+        
+        problemForm = ProblemFormView(frame: CGRect(origin: CGPointZero, size: frame.size))
+        problemForm?.delegate = self
+        
+    }
+    
+    func flipInfoView(viewType: String){
+        if viewType == "Info"{
+            self.infoViewBeingDisplayed = false
+            UIView.transitionFromView(infoView!, toView: problemForm!, duration: 0.4, options: UIViewAnimationOptions.TransitionFlipFromTop, completion: { (true) in
+                self.problemFormBeingDisplayed = true
+            })
+        } else if viewType == "Problem"{
+            self.problemFormBeingDisplayed = false
+            UIView.transitionFromView(problemForm!, toView: infoView!, duration: 0.4, options: UIViewAnimationOptions.TransitionFlipFromBottom, completion: { (true) in
+                self.infoViewBeingDisplayed = true
+            })
         }
     }
     

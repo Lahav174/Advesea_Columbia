@@ -10,6 +10,8 @@ import UIKit
 
 @IBDesignable class CourseInfoView: UIView {
     
+    var delegate: QuestionViewController?
+    
     var view: UIView!
     
     var nibName: String = "CourseInfoView"
@@ -30,6 +32,9 @@ import UIKit
     
     @IBOutlet weak var nameLabel: UILabel!
     
+    @IBAction func flipView(sender: UIButton) {
+        delegate?.flipInfoView("Info")
+    }
     
     @IBAction func openCulpa(sender: AnyObject) {
         UIApplication.sharedApplication().openURL(NSURL(string:"http://www.reddit.com/")!)

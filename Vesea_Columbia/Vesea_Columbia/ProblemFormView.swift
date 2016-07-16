@@ -80,7 +80,10 @@ class ProblemFormView: UIView {
         sendButton.addTarget(self, action: #selector(sendButtonPressed), forControlEvents: .TouchUpInside)
         self.addSubview(sendButton)
         
-        textView.becomeFirstResponder()
+        //textView.becomeFirstResponder()
+        
+        self.layer.cornerRadius = 15
+        self.layer.masksToBounds = true
         
     }
     
@@ -96,6 +99,11 @@ class ProblemFormView: UIView {
     
     func cancelButtonPressed(sender: UIButton){
         print("Cancel Button Pressed")
+        if delegate is QuestionViewController{
+            let qvc = delegate as! QuestionViewController
+            qvc.flipInfoView("Problem")
+        }
+        
     }
     
     func sendButtonPressed(sender: UIButton){
