@@ -10,9 +10,15 @@ import UIKit
 
 class ProblemFormView: UIView {
     
+    var delegate : UIViewController?
+    
     var view: UIView!
     
     var nibName: String = "ProblemFormView"
+    
+    var cancelButton = UIButton()
+    
+    var sendButton = UIButton()
 
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
@@ -39,8 +45,8 @@ class ProblemFormView: UIView {
         
         addSubview(view)
         
-        //self.layer.cornerRadius = 15
-        //self.layer.masksToBounds = true
+        self.layer.cornerRadius = 20
+        self.layer.masksToBounds = true
         
         textView.indicatorStyle = .White
         
@@ -56,11 +62,48 @@ class ProblemFormView: UIView {
         vLine.backgroundColor = UIColor(white: 151/255, alpha: 1)
         self.addSubview(vLine)
         
-        print("width: " + String(self.frame.width))
+        cancelButton.frame = CGRect(x: 0, y: self.frame.height-35, width: self.frame.width/2-0.5, height: 35)
+        cancelButton.setTitle("Cancel", forState: UIControlState.Normal)
+        cancelButton.setBackgroundImage(getImageWithColor(UIColor(white: 133/255, alpha: 0.69), size: cancelButton.frame.size), forState: UIControlState.Highlighted)
+        cancelButton.titleLabel?.textAlignment = NSTextAlignment.Center
+        cancelButton.setTitleColor(UIColor.redColor(), forState: UIControlState.Normal)
+        cancelButton.setTitleColor(UIColor(red: 1, green: 41/255, blue: 68/255, alpha: 1), forState: UIControlState.Highlighted)
+        cancelButton.addTarget(self, action: #selector(cancelButtonPressed), forControlEvents: .TouchUpInside)
+        self.addSubview(cancelButton)
+        
+        sendButton.frame = CGRect(x: self.frame.width/2+0.5, y: self.frame.height-35, width: self.frame.width/2-0.5, height: 35)
+        sendButton.setTitle("Send", forState: UIControlState.Normal)
+        sendButton.setBackgroundImage(getImageWithColor(UIColor(white: 133/255, alpha: 0.69), size: cancelButton.frame.size), forState: UIControlState.Highlighted)
+        sendButton.titleLabel?.textAlignment = NSTextAlignment.Center
+        sendButton.setTitleColor(UIColor(red: 0, green: 122/255, blue: 1, alpha: 1), forState: UIControlState.Normal)
+        sendButton.setTitleColor(UIColor(red: 49/255, green: 148/255, blue: 1, alpha: 1), forState: UIControlState.Highlighted)
+        sendButton.addTarget(self, action: #selector(sendButtonPressed), forControlEvents: .TouchUpInside)
+        self.addSubview(sendButton)
+        
+        textView.becomeFirstResponder()
+        
+    }
+    
+    func getImageWithColor(color: UIColor, size: CGSize) -> UIImage {
+        let rect = CGRectMake(0, 0, size.width, size.height)
+        UIGraphicsBeginImageContextWithOptions(size, false, 0)
+        color.setFill()
+        UIRectFill(rect)
+        let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image
+    }
+    
+    func cancelButtonPressed(sender: UIButton){
+        print("Cancel Button Pressed")
+    }
+    
+    func sendButtonPressed(sender: UIButton){
+        print("Send Button Pressed")
     }
     
     func stylizeFonts(){
-        let normalFont = UIFont(name: "HelveticaNeue", size: 16.0)
+        let normalFont = UIFont(name: "HelveticaNeue", size: 13.0)
         
         let normalTextAttributes: [NSObject : AnyObject] = [
             NSForegroundColorAttributeName: UIColor.whiteColor(),
@@ -86,7 +129,6 @@ class ProblemFormView: UIView {
         let bsgConstLeading = NSLayoutConstraint(item: backgroundSegControl, attribute: NSLayoutAttribute.Leading, relatedBy: NSLayoutRelation.Equal, toItem: segmentedControl, attribute: NSLayoutAttribute.Leading, multiplier: 1, constant: 0)
         let bsgConstTrailing = NSLayoutConstraint(item: backgroundSegControl, attribute: NSLayoutAttribute.Trailing, relatedBy: NSLayoutRelation.Equal, toItem: segmentedControl, attribute: NSLayoutAttribute.Trailing, multiplier: 1, constant: 0)
         self.addConstraints([bsgConstTop,bsgConstLeading,bsgConstTrailing])
-        
     }
     
     func loadViewFromNib() -> UIView {
