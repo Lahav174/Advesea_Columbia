@@ -41,6 +41,11 @@ class ProblemFormView: UIView {
         setup()
     }
     
+    func reappearSetup(){
+        self.segmentedControl.selectedSegmentIndex = 0
+        self.textView.text = ""
+    }
+    
     func setup(){
         
         view = loadViewFromNib()
@@ -152,7 +157,18 @@ class ProblemFormView: UIView {
             
             postRef.setValue(["Date":"Date","Course ID":self.courseID!,"Text":self.textView.text])
             postRef.child("Date").setValue(["Date":dateFormatter.stringFromDate(date),"Time":timeFormatter.stringFromDate(date)])
+            
+            
+            self.textView.text = "Thank you"
+            let qvc = self.delegate as! QuestionViewController
+            let timer = NSTimer.scheduledTimerWithTimeInterval(1.5, target: self, selector: #selector(self.flipBack), userInfo: nil, repeats: false)
+            
             }, withCancelBlock: nil)
+    }
+    
+    func flipBack(){
+        let qvc = self.delegate as! QuestionViewController
+        qvc.flipInfoView("Problem")
     }
     
     func stylizeFonts(){

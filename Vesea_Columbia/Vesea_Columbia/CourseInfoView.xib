@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CourseInfoView" customModule="Vesea_Columbia" customModuleProvider="target">
             <connections>
                 <outlet property="courseDirectoryNumLabel" destination="Yx8-6o-qIG" id="hrx-IX-HDR"/>
+                <outlet property="culpaButton" destination="CVU-88-BXV" id="qDo-zE-3aF"/>
                 <outlet property="departmentLabel" destination="GkY-eu-w7n" id="tcX-py-79r"/>
                 <outlet property="idLabel" destination="JTQ-CF-D7c" id="Lym-QG-wYx"/>
                 <outlet property="nameLabel" destination="zd4-e6-5Mf" id="OQ4-mc-Wyd"/>
@@ -50,8 +51,8 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CVU-88-BXV">
-                    <rect key="frame" x="10" y="192" width="115" height="30"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CVU-88-BXV">
+                    <rect key="frame" x="10" y="191" width="115" height="30"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
                     <state key="normal" title="CULPA Reviews"/>
                     <connections>

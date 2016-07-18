@@ -461,6 +461,7 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
     
     func flipInfoView(viewType: String){
         if viewType == "Info"{
+            self.problemForm!.reappearSetup()
             self.infoViewBeingDisplayed = false
             UIView.transitionFromView(infoView!, toView: problemForm!, duration: 0.4, options: UIViewAnimationOptions.TransitionFlipFromTop, completion: { (true) in
                 self.problemFormBeingDisplayed = true

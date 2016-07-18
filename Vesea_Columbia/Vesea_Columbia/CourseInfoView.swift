@@ -22,6 +22,8 @@ import UIKit
     
     var courseDepartment: String = ""
     
+    var culpaIndex: String = ""
+    
     var courseDirectoryNumber: String = "123456"
     
     @IBOutlet weak var departmentLabel: UILabel!
@@ -32,12 +34,16 @@ import UIKit
     
     @IBOutlet weak var nameLabel: UILabel!
     
+    @IBOutlet weak var culpaButton: UIButton!
+    
     @IBAction func flipView(sender: UIButton) {
         delegate?.flipInfoView("Info")
     }
     
     @IBAction func openCulpa(sender: AnyObject) {
-        UIApplication.sharedApplication().openURL(NSURL(string:"http://www.reddit.com/")!)
+        if culpaIndex != ""{
+            UIApplication.sharedApplication().openURL(NSURL(string:"http://www.culpa.info/courses/" + culpaIndex)!)
+        }
     }
     
     @IBInspectable var ID : String {
@@ -55,6 +61,10 @@ import UIKit
             attributedText.addAttribute(NSUnderlineStyleAttributeName , value:NSUnderlineStyle.StyleSingle.rawValue, range: textRange)
             departmentLabel.attributedText = attributedText
             courseDirectoryNumLabel.text = "Course Dir. #: " + courseDirectoryNumber
+            culpaIndex = courseDict["Culpa"] as! String
+            if culpaIndex == ""{
+                culpaButton.hidden = true
+            }
         }
     }
 

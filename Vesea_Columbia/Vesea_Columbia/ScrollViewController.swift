@@ -244,7 +244,7 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
     func setUpCourses(){
         var courseDict = OrderedDictionary<NSDictionary>()
         var csvColumns = [String : [String]]()
-        let coursesFile = "Courses2"
+        let coursesFile = "Courses"
         do {
             let csvURL = NSBundle(forClass: FrontViewController.self).URLForResource(coursesFile, withExtension: "csv")!
             //print("csvURL: " + String(csvURL))
@@ -257,7 +257,8 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
         for i in 0...csvColumns["Name"]!.count-1{
             let singleCourseDict : NSDictionary = ["Name":csvColumns["Name"]![i],
                                        "Credits":csvColumns["Credits"]![i],
-                                       "Department":csvColumns["Department"]![i]]
+                                       "Department":csvColumns["Department"]![i],
+                                       "Culpa":csvColumns["Culpa"]![i]]
             courseDict.insert(singleCourseDict, forKey: csvColumns["ID"]![i], atIndex: i)
         }
         MyVariables.courses = courseDict
