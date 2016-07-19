@@ -35,7 +35,7 @@
 		CDFCD6D51D396E6B00561566 /* ProblemFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFCD6D41D396E6B00561566 /* ProblemFormView.swift */; };
 		CDFCD6D71D39701200561566 /* ProblemFormView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDFCD6D61D39701200561566 /* ProblemFormView.xib */; };
 		CDFCD6DB1D3A1CE800561566 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CDFCD6DA1D3A1CE800561566 /* GoogleService-Info.plist */; };
-		CDFCD6DF1D3D62CA00561566 /* Courses.csv in Resources */ = {isa = PBXBuildFile; fileRef = CDFCD6DE1D3D62CA00561566 /* Courses.csv */; };
+		CDFCD6E51D3E01C400561566 /* Courses.csv in Resources */ = {isa = PBXBuildFile; fileRef = CDFCD6E41D3E01C400561566 /* Courses.csv */; };
 		CDFF9FD81CF394AE00E64650 /* ScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFF9FD71CF394AE00E64650 /* ScrollViewController.swift */; };
 		CDFF9FDA1CF6D02500E64650 /* TestGraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFF9FD91CF6D02500E64650 /* TestGraphViewController.swift */; };
 		CDFF9FDC1CF8C9D500E64650 /* HBarChartQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFF9FDB1CF8C9D500E64650 /* HBarChartQuestionViewController.swift */; };
@@ -106,7 +106,7 @@
 		CDFCD6D41D396E6B00561566 /* ProblemFormView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProblemFormView.swift; sourceTree = "<group>"; };
 		CDFCD6D61D39701200561566 /* ProblemFormView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProblemFormView.xib; sourceTree = "<group>"; };
 		CDFCD6DA1D3A1CE800561566 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		CDFCD6DE1D3D62CA00561566 /* Courses.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Courses.csv; sourceTree = "<group>"; };
+		CDFCD6E41D3E01C400561566 /* Courses.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Courses.csv; sourceTree = "<group>"; };
 		CDFF9FD71CF394AE00E64650 /* ScrollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollViewController.swift; sourceTree = "<group>"; };
 		CDFF9FD91CF6D02500E64650 /* TestGraphViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestGraphViewController.swift; sourceTree = "<group>"; };
 		CDFF9FDB1CF8C9D500E64650 /* HBarChartQuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HBarChartQuestionViewController.swift; sourceTree = "<group>"; };
@@ -173,7 +173,7 @@
 		CD2C7E191D2890DE00FCAD5E /* Files */ = {
 			isa = PBXGroup;
 			children = (
-				CDFCD6DE1D3D62CA00561566 /* Courses.csv */,
+				CDFCD6E41D3E01C400561566 /* Courses.csv */,
 			);
 			name = Files;
 			sourceTree = "<group>";
@@ -397,7 +397,7 @@
 				CDFF9FF11CFFB70800E64650 /* CourseChooser.xib in Resources */,
 				CDFF9FF51D00DB4F00E64650 /* MajorChooser.xib in Resources */,
 				CDFF9FE91CFBC13000E64650 /* QuestionLabel1.xib in Resources */,
-				CDFCD6DF1D3D62CA00561566 /* Courses.csv in Resources */,
+				CDFCD6E51D3E01C400561566 /* Courses.csv in Resources */,
 				CDFCD6D31D39529300561566 /* CourseInfoView.xib in Resources */,
 				CDFF9FE41CFA347F00E64650 /* QuestionLabel0.xib in Resources */,
 			);
