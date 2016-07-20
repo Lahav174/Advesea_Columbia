@@ -28,9 +28,9 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
     
     var chooser : CourseChooserViewController?
     
-    var formatter = NSNumberFormatter()
-    var titleText = String()
-    var values = [(x: String, y: Double)]()
+//    var formatter = NSNumberFormatter()
+//    var titleText = String()
+//    var values = [(x: String, y: Double)]()
     
     var chart : UIView?
 
@@ -90,31 +90,9 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
         //customInitializer("Bar Chart", valueFormatter: param1, titleTxt: param2, xyValues: param3)
     }
     
-    func customInitializer(chartKind: String, valueFormatter: NSNumberFormatter,titleTxt: String, xyValues: [(x: String, y: Double)], tabLabels: [String]? = nil){
-        
-        if chart != nil{
-            chart?.removeFromSuperview()
-            chart = nil
-        }
-                
-        formatter = valueFormatter
-        titleText = titleTxt
-        values = xyValues
-        chartType = chartKind
-        
-        configureGraphBackground(titleText)
-        
-        let gBFrame = self.graphBackground.frame
-        let frame = CGRect(origin: gBFrame.origin, size: CGSize(width: gBFrame.width, height: gBFrame.height-25))
-        if chartType == "Horizontal Bar Chart"{
-            chart = HorizontalBarChartView(frame: frame)
-        } else if chartType == "Pie Chart"{
-            chart = PieChartView(frame: frame)
-        } else {
-            chart = BarChartView(frame: frame)
-        }
-        
-        //chart?.layer.masksToBounds = true
+    func updateChartData(valueFormatter: NSNumberFormatter, xyValues: [(x: String, y: Double)]){
+        var formatter = valueFormatter
+        var values = xyValues
         
         var xValues = [String]()
         
@@ -167,13 +145,8 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
             break
         default: break
         }
-
-        configureChartSettings(chartType)
-
-        self.view.insertSubview(chart!, aboveSubview: graphBackground)
-        constrainChart()
         
-        //Testing if I need this...
+        
         
         if chartType == "Horizontal Bar Chart"{
             let graph = (chart as! HorizontalBarChartView)
@@ -185,6 +158,36 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
             let graph = (chart as! BarChartView)
             graph.notifyDataSetChanged()
         }
+    }
+    
+    func customInitializer(chartKind: String, valueFormatter: NSNumberFormatter,titleTxt: String, xyValues: [(x: String, y: Double)], tabLabels: [String]? = nil){
+        
+        if chart != nil{
+            chart?.removeFromSuperview()
+            chart = nil
+        }
+        
+        let titleText = titleTxt
+        chartType = chartKind
+        
+        configureGraphBackground(titleText)
+        
+        let gBFrame = self.graphBackground.frame
+        let frame = CGRect(origin: gBFrame.origin, size: CGSize(width: gBFrame.width, height: gBFrame.height-25))
+        if chartType == "Horizontal Bar Chart"{
+            chart = HorizontalBarChartView(frame: frame)
+        } else if chartType == "Pie Chart"{
+            chart = PieChartView(frame: frame)
+        } else {
+            chart = BarChartView(frame: frame)
+        }
+        
+        configureChartSettings(chartType)
+
+        self.view.insertSubview(chart!, aboveSubview: graphBackground)
+        constrainChart()
+                
+        updateChartData(valueFormatter, xyValues: xyValues)
         
         if (tabLabels != nil){
             print("#1")
