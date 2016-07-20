@@ -9,6 +9,7 @@
             <connections>
                 <outlet property="class1Button" destination="zkD-53-osT" id="T7j-5C-s8M"/>
                 <outlet property="class2Button" destination="FaB-tB-wWS" id="Hlx-o1-4aa"/>
+                <outlet property="variableLabel" destination="ZQ2-r1-fIH" id="INk-hQ-Zji"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

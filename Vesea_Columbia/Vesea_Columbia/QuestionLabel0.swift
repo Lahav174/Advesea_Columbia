@@ -22,11 +22,13 @@ import UIKit
     
     var class2AlreadySet = false
     
-    var variableValue: Double = 0
+    var variableValue: CGFloat = 0
     
     var class1ID: String = ""
     
     var class2ID: String = ""
+    
+    @IBOutlet weak var variableLabel: UILabel!
 
     @IBOutlet weak var class1Button: UIButton!
     
@@ -40,12 +42,13 @@ import UIKit
         delegateViewController!.animateContainerIn(sender as! UIButton, buttonType: "class 2")
     }
     
-    @IBInspectable var variable : Float? {
+    @IBInspectable var variable : CGFloat? {
         get{
-            return Float(variableValue)
+            return CGFloat(variableValue)
         } set (value){
             if value != nil{
-                variableValue = Double(value!)
+                variableValue = CGFloat(value!)
+                variableLabel.text = String(Int(value!)) + "%"
             }
         }
     }
@@ -90,8 +93,33 @@ import UIKit
     func displayChartData(){
         let index1 = MyVariables.courses!.indexForKey(self.class1ID)
         let index2 = MyVariables.courses!.indexForKey(self.class2ID)
+        let param1 = NSNumberFormatter()
+        var param2 = [(x: String, y: Double)]()
         
-        print(arr[index1][index2][0...3])
+        let answerArr = Array(arr[index1][index2][0...3])
+        if (answerArr[0] != nil){
+            let takenboth = Double(answerArr[1]!+answerArr[2]!+answerArr[3]!)
+            let v1:CGFloat = CGFloat(takenboth * 100)/CGFloat(answerArr[0]!)
+            let before:Double = Double(answerArr[1]!)*100/takenboth
+            let concurrently:Double = Double(answerArr[2]!)*100/takenboth
+            let after:Double = Double(answerArr[3]!)*100/takenboth
+            param2 = [("Before", before),("During", concurrently),("After", after)]
+            self.variable = v1
+            
+            print(String(v1) + "%")
+            print(String(before) + "% " + String(concurrently) + "% " + String(after) + "%")
+            
+            
+        } else {
+            self.variable = 0
+            param2 = [("Before", 0),("During", 0),("After", 0)]
+        }
+        
+        
+        
+        param1.numberStyle = NSNumberFormatterStyle.PercentStyle
+        param1.multiplier = 1
+        delegateViewController!.updateChartData(param1, xyValues: param2)
         
     }
     

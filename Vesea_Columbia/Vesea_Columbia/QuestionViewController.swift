@@ -146,18 +146,23 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
         default: break
         }
         
-        
+        print("Got hrrr")
         
         if chartType == "Horizontal Bar Chart"{
             let graph = (chart as! HorizontalBarChartView)
             graph.notifyDataSetChanged()
+            //graph.animate(yAxisDuration: 1.5, easingOption: .EaseOutQuart)
         } else if chartType == "Pie Chart"{
             let graph = (chart as! PieChartView)
             graph.notifyDataSetChanged()
+            //graph.animate(yAxisDuration: 1.5, easingOption: .EaseOutQuart)
         } else {
             let graph = (chart as! BarChartView)
             graph.notifyDataSetChanged()
         }
+        
+        configureChartSettings(chartType)
+        
     }
     
     func customInitializer(chartKind: String, valueFormatter: NSNumberFormatter,titleTxt: String, xyValues: [(x: String, y: Double)], tabLabels: [String]? = nil){
@@ -187,7 +192,7 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
         self.view.insertSubview(chart!, aboveSubview: graphBackground)
         constrainChart()
         
-        updateChartData(valueFormatter, xyValues: xyValues)
+        //updateChartData(valueFormatter, xyValues: xyValues)
         
         if (tabLabels != nil){
             print("#1")
