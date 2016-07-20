@@ -18,14 +18,9 @@
 		CD892EE21CEBB8CD00DF5D24 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD892EE01CEBB8CD00DF5D24 /* LaunchScreen.storyboard */; };
 		CD892EED1CEBB8CD00DF5D24 /* Vesea_ColumbiaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD892EEC1CEBB8CD00DF5D24 /* Vesea_ColumbiaTests.swift */; };
 		CD892EF81CEBB8CD00DF5D24 /* Vesea_ColumbiaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD892EF71CEBB8CD00DF5D24 /* Vesea_ColumbiaUITests.swift */; };
-		CD892F061CEBBEE700DF5D24 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD892F051CEBBEE700DF5D24 /* PageViewController.swift */; };
-		CD892F081CEBBF9A00DF5D24 /* BarChartQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD892F071CEBBF9A00DF5D24 /* BarChartQuestionViewController.swift */; };
 		CD892F0C1CEBFCCB00DF5D24 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD892F0B1CEBFCCB00DF5D24 /* AFNetworking.framework */; };
 		CD892F0E1CEBFCE300DF5D24 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD892F0D1CEBFCE300DF5D24 /* Charts.framework */; };
-		CD892F121CED417300DF5D24 /* ListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD892F111CED417300DF5D24 /* ListTableViewController.swift */; };
 		CD892F141CEFA16600DF5D24 /* FrontViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD892F131CEFA16600DF5D24 /* FrontViewController.swift */; };
-		CD892F161CEFB84600DF5D24 /* PieChartQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD892F151CEFB84600DF5D24 /* PieChartQuestionViewController.swift */; };
-		CD892F1A1CF1181500DF5D24 /* mainLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD892F191CF1181500DF5D24 /* mainLabel.swift */; };
 		CD892F1C1CF15C1900DF5D24 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD892F1B1CF15C1900DF5D24 /* TableViewCell.swift */; };
 		CD892F1E1CF168B100DF5D24 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD892F1D1CF168B100DF5D24 /* ListViewController.swift */; };
 		CDB82A281D05F46E00F01678 /* CourseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB82A271D05F46E00F01678 /* CourseTableViewCell.swift */; };
@@ -39,14 +34,11 @@
 		CDFCD6E51D3E01C400561566 /* Courses.csv in Resources */ = {isa = PBXBuildFile; fileRef = CDFCD6E41D3E01C400561566 /* Courses.csv */; };
 		CDFF9FD81CF394AE00E64650 /* ScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFF9FD71CF394AE00E64650 /* ScrollViewController.swift */; };
 		CDFF9FDA1CF6D02500E64650 /* TestGraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFF9FD91CF6D02500E64650 /* TestGraphViewController.swift */; };
-		CDFF9FDC1CF8C9D500E64650 /* HBarChartQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFF9FDB1CF8C9D500E64650 /* HBarChartQuestionViewController.swift */; };
 		CDFF9FDE1CF8DE5700E64650 /* ScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFF9FDD1CF8DE5700E64650 /* ScrollView.swift */; };
 		CDFF9FE01CFA304600E64650 /* QuestionLabel0.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFF9FDF1CFA304600E64650 /* QuestionLabel0.swift */; };
 		CDFF9FE41CFA347F00E64650 /* QuestionLabel0.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDFF9FE31CFA347F00E64650 /* QuestionLabel0.xib */; };
 		CDFF9FE71CFBC0FB00E64650 /* QuestionLabel1.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFF9FE61CFBC0FB00E64650 /* QuestionLabel1.swift */; };
 		CDFF9FE91CFBC13000E64650 /* QuestionLabel1.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDFF9FE81CFBC13000E64650 /* QuestionLabel1.xib */; };
-		CDFF9FEB1CFC940C00E64650 /* QuestionLabel2.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFF9FEA1CFC940C00E64650 /* QuestionLabel2.swift */; };
-		CDFF9FED1CFC942100E64650 /* QuestionLabel2.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDFF9FEC1CFC942100E64650 /* QuestionLabel2.xib */; };
 		CDFF9FEF1CFFB46D00E64650 /* CourseChooser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFF9FEE1CFFB46D00E64650 /* CourseChooser.swift */; };
 		CDFF9FF11CFFB70800E64650 /* CourseChooser.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDFF9FF01CFFB70800E64650 /* CourseChooser.xib */; };
 		CDFF9FF31D00DB3A00E64650 /* MajorChooser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFF9FF21D00DB3A00E64650 /* MajorChooser.swift */; };
@@ -90,14 +82,9 @@
 		CD892EF31CEBB8CD00DF5D24 /* Vesea_ColumbiaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Vesea_ColumbiaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD892EF71CEBB8CD00DF5D24 /* Vesea_ColumbiaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vesea_ColumbiaUITests.swift; sourceTree = "<group>"; };
 		CD892EF91CEBB8CD00DF5D24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CD892F051CEBBEE700DF5D24 /* PageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
-		CD892F071CEBBF9A00DF5D24 /* BarChartQuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarChartQuestionViewController.swift; sourceTree = "<group>"; };
 		CD892F0B1CEBFCCB00DF5D24 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = "Pods/../build/Debug-iphoneos/AFNetworking.framework"; sourceTree = "<group>"; };
 		CD892F0D1CEBFCE300DF5D24 /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = "../../../Library/Developer/Xcode/DerivedData/Vesea_Columbia-gafzbpxmauamudfyiprzgttigbdj/Build/Products/Debug-iphonesimulator/Charts.framework"; sourceTree = "<group>"; };
-		CD892F111CED417300DF5D24 /* ListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListTableViewController.swift; sourceTree = "<group>"; };
 		CD892F131CEFA16600DF5D24 /* FrontViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrontViewController.swift; sourceTree = "<group>"; };
-		CD892F151CEFB84600DF5D24 /* PieChartQuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PieChartQuestionViewController.swift; sourceTree = "<group>"; };
-		CD892F191CF1181500DF5D24 /* mainLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mainLabel.swift; sourceTree = "<group>"; };
 		CD892F1B1CF15C1900DF5D24 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		CD892F1D1CF168B100DF5D24 /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		CDB82A271D05F46E00F01678 /* CourseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseTableViewCell.swift; sourceTree = "<group>"; };
@@ -111,14 +98,11 @@
 		CDFCD6E41D3E01C400561566 /* Courses.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Courses.csv; sourceTree = "<group>"; };
 		CDFF9FD71CF394AE00E64650 /* ScrollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollViewController.swift; sourceTree = "<group>"; };
 		CDFF9FD91CF6D02500E64650 /* TestGraphViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestGraphViewController.swift; sourceTree = "<group>"; };
-		CDFF9FDB1CF8C9D500E64650 /* HBarChartQuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HBarChartQuestionViewController.swift; sourceTree = "<group>"; };
 		CDFF9FDD1CF8DE5700E64650 /* ScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollView.swift; sourceTree = "<group>"; };
 		CDFF9FDF1CFA304600E64650 /* QuestionLabel0.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionLabel0.swift; sourceTree = "<group>"; };
 		CDFF9FE31CFA347F00E64650 /* QuestionLabel0.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuestionLabel0.xib; sourceTree = "<group>"; };
 		CDFF9FE61CFBC0FB00E64650 /* QuestionLabel1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionLabel1.swift; sourceTree = "<group>"; };
 		CDFF9FE81CFBC13000E64650 /* QuestionLabel1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuestionLabel1.xib; sourceTree = "<group>"; };
-		CDFF9FEA1CFC940C00E64650 /* QuestionLabel2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionLabel2.swift; sourceTree = "<group>"; };
-		CDFF9FEC1CFC942100E64650 /* QuestionLabel2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuestionLabel2.xib; sourceTree = "<group>"; };
 		CDFF9FEE1CFFB46D00E64650 /* CourseChooser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseChooser.swift; sourceTree = "<group>"; };
 		CDFF9FF01CFFB70800E64650 /* CourseChooser.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CourseChooser.xib; sourceTree = "<group>"; };
 		CDFF9FF21D00DB3A00E64650 /* MajorChooser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MajorChooser.swift; sourceTree = "<group>"; };
@@ -207,13 +191,7 @@
 			isa = PBXGroup;
 			children = (
 				CD892ED71CEBB8CD00DF5D24 /* AppDelegate.swift */,
-				CD892F111CED417300DF5D24 /* ListTableViewController.swift */,
-				CD892F051CEBBEE700DF5D24 /* PageViewController.swift */,
 				CDFF9FD91CF6D02500E64650 /* TestGraphViewController.swift */,
-				CD892F191CF1181500DF5D24 /* mainLabel.swift */,
-				CD892F071CEBBF9A00DF5D24 /* BarChartQuestionViewController.swift */,
-				CDFF9FDB1CF8C9D500E64650 /* HBarChartQuestionViewController.swift */,
-				CD892F151CEFB84600DF5D24 /* PieChartQuestionViewController.swift */,
 				CDFF9FF61D01211200E64650 /* ChooserViews */,
 				CD892EDB1CEBB8CD00DF5D24 /* Main.storyboard */,
 				CD892F131CEFA16600DF5D24 /* FrontViewController.swift */,
@@ -265,8 +243,6 @@
 				CDFF9FE31CFA347F00E64650 /* QuestionLabel0.xib */,
 				CDFF9FE61CFBC0FB00E64650 /* QuestionLabel1.swift */,
 				CDFF9FE81CFBC13000E64650 /* QuestionLabel1.xib */,
-				CDFF9FEA1CFC940C00E64650 /* QuestionLabel2.swift */,
-				CDFF9FEC1CFC942100E64650 /* QuestionLabel2.xib */,
 			);
 			name = QuestionLabels;
 			sourceTree = "<group>";
@@ -397,7 +373,6 @@
 				CD892EDF1CEBB8CD00DF5D24 /* Assets.xcassets in Resources */,
 				CDFCD6D71D39701200561566 /* ProblemFormView.xib in Resources */,
 				CD892EDD1CEBB8CD00DF5D24 /* Main.storyboard in Resources */,
-				CDFF9FED1CFC942100E64650 /* QuestionLabel2.xib in Resources */,
 				CDFF9FF11CFFB70800E64650 /* CourseChooser.xib in Resources */,
 				CDFF9FF51D00DB4F00E64650 /* MajorChooser.xib in Resources */,
 				CDFF9FE91CFBC13000E64650 /* QuestionLabel1.xib in Resources */,
@@ -476,22 +451,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD892F081CEBBF9A00DF5D24 /* BarChartQuestionViewController.swift in Sources */,
 				CDFF9FDE1CF8DE5700E64650 /* ScrollView.swift in Sources */,
 				CD0BCC621D0DD37B002D7B49 /* QuestionViewController.swift in Sources */,
-				CD892F061CEBBEE700DF5D24 /* PageViewController.swift in Sources */,
 				CD892F141CEFA16600DF5D24 /* FrontViewController.swift in Sources */,
 				CDB82A281D05F46E00F01678 /* CourseTableViewCell.swift in Sources */,
 				CD892F1C1CF15C1900DF5D24 /* TableViewCell.swift in Sources */,
-				CD892F161CEFB84600DF5D24 /* PieChartQuestionViewController.swift in Sources */,
-				CD892F121CED417300DF5D24 /* ListTableViewController.swift in Sources */,
 				CDFF9FF31D00DB3A00E64650 /* MajorChooser.swift in Sources */,
 				CD2312A11D04A21400ED6D0D /* CourseChooserViewController.swift in Sources */,
 				CDFF9FE71CFBC0FB00E64650 /* QuestionLabel1.swift in Sources */,
 				CDFF9FD81CF394AE00E64650 /* ScrollViewController.swift in Sources */,
-				CDFF9FDC1CF8C9D500E64650 /* HBarChartQuestionViewController.swift in Sources */,
 				CDFCD6D51D396E6B00561566 /* ProblemFormView.swift in Sources */,
-				CDFF9FEB1CFC940C00E64650 /* QuestionLabel2.swift in Sources */,
 				CDFCD6D11D3950A300561566 /* CourseInfoView.swift in Sources */,
 				CDFF9FEF1CFFB46D00E64650 /* CourseChooser.swift in Sources */,
 				CDFF9FE01CFA304600E64650 /* QuestionLabel0.swift in Sources */,
@@ -500,7 +469,6 @@
 				CDFF9FDA1CF6D02500E64650 /* TestGraphViewController.swift in Sources */,
 				CD892F1E1CF168B100DF5D24 /* ListViewController.swift in Sources */,
 				CDD865E81D315E9600D942CC /* OrderedDictionary.swift in Sources */,
-				CD892F1A1CF1181500DF5D24 /* mainLabel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -169,7 +169,7 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
         
     }
     
-    func customInitializer(chartKind: String, valueFormatter: NSNumberFormatter,titleTxt: String, xyValues: [(x: String, y: Double)], tabLabels: [String]? = nil){
+    func customInitializer(chartKind: String, titleTxt: String, tabLabels: [String]? = nil){
         
         if chart != nil{
             chart?.removeFromSuperview()
@@ -209,11 +209,13 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
             self.segmentedControl = nil
         }
         
-        chart!.alpha = 0
-        self.activityView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
-        self.activityView.center = (chart?.center)!
-        self.activityView.startAnimating()
-        self.view.insertSubview(activityView, aboveSubview: chart!)
+        if !(activityView.isAnimating()){
+            chart!.alpha = 0
+            self.activityView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
+            self.activityView.center = (chart?.center)!
+            self.activityView.startAnimating()
+            self.view.insertSubview(activityView, aboveSubview: chart!)
+        }
         
     }
     
@@ -398,7 +400,7 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
             activityView.alpha = 1
             chart?.alpha = 0
             self.enableButtonsOfLabel(self.questionNumber, bool: false)
-            let delayInSeconds = 0.8
+            let delayInSeconds = 0.6
             
             let delay = Int64(delayInSeconds*Double(NSEC_PER_SEC))
             let dispatchTime = dispatch_time(DISPATCH_TIME_NOW, delay)

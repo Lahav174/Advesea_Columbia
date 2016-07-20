@@ -16,15 +16,15 @@ import UIKit
     
     var nibName: String = "CourseInfoView"
     
-    var courseID: String = ""
+    private var courseID: String = ""
     
-    var courseName: String = ""
+    private var courseName: String = ""
     
-    var courseDepartment: String = ""
+    private var courseDepartment: String = ""
     
-    var culpaIndex: String = ""
+    private var culpaIndex: String = ""
     
-    var courseDirectoryNumber: String = "123456"
+    private var courseDirectoryNumber: String = "123456"
     
     @IBOutlet weak var departmentLabel: UILabel!
     

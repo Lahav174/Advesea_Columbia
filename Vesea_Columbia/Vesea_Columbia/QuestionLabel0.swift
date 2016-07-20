@@ -24,9 +24,9 @@ import UIKit
     
     var variableValue: CGFloat = 0
     
-    var class1ID: String = ""
+    private var class1ID: String = ""
     
-    var class2ID: String = ""
+    private var class2ID: String = ""
     
     @IBOutlet weak var variableLabel: UILabel!
 

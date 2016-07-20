@@ -209,7 +209,7 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
         questionViewController!.addLabel(preset)
         if preset < 40{
         questionViewController?.chart?.layoutIfNeeded()
-        questionViewController!.customInitializer(param0, valueFormatter: param1, titleTxt: param2, xyValues: param3, tabLabels: param4)
+        questionViewController!.customInitializer(param0, titleTxt: param2, tabLabels: param4)
         }
     }
     
