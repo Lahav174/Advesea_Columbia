@@ -146,8 +146,7 @@ import UIKit
         self.class1 = def.objectForKey("selectedCourse1") as! String
         self.class2 = def.objectForKey("selectedCourse2") as! String
         
-        self.class1Button.enabled = false
-        self.class2Button.enabled = false
+        enableButtons(false)
         
         //setupQuestionData()
         let qos = Int(QOS_CLASS_USER_INITIATED.rawValue)
@@ -186,9 +185,8 @@ import UIKit
             let mainQueue: dispatch_queue_t = dispatch_get_main_queue()
             dispatch_async(mainQueue, {
                 self.delegateViewController!.chart!.alpha = 1
-                self.delegateViewController!.activityView.removeFromSuperview()
-                self.class1Button.enabled = true
-                self.class2Button.enabled = true
+                self.delegateViewController!.activityView.alpha = 0
+                self.enableButtons(true)
                 self.displayChartData()
             })
         }
@@ -196,9 +194,9 @@ import UIKit
     
     
     
-    func setupQuestionData(){
-        
-        
+    func enableButtons(bool: Bool){
+        self.class1Button.enabled = bool
+        self.class2Button.enabled = bool
     }
 
 }

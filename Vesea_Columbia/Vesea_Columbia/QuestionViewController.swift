@@ -18,6 +18,8 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
     
     var chooserBeingDisplayed = false
     
+    var courseChooserOriginalSelectedCourse: String?
+    
     var infoViewBeingDisplayed = false
     var infoView : CourseInfoView?
     
@@ -355,17 +357,20 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
         graphBackgroundLabel.font = UIFont(name: "HelveticaNeue-Light", size: 16)!
     }
     
-    // MARK: - Chooser
+    // MARK: - Chooser Animate
     
     func animateContainerIn(sender: UIButton, buttonType: String){
+        self.courseChooserOriginalSelectedCourse = nil
         self.currentlyEnabledButton = sender
         let def = NSUserDefaults.standardUserDefaults()
         if (buttonType == "class 1"){
             self.chooser!.loadSelectedCell(buttonType)
+            self.courseChooserOriginalSelectedCourse = def.objectForKey("selectedCourse1") as! String
             //print("Should select course with call: " + self.chooser!.selectedCourseCall! != def.objectForKey("selectedCourse1") as! String)
             
         } else if (buttonType == "class 2"){
             self.chooser!.loadSelectedCell(buttonType)
+            self.courseChooserOriginalSelectedCourse = def.objectForKey("selectedCourse2") as! String
             //print("Should select course with call: " + self.chooser!.selectedCourseCall! != def.objectForKey("selectedCourse2") as! String)
             
         }
@@ -387,29 +392,42 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
         let def = NSUserDefaults.standardUserDefaults()
         chooser!.searchBar.resignFirstResponder()
         
-        let delayInSeconds = 0.6
-        let delay = Int64(delayInSeconds*Double(NSEC_PER_SEC))
-        let dispatchTime = dispatch_time(DISPATCH_TIME_NOW, delay)
-        dispatch_after(dispatchTime, dispatch_get_main_queue()) {
-            switch self.questionNumber {
-            case 0:
-                let qLabel = self.questionLabel as! QuestionLabel0
-                if (self.chooser!.courseChooserType == "class 1"){
-                    qLabel.class1 = def.objectForKey("selectedCourse1") as! String
-                } else if (self.chooser!.courseChooserType == "class 2"){
-                    qLabel.class2 = def.objectForKey("selectedCourse2") as! String
+        if chooser!.courseChooserType == "class 1" && courseChooserOriginalSelectedCourse! != def.objectForKey("selectedCourse1") as! String ||
+            chooser!.courseChooserType == "class 2" && courseChooserOriginalSelectedCourse! != def.objectForKey("selectedCourse2") as! String{
+            
+            activityView.alpha = 1
+            chart?.alpha = 0
+            self.enableButtonsOfLabel(self.questionNumber, bool: false)
+            let delayInSeconds = 0.8
+            
+            let delay = Int64(delayInSeconds*Double(NSEC_PER_SEC))
+            let dispatchTime = dispatch_time(DISPATCH_TIME_NOW, delay)
+            
+            dispatch_after(dispatchTime, dispatch_get_main_queue()) {
+                switch self.questionNumber {
+                case 0:
+                    let qLabel = self.questionLabel as! QuestionLabel0
+                    if (self.chooser!.courseChooserType == "class 1"){
+                        qLabel.class1 = def.objectForKey("selectedCourse1") as! String
+                    } else if (self.chooser!.courseChooserType == "class 2"){
+                        qLabel.class2 = def.objectForKey("selectedCourse2") as! String
+                    }
+                    qLabel.enableButtons(true)
+                    break
+                case 1:
+                    let qLabel = self.questionLabel as! QuestionLabel1
+                    if (self.chooser!.courseChooserType == "class 1"){
+                        qLabel.class1 = QuestionViewController.abreviateID(def.objectForKey("selectedCourse1") as! String)
+                    } else if (self.chooser!.courseChooserType == "class 2"){
+                        qLabel.class2 = QuestionViewController.abreviateID(def.objectForKey("selectedCourse2") as! String)
+                    }
+                    break
+                default:
+                    break
                 }
-                break
-            case 1:
-                let qLabel = self.questionLabel as! QuestionLabel1
-                if (self.chooser!.courseChooserType == "class 1"){
-                    qLabel.class1 = QuestionViewController.abreviateID(def.objectForKey("selectedCourse1") as! String)
-                } else if (self.chooser!.courseChooserType == "class 2"){
-                    qLabel.class2 = QuestionViewController.abreviateID(def.objectForKey("selectedCourse2") as! String)
-                }
-                break
-            default:
-                break
+                
+                self.activityView.alpha = 0
+                self.chart?.alpha = 1
             }
         }
         
@@ -428,6 +446,8 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
             })
         }
     }
+    
+    // MARK: - touchesBegan
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         print("Screen touched")
@@ -449,6 +469,8 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
             
         }
     }
+    
+    // MARK: - InfoView
     
     func addInfoView(course: ObjectTuple<NSString,NSDictionary>){
         print("Hey")
@@ -504,6 +526,8 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
         return "   " + substring
     }
     
+    // MARK: - QuestionLabel
+    
     func addLabel(preset: Int){
         
         if questionLabel != nil{
@@ -533,6 +557,16 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
             let labelHeightConstraint = NSLayoutConstraint(item: questionLabel!, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: 175)
             let labelCenterXConstraint = NSLayoutConstraint(item: questionLabel!, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0)
             self.view.addConstraints([labelWidthConstraint, labelCenterXConstraint, labelyConstraint, labelHeightConstraint])
+            break
+        default:
+            break
+        }
+    }
+    
+    func enableButtonsOfLabel(number: Int, bool: Bool){
+        switch number {
+        case 0:
+            (self.questionLabel as! QuestionLabel0).enableButtons(bool)
             break
         default:
             break
