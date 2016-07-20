@@ -26,6 +26,8 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
     
     var flipView : UIView?
     
+    var activityView = UIActivityIndicatorView()
+    
     var chooser : CourseChooserViewController?
     
 //    var formatter = NSNumberFormatter()
@@ -202,9 +204,15 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
             print("#2")
             self.segmentedControl!.backgroundColor = UIColor.redColor()
             self.segmentedControl!.removeFromSuperview()
-            //self.segmentedControl!.hidden = true
             self.segmentedControl = nil
         }
+        
+        chart!.alpha = 0
+        self.activityView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
+        self.activityView.center = (chart?.center)!
+        self.activityView.startAnimating()
+        self.view.insertSubview(activityView, aboveSubview: chart!)
+        
     }
     
     // MARK: - Chart Setup
@@ -378,25 +386,31 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
     func animateContainerOut(){
         let def = NSUserDefaults.standardUserDefaults()
         chooser!.searchBar.resignFirstResponder()
-        switch self.questionNumber {
-        case 0:
-            let qLabel = questionLabel as! QuestionLabel0
-            if (self.chooser!.courseChooserType == "class 1"){
-                qLabel.class1 = def.objectForKey("selectedCourse1") as! String
-            } else if (self.chooser!.courseChooserType == "class 2"){
-                qLabel.class2 = def.objectForKey("selectedCourse2") as! String
+        
+        let delayInSeconds = 0.6
+        let delay = Int64(delayInSeconds*Double(NSEC_PER_SEC))
+        let dispatchTime = dispatch_time(DISPATCH_TIME_NOW, delay)
+        dispatch_after(dispatchTime, dispatch_get_main_queue()) {
+            switch self.questionNumber {
+            case 0:
+                let qLabel = self.questionLabel as! QuestionLabel0
+                if (self.chooser!.courseChooserType == "class 1"){
+                    qLabel.class1 = def.objectForKey("selectedCourse1") as! String
+                } else if (self.chooser!.courseChooserType == "class 2"){
+                    qLabel.class2 = def.objectForKey("selectedCourse2") as! String
+                }
+                break
+            case 1:
+                let qLabel = self.questionLabel as! QuestionLabel1
+                if (self.chooser!.courseChooserType == "class 1"){
+                    qLabel.class1 = QuestionViewController.abreviateID(def.objectForKey("selectedCourse1") as! String)
+                } else if (self.chooser!.courseChooserType == "class 2"){
+                    qLabel.class2 = QuestionViewController.abreviateID(def.objectForKey("selectedCourse2") as! String)
+                }
+                break
+            default:
+                break
             }
-            break
-        case 1:
-            let qLabel = questionLabel as! QuestionLabel1
-            if (self.chooser!.courseChooserType == "class 1"){
-                qLabel.class1 = QuestionViewController.abreviateID(def.objectForKey("selectedCourse1") as! String)
-            } else if (self.chooser!.courseChooserType == "class 2"){
-                qLabel.class2 = QuestionViewController.abreviateID(def.objectForKey("selectedCourse2") as! String)
-            }
-            break
-        default:
-            break
         }
         
         self.delegate!.vc1!.tableView.reloadData()

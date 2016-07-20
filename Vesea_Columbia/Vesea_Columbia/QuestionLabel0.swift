@@ -146,6 +146,9 @@ import UIKit
         self.class1 = def.objectForKey("selectedCourse1") as! String
         self.class2 = def.objectForKey("selectedCourse2") as! String
         
+        self.class1Button.enabled = false
+        self.class2Button.enabled = false
+        
         //setupQuestionData()
         let qos = Int(QOS_CLASS_USER_INITIATED.rawValue)
         let queue = dispatch_get_global_queue(qos, 0)
@@ -182,6 +185,10 @@ import UIKit
             
             let mainQueue: dispatch_queue_t = dispatch_get_main_queue()
             dispatch_async(mainQueue, {
+                self.delegateViewController!.chart!.alpha = 1
+                self.delegateViewController!.activityView.removeFromSuperview()
+                self.class1Button.enabled = true
+                self.class2Button.enabled = true
                 self.displayChartData()
             })
         }
