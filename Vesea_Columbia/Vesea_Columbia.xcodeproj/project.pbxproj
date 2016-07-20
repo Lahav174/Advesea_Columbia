@@ -30,6 +30,7 @@
 		CD892F1E1CF168B100DF5D24 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD892F1D1CF168B100DF5D24 /* ListViewController.swift */; };
 		CDB82A281D05F46E00F01678 /* CourseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB82A271D05F46E00F01678 /* CourseTableViewCell.swift */; };
 		CDD865E81D315E9600D942CC /* OrderedDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD865E71D315E9600D942CC /* OrderedDictionary.swift */; };
+		CDEB79421D3EB1F500FA6531 /* A2_ConcurrentCourses.dat in Resources */ = {isa = PBXBuildFile; fileRef = CDEB79411D3EB1F500FA6531 /* A2_ConcurrentCourses.dat */; };
 		CDFCD6D11D3950A300561566 /* CourseInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFCD6D01D3950A300561566 /* CourseInfoView.swift */; };
 		CDFCD6D31D39529300561566 /* CourseInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDFCD6D21D39529300561566 /* CourseInfoView.xib */; };
 		CDFCD6D51D396E6B00561566 /* ProblemFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFCD6D41D396E6B00561566 /* ProblemFormView.swift */; };
@@ -101,6 +102,7 @@
 		CD892F1D1CF168B100DF5D24 /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		CDB82A271D05F46E00F01678 /* CourseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseTableViewCell.swift; sourceTree = "<group>"; };
 		CDD865E71D315E9600D942CC /* OrderedDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderedDictionary.swift; sourceTree = "<group>"; };
+		CDEB79411D3EB1F500FA6531 /* A2_ConcurrentCourses.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = A2_ConcurrentCourses.dat; sourceTree = "<group>"; };
 		CDFCD6D01D3950A300561566 /* CourseInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseInfoView.swift; sourceTree = "<group>"; };
 		CDFCD6D21D39529300561566 /* CourseInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CourseInfoView.xib; sourceTree = "<group>"; };
 		CDFCD6D41D396E6B00561566 /* ProblemFormView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProblemFormView.swift; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				CDFCD6E41D3E01C400561566 /* Courses.csv */,
+				CDEB79411D3EB1F500FA6531 /* A2_ConcurrentCourses.dat */,
 			);
 			name = Files;
 			sourceTree = "<group>";
@@ -389,6 +392,7 @@
 			files = (
 				CDFCD6DB1D3A1CE800561566 /* GoogleService-Info.plist in Resources */,
 				CD2C7E161D288E2800FCAD5E /* Courses1.csv in Resources */,
+				CDEB79421D3EB1F500FA6531 /* A2_ConcurrentCourses.dat in Resources */,
 				CD892EE21CEBB8CD00DF5D24 /* LaunchScreen.storyboard in Resources */,
 				CD892EDF1CEBB8CD00DF5D24 /* Assets.xcassets in Resources */,
 				CDFCD6D71D39701200561566 /* ProblemFormView.xib in Resources */,
