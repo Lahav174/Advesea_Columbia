@@ -22,7 +22,7 @@ class FrontViewController: UIViewController {
     }
     
     @IBAction func buttonPressed(sender: AnyObject) {
-        
+        print(MyVariables.courses!.indexForKey("COMSW3134"))
     }
     
     

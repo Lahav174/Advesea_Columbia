@@ -186,7 +186,7 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
 
         self.view.insertSubview(chart!, aboveSubview: graphBackground)
         constrainChart()
-                
+        
         updateChartData(valueFormatter, xyValues: xyValues)
         
         if (tabLabels != nil){
@@ -377,9 +377,9 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
         case 0:
             let qLabel = questionLabel as! QuestionLabel0
             if (self.chooser!.courseChooserType == "class 1"){
-                qLabel.class1 = QuestionViewController.abreviateID(def.objectForKey("selectedCourse1") as! String)
+                qLabel.class1 = def.objectForKey("selectedCourse1") as! String
             } else if (self.chooser!.courseChooserType == "class 2"){
-                qLabel.class2 = QuestionViewController.abreviateID(def.objectForKey("selectedCourse2") as! String)
+                qLabel.class2 = def.objectForKey("selectedCourse2") as! String
             }
             break
         case 1:

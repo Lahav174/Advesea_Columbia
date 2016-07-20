@@ -47,8 +47,8 @@ class OrderedDictionary<valueType>: NSObject {
         return mainArray[index].a!
     }
     
-    func indexForKey(key: NSString) -> Int{
-        return (mainDictionary[key]! as! ObjectTuple<Int, NSDictionary>).a!
+    func indexForKey(key: String) -> Int{
+        return (mainDictionary.valueForKey(key) as! ObjectTuple<Int, valueType>).a!
     }
     
 }

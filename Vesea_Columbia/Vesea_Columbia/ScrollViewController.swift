@@ -53,9 +53,7 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
         checkForUpdate()
         
         setUpCourses()
-        
-        setupQuestionData()
-        
+                
         checkNewUser()
         
         scrollView.delaysContentTouches = false
@@ -264,43 +262,6 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
             courseDict.insert(singleCourseDict, forKey: csvColumns["ID"]![i], atIndex: i)
         }
         MyVariables.courses = courseDict
-    }
-    
-    func setupQuestionData(){
-        print("#1")
-        
-        var arr : [[[UInt16?]]] = Array(count: 3000, repeatedValue: Array(count : 3000, repeatedValue: Array(count: 4, repeatedValue: nil)))
-        var shorts = [UInt16]()
-        if let data = NSData(contentsOfURL: NSBundle.mainBundle().URLForResource("A2_ConcurrentCourses", withExtension: "dat")!){
-            var buffer = [UInt8](count: data.length, repeatedValue: 0)
-            data.getBytes(&buffer, length: data.length)
-            print("#2")
-            
-            for i in 0...buffer.count/2-1 {
-                let index = i*2
-                let bytes:[UInt8] = [buffer[index+1],buffer[index]]
-                let u16 = UnsafePointer<UInt16>(bytes).memory
-                shorts.append(u16)
-            }
-            print("#3")
-            for i in 0...shorts.count/7-1{
-                let shortsSegment = Array(shorts[(i*7)...(6+i*7)])
-                assert(shortsSegment.count == 7, "not 7")
-                assert(shortsSegment[0] < 3000 && shortsSegment[1] < 3000, "wut")
-                arr[Int(shortsSegment[0])][Int(shortsSegment[1])][0] = shortsSegment[2]
-                arr[Int(shortsSegment[0])][Int(shortsSegment[1])][1] = shortsSegment[4]
-                arr[Int(shortsSegment[0])][Int(shortsSegment[1])][2] = shortsSegment[5]
-                arr[Int(shortsSegment[0])][Int(shortsSegment[1])][3] = shortsSegment[6]
-            }
-            
-            //print(arr[226][1001][0...3])
-            
-            
-        }
-        
-        
-        print("#4")
-        
     }
     
     func checkNewUser(){

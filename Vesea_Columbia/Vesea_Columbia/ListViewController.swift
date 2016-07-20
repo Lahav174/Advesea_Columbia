@@ -150,7 +150,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         delegate!.resetQuestionViewController(indexPath.section)
-        let nextPage = CGPoint(x: self.view.frame.width*2, y: 0)
+        let nextPage = CGPoint(x: self.view.frame.width*2 + K.Others.screenGap*2, y: 0)
         delegate!.scrollView.setContentOffset(nextPage, animated: true)
         delegate!.scrollView.panGestureRecognizer.enabled = true
     }
