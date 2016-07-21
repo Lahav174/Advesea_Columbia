@@ -85,11 +85,15 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
         
         
         self.activityView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
-        self.activityView.center = graphBackground.center
         self.activityView.alpha = 0
         self.activityView.startAnimating()
         self.view.insertSubview(activityView, aboveSubview: graphBackground)
     
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        self.activityView.center = graphBackground.center
     }
     
     func updateChartData(valueFormatter: NSNumberFormatter, xyValues: [(x: String, y: Double)]){
@@ -401,6 +405,11 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
             dispatch_after(dispatchTime, dispatch_get_main_queue()) {
                 switch self.questionNumber {
                 case 0:
+                    let qLabel = self.questionLabel as! QuestionLabel0
+                    if (self.chooser!.courseChooserType == "class 1"){
+                        qLabel.class1 = def.objectForKey("selectedCourse1") as! String
+                    }
+                    qLabel.enableButtons(true)
                     break
                 case 1:
                     let qLabel = self.questionLabel as! QuestionLabel1
@@ -533,6 +542,17 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
         }
         
         switch preset {
+        case 0:
+            questionLabel = QuestionLabel0(frame: CGRect(x: 1, y: 1, width: 1, height: 1))
+            (questionLabel as! QuestionLabel0).delegateViewController = self
+            self.view.insertSubview(questionLabel!, belowSubview: container)
+            questionLabel!.translatesAutoresizingMaskIntoConstraints = false
+            let labelyConstraint = NSLayoutConstraint(item: questionLabel!, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: graphBackground, attribute: NSLayoutAttribute.Top, multiplier: 1, constant: -30)
+            let labelWidthConstraint = NSLayoutConstraint(item: questionLabel!, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Width, multiplier: 1, constant: -60)
+            let labelHeightConstraint = NSLayoutConstraint(item: questionLabel!, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: 150)
+            let labelCenterXConstraint = NSLayoutConstraint(item: questionLabel!, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0)
+            self.view.addConstraints([labelWidthConstraint, labelCenterXConstraint, labelyConstraint, labelHeightConstraint])
+            break
         case 2:
             questionLabel = QuestionLabel2(frame: CGRect(x: 1, y: 1, width: 1, height: 1))
             (questionLabel as! QuestionLabel2).delegateViewController = self
@@ -562,6 +582,9 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
     
     func enableButtonsOfLabel(number: Int, bool: Bool){
         switch number {
+        case 0:
+            (self.questionLabel as! QuestionLabel0).enableButtons(bool)
+            break
         case 2:
             (self.questionLabel as! QuestionLabel2).enableButtons(bool)
             break

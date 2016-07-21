@@ -12,7 +12,7 @@ import UIKit
     
     var delegateViewController : QuestionViewController?
     
-    var arr : [[[UInt16?]]] = Array(count: 3000, repeatedValue: Array(count : 3000, repeatedValue: Array(count: 4, repeatedValue: nil)))
+    var arr : [[[UInt16?]]] = Array(count: (MyVariables.courses?.count)! + 100, repeatedValue: Array(count : (MyVariables.courses?.count)! + 100, repeatedValue: Array(count: 4, repeatedValue: nil)))
 
     var view: UIView!
     
@@ -180,6 +180,7 @@ import UIKit
                 
             }
             
+            //NSThread.sleepForTimeInterval(0)
             print("#4")
             
             let mainQueue: dispatch_queue_t = dispatch_get_main_queue()
