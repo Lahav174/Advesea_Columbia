@@ -149,7 +149,6 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
             param1.multiplier = 1
             param2 = "Term"
             param3 = [("Before", 80),("During", 100),("After", 70)]
-            let frame = CGRect(x: 30, y: questionViewController!.graphBackground.frame.origin.y - questionViewController!.graphBackground.frame.height - 150, width: self.view.frame.width-30, height: 150)
             break;
         case 1:
             height?.constant = 200
@@ -161,7 +160,6 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
             param2 = "Term"
             param3 = [("W4323", 80),("W3211", 90),("1334", 70)]
             param4 = ["Before", "Concurrently", "After"]
-            let frame = CGRect(x: 30, y: questionViewController!.graphBackground.frame.origin.y - questionViewController!.graphBackground.frame.height - 150, width: self.view.frame.width-30, height: 150)
             break;
         case 2:
             height?.constant = 200
@@ -172,7 +170,6 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
             param1.minimumFractionDigits = 0
             param2 = "Term"
             param3 = [("Spring 2015", 80),("Fall 2015", 100),("Spring 2016", 70)]
-            let frame = CGRect(x: 30, y: questionViewController!.graphBackground.frame.origin.y - questionViewController!.graphBackground.frame.height - 150, width: self.view.frame.width-30, height: 70)
             break;
         case 3:
             height?.constant = 200

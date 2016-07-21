@@ -1,5 +1,5 @@
 //
-//  questionLabel0.swift
+//  QuestionLabel2.swift
 //  Vesea_Columbia
 //
 //  Created by Lahav Lipson on 5/28/16.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-@IBDesignable class QuestionLabel0: UIView {
+@IBDesignable class QuestionLabel2: UIView {
     
     var delegateViewController : QuestionViewController?
     
@@ -16,7 +16,7 @@ import UIKit
 
     var view: UIView!
     
-    var nibName: String = "QuestionLabel0"
+    var nibName: String = "QuestionLabel2"
     
     var class1AlreadySet = false
     

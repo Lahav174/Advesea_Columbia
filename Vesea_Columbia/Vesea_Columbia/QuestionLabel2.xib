@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="QuestionLabel0" customModule="Vesea_Columbia" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="QuestionLabel2" customModule="Vesea_Columbia" customModuleProvider="target">
             <connections>
                 <outlet property="class1Button" destination="zkD-53-osT" id="T7j-5C-s8M"/>
                 <outlet property="class2Button" destination="FaB-tB-wWS" id="Hlx-o1-4aa"/>

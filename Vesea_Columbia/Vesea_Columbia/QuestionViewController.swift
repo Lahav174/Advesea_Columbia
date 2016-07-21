@@ -83,15 +83,13 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
         self.view.addConstraints([heightConstraint, yConstraint])
         self.container.layoutIfNeeded()
         
-        //Can be replaced or removed later
         
-        let param1 = NSNumberFormatter()
-        param1.numberStyle = NSNumberFormatterStyle.PercentStyle
-        param1.multiplier = 1
-        let param2 = "Term"
-        let param3 : [(x: String, y: Double)] = [("Spring 2015", 80),("Fall 2015", 100),("Spring2016", 70)]
-        
-        //customInitializer("Bar Chart", valueFormatter: param1, titleTxt: param2, xyValues: param3)
+        self.activityView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
+        self.activityView.center = graphBackground.center
+        self.activityView.alpha = 0
+        self.activityView.startAnimating()
+        self.view.insertSubview(activityView, aboveSubview: graphBackground)
+    
     }
     
     func updateChartData(valueFormatter: NSNumberFormatter, xyValues: [(x: String, y: Double)]){
@@ -209,13 +207,8 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
             self.segmentedControl = nil
         }
         
-        if !(activityView.isAnimating()){
-            chart!.alpha = 0
-            self.activityView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
-            self.activityView.center = (chart?.center)!
-            self.activityView.startAnimating()
-            self.view.insertSubview(activityView, aboveSubview: chart!)
-        }
+        chart!.alpha = 0
+        activityView.alpha = 1
         
     }
     
@@ -408,13 +401,6 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
             dispatch_after(dispatchTime, dispatch_get_main_queue()) {
                 switch self.questionNumber {
                 case 0:
-                    let qLabel = self.questionLabel as! QuestionLabel0
-                    if (self.chooser!.courseChooserType == "class 1"){
-                        qLabel.class1 = def.objectForKey("selectedCourse1") as! String
-                    } else if (self.chooser!.courseChooserType == "class 2"){
-                        qLabel.class2 = def.objectForKey("selectedCourse2") as! String
-                    }
-                    qLabel.enableButtons(true)
                     break
                 case 1:
                     let qLabel = self.questionLabel as! QuestionLabel1
@@ -423,6 +409,15 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
                     } else if (self.chooser!.courseChooserType == "class 2"){
                         qLabel.class2 = QuestionViewController.abreviateID(def.objectForKey("selectedCourse2") as! String)
                     }
+                    break
+                case 2:
+                    let qLabel = self.questionLabel as! QuestionLabel2
+                    if (self.chooser!.courseChooserType == "class 1"){
+                        qLabel.class1 = def.objectForKey("selectedCourse1") as! String
+                    } else if (self.chooser!.courseChooserType == "class 2"){
+                        qLabel.class2 = def.objectForKey("selectedCourse2") as! String
+                    }
+                    qLabel.enableButtons(true)
                     break
                 default:
                     break
@@ -538,9 +533,9 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
         }
         
         switch preset {
-        case 0:
-            questionLabel = QuestionLabel0(frame: CGRect(x: 1, y: 1, width: 1, height: 1))
-            (questionLabel as! QuestionLabel0).delegateViewController = self
+        case 2:
+            questionLabel = QuestionLabel2(frame: CGRect(x: 1, y: 1, width: 1, height: 1))
+            (questionLabel as! QuestionLabel2).delegateViewController = self
             self.view.insertSubview(questionLabel!, belowSubview: container)
             questionLabel!.translatesAutoresizingMaskIntoConstraints = false
             let labelyConstraint = NSLayoutConstraint(item: questionLabel!, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: graphBackground, attribute: NSLayoutAttribute.Top, multiplier: 1, constant: -30)
@@ -567,8 +562,8 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
     
     func enableButtonsOfLabel(number: Int, bool: Bool){
         switch number {
-        case 0:
-            (self.questionLabel as! QuestionLabel0).enableButtons(bool)
+        case 2:
+            (self.questionLabel as! QuestionLabel2).enableButtons(bool)
             break
         default:
             break
