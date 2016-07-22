@@ -440,6 +440,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="clearButton" destination="qWd-78-0Gs" id="VEg-Ib-a9y"/>
+                        <outlet property="navBarTitle" destination="b8i-3i-CZW" id="Bxi-uR-Afz"/>
                         <outlet property="searchBar" destination="GRa-sc-M8y" id="WEs-Xe-lpb"/>
                         <outlet property="tableView" destination="EV3-Yk-I7z" id="qJk-88-CYe"/>
                     </connections>

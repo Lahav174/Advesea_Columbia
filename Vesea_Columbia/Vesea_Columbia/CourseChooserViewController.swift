@@ -27,6 +27,9 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UITextField!
     
+    @IBOutlet weak var navBarTitle: UINavigationItem!
+    
+    
     // MARK: - Buttons
     
     @IBAction func removeButtonPressed(sender: AnyObject) {
@@ -109,6 +112,27 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
         self.departmentHeadersInOrder.insert("Core", atIndex: 0)
         //print(self.unfilteredCourseDicts["Electrical Engineering"]!)
         //print(self.departmentHeadersInOrder)
+        
+        
+        let titleView = UIView(frame: CGRect(origin: CGPointZero, size: CGSize(width: 72, height: 40)))
+        let titleViewLabel = UILabel(frame: CGRect(origin: CGPointZero, size: CGSize(width: 72, height: 40)))
+        let titleViewImage = UIImageView(frame: CGRect(x: 0, y: 33, width: 72, height: 5))
+        titleViewImage.image = UIImage(named: "ic_arrow_drop_up")
+        titleViewImage.contentMode = UIViewContentMode.ScaleAspectFit
+        titleViewLabel.text = "Courses"
+        titleViewLabel.textAlignment = NSTextAlignment.Center
+        titleView.addSubview(titleViewLabel)
+        titleView.addSubview(titleViewImage)
+        titleView.addSubview(titleViewLabel)
+        self.navBarTitle.titleView = titleView
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
+        self.navBarTitle.titleView?.addGestureRecognizer(tap)
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        print(self.navBarTitle.titleView?.frame)
     }
     
     // MARK: - Other TableView Methods
@@ -308,6 +332,10 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
     
     func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
         return UIBarPosition.Top
+    }
+    
+    func handleTap(recognizer: UITapGestureRecognizer){
+        self.tableView.setContentOffset(CGPointZero, animated: true)
     }
     
     // MARK: - Scroll View Delegate Methods
