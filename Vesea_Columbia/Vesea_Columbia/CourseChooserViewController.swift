@@ -39,6 +39,37 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
         self.tableView.reloadData()
     }
     
+    @IBAction func upSectionPressed(sender: AnyObject) {
+        let currentSection = self.tableView.visibleSections.minElement()!
+        let atTopOfCurrentSection = self.tableView.indexPathsForVisibleRows![0].row == 0
+        print(atTopOfCurrentSection)
+        var secToGoTo = currentSection - 1
+            while secToGoTo > 0 && tableView.numberOfRowsInSection(secToGoTo) == 0{
+                secToGoTo -= 1
+            }
+        
+        if !atTopOfCurrentSection{
+            self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: currentSection), atScrollPosition: UITableViewScrollPosition.Top, animated: true)
+        }
+        else if secToGoTo == 0{
+            self.tableView.setContentOffset(CGPointZero, animated: true)
+        }
+        else if self.tableView.numberOfRowsInSection(secToGoTo) > 0{
+            self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: secToGoTo), atScrollPosition: UITableViewScrollPosition.Top, animated: true)
+        }
+        
+    }
+    
+    @IBAction func downSectionPressed(sender: AnyObject) {
+        let currentSection = self.tableView.visibleSections.minElement()!
+        
+        if currentSection >= self.departmentHeadersInOrder.count-1 {
+            self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: currentSection), atScrollPosition: UITableViewScrollPosition.Top, animated: true)
+        } else {
+            self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: currentSection+1), atScrollPosition: UITableViewScrollPosition.Top, animated: true)
+        }
+    }
+    
     // MARK: - ViewDidLoad
     
     override func viewDidLoad() {
@@ -294,5 +325,18 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
         // Dispose of any resources that can be recreated.
     }
     
+}
+
+
+extension UITableView {
+    
+    var visibleSections:Set<NSInteger> {
+        var output = Set<NSInteger>()
+        for ip in indexPathsForVisibleRows!{
+            output.insert(ip.section)
+        }
+        return output
+    }
+
 }
 
