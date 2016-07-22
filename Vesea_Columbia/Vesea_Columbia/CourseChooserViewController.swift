@@ -45,20 +45,19 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
     @IBAction func upSectionPressed(sender: AnyObject) {
         let currentSection = self.tableView.visibleSections.minElement()!
         let atTopOfCurrentSection = self.tableView.indexPathsForVisibleRows![0].row == 0
-        print(atTopOfCurrentSection)
-        var secToGoTo = currentSection - 1
-            while secToGoTo > 0 && tableView.numberOfRowsInSection(secToGoTo) == 0{
-                secToGoTo -= 1
+        var sectionToGoTo = currentSection - 1
+            while sectionToGoTo > 0 && tableView.numberOfRowsInSection(sectionToGoTo) == 0{
+                sectionToGoTo -= 1
             }
         
         if !atTopOfCurrentSection{
             self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: currentSection), atScrollPosition: UITableViewScrollPosition.Top, animated: true)
         }
-        else if secToGoTo == 0{
+        else if sectionToGoTo == 0{
             self.tableView.setContentOffset(CGPointZero, animated: true)
         }
-        else if secToGoTo >= 0 && self.tableView.numberOfRowsInSection(secToGoTo) > 0{
-            self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: secToGoTo), atScrollPosition: UITableViewScrollPosition.Top, animated: true)
+        else if sectionToGoTo >= 0 && self.tableView.numberOfRowsInSection(sectionToGoTo) > 0{
+            self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: sectionToGoTo), atScrollPosition: UITableViewScrollPosition.Top, animated: true)
         }
         
     }
@@ -66,8 +65,13 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
     @IBAction func downSectionPressed(sender: AnyObject) {
         let currentSection = self.tableView.visibleSections.minElement()!
         
+        var sectionToGoTo = currentSection + 1
+        while self.tableView.numberOfRowsInSection(sectionToGoTo) == 0{//don't have to check that its in range
+            sectionToGoTo += 1
+        }
+        
         if currentSection < self.departmentHeadersInOrder.count-1{
-            self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: currentSection+1), atScrollPosition: UITableViewScrollPosition.Top, animated: true)
+            self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: sectionToGoTo), atScrollPosition: UITableViewScrollPosition.Top, animated: true)
         }
     }
     
