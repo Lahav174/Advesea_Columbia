@@ -57,7 +57,7 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
         else if secToGoTo == 0{
             self.tableView.setContentOffset(CGPointZero, animated: true)
         }
-        else if self.tableView.numberOfRowsInSection(secToGoTo) > 0{
+        else if secToGoTo >= 0 && self.tableView.numberOfRowsInSection(secToGoTo) > 0{
             self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: secToGoTo), atScrollPosition: UITableViewScrollPosition.Top, animated: true)
         }
         
@@ -66,9 +66,7 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
     @IBAction func downSectionPressed(sender: AnyObject) {
         let currentSection = self.tableView.visibleSections.minElement()!
         
-        if currentSection >= self.departmentHeadersInOrder.count-1 {
-            self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: currentSection), atScrollPosition: UITableViewScrollPosition.Top, animated: true)
-        } else {
+        if currentSection < self.departmentHeadersInOrder.count-1{
             self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: currentSection+1), atScrollPosition: UITableViewScrollPosition.Top, animated: true)
         }
     }
@@ -110,6 +108,8 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
         self.departmentHeadersInOrder.sortInPlace()
         self.departmentHeadersInOrder = self.departmentHeadersInOrder.filter{$0 != "Core"}
         self.departmentHeadersInOrder.insert("Core", atIndex: 0)
+        self.departmentHeadersInOrder = self.departmentHeadersInOrder.filter{$0 != "Other"}
+        self.departmentHeadersInOrder.insert("Other", atIndex: departmentHeadersInOrder.count-1)
         //print(self.unfilteredCourseDicts["Electrical Engineering"]!)
         //print(self.departmentHeadersInOrder)
         
