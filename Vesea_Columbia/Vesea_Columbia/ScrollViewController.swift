@@ -168,7 +168,7 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
             param1.numberStyle = NSNumberFormatterStyle.NoStyle
             param1.multiplier = 1
             param1.minimumFractionDigits = 0
-            param2 = "Term"
+            param2 = "Semester"
             param3 = [("Spring 2015", 80),("Fall 2015", 100),("Spring 2016", 70)]
             break;
         case 3:

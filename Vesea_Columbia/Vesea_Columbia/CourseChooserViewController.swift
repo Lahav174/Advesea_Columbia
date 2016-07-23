@@ -14,6 +14,8 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
     
     var selectedCourseID : String?
     
+    let cantFindLabel = UILabel()
+    
     var unfilteredCourseDicts = NSMutableDictionary()
     var filteredCourseDicts = NSMutableDictionary()
     var departmentHeadersInOrder = [String]()
@@ -29,10 +31,13 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
     
     @IBOutlet weak var navBarTitle: UINavigationItem!
     
+    @IBOutlet weak var selectedCellView: UIView!
+    
     @IBOutlet weak var titleLabel: UILabel!
     
     @IBOutlet weak var subTitleLabel: UILabel!
     
+    @IBOutlet weak var locateButton: UIButton!
     
     // MARK: - Buttons
     
@@ -41,15 +46,29 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
         let tuple = ObjectTuple<NSString,NSDictionary>(first: self.subTitleLabel.text, second: [:])
         self.delegateViewController!.addInfoView(tuple)
     }
+    
+    func locateButtonEnabled(bool: Bool){
+        self.locateButton.enabled = bool
+        self.cantFindLabel.hidden = bool
+    }
 
     @IBAction func locateButtonPressed(sender: AnyObject) {
         let courseDict = (MyVariables.courses!.get(self.subTitleLabel.text!))!
         print(courseDict)
         let dept = courseDict["Department"] as! String
+        let section = self.departmentHeadersInOrder.indexOf(dept)
         if searching && searchBar.text != "" {
-            
+            if (self.filteredCourseDicts[dept]! as! NSArray).count > 0{
+                let arr = self.filteredCourseDicts[dept]! as! NSArray
+                for row in 0...arr.count-1{
+                    if ((arr[row] as! NSDictionary)["ID"]! as! String) == self.subTitleLabel.text!{
+                        self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: row, inSection: section!), atScrollPosition: UITableViewScrollPosition.Middle, animated: true)
+                        return
+                    }
+                }
+            }
+        print("Couldn't find it")
         } else {
-            let section = self.departmentHeadersInOrder.indexOf(dept)
             let arr = self.unfilteredCourseDicts[dept]! as! NSArray
             for row in 0...arr.count-1{
                 if ((arr[row] as! NSDictionary)["ID"]! as! String) == self.subTitleLabel.text!{
@@ -66,6 +85,7 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
     @IBAction func clearButtonPressed(sender: AnyObject) {
         searchBar.text = ""
         self.clearButton.hidden = true
+        self.locateButtonEnabled(true)
         self.tableView.reloadData()
     }
     
@@ -96,9 +116,14 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
         while self.tableView.numberOfRowsInSection(sectionToGoTo) == 0{//don't have to check that its in range
             sectionToGoTo += 1
         }
-        
-        if currentSection < self.departmentHeadersInOrder.count-1{
-            self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: sectionToGoTo), atScrollPosition: UITableViewScrollPosition.Top, animated: true)
+        if searching && searchBar.text != "" {
+            if currentSection < self.filteredCourseDicts.allKeys.count-1{
+                self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: sectionToGoTo), atScrollPosition: UITableViewScrollPosition.Top, animated: true)
+            }
+        } else {
+            if currentSection < self.unfilteredCourseDicts.allKeys.count-1{
+                self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: sectionToGoTo), atScrollPosition: UITableViewScrollPosition.Top, animated: true)
+            }
         }
     }
     
@@ -170,6 +195,14 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         print(self.navBarTitle.titleView?.frame)
+        cantFindLabel.frame = CGRect(origin: CGPoint(x: 0, y: self.locateButton.frame.origin.y), size: self.locateButton.frame.size)
+        cantFindLabel.hidden = true
+        cantFindLabel.textAlignment = NSTextAlignment.Center
+        cantFindLabel.textColor = UIColor.redColor()
+        cantFindLabel.numberOfLines = 3
+        cantFindLabel.font = UIFont(name: "HelveticaNeue-Medium", size: 10)
+        cantFindLabel.text = "Not in Search Results"
+        self.selectedCellView.insertSubview(cantFindLabel, aboveSubview: self.locateButton)
     }
     
     // MARK: - Other TableView Methods
@@ -298,11 +331,11 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
             cell.setStarImage(favs.containsObject(courseDict["ID"]! as! String))
         }
         
-        
         return cell
     }
     
     func updateSearchResults(){
+        print("Searching")
         self.filteredCourseDicts.removeAllObjects()
         
         for key in self.unfilteredCourseDicts.allKeys{
@@ -316,7 +349,23 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
           let unfilteredArr = unfilteredCourseDicts[deptKey as! String] as! NSMutableArray
             filteredCourseDicts[deptKey as! String] = unfilteredArr.filteredArrayUsingPredicate(searchPredicate)
         }
+        
         self.tableView.reloadData()
+        
+        
+        let courseDict = (MyVariables.courses!.get(self.subTitleLabel.text!))!
+        let dept = courseDict["Department"] as! String
+        if (self.filteredCourseDicts[dept]! as! NSArray).count > 0{
+            let arr = self.filteredCourseDicts[dept]! as! NSArray
+            for row in 0...arr.count-1{
+                if ((arr[row] as! NSDictionary)["ID"]! as! String) == self.subTitleLabel.text!{
+                    self.locateButtonEnabled(true)
+                    return
+                }
+            }
+        }
+        self.locateButtonEnabled(self.searchBar.text == "")
+        
         
     }
     
@@ -328,6 +377,9 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
         }
         //updateSearchResults()
         clearButton.hidden = (textField.text == "")
+        if textField.text == ""{
+            self.locateButtonEnabled(true)
+        }
         updateSearchResults()
     }
     
