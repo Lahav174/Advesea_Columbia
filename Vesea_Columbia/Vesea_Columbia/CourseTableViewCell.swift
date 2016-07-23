@@ -41,15 +41,18 @@ class CourseTableViewCell: UITableViewCell {
             favorites = defArray.mutableCopy() as! NSMutableArray
         }
 
-        if favorites.containsObject(courseObject.a! as! String){//It is currently a favorite
+        if favorites.containsObject(courseObject.a! as String){//It is currently a favorite
             //print("Un-Favorited!")
             setStarImage(false)
-            favorites.removeObject(courseObject.a! as! String)
+            favorites.removeObject(courseObject.a! as String)
+            self.delegateViewController?.unfilteredCourseDicts["Favorites"]?.removeObject(["ID":(courseObject.a! as String),"Name":(courseObject.b!["Name"]! as! String)])
         } else { //It is not currently a favorite
             setStarImage(true)
             //print("Favorited!")
-            favorites.addObject(courseObject.a! as! String)
+            favorites.addObject(courseObject.a! as String)
+            self.delegateViewController?.unfilteredCourseDicts["Favorites"]?.addObject(["ID":(courseObject.a! as String),"Name":(courseObject.b!["Name"]! as! String)])
         }
+        self.delegateViewController?.updateSearchResults()
         let arrayToSet = favorites as NSArray
         def.setObject(arrayToSet, forKey: key)
         
