@@ -43,6 +43,20 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
     }
 
     @IBAction func locateButtonPressed(sender: AnyObject) {
+        let courseDict = (MyVariables.courses!.get(self.subTitleLabel.text!))!
+        print(courseDict)
+        let dept = courseDict["Department"] as! String
+        if searching && searchBar.text != "" {
+            
+        } else {
+            let section = self.departmentHeadersInOrder.indexOf(dept)
+            let arr = self.unfilteredCourseDicts[dept]! as! NSArray
+            for row in 0...arr.count-1{
+                if ((arr[row] as! NSDictionary)["ID"]! as! String) == self.subTitleLabel.text!{
+                    self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: row, inSection: section!), atScrollPosition: UITableViewScrollPosition.Middle, animated: true)
+                }
+            }
+        }
     }
     
     @IBAction func removeButtonPressed(sender: AnyObject) {
