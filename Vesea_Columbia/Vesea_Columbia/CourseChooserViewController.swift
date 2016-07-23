@@ -114,9 +114,6 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
         self.departmentHeadersInOrder.insert("Core", atIndex: 0)
         self.departmentHeadersInOrder = self.departmentHeadersInOrder.filter{$0 != "Other"}
         self.departmentHeadersInOrder.insert("Other", atIndex: departmentHeadersInOrder.count-1)
-        //print(self.unfilteredCourseDicts["Electrical Engineering"]!)
-        //print(self.departmentHeadersInOrder)
-        
         
         let titleView = UIView(frame: CGRect(origin: CGPointZero, size: CGSize(width: 72, height: 40)))
         let titleViewLabel = UILabel(frame: CGRect(origin: CGPointZero, size: CGSize(width: 72, height: 40)))
