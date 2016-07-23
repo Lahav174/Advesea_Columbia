@@ -413,9 +413,12 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N0x-x8-LlO">
                                         <rect key="frame" x="20" y="0.0" width="45" height="50"/>
                                         <state key="normal" image="target"/>
+                                        <connections>
+                                            <action selector="locateButtonPressed:" destination="60w-v0-lcK" eventType="touchUpInside" id="lef-RM-XpB"/>
+                                        </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="ECONW1105" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jjF-gz-PdA">
-                                        <rect key="frame" x="65" y="29" width="193" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ECONW1105" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jjF-gz-PdA">
+                                        <rect key="frame" x="65" y="29" width="193" height="17"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                         <color key="textColor" red="0.9137254901960784" green="0.68627450980392157" blue="0.19607843137254902" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -440,6 +443,9 @@
                                     <constraint firstAttribute="width" constant="45" id="Sx4-sg-e2e"/>
                                 </constraints>
                                 <state key="normal" image="ic_info"/>
+                                <connections>
+                                    <action selector="infoButtonPressed:" destination="60w-v0-lcK" eventType="touchUpInside" id="FXN-Ic-yu4"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -480,7 +486,9 @@
                         <outlet property="clearButton" destination="qWd-78-0Gs" id="VEg-Ib-a9y"/>
                         <outlet property="navBarTitle" destination="b8i-3i-CZW" id="Bxi-uR-Afz"/>
                         <outlet property="searchBar" destination="GRa-sc-M8y" id="WEs-Xe-lpb"/>
+                        <outlet property="subTitleLabel" destination="jjF-gz-PdA" id="JtE-oC-riQ"/>
                         <outlet property="tableView" destination="EV3-Yk-I7z" id="qJk-88-CYe"/>
+                        <outlet property="titleLabel" destination="Mhg-Wp-wTy" id="VKE-pM-zPD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gXH-4X-E99" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -29,8 +29,19 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
     
     @IBOutlet weak var navBarTitle: UINavigationItem!
     
+    @IBOutlet weak var titleLabel: UILabel!
+    
+    @IBOutlet weak var subTitleLabel: UILabel!
+    
     
     // MARK: - Buttons
+    
+    
+    @IBAction func infoButtonPressed(sender: AnyObject) {
+    }
+
+    @IBAction func locateButtonPressed(sender: AnyObject) {
+    }
     
     @IBAction func removeButtonPressed(sender: AnyObject) {
             delegateViewController!.animateContainerOut()
@@ -158,13 +169,21 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
     func loadSelectedCell(type: String){
         
         let def = NSUserDefaults.standardUserDefaults()
-        
+        var id = String()
         if (type == "class 1"){
-            self.selectedCourseID = def.objectForKey("selectedCourse1") as! String
+            id = def.objectForKey("selectedCourse1") as! String
+            self.titleLabel.textColor = K.colors.course1Color
+            self.subTitleLabel.textColor = K.colors.course1Color
+            
         } else if (type == "class 2"){
-            self.selectedCourseID = def.objectForKey("selectedCourse2") as! String
+            id = def.objectForKey("selectedCourse2") as! String
+            self.titleLabel.textColor = K.colors.course2Color
+            self.subTitleLabel.textColor = K.colors.course2Color
         }
-        //print("Currently, the selectedCourseCall is " + self.selectedCourseCall!)
+        let dict = MyVariables.courses?.get(id)
+        self.selectedCourseID = id
+        self.titleLabel.text = dict!["Name"]! as? String
+        self.subTitleLabel.text = id
         
         self.tableView.reloadData()
     }
@@ -175,11 +194,18 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
         
         if self.selectedCourseID != ID{
             selectedCourseID = ID
+            let dict = MyVariables.courses?.get(ID)
             if (self.courseChooserType == "class 1"){
+                self.titleLabel.textColor = K.colors.course1Color
+                self.subTitleLabel.textColor = K.colors.course1Color
                 def.setObject(ID, forKey: "selectedCourse1")
             } else if (self.courseChooserType == "class 2"){
+                self.titleLabel.textColor = K.colors.course2Color
+                self.subTitleLabel.textColor = K.colors.course2Color
                 def.setObject(ID, forKey: "selectedCourse2")
             }
+            self.titleLabel.text = dict!["Name"]! as? String
+            self.subTitleLabel.text = ID
         }
         
         self.tableView.reloadData()
