@@ -38,6 +38,8 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
     
     
     @IBAction func infoButtonPressed(sender: AnyObject) {
+        let tuple = ObjectTuple<NSString,NSDictionary>(first: self.subTitleLabel.text, second: [:])
+        self.delegateViewController!.addInfoView(tuple)
     }
 
     @IBAction func locateButtonPressed(sender: AnyObject) {
