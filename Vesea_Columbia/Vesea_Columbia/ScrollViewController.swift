@@ -233,7 +233,7 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
-        if (scrollView.contentOffset.x == self.view.frame.width){
+        if (scrollView.contentOffset.x == self.view.frame.width + K.Others.screenGap){
             scrollView.panGestureRecognizer.enabled = false
         }
     }

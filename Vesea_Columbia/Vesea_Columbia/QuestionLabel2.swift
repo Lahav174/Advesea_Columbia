@@ -119,7 +119,9 @@ import UIKit
         
         param1.numberStyle = NSNumberFormatterStyle.PercentStyle
         param1.multiplier = 1
-        delegateViewController!.updateChartData(param1, xyValues: param2)
+        if self.delegateViewController?.questionNumber == 2{
+            delegateViewController!.updateChartData(param1, xyValues: param2)
+        }
         
     }
     
