@@ -54,13 +54,15 @@ class TableViewCell: UITableViewCell {
         let viewWidth = (delegateController?.delegate!.view.frame.width)!
         let xVelocity = recognizer.velocityInView(superview!).x
         if recognizer.state == .Began {
-            if (iconView.image == nil){
-                slidingView.clipsToBounds = true
-                iconView.image = UIImage(named: "graph_icon")
+            if (self.iconView.image == nil){
+                self.slidingView.clipsToBounds = true
+                self.iconView.image = UIImage(named: "graph_icon")
                 self.slidingView.backgroundColor = UIColor.blackColor()
+                self.originalSlidingViewOrigin = self.slidingView.frame.origin
             }
-            originalSlidingViewOrigin = slidingView.frame.origin
-            self.delegateController?.delegate!.resetQuestionViewController(self.indexPath.section)
+            dispatch_async(dispatch_get_main_queue()) {
+                self.delegateController?.delegate!.resetQuestionViewController(self.indexPath.section)
+            }
         }
         if recognizer.state == .Changed {
             let translation = recognizer.translationInView(self)

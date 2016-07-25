@@ -12,7 +12,7 @@ import UIKit
     
     var delegateViewController : QuestionViewController?
     
-    var arr : [[[UInt16?]]] = Array(count: (MyVariables.courses?.count)! + 100, repeatedValue: Array(count : (MyVariables.courses?.count)! + 100, repeatedValue: Array(count: 4, repeatedValue: nil)))
+    //var arr : [[[UInt16?]]] = Array(count: (MyVariables.courses?.count)! + 100, repeatedValue: Array(count : (MyVariables.courses?.count)! + 100, repeatedValue: Array(count: 4, repeatedValue: nil)))
 
     var view: UIView!
     
@@ -96,7 +96,7 @@ import UIKit
         let param1 = NSNumberFormatter()
         var param2 = [(x: String, y: Double)]()
         
-        let answerArr = Array(arr[index1][index2][0...3])
+        let answerArr = Array(MyVariables.QuestionData.Q2[index1][index2][0...3])
         if (answerArr[0] != nil){
             let takenboth = Double(answerArr[1]!+answerArr[2]!+answerArr[3]!)
             let v1:CGFloat = CGFloat(takenboth * 100)/CGFloat(answerArr[0]!)
@@ -105,9 +105,6 @@ import UIKit
             let after:Double = Double(answerArr[3]!)*100/takenboth
             param2 = [("Before", before),("During", concurrently),("After", after)]
             self.variable = v1
-            
-            print(String(v1) + "%")
-            print(String(before) + "% " + String(concurrently) + "% " + String(after) + "%")
             
             
         } else {
@@ -119,9 +116,9 @@ import UIKit
         
         param1.numberStyle = NSNumberFormatterStyle.PercentStyle
         param1.multiplier = 1
-        if self.delegateViewController?.questionNumber == 2{
-            delegateViewController!.updateChartData(param1, xyValues: param2)
-        }
+        
+        delegateViewController!.updateChartData(param1, xyValues: param2)
+        
         
     }
     
@@ -150,49 +147,19 @@ import UIKit
         
         enableButtons(false)
         
-        //setupQuestionData()
-        let qos = Int(QOS_CLASS_USER_INITIATED.rawValue)
-        let queue = dispatch_get_global_queue(qos, 0)
-        dispatch_async(queue) {
-            print("#1")
-            
-            
-            var shorts = [UInt16]()
-            if let data = NSData(contentsOfURL: NSBundle.mainBundle().URLForResource("A2_ConcurrentCourses", withExtension: "dat")!){
-                var buffer = [UInt8](count: data.length, repeatedValue: 0)
-                data.getBytes(&buffer, length: data.length)
-                print("#2")
-                
-                for i in 0...buffer.count/2-1 {
-                    let index = i*2
-                    let bytes:[UInt8] = [buffer[index+1],buffer[index]]
-                    let u16 = UnsafePointer<UInt16>(bytes).memory
-                    shorts.append(u16)
-                }
-                print("#3")
-                for i in 0...shorts.count/7-1{
-                    let shortsSegment = Array(shorts[(i*7)...(6+i*7)])
-                    assert(shortsSegment.count == 7, "not 7")
-                    assert(shortsSegment[0] < 3000 && shortsSegment[1] < 3000, "wut")
-                    self.arr[Int(shortsSegment[0])][Int(shortsSegment[1])][0] = shortsSegment[2]
-                    self.arr[Int(shortsSegment[0])][Int(shortsSegment[1])][1] = shortsSegment[4]
-                    self.arr[Int(shortsSegment[0])][Int(shortsSegment[1])][2] = shortsSegment[5]
-                    self.arr[Int(shortsSegment[0])][Int(shortsSegment[1])][3] = shortsSegment[6]
-                }
-                
-            }
-            
-            //NSThread.sleepForTimeInterval(0)
-            print("#4")
-            
-            let mainQueue: dispatch_queue_t = dispatch_get_main_queue()
-            dispatch_async(mainQueue, {
+        let delay = Int64(1.3*Double(NSEC_PER_SEC))
+        let dispatchTime = dispatch_time(DISPATCH_TIME_NOW, delay)
+        dispatch_after(dispatchTime, dispatch_get_main_queue()) {
+            if self.delegateViewController?.questionNumber == 2{
                 self.delegateViewController!.chart!.alpha = 1
                 self.delegateViewController!.activityView.alpha = 0
                 self.enableButtons(true)
                 self.displayChartData()
-            })
+            }
+            
         }
+        
+        
     }
     
     
@@ -201,6 +168,6 @@ import UIKit
         self.class1Button.enabled = bool
         self.class2Button.enabled = bool
     }
-
+    
 }
  

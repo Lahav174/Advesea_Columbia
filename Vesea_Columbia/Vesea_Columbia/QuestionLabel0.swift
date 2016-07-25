@@ -12,7 +12,7 @@ import UIKit
     
     var delegateViewController : QuestionViewController?
     
-    var arr : [[UInt16?]] = Array(count: (MyVariables.courses?.count)! + 100, repeatedValue: Array(count : 10, repeatedValue: nil))
+    //var arr : [[UInt16?]] = Array(count: (MyVariables.courses?.count)! + 100, repeatedValue: Array(count : 10, repeatedValue: nil))
     
     var view: UIView!
     
@@ -90,55 +90,31 @@ import UIKit
         let def = NSUserDefaults.standardUserDefaults()
         self.class1 = def.objectForKey("selectedCourse1") as! String
         self.enableButtons(false)
-        let qos = Int(QOS_CLASS_USER_INITIATED.rawValue)
-        let queue = dispatch_get_global_queue(qos, 0)
-        dispatch_async(queue) {
-            print("#1")
-            
-            var shorts = [UInt16]()
-            if let data = NSData(contentsOfURL: NSBundle.mainBundle().URLForResource("A0_WhenIsCourseTaken", withExtension: "dat")!){
-                var buffer = [UInt8](count: data.length, repeatedValue: 0)
-                data.getBytes(&buffer, length: data.length)
-                print("#2")
-                
-                for i in 0...buffer.count/2-1 {
-                    let index = i*2
-                    let bytes:[UInt8] = [buffer[index+1],buffer[index]]
-                    let u16 = UnsafePointer<UInt16>(bytes).memory
-                    shorts.append(u16)
-                }
-                print("#3")
-                for i in 0...shorts.count/12-1{
-                    let shortsSegment = Array(shorts[(i*12)...(11+i*12)])
-                    assert(shortsSegment.count == 12, "not 12")
-                    var integerShortSegment : [UInt16?] = Array(count: 10, repeatedValue: nil)
-                    for i in 0...9{
-                        self.arr[Int(shortsSegment[0])][i] = shortsSegment[i+1]
-                    }
-                }
-                
-            }
-            
-            NSThread.sleepForTimeInterval(1)
-            print("#4")
-            
-            let mainQueue: dispatch_queue_t = dispatch_get_main_queue()
-            dispatch_async(mainQueue, {
+        
+        
+        
+        let delay = Int64(1.3*Double(NSEC_PER_SEC))
+        let dispatchTime = dispatch_time(DISPATCH_TIME_NOW, delay)
+        dispatch_after(dispatchTime, dispatch_get_main_queue()) {
+            if self.delegateViewController?.questionNumber == 0{
                 self.delegateViewController!.chart!.alpha = 1
                 self.delegateViewController!.activityView.alpha = 0
                 self.enableButtons(true)
                 self.displayChartData()
-            })
+            }
         }
+        
+        
         
     }
     
     func displayChartData(){
+        print(MyVariables.QuestionData.Q0[4][0...5])
         let index = MyVariables.courses!.indexForKey(self.classID)
         let param1 = NSNumberFormatter()
         var param2 : [(x: String, y: Double)] = Array(count: 9, repeatedValue: ("",-1))
         
-        let answerArr : [UInt16?] = Array(arr[index])
+        let answerArr : [UInt16?] = Array(MyVariables.QuestionData.Q0[index])
         if (answerArr[0] != nil){
             let sum:Double = Array(answerArr[1...9]).reduce(0, combine: {Double($0) + Double($1!)})
             for i in 1...9{
@@ -154,9 +130,9 @@ import UIKit
         
         param1.numberStyle = NSNumberFormatterStyle.PercentStyle
         param1.multiplier = 1
-        if self.delegateViewController?.questionNumber == 0{
+        
             delegateViewController!.updateChartData(param1, xyValues: param2)
-        }
+        
     }
     
     func enableButtons(bool: Bool){

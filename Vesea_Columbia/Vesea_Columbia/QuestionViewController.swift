@@ -151,9 +151,7 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
             break
         default: break
         }
-        
-        print("Got hrrr")
-        
+                
         if chartType == "Horizontal Bar Chart"{
             let graph = (chart as! HorizontalBarChartView)
             graph.notifyDataSetChanged()
@@ -201,11 +199,9 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
         //updateChartData(valueFormatter, xyValues: xyValues)
         
         if (tabLabels != nil){
-            print("#1")
             self.segmentedControl = SlidingSegmentedControl(frame: CGRectMake(0, 64, self.view.frame.width, 44), buttonTitles: tabLabels!)
             self.view.insertSubview(segmentedControl!, aboveSubview: chart!)
         } else if (self.segmentedControl != nil){
-            print("#2")
             self.segmentedControl!.backgroundColor = UIColor.redColor()
             self.segmentedControl!.removeFromSuperview()
             self.segmentedControl = nil

@@ -12,6 +12,10 @@ import SwiftCSV
 
 struct MyVariables {
     static var courses : OrderedDictionary<NSDictionary>?
+    struct QuestionData {
+        static var Q2 : [[[UInt16?]]] = Array(count: (MyVariables.courses?.count)! + 100, repeatedValue: Array(count : (MyVariables.courses?.count)! + 100, repeatedValue: Array(count: 4, repeatedValue: nil)))
+        static var Q0 : [[UInt16?]] = Array(count: (MyVariables.courses?.count)! + 100, repeatedValue: Array(count : 10, repeatedValue: nil))
+    }
 }
 
 class ScrollViewController: UIViewController, UIScrollViewDelegate {
@@ -53,7 +57,10 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
         checkForUpdate()
         
         setUpCourses()
-                
+        
+        for i in 0...6{
+            setupQuestionData(i)
+        }
         checkNewUser()
         
         scrollView.delaysContentTouches = false
@@ -295,6 +302,68 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
             def.setObject(course1IDDefault, forKey: "selectedCourse1")
             def.setObject(course2IDDefault, forKey: "selectedCourse2")
         }
+    }
+    
+    func setupQuestionData(questionNumber: Int){
+        
+        
+        switch questionNumber {
+        case 0:
+            var shorts = [UInt16]()
+            if let data = NSData(contentsOfURL: NSBundle.mainBundle().URLForResource("A0_WhenIsCourseTaken", withExtension: "dat")!){
+                var buffer = [UInt8](count: data.length, repeatedValue: 0)
+                data.getBytes(&buffer, length: data.length)
+                
+                for i in 0...buffer.count/2-1 {
+                    let index = i*2
+                    let bytes:[UInt8] = [buffer[index+1],buffer[index]]
+                    let u16 = UnsafePointer<UInt16>(bytes).memory
+                    shorts.append(u16)
+                }
+                for i in 0...shorts.count/12-1{
+                    let shortsSegment = Array(shorts[(i*12)...(11+i*12)])
+                    assert(shortsSegment.count == 12, "not 12")
+                    //var integerShortSegment : [UInt16?] = Array(count: 10, repeatedValue: nil)
+                    for i in 0...9{
+                         MyVariables.QuestionData.Q0[Int(shortsSegment[0])][i] = shortsSegment[i+1]
+                    }
+                }
+            }
+            break
+        case 2:
+            var shorts = [UInt16]()
+            if let data = NSData(contentsOfURL: NSBundle.mainBundle().URLForResource("A2_ConcurrentCourses", withExtension: "dat")!){
+                var buffer = [UInt8](count: data.length, repeatedValue: 0)
+                data.getBytes(&buffer, length: data.length)
+                
+                for i in 0...buffer.count/2-1 {
+                    let index = i*2
+                    let bytes:[UInt8] = [buffer[index+1],buffer[index]]
+                    let u16 = UnsafePointer<UInt16>(bytes).memory
+                    shorts.append(u16)
+                }
+                for i in 0...shorts.count/7-1{
+                    let shortsSegment = Array(shorts[(i*7)...(6+i*7)])
+                    assert(shortsSegment.count == 7, "not 7")
+                    assert(shortsSegment[0] < 3000 && shortsSegment[1] < 3000, "wut")
+                    MyVariables.QuestionData.Q2[Int(shortsSegment[0])][Int(shortsSegment[1])][0] = shortsSegment[2]
+                    MyVariables.QuestionData.Q2[Int(shortsSegment[0])][Int(shortsSegment[1])][1] = shortsSegment[4]
+                    MyVariables.QuestionData.Q2[Int(shortsSegment[0])][Int(shortsSegment[1])][2] = shortsSegment[5]
+                    MyVariables.QuestionData.Q2[Int(shortsSegment[0])][Int(shortsSegment[1])][3] = shortsSegment[6]
+                }
+            }
+            break
+        default:
+            break
+        }
+        
+        
+        
+        
+        
+        
+        
+        
     }
 
 }
