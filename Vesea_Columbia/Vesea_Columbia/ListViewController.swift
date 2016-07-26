@@ -18,10 +18,16 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     let cellHeight : CGFloat = 100
     
+    var cellImages = Array(count: 7, repeatedValue: UIImage())
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.clipsToBounds = true
+        
+        for i in 0...cellImages.count-1{
+            cellImages[i] = self.imageForSection(i)
+        }
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -42,8 +48,10 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         self.navigationBar.layer.zPosition = 999
         
-        let panRecognizer = UIPanGestureRecognizer(target: self, action: "handlePan:")
+        let panRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePan(_:)))
         self.view.addGestureRecognizer(panRecognizer)
+        
+        self.tableView.scrollsToTop = true
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -84,30 +92,30 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         var myMutableString = NSMutableAttributedString()
         switch indexPath.section{
         case 0:
-             myString = "Do students who take " + course1ID + " also take " + course2ID + "?"
-             myMutableString = NSMutableAttributedString(string: myString as String, attributes: [NSFontAttributeName:UIFont(name: "HelveticaNeue-Light", size: 22.0)!])
-             myMutableString.addAttribute(NSForegroundColorAttributeName, value: course1Color, range: NSRange(location:21,length:course1ID.characters.count))
-             myMutableString.addAttribute(NSForegroundColorAttributeName, value: course2Color, range: NSRange(location:32 + course1ID.characters.count,length:course2ID.characters.count))
-             myMutableString.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-Medium", size: 22.0)!, range: NSRange(location:21,length:course1ID.characters.count))
-             myMutableString.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-Medium", size: 22.0)!, range: NSRange(location:32 + course1ID.characters.count,length:course2ID.characters.count))
-            break;
-        case 1:
-            myString = "What other classes are taken along with " + course1ID
-            myMutableString = NSMutableAttributedString(string: myString as String, attributes: [NSFontAttributeName:UIFont(name: "HelveticaNeue-Light", size: 22.0)!])
-            myMutableString.addAttribute(NSForegroundColorAttributeName, value: course1Color, range: NSRange(location:40,length:course1ID.characters.count))
-            myMutableString.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-Medium", size: 22.0)!, range: NSRange(location:40,length:course1ID.characters.count))
-            break;
-        case 2:
             myString = "Enrollment Trends for " + course1ID
             myMutableString = NSMutableAttributedString(string: myString as String, attributes: [NSFontAttributeName:UIFont(name: "HelveticaNeue-Light", size: 22.0)!])
             myMutableString.addAttribute(NSForegroundColorAttributeName, value: course1Color, range: NSRange(location:22,length:course1ID.characters.count))
             myMutableString.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-Medium", size: 22.0)!, range: NSRange(location:22,length:course1ID.characters.count))
-            break;
-        case 3:
+            break
+        case 1:
             myString = "Which majors typically take " + course1ID + "?"
             myMutableString = NSMutableAttributedString(string: myString as String, attributes: [NSFontAttributeName:UIFont(name: "HelveticaNeue-Light", size: 22.0)!])
             myMutableString.addAttribute(NSForegroundColorAttributeName, value: course1Color, range: NSRange(location:28,length:course1ID.characters.count))
             myMutableString.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-Medium", size: 22.0)!, range: NSRange(location:28,length:course1ID.characters.count))
+            break;
+        case 2:
+            myString = "Do students who take " + course1ID + " also take " + course2ID + "?"
+            myMutableString = NSMutableAttributedString(string: myString as String, attributes: [NSFontAttributeName:UIFont(name: "HelveticaNeue-Light", size: 22.0)!])
+            myMutableString.addAttribute(NSForegroundColorAttributeName, value: course1Color, range: NSRange(location:21,length:course1ID.characters.count))
+            myMutableString.addAttribute(NSForegroundColorAttributeName, value: course2Color, range: NSRange(location:32 + course1ID.characters.count,length:course2ID.characters.count))
+            myMutableString.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-Medium", size: 22.0)!, range: NSRange(location:21,length:course1ID.characters.count))
+            myMutableString.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-Medium", size: 22.0)!, range: NSRange(location:32 + course1ID.characters.count,length:course2ID.characters.count))
+            break;
+        case 3:
+            myString = "What other classes are taken along with " + course1ID
+            myMutableString = NSMutableAttributedString(string: myString as String, attributes: [NSFontAttributeName:UIFont(name: "HelveticaNeue-Light", size: 22.0)!])
+            myMutableString.addAttribute(NSForegroundColorAttributeName, value: course1Color, range: NSRange(location:40,length:course1ID.characters.count))
+            myMutableString.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-Medium", size: 22.0)!, range: NSRange(location:40,length:course1ID.characters.count))
             break;
         case 4:
             myString = "What courses do " + major + " majors typically take and when?"
@@ -129,7 +137,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         myMutableString.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: NSMakeRange(0, myString.length))
         
         let slidingImageView = UIImageView(frame: CGRect(origin: CGPointZero, size: cell.frame.size))
-        //slidingImageView.image = self.imageForSection(indexPath.section)
+        slidingImageView.image = cellImages[indexPath.section]
         slidingImageView.contentMode = .ScaleAspectFill
         cell.slidingView.insertSubview(slidingImageView, belowSubview: cell.slidingViewLabel)
         cell.slidingImageView = slidingImageView

@@ -134,6 +134,7 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
         
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.scrollsToTop = false
         searchBar.delegate = self
         searchBar.returnKeyType = UIReturnKeyType.Done
         searchBar.enablesReturnKeyAutomatically = false

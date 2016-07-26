@@ -52,9 +52,8 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
         //self.view.addConstraint(widthConstraint)
         
         self.scrollView.pagingEnabled = true
-        
+        self.scrollView.scrollsToTop = false
         self.scrollView.backgroundColor = UIColor.blackColor()
-        
         self.scrollView.bounces = false
         
         checkForUpdate()
