@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="11r-fC-Y81">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Upp-aq-P6o">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -39,10 +39,28 @@
             </objects>
             <point key="canvasLocation" x="2716" y="731"/>
         </scene>
+        <!--Launch View Controller-->
+        <scene sceneID="aNa-uG-Fq8">
+            <objects>
+                <viewController id="Upp-aq-P6o" customClass="LaunchViewController" customModule="Vesea_Columbia" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="lDs-w1-j1F"/>
+                        <viewControllerLayoutGuide type="bottom" id="DSM-8F-Q2y"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="P9b-qN-M9z">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.90241419599999995" green="0.92262003309999996" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tUJ-QU-ZC8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2076" y="4"/>
+        </scene>
         <!--Scroll View Controller-->
         <scene sceneID="Ae8-qh-EHY">
             <objects>
-                <viewController id="11r-fC-Y81" customClass="ScrollViewController" customModule="Vesea_Columbia" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="scroll" id="11r-fC-Y81" customClass="ScrollViewController" customModule="Vesea_Columbia" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="aEX-7j-byj"/>
                         <viewControllerLayoutGuide type="bottom" id="GOy-Fl-JmA"/>
@@ -269,7 +287,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oQJ-tf-VVI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1962" y="-787"/>
+            <point key="canvasLocation" x="3310" y="-847"/>
         </scene>
         <!--Choose Major-->
         <scene sceneID="aCo-wG-f3i">

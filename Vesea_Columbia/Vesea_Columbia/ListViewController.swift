@@ -129,7 +129,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         myMutableString.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: NSMakeRange(0, myString.length))
         
         let slidingImageView = UIImageView(frame: CGRect(origin: CGPointZero, size: cell.frame.size))
-        slidingImageView.image = self.imageForSection(indexPath.section)
+        //slidingImageView.image = self.imageForSection(indexPath.section)
         slidingImageView.contentMode = .ScaleAspectFill
         cell.slidingView.insertSubview(slidingImageView, belowSubview: cell.slidingViewLabel)
         cell.slidingImageView = slidingImageView

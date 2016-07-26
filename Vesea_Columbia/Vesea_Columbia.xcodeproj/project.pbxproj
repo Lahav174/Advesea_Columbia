@@ -19,6 +19,7 @@
 		CD73BE5E1D46F81400582650 /* A3_AlsoTakenAfter.dat in Resources */ = {isa = PBXBuildFile; fileRef = CD73BE5D1D46F81400582650 /* A3_AlsoTakenAfter.dat */; };
 		CD73BE601D4703FF00582650 /* QuestionLabel3.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD73BE5F1D4703FF00582650 /* QuestionLabel3.swift */; };
 		CD73BE621D47053100582650 /* QuestionLabel3.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD73BE611D47053100582650 /* QuestionLabel3.xib */; };
+		CD73BE661D47EE4100582650 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD73BE651D47EE4100582650 /* LaunchViewController.swift */; };
 		CD892ED81CEBB8CD00DF5D24 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD892ED71CEBB8CD00DF5D24 /* AppDelegate.swift */; };
 		CD892EDD1CEBB8CD00DF5D24 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD892EDB1CEBB8CD00DF5D24 /* Main.storyboard */; };
 		CD892EDF1CEBB8CD00DF5D24 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD892EDE1CEBB8CD00DF5D24 /* Assets.xcassets */; };
@@ -80,6 +81,7 @@
 		CD73BE5D1D46F81400582650 /* A3_AlsoTakenAfter.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = A3_AlsoTakenAfter.dat; sourceTree = "<group>"; };
 		CD73BE5F1D4703FF00582650 /* QuestionLabel3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionLabel3.swift; sourceTree = "<group>"; };
 		CD73BE611D47053100582650 /* QuestionLabel3.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuestionLabel3.xib; sourceTree = "<group>"; };
+		CD73BE651D47EE4100582650 /* LaunchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		CD892ED41CEBB8CD00DF5D24 /* Vesea_Columbia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vesea_Columbia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD892ED71CEBB8CD00DF5D24 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CD892EDC1CEBB8CD00DF5D24 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 				CD892ED71CEBB8CD00DF5D24 /* AppDelegate.swift */,
 				CDFF9FD91CF6D02500E64650 /* TestGraphViewController.swift */,
 				CD892EDB1CEBB8CD00DF5D24 /* Main.storyboard */,
+				CD73BE651D47EE4100582650 /* LaunchViewController.swift */,
 				CD892F131CEFA16600DF5D24 /* FrontViewController.swift */,
 				CD0BCC611D0DD37B002D7B49 /* QuestionViewController.swift */,
 				CDFF9FD71CF394AE00E64650 /* ScrollViewController.swift */,
@@ -468,6 +471,7 @@
 				CDFF9FE01CFA304600E64650 /* QuestionLabel2.swift in Sources */,
 				CD1350BD1D405004001C6833 /* QuestionLabel0.swift in Sources */,
 				CD73BE601D4703FF00582650 /* QuestionLabel3.swift in Sources */,
+				CD73BE661D47EE4100582650 /* LaunchViewController.swift in Sources */,
 				CD2C7E1B1D29B98300FCAD5E /* SlidingSegmentedControl.swift in Sources */,
 				CD892ED81CEBB8CD00DF5D24 /* AppDelegate.swift in Sources */,
 				CDFF9FDA1CF6D02500E64650 /* TestGraphViewController.swift in Sources */,

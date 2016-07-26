@@ -23,7 +23,7 @@ struct MyVariables {
 
 class ScrollViewController: UIViewController, UIScrollViewDelegate {
     
-    let someText = "hi there"
+    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
     var vc1 : ListViewController?
     
@@ -58,12 +58,6 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
         self.scrollView.bounces = false
         
         checkForUpdate()
-        
-        setUpCourses()
-        
-        for i in 0...6{
-            setupQuestionData(i)
-        }
         
         print(MyVariables.QuestionData.Q3_Before[7][4])
         print(MyVariables.QuestionData.Q3_Concurrently[7][4])
@@ -301,13 +295,14 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
             if let data = NSData(contentsOfURL: NSBundle.mainBundle().URLForResource("A0_WhenIsCourseTaken", withExtension: "dat")!){
                 var buffer = [UInt8](count: data.length, repeatedValue: 0)
                 data.getBytes(&buffer, length: data.length)
-                
+                l()
                 for i in 0...buffer.count/2-1 {
                     let index = i*2
                     let bytes:[UInt8] = [buffer[index+1],buffer[index]]
                     let u16 = UnsafePointer<UInt16>(bytes).memory
                     shorts.append(u16)
                 }
+                l()
                 for i in 0...shorts.count/12-1{
                     let shortsSegment = Array(shorts[(i*12)...(11+i*12)])
                     assert(shortsSegment.count == 12, "not 12")
@@ -315,6 +310,7 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
                          MyVariables.QuestionData.Q0[Int(shortsSegment[0])][i] = shortsSegment[i+1]
                     }
                 }
+                l()
             }
             break
         case 2:
@@ -322,13 +318,14 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
             if let data = NSData(contentsOfURL: NSBundle.mainBundle().URLForResource("A2_ConcurrentCourses", withExtension: "dat")!){
                 var buffer = [UInt8](count: data.length, repeatedValue: 0)
                 data.getBytes(&buffer, length: data.length)
-                
+                l()
                 for i in 0...buffer.count/2-1 {
                     let index = i*2
                     let bytes:[UInt8] = [buffer[index+1],buffer[index]]
                     let u16 = UnsafePointer<UInt16>(bytes).memory
                     shorts.append(u16)
                 }
+                l()
                 for i in 0...shorts.count/7-1{
                     let shortsSegment = Array(shorts[(i*7)...(6+i*7)])
                     assert(shortsSegment.count == 7, "not 7")
@@ -338,6 +335,7 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
                     MyVariables.QuestionData.Q2[Int(shortsSegment[0])][Int(shortsSegment[1])][2] = shortsSegment[5]
                     MyVariables.QuestionData.Q2[Int(shortsSegment[0])][Int(shortsSegment[1])][3] = shortsSegment[6]
                 }
+                l()
             }
             break
         case 3:
@@ -364,13 +362,14 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
                 if let data = NSData(contentsOfURL: NSBundle.mainBundle().URLForResource(fileName, withExtension: "dat")!){
                     var buffer = [UInt8](count: data.length, repeatedValue: 0)
                     data.getBytes(&buffer, length: data.length)
-                    
+                    l()
                     for i in 0...buffer.count/2-1 {
                         let index = i*2
                         let bytes:[UInt8] = [buffer[index+1],buffer[index]]
                         let u16 = UnsafePointer<UInt16>(bytes).memory
                         shorts.append(u16)
                     }
+                    l()
                     for i in 0...shorts.count/12-1{
                         let shortsSegment = Array(shorts[(i*12)...(11+i*12)])
                         assert(shortsSegment.count == 12, "not 12")
@@ -378,6 +377,7 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
                             arr[Int(shortsSegment[0])][i] = shortsSegment[i+1]
                         }
                     }
+                    l()
                 }
                 switch i {
                 case 1:
@@ -401,6 +401,10 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
         
     }
 
+    func l(){
+        self.appDelegate.loadingProgress += 1
+    }
+    
 }
 
 struct K {
