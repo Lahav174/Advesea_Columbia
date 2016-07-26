@@ -15,9 +15,9 @@ struct MyVariables {
     struct QuestionData {
         static var Q2 : [[[UInt16?]]] = Array(count: (MyVariables.courses?.count)! + 100, repeatedValue: Array(count : (MyVariables.courses?.count)! + 100, repeatedValue: Array(count: 4, repeatedValue: nil)))
         static var Q0 : [[UInt16?]] = Array(count: (MyVariables.courses?.count)! + 100, repeatedValue: Array(count : 10, repeatedValue: nil))
-        static var Q3_Before : [[UInt16?]] = Array(count: (MyVariables.courses?.count)! + 100, repeatedValue: Array(count : 10, repeatedValue: nil))
-        static var Q3_Concurrently : [[UInt16?]] = Array(count: (MyVariables.courses?.count)! + 100, repeatedValue: Array(count : 10, repeatedValue: nil))
-        static var Q3_After : [[UInt16?]] = Array(count: (MyVariables.courses?.count)! + 100, repeatedValue: Array(count : 10, repeatedValue: nil))
+        static var Q3_Before : [[UInt16?]] = Array(count: (MyVariables.courses?.count)! + 100, repeatedValue: Array(count : 11, repeatedValue: nil))
+        static var Q3_Concurrently : [[UInt16?]] = Array(count: (MyVariables.courses?.count)! + 100, repeatedValue: Array(count : 11, repeatedValue: nil))
+        static var Q3_After : [[UInt16?]] = Array(count: (MyVariables.courses?.count)! + 100, repeatedValue: Array(count : 11, repeatedValue: nil))
     }
 }
 
@@ -144,9 +144,7 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
         questionViewController!.questionNumber = preset
         
         var param0 = String()
-        var param1 = NSNumberFormatter()
         var param2 = String()
-        var param3 = [(x: String, y: Double)]()
         var param4 : [String]? = nil
         
         var width = questionViewController?.graphBackgroundWidth
@@ -159,69 +157,51 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
             height?.constant = 200
             yPos?.constant = 110
             param0 = "Bar Chart"
-            param1 = NSNumberFormatter()
-            param1.numberStyle = NSNumberFormatterStyle.PercentStyle
-            param1.multiplier = 1
             param2 = "Term"
-            param3 = [("Before", 80),("During", 100),("After", 70)]
             break;
         case 1:
             height?.constant = 200
             yPos?.constant = 70
             param0 = "Horizontal Bar Chart"
-            param1 = NSNumberFormatter()
-            param1.numberStyle = NSNumberFormatterStyle.PercentStyle
-            param1.multiplier = 1
             param2 = "Term"
-            param3 = [("W4323", 80),("W3211", 90),("1334", 70)]
-            param4 = ["Before", "Concurrently", "After"]
             break;
         case 2:
             height?.constant = 200
             yPos?.constant = 110
             param0 = "Bar Chart"
-            param1.numberStyle = NSNumberFormatterStyle.NoStyle
-            param1.multiplier = 1
-            param1.minimumFractionDigits = 0
             param2 = "Semester"
-            param3 = [("Spring 2015", 80),("Fall 2015", 100),("Spring 2016", 70)]
             break;
         case 3:
             height?.constant = 200
             yPos?.constant = 110
-            param0 = "Pie Chart"
-            param1.numberStyle = NSNumberFormatterStyle.PercentStyle
-            param1.multiplier = 1
+            param0 = "Horizontal Bar Chart"
             param2 = ""
-            param3 = [("Computer Science", 40),("Mathematics", 30),("Physics", 20),("Other", 10)]
+            param4 = ["Before", "Concurrently", "After"]
             break;
         case 4:
             height?.constant = 200
             yPos?.constant = 110
-            param0 = "Horizontal Bar Chart"
-            param1.numberStyle = NSNumberFormatterStyle.PercentStyle
-            param1.multiplier = 1
-            param1.minimumFractionDigits = 0
-            param2 = "Term"
-            param3 = [("W4323", 80),("W3211", 90),("1334", 70)]
+            param0 = "Pie Chart"
+            //param1.numberStyle = NSNumberFormatterStyle.PercentStyle
+            //param1.multiplier = 1
+            param2 = ""
+            //param3 = [("Computer Science", 40),("Mathematics", 30),("Physics", 20),("Other", 10)]
             break;
         case 5:
             height?.constant = 200
             yPos?.constant = 110
             param0 = "Bar Chart"
-            param1.numberStyle = NSNumberFormatterStyle.PercentStyle
-            param1.multiplier = 1
-            param1.minimumFractionDigits = 0
+
             param2 = "Semester"
-            param3 = [("6", 2),("7", 6),("8", 85),("9", 7)]
             break;
         default:
             break
         }
-        questionViewController!.addLabel(preset)
+        
         if preset < 40{
         questionViewController?.chart?.layoutIfNeeded()
         questionViewController!.customInitializer(param0, titleTxt: param2, tabLabels: param4)
+        questionViewController!.addLabel(preset)
         }
     }
     
@@ -394,8 +374,8 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
                     for i in 0...shorts.count/12-1{
                         let shortsSegment = Array(shorts[(i*12)...(11+i*12)])
                         assert(shortsSegment.count == 12, "not 12")
-                        for i in 0...9{
-                            arr[Int(shortsSegment[0])][i] = shortsSegment[i+2]
+                        for i in 0...10{
+                            arr[Int(shortsSegment[0])][i] = shortsSegment[i+1]
                         }
                     }
                 }

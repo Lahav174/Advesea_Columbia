@@ -293,7 +293,7 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
             hBarChart.rightAxis.drawAxisLineEnabled = false
             hBarChart.rightAxis.axisMinValue = 0
             hBarChart.rightAxis.gridColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.4)
-            hBarChart.rightAxis.granularity = calcGranularity(hBarChart.leftAxis.axisMaxValue)
+            hBarChart.rightAxis.granularity = calcGranularity(hBarChart.rightAxis.axisMaxValue)
             hBarChart.rightAxis.drawGridLinesEnabled = true
             hBarChart.rightAxis.gridLineWidth = 2
             hBarChart.rightAxis.labelTextColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.8)
@@ -424,6 +424,13 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
                     }
                     qLabel.enableButtons(true)
                     break
+                case 3:
+                    let qLabel = self.questionLabel as! QuestionLabel3
+                    if (self.chooser!.courseChooserType == "class 1"){
+                        qLabel.class1 = def.objectForKey("selectedCourse1") as! String
+                    }
+                    qLabel.enableButtons(true)
+                    break
                 default:
                     break
                 }
@@ -549,6 +556,17 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
             let labelCenterXConstraint = NSLayoutConstraint(item: questionLabel!, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0)
             self.view.addConstraints([labelWidthConstraint, labelCenterXConstraint, labelyConstraint, labelHeightConstraint])
             break
+        case 1:
+            questionLabel = QuestionLabel1(frame: CGRect(x: 1, y: 1, width: 1, height: 1))
+            (questionLabel as! QuestionLabel1).delegateViewController = self
+            self.view.insertSubview(questionLabel!, belowSubview: container)
+            questionLabel!.translatesAutoresizingMaskIntoConstraints = false
+            let labelyConstraint = NSLayoutConstraint(item: questionLabel!, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Top, multiplier: 1, constant: 120)
+            let labelWidthConstraint = NSLayoutConstraint(item: questionLabel!, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Width, multiplier: 1, constant: -60)
+            let labelHeightConstraint = NSLayoutConstraint(item: questionLabel!, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: 175)
+            let labelCenterXConstraint = NSLayoutConstraint(item: questionLabel!, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0)
+            self.view.addConstraints([labelWidthConstraint, labelCenterXConstraint, labelyConstraint, labelHeightConstraint])
+            break
         case 2:
             questionLabel = QuestionLabel2(frame: CGRect(x: 1, y: 1, width: 1, height: 1))
             (questionLabel as! QuestionLabel2).delegateViewController = self
@@ -560,14 +578,17 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
             let labelCenterXConstraint = NSLayoutConstraint(item: questionLabel!, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0)
             self.view.addConstraints([labelWidthConstraint, labelCenterXConstraint, labelyConstraint, labelHeightConstraint])
             break
-        case 1:
-            questionLabel = QuestionLabel1(frame: CGRect(x: 1, y: 1, width: 1, height: 1))
-            (questionLabel as! QuestionLabel1).delegateViewController = self
+        case 3:
+            //print("????" + String((questionLabel as! QuestionLabel3) as! SlidingSegmentedControlDelegate))
+            questionLabel = QuestionLabel3(frame: CGRect(x: 1, y: 1, width: 1, height: 1))
+            (questionLabel as! QuestionLabel3).delegateViewController = self
+            self.segmentedControl?.delegate = (questionLabel as! QuestionLabel3)
+            print(self.segmentedControl?.delegate == nil)
             self.view.insertSubview(questionLabel!, belowSubview: container)
             questionLabel!.translatesAutoresizingMaskIntoConstraints = false
-            let labelyConstraint = NSLayoutConstraint(item: questionLabel!, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Top, multiplier: 1, constant: 120)
+            let labelyConstraint = NSLayoutConstraint(item: questionLabel!, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Top, multiplier: 1, constant: 110)
             let labelWidthConstraint = NSLayoutConstraint(item: questionLabel!, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Width, multiplier: 1, constant: -60)
-            let labelHeightConstraint = NSLayoutConstraint(item: questionLabel!, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: 175)
+            let labelHeightConstraint = NSLayoutConstraint(item: questionLabel!, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: 150)
             let labelCenterXConstraint = NSLayoutConstraint(item: questionLabel!, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0)
             self.view.addConstraints([labelWidthConstraint, labelCenterXConstraint, labelyConstraint, labelHeightConstraint])
             break
@@ -593,9 +614,9 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
     
     func calcGranularity(max: Double) -> Double{
         let i = Int(max)
-        if (i/20 > 4){
+        if (i > 60){
             return 20
-        } else if (i/10 > 4){
+        } else if (i > 30){
             return 10
         } else {
             return 5

@@ -36,10 +36,10 @@ class SlidingSegmentedControl: UIView {
         for i in 0...numberOfSegments-1{
             let button = UIButton()
             button.setTitle(buttonTitles[i], forState: .Normal)
-            let buttonSize = button.titleLabel?.intrinsicContentSize()
-            collectiveButtonWidth += (buttonSize?.width)!
+            let buttonSize = CGSize(width: (button.titleLabel?.intrinsicContentSize().width)!, height: self.frame.height)
+            collectiveButtonWidth += buttonSize.width
             button.addTarget(self, action: #selector(buttonAction), forControlEvents: .TouchUpInside)
-            button.frame.size = buttonSize!
+            button.frame.size = buttonSize
             buttons.insert(button, atIndex: i)
         }
         let spaceBetweenButtons = (self.frame.width-collectiveButtonWidth)/CGFloat(buttons.count+1)
@@ -63,8 +63,9 @@ class SlidingSegmentedControl: UIView {
         if (buttonIndex != self.selectedSegmentIndex){
             selectedSegmentIndex = buttonIndex
             let underlinedButtonFrame = buttons[selectedSegmentIndex].frame
-            
+            print("#1")
             if (delegate != nil){
+                print("#2")
                 delegate?.SlidingSegmentedControlDidSelectIndex(buttonIndex)
             }
             

@@ -12,8 +12,6 @@ import UIKit
     
     var delegateViewController : QuestionViewController?
     
-    //var arr : [[UInt16?]] = Array(count: (MyVariables.courses?.count)! + 100, repeatedValue: Array(count : 10, repeatedValue: nil))
-    
     var view: UIView!
     
     var nibName: String = "QuestionLabel0"
@@ -111,7 +109,8 @@ import UIKit
     func displayChartData(){
         let index = MyVariables.courses!.indexForKey(self.classID)
         let param1 = NSNumberFormatter()
-        var param2 : [(x: String, y: Double)] = Array(count: 9, repeatedValue: ("",-1))
+        var param2 : [(x: String, y: Double)] = Array(count: 9, repeatedValue: ("",0))
+        self.variable = 0
         
         let answerArr : [UInt16?] = Array(MyVariables.QuestionData.Q0[index])
         if (answerArr[0] != nil){
@@ -122,9 +121,6 @@ import UIKit
             }
             
             self.variable = CGFloat(answerArr[0]!)/50 //5000 students overall?
-        } else {
-            self.variable = 0
-            param2 = [("1",0),("2",0),("3",0),("4",0),("5",0),("6",0),("7",0),("8",0),("9",0)]
         }
         
         param1.numberStyle = NSNumberFormatterStyle.PercentStyle

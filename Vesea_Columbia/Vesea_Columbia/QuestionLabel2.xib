@@ -41,8 +41,8 @@
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FaB-tB-wWS">
-                    <rect key="frame" x="238" y="96" width="113" height="35"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FaB-tB-wWS">
+                    <rect key="frame" x="238" y="96" width="112" height="35"/>
                     <state key="normal" title="lalalalala" backgroundImage="course2_button">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -51,8 +51,9 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zkD-53-osT">
-                    <rect key="frame" x="32" y="96" width="113" height="35"/>
+                    <rect key="frame" x="33" y="96" width="112" height="35"/>
                     <constraints>
+                        <constraint firstAttribute="width" constant="112" id="8ds-ao-NvA"/>
                         <constraint firstAttribute="height" constant="35" id="nQM-QW-h0h"/>
                     </constraints>
                     <state key="normal" title="lalalalalala" backgroundImage="course1_button"/>
@@ -67,6 +68,7 @@
                 <constraint firstItem="zkD-53-osT" firstAttribute="top" secondItem="h4O-0y-4JI" secondAttribute="bottom" constant="3" id="2Ra-4x-jb0"/>
                 <constraint firstItem="EDq-9w-fcW" firstAttribute="leading" secondItem="zkD-53-osT" secondAttribute="trailing" constant="3" id="3Bc-qX-JmO"/>
                 <constraint firstItem="ZQ2-r1-fIH" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="ET2-Xf-ggg"/>
+                <constraint firstItem="FaB-tB-wWS" firstAttribute="width" secondItem="zkD-53-osT" secondAttribute="width" id="Ilk-zI-qhH"/>
                 <constraint firstItem="h4O-0y-4JI" firstAttribute="top" secondItem="ZQ2-r1-fIH" secondAttribute="bottom" constant="8" id="IrR-Mv-mhQ"/>
                 <constraint firstItem="EDq-9w-fcW" firstAttribute="height" secondItem="h4O-0y-4JI" secondAttribute="height" id="MCE-QI-MKT"/>
                 <constraint firstItem="EDq-9w-fcW" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Thr-kq-BPL"/>
@@ -84,7 +86,7 @@
         </view>
     </objects>
     <resources>
-        <image name="course1_button" width="113" height="33"/>
-        <image name="course2_button" width="113" height="33"/>
+        <image name="course1_button" width="112" height="35"/>
+        <image name="course2_button" width="112" height="35"/>
     </resources>
 </document>
