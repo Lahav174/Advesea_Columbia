@@ -109,7 +109,6 @@ import UIKit
     }
     
     func displayChartData(){
-        print(MyVariables.QuestionData.Q0[4][0...5])
         let index = MyVariables.courses!.indexForKey(self.classID)
         let param1 = NSNumberFormatter()
         var param2 : [(x: String, y: Double)] = Array(count: 9, repeatedValue: ("",-1))

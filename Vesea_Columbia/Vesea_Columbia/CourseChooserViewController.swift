@@ -194,7 +194,6 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        print(self.navBarTitle.titleView?.frame)
         cantFindLabel.frame = CGRect(origin: CGPoint(x: 0, y: self.locateButton.frame.origin.y), size: self.locateButton.frame.size)
         cantFindLabel.hidden = true
         cantFindLabel.textAlignment = NSTextAlignment.Center

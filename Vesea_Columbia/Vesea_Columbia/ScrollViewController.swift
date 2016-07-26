@@ -15,6 +15,9 @@ struct MyVariables {
     struct QuestionData {
         static var Q2 : [[[UInt16?]]] = Array(count: (MyVariables.courses?.count)! + 100, repeatedValue: Array(count : (MyVariables.courses?.count)! + 100, repeatedValue: Array(count: 4, repeatedValue: nil)))
         static var Q0 : [[UInt16?]] = Array(count: (MyVariables.courses?.count)! + 100, repeatedValue: Array(count : 10, repeatedValue: nil))
+        static var Q3_Before : [[UInt16?]] = Array(count: (MyVariables.courses?.count)! + 100, repeatedValue: Array(count : 10, repeatedValue: nil))
+        static var Q3_Concurrently : [[UInt16?]] = Array(count: (MyVariables.courses?.count)! + 100, repeatedValue: Array(count : 10, repeatedValue: nil))
+        static var Q3_After : [[UInt16?]] = Array(count: (MyVariables.courses?.count)! + 100, repeatedValue: Array(count : 10, repeatedValue: nil))
     }
 }
 
@@ -61,6 +64,11 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
         for i in 0...6{
             setupQuestionData(i)
         }
+        
+        print(MyVariables.QuestionData.Q3_Before[7][4])
+        print(MyVariables.QuestionData.Q3_Concurrently[7][4])
+        print(MyVariables.QuestionData.Q3_After[7][4])
+        
         checkNewUser()
         
         scrollView.delaysContentTouches = false
@@ -323,7 +331,6 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
                 for i in 0...shorts.count/12-1{
                     let shortsSegment = Array(shorts[(i*12)...(11+i*12)])
                     assert(shortsSegment.count == 12, "not 12")
-                    //var integerShortSegment : [UInt16?] = Array(count: 10, repeatedValue: nil)
                     for i in 0...9{
                          MyVariables.QuestionData.Q0[Int(shortsSegment[0])][i] = shortsSegment[i+1]
                     }
@@ -353,16 +360,64 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
                 }
             }
             break
+        case 3:
+            for i in 1...3{
+                var arr = [[UInt16?]]()
+                var fileName = String()
+                switch i {
+                case 1:
+                    arr = MyVariables.QuestionData.Q3_Before
+                    fileName = "A3_AlsoTakenBefore"
+                    break
+                case 2:
+                    arr = MyVariables.QuestionData.Q3_Concurrently
+                    fileName = "A3_AlsoTakenConcurrently"
+                    break
+                case 3:
+                    arr = MyVariables.QuestionData.Q3_After
+                    fileName = "A3_AlsoTakenAfter"
+                    break
+                default:
+                    break
+                }
+                var shorts = [UInt16]()
+                if let data = NSData(contentsOfURL: NSBundle.mainBundle().URLForResource(fileName, withExtension: "dat")!){
+                    var buffer = [UInt8](count: data.length, repeatedValue: 0)
+                    data.getBytes(&buffer, length: data.length)
+                    
+                    for i in 0...buffer.count/2-1 {
+                        let index = i*2
+                        let bytes:[UInt8] = [buffer[index+1],buffer[index]]
+                        let u16 = UnsafePointer<UInt16>(bytes).memory
+                        shorts.append(u16)
+                    }
+                    for i in 0...shorts.count/12-1{
+                        let shortsSegment = Array(shorts[(i*12)...(11+i*12)])
+                        assert(shortsSegment.count == 12, "not 12")
+                        for i in 0...9{
+                            arr[Int(shortsSegment[0])][i] = shortsSegment[i+2]
+                        }
+                    }
+                }
+                switch i {
+                case 1:
+                    MyVariables.QuestionData.Q3_Before = arr
+                    break
+                case 2:
+                    MyVariables.QuestionData.Q3_Concurrently = arr
+                    break
+                case 3:
+                    MyVariables.QuestionData.Q3_After = arr
+                    break
+                default:
+                    break
+                }
+            }
+            
+            break
         default:
             break
         }
-        
-        
-        
-        
-        
-        
-        
         
     }
 
