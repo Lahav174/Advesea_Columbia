@@ -90,39 +90,43 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     @IBAction func upSectionPressed(sender: AnyObject) {
-        let currentSection = self.tableView.visibleSections.minElement()!
-        let atTopOfCurrentSection = self.tableView.indexPathsForVisibleRows![0].row == 0
-        var sectionToGoTo = currentSection - 1
+        
+        if let currentSection = self.tableView.visibleSections.minElement() {
+            let atTopOfCurrentSection = self.tableView.indexPathsForVisibleRows![0].row == 0
+            var sectionToGoTo = currentSection - 1
             while sectionToGoTo > 0 && tableView.numberOfRowsInSection(sectionToGoTo) == 0{
                 sectionToGoTo -= 1
             }
-        
-        if !atTopOfCurrentSection{
-            self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: currentSection), atScrollPosition: UITableViewScrollPosition.Top, animated: true)
-        }
-        else if sectionToGoTo == 0{
-            self.tableView.setContentOffset(CGPointZero, animated: true)
-        }
-        else if sectionToGoTo >= 0 && self.tableView.numberOfRowsInSection(sectionToGoTo) > 0{
-            self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: sectionToGoTo), atScrollPosition: UITableViewScrollPosition.Top, animated: true)
+            
+            if !atTopOfCurrentSection{
+                self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: currentSection), atScrollPosition: UITableViewScrollPosition.Top, animated: true)
+            }
+            else if sectionToGoTo == 0{
+                self.tableView.setContentOffset(CGPointZero, animated: true)
+            }
+            else if sectionToGoTo >= 0 && self.tableView.numberOfRowsInSection(sectionToGoTo) > 0{
+                self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: sectionToGoTo), atScrollPosition: UITableViewScrollPosition.Top, animated: true)
+            }
         }
         
     }
     
     @IBAction func downSectionPressed(sender: AnyObject) {
-        let currentSection = self.tableView.visibleSections.minElement()!
         
-        var sectionToGoTo = currentSection + 1
-        while self.tableView.numberOfRowsInSection(sectionToGoTo) == 0{//don't have to check that its in range
-            sectionToGoTo += 1
-        }
-        if searching && searchBar.text != "" {
-            if currentSection < self.filteredCourseDicts.allKeys.count-1{
-                self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: sectionToGoTo), atScrollPosition: UITableViewScrollPosition.Top, animated: true)
+        if let currentSection = self.tableView.visibleSections.minElement() {
+            
+            var sectionToGoTo = currentSection + 1
+            while self.tableView.numberOfRowsInSection(sectionToGoTo) == 0{//don't have to check that its in range
+                sectionToGoTo += 1
             }
-        } else {
-            if currentSection < self.unfilteredCourseDicts.allKeys.count-1{
-                self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: sectionToGoTo), atScrollPosition: UITableViewScrollPosition.Top, animated: true)
+            if searching && searchBar.text != "" {
+                if currentSection < self.filteredCourseDicts.allKeys.count-1{
+                    self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: sectionToGoTo), atScrollPosition: UITableViewScrollPosition.Top, animated: true)
+                }
+            } else {
+                if currentSection < self.unfilteredCourseDicts.allKeys.count-1{
+                    self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: sectionToGoTo), atScrollPosition: UITableViewScrollPosition.Top, animated: true)
+                }
             }
         }
     }

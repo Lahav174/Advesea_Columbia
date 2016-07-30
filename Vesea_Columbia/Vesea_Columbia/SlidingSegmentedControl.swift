@@ -63,9 +63,7 @@ class SlidingSegmentedControl: UIView {
         if (buttonIndex != self.selectedSegmentIndex){
             selectedSegmentIndex = buttonIndex
             let underlinedButtonFrame = buttons[selectedSegmentIndex].frame
-            print("#1")
             if (delegate != nil){
-                print("#2")
                 delegate?.SlidingSegmentedControlDidSelectIndex(buttonIndex)
             }
             

@@ -101,7 +101,6 @@ class QuestionLabel3: UIView, SlidingSegmentedControlDelegate {
     }
     
     func displayChartData(index: Int){
-        print("called")
         var dataSet = [[UInt16?]]()
         switch index {
         case 0:
@@ -121,13 +120,14 @@ class QuestionLabel3: UIView, SlidingSegmentedControlDelegate {
         var param2 : [(x: String, y: Double)] = Array(count: 5, repeatedValue: ("",0))
         
         var answerArr : [UInt16?] = Array(dataSet[index])
+        print("answerArr: " + String(answerArr))
         assert(answerArr.count == 11, "answerArr is not of length 11")
         if (answerArr[0] != nil){
             let total = Double(answerArr[0]!)/100.0
             for i in 0...4{
                 let courseID = MyVariables.courses?.get(Int(answerArr[1 + i*2]!))?.a! as! String
-                let value = Double(answerArr[2*i+1]!)/total
-                param2[i] = (courseID,value)
+                let value = Double(answerArr[2*i+2]!)/total
+                param2[4-i] = (courseID,value)
             }
             
         }
@@ -160,7 +160,7 @@ class QuestionLabel3: UIView, SlidingSegmentedControlDelegate {
             self.variable = "concurrently"
             break
         case 2:
-            self.variable = "afterwords"
+            self.variable = "afterwards"
             break
         default:
             break

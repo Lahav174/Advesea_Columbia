@@ -224,7 +224,7 @@
                             <navigationBar clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r8g-xd-i1B">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <items>
-                                    <navigationItem title="Title Goes Here" id="oT3-jJ-QD7">
+                                    <navigationItem title="Advesea" id="oT3-jJ-QD7">
                                         <barButtonItem key="leftBarButtonItem" image="Back Chevron" id="cWe-PV-kWb">
                                             <connections>
                                                 <action selector="backButtonPressed:" destination="s9z-IS-G7h" id="iCP-Mq-ClG"/>
