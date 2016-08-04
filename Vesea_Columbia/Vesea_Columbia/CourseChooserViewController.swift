@@ -180,8 +180,6 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
         self.departmentHeadersInOrder.insert("Favorites", atIndex: 0)
         self.departmentHeadersInOrder.insert("Other", atIndex: departmentHeadersInOrder.count)
         
-        print("Dept heads: " + String(self.departmentHeadersInOrder))
-        
         let titleView = UIView(frame: CGRect(origin: CGPointZero, size: CGSize(width: 72, height: 40)))
         let titleViewLabel = UILabel(frame: CGRect(origin: CGPointZero, size: CGSize(width: 72, height: 40)))
         let titleViewImage = UIImageView(frame: CGRect(x: 0, y: 33, width: 72, height: 5))
