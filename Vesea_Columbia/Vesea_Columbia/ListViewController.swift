@@ -46,13 +46,28 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.navigationBar.layer.masksToBounds = false
         self.navigationBar.layer.shouldRasterize = true
         
-        self.navigationBar.layer.zPosition = 999
+//        let gradient: CAGradientLayer = CAGradientLayer()
+//        gradient.colors = [UIColor.blueColor().CGColor, UIColor.redColor().CGColor]
+//        gradient.frame = CGRect(x: 0, y: -20, width: self.navigationBar.frame.width, height: self.navigationBar.frame.height + 20)
+//        self.navigationBar.layer.addSublayer(gradient)
+        
+        self.navigationBar.setBackgroundImage(UIImage(named: "Bar"), forBarMetrics: UIBarMetrics.Default)
+        let navFont = UIFont(name: "Athelas", size: 30.0)
+        let navBarAttributesDictionary: [String: AnyObject]? = [
+            NSForegroundColorAttributeName: UIColor.blackColor(),
+            NSFontAttributeName: navFont!
+        ]
+        self.navigationBar.titleTextAttributes = navBarAttributesDictionary
+        
+        self.navigationBar.layer.zPosition = 990
         
         let panRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePan(_:)))
         self.view.addGestureRecognizer(panRecognizer)
         
         self.tableView.scrollsToTop = true
     }
+    
+    // MARK: - Tableview Datasource Methods
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 6
@@ -152,17 +167,6 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return self.cellHeight
     }
     
-    func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
-        return UIBarPosition.TopAttached
-    }
-    
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        delegate!.resetQuestionViewController(indexPath.section)
-        let nextPage = CGPoint(x: self.view.frame.width*2 + K.Others.screenGap*2, y: 0)
-        delegate!.scrollView.setContentOffset(nextPage, animated: true)
-        delegate!.scrollView.panGestureRecognizer.enabled = true
-    }
-    
     func imageForSection(section: Int) -> UIImage{
         
         let originalImage = UIImage(named: "citypic_filtered2")!
@@ -179,6 +183,17 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         return result
     }
+    
+    // MARK: - Tableview Delegate Methods
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        delegate!.resetQuestionViewController(indexPath.section)
+        let nextPage = CGPoint(x: self.view.frame.width*2 + K.Others.screenGap*2, y: 0)
+        delegate!.scrollView.setContentOffset(nextPage, animated: true)
+        delegate!.scrollView.panGestureRecognizer.enabled = true
+    }
+    
+    // MARK: - Class Functions
     
     class func resizeImage(image: UIImage, newHeight: CGFloat) -> UIImage {
         
@@ -201,6 +216,18 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         var blurredImage = UIImage(CIImage: resultImage)
         return blurredImage
     }
+    
+    // MARK: - Navigation Bar Setup
+    
+    func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
+        return UIBarPosition.TopAttached
+    }
+    
+    func setupNavigationBar(){
+        
+    }
+    
+    // MARK: - Pan Delegate method
     
     func handlePan(recognizer: UIPanGestureRecognizer){
         let xVelocity = recognizer.velocityInView(self.view).x

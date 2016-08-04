@@ -323,9 +323,6 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
     // MARK: - Static Image Setup
     
     func setUpBackgroundImages(){
-        let bottomBar = UIImageView(frame: CGRect(x: 0, y: self.view.frame.height-60, width: self.view.frame.width, height: 60))
-        bottomBar.image = UIImage(named: "bottombar")
-        self.view.addSubview(bottomBar)
         
         let backGround = UIImageView(frame: self.view.frame)
         backGround.image = UIImage(named: "mountainbackground")
@@ -334,7 +331,6 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
     }
     
     func setupNavBar(){
-        navigationBar.backgroundColor = K.colors.navBarColor
         backButton.tintColor = K.colors.lightBlack
     }
     
