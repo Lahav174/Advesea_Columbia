@@ -368,11 +368,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Vesea_Columbia/CourseChooserViewController.swift"
-            timestampString = "491582509.76539"
+            timestampString = "491970294.291655"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "307"
-            endingLineNumber = "307"
+            startingLineNumber = "308"
+            endingLineNumber = "308"
             landmarkName = "tableView(_:cellForRowAtIndexPath:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -384,11 +384,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Vesea_Columbia/CourseChooserViewController.swift"
-            timestampString = "491582509.76539"
+            timestampString = "491970294.291655"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "305"
-            endingLineNumber = "305"
+            startingLineNumber = "306"
+            endingLineNumber = "306"
             landmarkName = "CourseChooserViewController"
             landmarkType = "3">
          </BreakpointContent>

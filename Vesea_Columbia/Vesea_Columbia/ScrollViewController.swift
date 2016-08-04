@@ -229,7 +229,7 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
     func setUpCourses(){
         var courseDict = OrderedDictionary<NSDictionary>()
         var csvColumns = [String : [String]]()
-        let coursesFile = "Courses"
+        let coursesFile = "CoursesDept"
         do {
             let csvURL = NSBundle(forClass: FrontViewController.self).URLForResource(coursesFile, withExtension: "csv")!
             //print("csvURL: " + String(csvURL))

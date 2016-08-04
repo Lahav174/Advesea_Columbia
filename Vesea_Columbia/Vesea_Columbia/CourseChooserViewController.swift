@@ -174,12 +174,13 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
         }
         
         self.departmentHeadersInOrder = self.unfilteredCourseDicts.allKeys as! [String]
+        self.departmentHeadersInOrder = self.departmentHeadersInOrder.filter{$0 != "Core" && $0 != "Other" && $0 != "Favorites"}
         self.departmentHeadersInOrder.sortInPlace()
-        self.departmentHeadersInOrder = self.departmentHeadersInOrder.filter{$0 != "Core"}
         self.departmentHeadersInOrder.insert("Core", atIndex: 0)
         self.departmentHeadersInOrder.insert("Favorites", atIndex: 0)
-        self.departmentHeadersInOrder = self.departmentHeadersInOrder.filter{$0 != "Other"}
-        self.departmentHeadersInOrder.insert("Other", atIndex: departmentHeadersInOrder.count-1)
+        self.departmentHeadersInOrder.insert("Other", atIndex: departmentHeadersInOrder.count)
+        
+        print("Dept heads: " + String(self.departmentHeadersInOrder))
         
         let titleView = UIView(frame: CGRect(origin: CGPointZero, size: CGSize(width: 72, height: 40)))
         let titleViewLabel = UILabel(frame: CGRect(origin: CGPointZero, size: CGSize(width: 72, height: 40)))
@@ -342,11 +343,11 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
         print("Searching")
         self.filteredCourseDicts.removeAllObjects()
         
-        for key in self.unfilteredCourseDicts.allKeys{
-            filteredCourseDicts.setValue(NSMutableArray(), forKey: key as! String)
+        for key in self.departmentHeadersInOrder{
+            filteredCourseDicts.setValue(NSMutableArray(), forKey: key)
         }
         
-        let searchText = self.searchBar.text!
+        let searchText = (self.searchBar.text!).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
         
         let searchPredicate = NSPredicate(format: "SELF.Name CONTAINS[c] %@ OR SELF.ID CONTAINS[c] %@", searchText, searchText)
         for deptKey in unfilteredCourseDicts.allKeys{

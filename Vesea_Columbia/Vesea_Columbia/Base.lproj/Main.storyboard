@@ -393,7 +393,7 @@
                                     <constraint firstAttribute="height" constant="44" id="SyE-sd-1PZ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                             </textField>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eCP-Di-e5u">
                                 <rect key="frame" x="0.0" y="0.0" width="295" height="44"/>
