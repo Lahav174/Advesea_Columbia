@@ -8,9 +8,9 @@
 
 import UIKit
 
-@IBDesignable class QuestionLabel2: UIView {
+@IBDesignable class QuestionLabel2: UIView, QuestionLabel {
     
-    var delegateViewController : QuestionViewController?
+    private var delegateViewController : QuestionViewController?
     
     //var arr : [[[UInt16?]]] = Array(count: (MyVariables.courses?.count)! + 100, repeatedValue: Array(count : (MyVariables.courses?.count)! + 100, repeatedValue: Array(count: 4, repeatedValue: nil)))
 
@@ -40,6 +40,14 @@ import UIKit
     
     @IBAction func class2ButtonPressed(sender: AnyObject) {
         delegateViewController!.animateContainerIn(sender as! UIButton, buttonType: "class 2")
+    }
+    
+    var delegate : QuestionViewController {
+        get {
+            return delegateViewController!
+        } set (value){
+            delegateViewController = value
+        }
     }
     
     @IBInspectable var variable : CGFloat? {

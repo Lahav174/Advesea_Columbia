@@ -8,9 +8,9 @@
 
 import UIKit
 
-@IBDesignable class QuestionLabel0: UIView {
+@IBDesignable class QuestionLabel0: UIView, QuestionLabel {
     
-    var delegateViewController : QuestionViewController?
+    private var delegateViewController : QuestionViewController?
     
     var view: UIView!
     
@@ -28,6 +28,14 @@ import UIKit
     
     @IBAction func classButtonPressed(sender: AnyObject) {
         delegateViewController!.animateContainerIn(sender as! UIButton, buttonType: "class 1")
+    }
+    
+    var delegate : QuestionViewController {
+        get {
+            return delegateViewController!
+        } set (value){
+            delegateViewController = value
+        }
     }
     
     @IBInspectable var variable : CGFloat? {

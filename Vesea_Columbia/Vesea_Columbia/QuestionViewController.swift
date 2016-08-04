@@ -331,6 +331,7 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
     }
     
     func setupNavBar(){
+        navigationBar.backgroundColor = K.colors.navBarColor
         backButton.tintColor = K.colors.lightBlack
     }
     
@@ -540,10 +541,56 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
             questionLabel = nil
         }
         
+        if preset > 3{return} //remove later
+        
+        var arr = [CGFloat]()
+        
+        switch preset {
+        case 0:
+            questionLabel = QuestionLabel0(frame: CGRectZero)
+            arr = [-60,120,150]
+            break
+        case 1:
+            questionLabel = QuestionLabel1(frame: CGRectZero)
+            arr = [-60,120,175]
+            break
+        case 2:
+            questionLabel = QuestionLabel2(frame: CGRectZero)
+            arr = [-60,120,150]
+            break
+        case 3:
+            questionLabel = QuestionLabel3(frame: CGRectZero)
+            arr = [-60,120,150]
+            break
+        default:
+            break
+        }
+        var qLbl: QuestionLabel = questionLabel as! QuestionLabel
+        qLbl.delegate = self
+        
+        assert(questionLabel != nil, "question label was nil")
+        self.view.insertSubview(questionLabel!, belowSubview: container)
+        questionLabel!.translatesAutoresizingMaskIntoConstraints = false
+        let labelCenterXConstraint = NSLayoutConstraint(item: questionLabel!, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0)
+        let labelWidthConstraint = NSLayoutConstraint(item: questionLabel!, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Width, multiplier: 1, constant: arr[0])
+        let labelyConstraint = NSLayoutConstraint(item: questionLabel!, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Top, multiplier: 1, constant: arr[1])
+        let labelHeightConstraint = NSLayoutConstraint(item: questionLabel!, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: arr[2])
+        self.view.addConstraints([labelWidthConstraint, labelCenterXConstraint, labelyConstraint, labelHeightConstraint])
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /*
         switch preset {
         case 0:
             questionLabel = QuestionLabel0(frame: CGRect(x: 1, y: 1, width: 1, height: 1))
-            (questionLabel as! QuestionLabel0).delegateViewController = self
+            var qLbl: QuestionLabel = questionLabel as! QuestionLabel
+            qLbl.delegate = self
             self.view.insertSubview(questionLabel!, belowSubview: container)
             questionLabel!.translatesAutoresizingMaskIntoConstraints = false
             let labelyConstraint = NSLayoutConstraint(item: questionLabel!, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: graphBackground, attribute: NSLayoutAttribute.Top, multiplier: 1, constant: -30)
@@ -565,7 +612,8 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
             break
         case 2:
             questionLabel = QuestionLabel2(frame: CGRect(x: 1, y: 1, width: 1, height: 1))
-            (questionLabel as! QuestionLabel2).delegateViewController = self
+            var qLbl: QuestionLabel = questionLabel as! QuestionLabel
+            qLbl.delegate = self
             self.view.insertSubview(questionLabel!, belowSubview: container)
             questionLabel!.translatesAutoresizingMaskIntoConstraints = false
             let labelyConstraint = NSLayoutConstraint(item: questionLabel!, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: graphBackground, attribute: NSLayoutAttribute.Top, multiplier: 1, constant: -30)
@@ -591,19 +639,13 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
         default:
             break
         }
+        */
     }
     
     func enableButtonsOfLabel(number: Int, bool: Bool){
-        switch number {
-        case 0:
-            (self.questionLabel as! QuestionLabel0).enableButtons(bool)
-            break
-        case 2:
-            (self.questionLabel as! QuestionLabel2).enableButtons(bool)
-            break
-        default:
-            break
-        }
+        var qLbl: QuestionLabel = questionLabel as! QuestionLabel
+        if number == 0 || number == 2{return}//remove later
+        qLbl.enableButtons(bool)
     }
     
     // MARK: - Other
@@ -635,6 +677,24 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
             destination.delegateViewController = self
         }
     }
- 
-
 }
+
+
+protocol QuestionLabel {
+    
+    var delegate : QuestionViewController {get set}
+    
+    mutating func enableButtons(bool: Bool)
+}
+
+
+
+
+
+
+
+
+
+
+
+

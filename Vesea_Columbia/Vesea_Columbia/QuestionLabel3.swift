@@ -8,7 +8,7 @@
 
 import UIKit
 
-class QuestionLabel3: UIView, SlidingSegmentedControlDelegate {
+class QuestionLabel3: UIView, SlidingSegmentedControlDelegate, QuestionLabel {
 
     var delegateViewController : QuestionViewController?
     
@@ -29,6 +29,14 @@ class QuestionLabel3: UIView, SlidingSegmentedControlDelegate {
     
     @IBAction func classButtonPressed(sender: AnyObject) {
         delegateViewController!.animateContainerIn(sender as! UIButton, buttonType: "class 1")
+    }
+    
+    var delegate : QuestionViewController {
+        get {
+            return delegateViewController!
+        } set (value){
+            delegateViewController = value
+        }
     }
     
     @IBInspectable var class1 : String? {

@@ -8,7 +8,7 @@
 
 import UIKit
 
-@IBDesignable class QuestionLabel1: UIView {
+@IBDesignable class QuestionLabel1: UIView, QuestionLabel {
     
     var delegateViewController : QuestionViewController?
 
@@ -41,6 +41,14 @@ import UIKit
     
     @IBAction func class2ButtonPressed(sender: AnyObject) {
         delegateViewController!.animateContainerIn(sender as! UIButton, buttonType: "class 2")
+    }
+    
+    var delegate : QuestionViewController {
+        get {
+            return delegateViewController!
+        } set (value){
+            delegateViewController = value
+        }
     }
     
     @IBInspectable var variable : Float? {
@@ -116,6 +124,11 @@ import UIKit
         let nib = UINib(nibName: nibName, bundle: bundle)
         let view = nib.instantiateWithOwner(self, options: nil)[0] as! UIView
         return view
+    }
+    
+    func enableButtons(bool: Bool) {
+        class1Button.enabled = bool
+        class2Button.enabled = bool
     }
 
     
