@@ -7,7 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="QuestionLabel3" customModule="Vesea_Columbia" customModuleProvider="target">
             <connections>
-                <outlet property="classButton" destination="oB6-ib-t7q" id="t71-oR-JHW"/>
+                <outlet property="classButton" destination="oB6-ib-t7q" id="Pu5-eL-hRG"/>
                 <outlet property="variableLabel" destination="lmI-rV-OOZ" id="DQc-06-svV"/>
             </connections>
         </placeholder>
@@ -22,7 +22,7 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oB6-ib-t7q">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oB6-ib-t7q" customClass="CourseButton" customModule="Vesea_Columbia" customModuleProvider="target">
                     <rect key="frame" x="60" y="39" width="112" height="35"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="35" id="9pY-sG-1Vv"/>

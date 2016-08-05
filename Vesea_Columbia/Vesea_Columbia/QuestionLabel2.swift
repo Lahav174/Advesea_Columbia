@@ -30,9 +30,9 @@ import UIKit
     
     @IBOutlet weak var variableLabel: UILabel!
 
-    @IBOutlet weak var class1Button: UIButton!
+    @IBOutlet weak var class1Button: CourseButton!
     
-    @IBOutlet weak var class2Button: UIButton!
+    @IBOutlet weak var class2Button: CourseButton!
     
     @IBAction func class1ButtonPressed(sender: AnyObject) {
         delegateViewController!.animateContainerIn(sender as! UIButton, buttonType: "class 1")
@@ -67,7 +67,8 @@ import UIKit
         } set (str){
             if str != nil && str! != class1ID{
                 class1ID = str!
-                class1Button.setTitle(QuestionViewController.abreviateID(str!), forState: UIControlState.Normal)
+                //class1Button.setTitle(QuestionViewController.abreviateID(str!), forState: UIControlState.Normal)
+                class1Button.idLabel.text = QuestionViewController.abreviateID(str!)
                 if class1AlreadySet{
                     displayChartData()
                 }
@@ -83,6 +84,7 @@ import UIKit
             if str != nil && str! != class1ID{
                 class2ID = str!
                 class2Button.setTitle(QuestionViewController.abreviateID(str!), forState: UIControlState.Normal)
+                class2Button.idLabel.text = QuestionViewController.abreviateID(str!)
                 if class2AlreadySet{
                     displayChartData()
                 }
@@ -154,6 +156,8 @@ import UIKit
         self.class2 = def.objectForKey("selectedCourse2") as! String
         
         enableButtons(false)
+        class1Button.setTitle("", forState: UIControlState.Normal)
+        class2Button.setTitle("", forState: UIControlState.Normal)
         
         let delay = Int64(1.3*Double(NSEC_PER_SEC))
         let dispatchTime = dispatch_time(DISPATCH_TIME_NOW, delay)

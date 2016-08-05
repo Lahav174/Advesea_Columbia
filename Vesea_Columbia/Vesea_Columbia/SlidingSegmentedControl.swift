@@ -10,6 +10,7 @@ import UIKit
 
 class SlidingSegmentedControl: UIView {
     
+    let underlineBarHeight:CGFloat = 2
     var selectedSegmentIndex : Int = -1
     var buttons = [UIButton]()
     var underlineBar = UIView()
@@ -52,7 +53,7 @@ class SlidingSegmentedControl: UIView {
         }
         
         let underlinedButtonFrame = buttons[selectedSegmentIndex].frame
-        underlineBar.frame = CGRect(x: underlinedButtonFrame.minX, y: self.frame.height-1, width: underlinedButtonFrame.width, height: 1)
+        underlineBar.frame = CGRect(x: underlinedButtonFrame.minX, y: self.frame.height-underlineBarHeight, width: underlinedButtonFrame.width, height: underlineBarHeight)
         underlineBar.backgroundColor = UIColor.whiteColor()
         self.addSubview(underlineBar)
         
@@ -68,7 +69,7 @@ class SlidingSegmentedControl: UIView {
             }
             
             UIView.animateWithDuration(0.5, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
-                self.underlineBar.frame = CGRect(x: underlinedButtonFrame.minX, y: self.frame.height-1, width: underlinedButtonFrame.width, height: 1)
+                self.underlineBar.frame = CGRect(x: underlinedButtonFrame.minX, y: self.frame.height-self.underlineBarHeight, width: underlinedButtonFrame.width, height: self.underlineBarHeight)
                 }, completion: nil)
         }
     }

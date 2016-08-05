@@ -530,7 +530,7 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
     class func abreviateID(ID: String) -> String{
         let index1 = ID.endIndex.advancedBy(-5)
         let substring = ID.substringFromIndex(index1)
-        return "   " + substring
+        return substring
     }
     
     // MARK: - QuestionLabel
@@ -695,5 +695,31 @@ protocol QuestionLabel {
     var delegate : QuestionViewController {get set}
     
     mutating func enableButtons(bool: Bool)
+}
+
+class CourseButton: UIButton {
+    
+    var idLabel = UILabel()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        setup()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+        setup()
+    }
+    
+    func setup(){
+        idLabel.frame = CGRect(x: 11, y: 0, width: self.frame.width - 45, height: self.frame.height)
+        idLabel.text = ""
+        idLabel.textColor = UIColor.whiteColor()
+        idLabel.textAlignment = .Center
+        self.addSubview(idLabel)
+    }
+    
 }
 
