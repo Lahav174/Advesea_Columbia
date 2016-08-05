@@ -51,6 +51,7 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
     @IBOutlet weak var graphBackgroundLabel: UILabel!
     @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var backButton: UIBarButtonItem!
+    
     @IBOutlet weak var graphBackgroundHeight: NSLayoutConstraint!
     @IBOutlet weak var graphBackgroundWidth: NSLayoutConstraint!
     @IBOutlet weak var graphBackgroundY: NSLayoutConstraint!
@@ -548,19 +549,28 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
         switch preset {
         case 0:
             questionLabel = QuestionLabel0(frame: CGRectZero)
-            arr = [-60,120,150]
+            let gapSize = (self.view.frame.height-108 - self.graphBackground.frame.height - 150)/3
+            self.graphBackgroundY.constant = 44 + gapSize
+            arr = [0, 64 + gapSize,-60,150]
             break
         case 1:
             questionLabel = QuestionLabel1(frame: CGRectZero)
-            arr = [-60,120,175]
+            let gapSize = (self.view.frame.height-108 - self.graphBackground.frame.height - 175)/3
+            self.graphBackgroundY.constant = 44 + gapSize
+            arr = [0, 64 + gapSize,-60,175]
             break
         case 2:
             questionLabel = QuestionLabel2(frame: CGRectZero)
-            arr = [-60,120,150]
+            let gapSize = (self.view.frame.height-108 - self.graphBackground.frame.height - 150)/3
+            self.graphBackgroundY.constant = 44 + gapSize
+            arr = [0, 64 + gapSize,-60,150]
             break
         case 3:
             questionLabel = QuestionLabel3(frame: CGRectZero)
-            arr = [-60,120,150]
+            self.segmentedControl?.delegate = (questionLabel as! QuestionLabel3)
+            let gapSize = (self.view.frame.height-152 - self.graphBackground.frame.height - 150)/3
+            self.graphBackgroundY.constant = 44 + gapSize
+            arr = [0, 108 + gapSize,-60,150]
             break
         default:
             break
@@ -572,9 +582,9 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
         self.view.insertSubview(questionLabel!, belowSubview: container)
         questionLabel!.translatesAutoresizingMaskIntoConstraints = false
         let labelCenterXConstraint = NSLayoutConstraint(item: questionLabel!, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0)
-        let labelWidthConstraint = NSLayoutConstraint(item: questionLabel!, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Width, multiplier: 1, constant: arr[0])
         let labelyConstraint = NSLayoutConstraint(item: questionLabel!, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Top, multiplier: 1, constant: arr[1])
-        let labelHeightConstraint = NSLayoutConstraint(item: questionLabel!, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: arr[2])
+        let labelWidthConstraint = NSLayoutConstraint(item: questionLabel!, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Width, multiplier: 1, constant: arr[2])
+        let labelHeightConstraint = NSLayoutConstraint(item: questionLabel!, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: arr[3])
         self.view.addConstraints([labelWidthConstraint, labelCenterXConstraint, labelyConstraint, labelHeightConstraint])
         
         
@@ -686,15 +696,4 @@ protocol QuestionLabel {
     
     mutating func enableButtons(bool: Bool)
 }
-
-
-
-
-
-
-
-
-
-
-
 

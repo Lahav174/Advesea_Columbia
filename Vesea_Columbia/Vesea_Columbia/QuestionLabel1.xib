@@ -46,7 +46,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wxO-cc-VUh">
-                    <rect key="frame" x="197" y="127" width="113" height="35"/>
+                    <rect key="frame" x="197" y="127" width="112" height="35"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="35" id="rwZ-b2-iAA"/>
                     </constraints>
@@ -59,7 +59,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4dX-y7-CNG">
-                    <rect key="frame" x="165" y="164" width="113" height="35"/>
+                    <rect key="frame" x="165" y="164" width="112" height="35"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                     <state key="normal" title="   W3203" backgroundImage="course2_button">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -118,8 +118,8 @@
         </view>
     </objects>
     <resources>
-        <image name="course1_button" width="113" height="33"/>
-        <image name="course2_button" width="113" height="33"/>
+        <image name="course1_button" width="112" height="35"/>
+        <image name="course2_button" width="112" height="35"/>
         <image name="major_button" width="237" height="33"/>
     </resources>
 </document>
