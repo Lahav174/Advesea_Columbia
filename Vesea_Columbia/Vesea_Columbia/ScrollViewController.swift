@@ -10,6 +10,10 @@ import UIKit
 import Charts
 import SwiftCSV
 
+struct Settings {//Move to user defaults
+    static var automaticSearchingOn = true
+}
+
 struct MyVariables {
     static var courses : OrderedDictionary<NSDictionary>?
     struct QuestionData {

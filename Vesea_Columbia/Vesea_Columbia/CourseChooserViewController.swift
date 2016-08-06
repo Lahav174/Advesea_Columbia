@@ -14,6 +14,8 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
     
     var selectedCourseID : String?
     
+    var filteringCoursesWithTexts = NSMutableArray()
+    
     let cantFindLabel = UILabel()
     
     var unfilteredCourseDicts = NSMutableDictionary()
@@ -338,38 +340,59 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func updateSearchResults(){
-        print("Searching")
-        self.filteredCourseDicts.removeAllObjects()
-        
-        for key in self.departmentHeadersInOrder{
-            filteredCourseDicts.setValue(NSMutableArray(), forKey: key)
-        }
-        
-        let searchText = (self.searchBar.text!).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
-        
-        let searchPredicate = NSPredicate(format: "SELF.Name CONTAINS[c] %@ OR SELF.ID CONTAINS[c] %@", searchText, searchText)
-        for deptKey in unfilteredCourseDicts.allKeys{
-          let unfilteredArr = unfilteredCourseDicts[deptKey as! String] as! NSMutableArray
-            filteredCourseDicts[deptKey as! String] = unfilteredArr.filteredArrayUsingPredicate(searchPredicate)
-        }
-        
-        self.tableView.reloadData()
-        
-        
-        let courseDict = (MyVariables.courses!.get(self.subTitleLabel.text!))!
-        let dept = courseDict["Department"] as! String
-        if (self.filteredCourseDicts[dept]! as! NSArray).count > 0{
-            let arr = self.filteredCourseDicts[dept]! as! NSArray
-            for row in 0...arr.count-1{
-                if ((arr[row] as! NSDictionary)["ID"]! as! String) == self.subTitleLabel.text!{
-                    self.locateButtonEnabled(true)
-                    return
+        var shouldCancelThread = false
+        let qos = Int(QOS_CLASS_USER_INITIATED.rawValue)
+        let queue = dispatch_get_global_queue(qos, 0)
+        dispatch_async(queue) {
+            print("Searching")
+            self.filteredCourseDicts.removeAllObjects()
+            
+            for key in self.departmentHeadersInOrder{
+                self.filteredCourseDicts.setValue(NSMutableArray(), forKey: key)
+            }
+            
+            let searchText = (self.searchBar.text!).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+            
+            self.filteringCoursesWithTexts.insertObject(searchText + "", atIndex: self.filteringCoursesWithTexts.count)// = searchText + ""
+            
+            let searchPredicate = NSPredicate(format: "SELF.Name CONTAINS[c] %@ OR SELF.ID CONTAINS[c] %@", searchText, searchText)
+            for deptKey in self.unfilteredCourseDicts.allKeys{
+                assert(self.filteringCoursesWithTexts.count >= 0,"filteringCoursesWithTexts is EMPTY!!!")
+                let unfilteredArr = self.unfilteredCourseDicts[deptKey as! String] as! NSMutableArray
+                let filteredDictsArr = unfilteredArr.filteredArrayUsingPredicate(searchPredicate)
+                if searchText != self.filteringCoursesWithTexts.objectAtIndex(self.filteringCoursesWithTexts.count-1) as! String{
+                    shouldCancelThread = true
+                    break
+                }
+                self.filteredCourseDicts[deptKey as! String] = filteredDictsArr
+            }
+            if !shouldCancelThread{
+                
+                dispatch_async(dispatch_get_main_queue()){
+                    
+                    self.tableView.reloadData()
+                    
+                    let courseDict = (MyVariables.courses!.get(self.subTitleLabel.text!))!
+                    let dept = courseDict["Department"] as! String
+                    if (self.filteredCourseDicts[dept]! as! NSArray).count > 0{
+                        let arr = self.filteredCourseDicts[dept]! as! NSArray
+                        for row in 0...arr.count-1{
+                            if ((arr[row] as! NSDictionary)["ID"]! as! String) == self.subTitleLabel.text!{
+                                self.locateButtonEnabled(true)
+                                return
+                            }
+                        }
+                    }
+                    self.locateButtonEnabled(self.searchBar.text == "")
+                }
+                for i in 0...self.filteringCoursesWithTexts.count{
+                    if self.filteringCoursesWithTexts.objectAtIndex(i) as! String == searchText{
+                        self.filteringCoursesWithTexts.removeObjectAtIndex(i)
+                        break
+                    }
                 }
             }
         }
-        self.locateButtonEnabled(self.searchBar.text == "")
-        
-        
     }
     
     // MARK: - Text Field Delegate Methods
@@ -378,16 +401,22 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
         if !(searchBar.isFirstResponder()){
             shouldBeginEditing = false
         }
-        //updateSearchResults()
         clearButton.hidden = (textField.text == "")
         if textField.text == ""{
             self.locateButtonEnabled(true)
         }
-        updateSearchResults()
+        if Settings.automaticSearchingOn{
+            updateSearchResults()
+        }
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         searchBar.resignFirstResponder()
+        if searchBar.text == "" && !Settings.automaticSearchingOn{
+            self.tableView.reloadData()
+        } else if !Settings.automaticSearchingOn{
+            updateSearchResults()
+        }
         return false
     }
 
