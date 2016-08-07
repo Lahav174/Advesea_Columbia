@@ -16,6 +16,8 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
     
     var filteringCoursesWithTexts = NSMutableArray()
     
+    var searchingActivityIndicator = UIActivityIndicatorView()
+    
     let cantFindLabel = UILabel()
     
     var unfilteredCourseDicts = NSMutableDictionary()
@@ -194,6 +196,12 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
         titleView.addSubview(titleViewLabel)
         self.navBarTitle.titleView = titleView
         
+        searchingActivityIndicator.frame = CGRectZero
+        searchingActivityIndicator.startAnimating()
+        searchingActivityIndicator.activityIndicatorViewStyle = .Gray
+        searchingActivityIndicator.alpha = 0
+        self.view.insertSubview(searchingActivityIndicator, aboveSubview: self.tableView)
+        
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
         self.navBarTitle.titleView?.addGestureRecognizer(tap)
     }
@@ -208,6 +216,8 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
         cantFindLabel.font = UIFont(name: "HelveticaNeue-Medium", size: 10)
         cantFindLabel.text = "Not in Search Results"
         self.selectedCellView.insertSubview(cantFindLabel, aboveSubview: self.locateButton)
+        
+        searchingActivityIndicator.frame = CGRect(x: self.view.frame.width/2-20, y: self.view.frame.height/2, width: 40, height: 40)
     }
     
     // MARK: - Other TableView Methods
@@ -263,6 +273,24 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
         }
         
         self.tableView.reloadData()
+        
+        if searching && searchBar.text != ""{
+            
+            let courseDict = (MyVariables.courses!.get(self.subTitleLabel.text!))!
+            let dept = courseDict["Department"] as! String
+            if (self.filteredCourseDicts[dept]! as! NSArray).count > 0{
+                let arr = self.filteredCourseDicts[dept]! as! NSArray
+                for row in 0...arr.count-1{
+                    if ((arr[row] as! NSDictionary)["ID"]! as! String) == self.subTitleLabel.text!{
+                        self.locateButtonEnabled(true)
+                        return
+                    }
+                }
+            }
+            self.locateButtonEnabled(self.searchBar.text == "")
+        }
+        
+        
     }
     
     // MARK: - TableView DataSource Methods
@@ -340,20 +368,26 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func updateSearchResults(){
+        self.filteredCourseDicts.removeAllObjects()
+        for key in self.departmentHeadersInOrder{
+            self.filteredCourseDicts.setValue(NSMutableArray(), forKey: key)
+        }
+        searchingActivityIndicator.alpha = 1
+        self.tableView.reloadData()
         var shouldCancelThread = false
         let qos = Int(QOS_CLASS_USER_INITIATED.rawValue)
         let queue = dispatch_get_global_queue(qos, 0)
         dispatch_async(queue) {
             print("Searching")
-            self.filteredCourseDicts.removeAllObjects()
+//            self.filteredCourseDicts.removeAllObjects()
             
-            for key in self.departmentHeadersInOrder{
-                self.filteredCourseDicts.setValue(NSMutableArray(), forKey: key)
-            }
+//            for key in self.departmentHeadersInOrder{
+//                self.filteredCourseDicts.setValue(NSMutableArray(), forKey: key)
+//            }
             
             let searchText = (self.searchBar.text!).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
             
-            self.filteringCoursesWithTexts.insertObject(searchText + "", atIndex: self.filteringCoursesWithTexts.count)// = searchText + ""
+            self.filteringCoursesWithTexts.insertObject(searchText + "", atIndex: self.filteringCoursesWithTexts.count)
             
             let searchPredicate = NSPredicate(format: "SELF.Name CONTAINS[c] %@ OR SELF.ID CONTAINS[c] %@", searchText, searchText)
             for deptKey in self.unfilteredCourseDicts.allKeys{
@@ -367,10 +401,19 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
                 self.filteredCourseDicts[deptKey as! String] = filteredDictsArr
             }
             if !shouldCancelThread{
-                
+                //Officially done searching
                 dispatch_async(dispatch_get_main_queue()){
                     
+                    //Needed for async thread searching
+                    for i in 0...self.filteringCoursesWithTexts.count{
+                        if self.filteringCoursesWithTexts.objectAtIndex(i) as! String == searchText{
+                            self.filteringCoursesWithTexts.removeObjectAtIndex(i)
+                            break
+                        }
+                    }
+                    
                     self.tableView.reloadData()
+                    self.searchingActivityIndicator.alpha = 0
                     
                     let courseDict = (MyVariables.courses!.get(self.subTitleLabel.text!))!
                     let dept = courseDict["Department"] as! String
@@ -385,12 +428,7 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
                     }
                     self.locateButtonEnabled(self.searchBar.text == "")
                 }
-                for i in 0...self.filteringCoursesWithTexts.count{
-                    if self.filteringCoursesWithTexts.objectAtIndex(i) as! String == searchText{
-                        self.filteringCoursesWithTexts.removeObjectAtIndex(i)
-                        break
-                    }
-                }
+                
             }
         }
     }
