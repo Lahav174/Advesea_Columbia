@@ -14,7 +14,7 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
     
     var selectedCourseID : String?
     
-    var filteringCoursesWithTexts = NSMutableArray()
+    var filteringCoursesWithTexts = NSMutableArray(capacity: 50)
     
     var searchingActivityIndicator = UIActivityIndicatorView()
     
@@ -378,12 +378,6 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
         let qos = Int(QOS_CLASS_USER_INITIATED.rawValue)
         let queue = dispatch_get_global_queue(qos, 0)
         dispatch_async(queue) {
-            print("Searching")
-//            self.filteredCourseDicts.removeAllObjects()
-            
-//            for key in self.departmentHeadersInOrder{
-//                self.filteredCourseDicts.setValue(NSMutableArray(), forKey: key)
-//            }
             
             let searchText = (self.searchBar.text!).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
             
@@ -393,7 +387,7 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
             for deptKey in self.unfilteredCourseDicts.allKeys{
                 assert(self.filteringCoursesWithTexts.count >= 0,"filteringCoursesWithTexts is EMPTY!!!")
                 let unfilteredArr = self.unfilteredCourseDicts[deptKey as! String] as! NSMutableArray
-                let filteredDictsArr = unfilteredArr.filteredArrayUsingPredicate(searchPredicate)
+                let filteredDictsArr = NSMutableArray(array: unfilteredArr.filteredArrayUsingPredicate(searchPredicate) as NSArray)
                 if searchText != self.filteringCoursesWithTexts.objectAtIndex(self.filteringCoursesWithTexts.count-1) as! String{
                     shouldCancelThread = true
                     break

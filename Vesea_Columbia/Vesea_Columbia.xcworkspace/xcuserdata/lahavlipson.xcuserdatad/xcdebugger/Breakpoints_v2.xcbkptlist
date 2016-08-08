@@ -462,11 +462,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Vesea_Columbia/CourseChooserViewController.swift"
-            timestampString = "492305001.301491"
+            timestampString = "492306192.970658"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "401"
-            endingLineNumber = "401"
+            startingLineNumber = "395"
+            endingLineNumber = "395"
             landmarkName = "updateSearchResults()"
             landmarkType = "5">
          </BreakpointContent>

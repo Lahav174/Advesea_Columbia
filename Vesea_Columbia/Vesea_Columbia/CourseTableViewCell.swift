@@ -36,39 +36,56 @@ class CourseTableViewCell: UITableViewCell {
         let key = "favorites"
         var favorites = NSMutableArray()
         
+        var starOffsetConstant:CGFloat = -1
+        
         if ((def.arrayForKey(key)) != nil){
             let defArray = def.arrayForKey(key)! as NSArray
             favorites = defArray.mutableCopy() as! NSMutableArray
         }
 
-        if favorites.containsObject(courseObject.a! as String){//It is currently a favorite
-            //print("Un-Favorited!")
+        if favorites.containsObject(courseObject.a! as String){ //Unfavoriting
             setStarImage(false)
+            starOffsetConstant = delegateViewController!.searchBar.text != "" && favorites.count == 1 ? 74 : 44
+            
             favorites.removeObject(courseObject.a! as String)
             self.delegateViewController?.unfilteredCourseDicts["Favorites"]?.removeObject(["ID":(courseObject.a! as String),"Name":(courseObject.b!["Name"]! as! String)])
-        } else { //It is not currently a favorite
+            
+            if delegateViewController?.searchBar.text != ""{
+                let favArr = self.delegateViewController!.filteredCourseDicts["Favorites"]! as! NSMutableArray
+                favArr.removeObject((["ID":courseObject.a! as String,"Name":courseObject.b!["Name"] as! String]))
+            }
+            
+            
+        } else { //Favoriting
             setStarImage(true)
-            //print("Favorited!")
+            starOffsetConstant = delegateViewController!.searchBar.text != "" && favorites.count == 0 ? 74 : 44
+            
             favorites.addObject(courseObject.a! as String)
             self.delegateViewController?.unfilteredCourseDicts["Favorites"]?.addObject(["ID":(courseObject.a! as String),"Name":(courseObject.b!["Name"]! as! String)])
+            
+            if delegateViewController?.searchBar.text != ""{
+                let favArr = self.delegateViewController!.filteredCourseDicts["Favorites"]! as! NSMutableArray
+                favArr.addObject(["ID":courseObject.a! as String,"Name":courseObject.b!["Name"] as! String])
+            }
+            
         }
-        self.delegateViewController?.updateSearchResults()
-        let arrayToSet = favorites as NSArray
-        def.setObject(arrayToSet, forKey: key)
+        
+        let localFavoritesArray = favorites as NSArray
+        def.setObject(localFavoritesArray, forKey: key)
         
         let contentOffset = self.delegateViewController!.tableView.contentOffset.y
-        let rowsInFirstSection =  CGFloat((self.delegateViewController!.tableView.numberOfRowsInSection(0))*44 + 25)
-        
+        let minVisibleSection = self.delegateViewController!.tableView.visibleSections.minElement() //CGFloat((self.delegateViewController!.tableView.numberOfRowsInSection(0))*44 + 25)
+        assert(minVisibleSection != nil)
         self.delegateViewController!.tableView.reloadData()
         
-        let sectionOneIsVisible = rowsInFirstSection > contentOffset
+        let sectionOneIsVisible = minVisibleSection! <= 1
     
-        if self.indexPath.section > 0 && favorites.containsObject(courseObject.a! as! String) && !sectionOneIsVisible{//Just became a favorite (Need to move down)
-            let offset = CGPoint(x: 0, y: self.delegateViewController!.tableView.contentOffset.y + 44)
+        if self.indexPath.section > 0 && favorites.containsObject(courseObject.a! as String) && (!sectionOneIsVisible || self.delegateViewController?.tableView.contentOffset.y != 0){//Just became a favorite (Need to move down)
+            let offset = CGPoint(x: 0, y: self.delegateViewController!.tableView.contentOffset.y + starOffsetConstant)
             self.delegateViewController!.tableView.setContentOffset(offset, animated: false)
         }
         else if (self.indexPath.section > 0 && self.delegateViewController!.tableView.contentOffset.y >= 0){
-            let offset = CGPoint(x: 0, y: self.delegateViewController!.tableView.contentOffset.y - 44)
+            let offset = CGPoint(x: 0, y: self.delegateViewController!.tableView.contentOffset.y - starOffsetConstant)
             self.delegateViewController!.tableView.setContentOffset(offset, animated: false)
         }
         
