@@ -25,7 +25,7 @@ struct MyVariables {
     }
 }
 
-class ScrollViewController: UIViewController, UIScrollViewDelegate {
+class ScrollViewController: UIViewController, UIScrollViewDelegate, UINavigationControllerDelegate {
     
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
@@ -75,14 +75,13 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
         scrollView.contentSize = CGSizeMake(self.view.frame.width * 3 + K.Others.screenGap*2, self.view.frame.height);
         
         
-        let vc0 = self.storyboard?.instantiateViewControllerWithIdentifier("frontvc") as! FrontViewController
+        let vc0 = self.storyboard?.instantiateViewControllerWithIdentifier("vc0nav") as! UINavigationController
+        
+        vc0.delegate = self
         
         self.addChildViewController(vc0)
         self.scrollView.addSubview(vc0.view)
         vc0.didMoveToParentViewController(self)
-        
-        vc0.delegate = self
-        
         
         vc0.view.translatesAutoresizingMaskIntoConstraints = false
         
@@ -286,6 +285,7 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
             def.setObject(majorDefault, forKey: "selectedMajor")
             def.setObject(course1IDDefault, forKey: "selectedCourse1")
             def.setObject(course2IDDefault, forKey: "selectedCourse2")
+            def.setObject(true, forKey: "Automatic Searching")
         }
     }
     
@@ -406,6 +406,16 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
 
     func l(){
         self.appDelegate.loadingProgress += 1
+    }
+    
+    func navigationController(navigationController: UINavigationController, didShowViewController viewController: UIViewController, animated: Bool) {
+        if viewController.isKindOfClass(FrontViewController){
+            print("To Front view")
+            self.scrollView.scrollEnabled = true
+        } else if viewController.isKindOfClass(SettingsTableViewController){
+            print("To settings")
+            self.scrollView.scrollEnabled = false
+        }
     }
     
 }

@@ -436,6 +436,7 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
     // MARK: - Text Field Delegate Methods
     
     func textfieldtextDidChange(textField: UITextField){
+        let def = NSUserDefaults.standardUserDefaults()
         if !(searchBar.isFirstResponder()){
             shouldBeginEditing = false
         }
@@ -444,16 +445,18 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
             self.locateButtonEnabled(true)
             self.searchingBlankView.alpha = 0
         }
-        if Settings.automaticSearchingOn{
+        if def.objectForKey("Automatic Searching")! as! Bool{
             updateSearchResults()
         }
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
+        let def = NSUserDefaults.standardUserDefaults()
+        let automaticSearchingOn = def.objectForKey("Automatic Searching")! as! Bool
         searchBar.resignFirstResponder()
-        if searchBar.text == "" && !Settings.automaticSearchingOn{
+        if searchBar.text == "" && !automaticSearchingOn{
             self.tableView.reloadData()
-        } else if !Settings.automaticSearchingOn{
+        } else if !automaticSearchingOn{
             updateSearchResults()
         }
         return false

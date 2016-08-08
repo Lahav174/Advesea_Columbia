@@ -10,20 +10,13 @@ import UIKit
 import Firebase
 
 class FrontViewController: UIViewController {
-
-    var delegate : ScrollViewController?
-    var yConstraint = NSLayoutConstraint()
-    
-    let ref = FIRDatabase.database().reference()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.ref.child("Problems").child("Course-Specific").child("Other").child("POST").setValue("hi")
     }
     
     @IBAction func buttonPressed(sender: AnyObject) {
-        print(MyVariables.courses!.indexForKey("COMSW3134"))
+        performSegueWithIdentifier("Settings", sender: self)
     }
-    
     
 }

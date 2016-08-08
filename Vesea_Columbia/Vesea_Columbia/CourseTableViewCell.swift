@@ -78,9 +78,9 @@ class CourseTableViewCell: UITableViewCell {
         assert(minVisibleSection != nil)
         self.delegateViewController!.tableView.reloadData()
         
-        let sectionOneIsVisible = minVisibleSection! <= 1
+        let sectionZeroIsVisible = minVisibleSection! == 0
     
-        if self.indexPath.section > 0 && favorites.containsObject(courseObject.a! as String) && (!sectionOneIsVisible || self.delegateViewController?.tableView.contentOffset.y != 0){//Just became a favorite (Need to move down)
+        if self.indexPath.section > 0 && favorites.containsObject(courseObject.a! as String) && (!sectionZeroIsVisible && self.delegateViewController?.tableView.contentOffset.y != 0){//Just became a favorite (Need to move down)
             let offset = CGPoint(x: 0, y: self.delegateViewController!.tableView.contentOffset.y + starOffsetConstant)
             self.delegateViewController!.tableView.setContentOffset(offset, animated: false)
         }
