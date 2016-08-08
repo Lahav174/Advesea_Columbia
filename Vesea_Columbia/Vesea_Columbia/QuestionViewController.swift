@@ -89,7 +89,7 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
         self.activityView.alpha = 0
         self.activityView.startAnimating()
         self.view.insertSubview(activityView, aboveSubview: graphBackground)
-    
+        
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -191,6 +191,9 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
         } else {
             chart = BarChartView(frame: frame)
         }
+        
+        //Can change. Will respond to touches properly
+        self.enableChartInteraction(false)
         
         configureChartSettings(chartType)
 
@@ -369,7 +372,7 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
         }
         chooser!.courseChooserType = buttonType
         
-        chart?.userInteractionEnabled = false
+        self.enableChartInteraction(false)
         self.questionLabel!.userInteractionEnabled = false
         if !(self.chooserBeingDisplayed){
             UIView.animateWithDuration(0.5, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
@@ -440,7 +443,7 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
         
         self.delegate!.vc1!.tableView.reloadData()
         
-        chart?.userInteractionEnabled = true
+        self.enableChartInteraction(true)
         if (self.chooserBeingDisplayed){
             UIView.animateWithDuration(0.5, delay: 0, options: UIViewAnimationOptions.CurveEaseIn, animations: {
                 self.container.frame.origin.y = -400
@@ -669,6 +672,12 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
         } else {
             return 5
         }
+    }
+    
+    func enableChartInteraction(bool: Bool){
+        chart?.userInteractionEnabled = false//bool
+        //Always false, for now.
+        //Changing it will allow interaction, and will work properly
     }
     
     override func didReceiveMemoryWarning() {

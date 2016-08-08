@@ -17,6 +17,7 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
     var filteringCoursesWithTexts = NSMutableArray(capacity: 50)
     
     var searchingActivityIndicator = UIActivityIndicatorView()
+    var searchingBlankView = UIView()
     
     let cantFindLabel = UILabel()
     
@@ -91,6 +92,7 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
         self.clearButton.hidden = true
         self.locateButtonEnabled(true)
         self.tableView.reloadData()
+        self.searchingBlankView.alpha = 0
     }
     
     @IBAction func upSectionPressed(sender: AnyObject) {
@@ -196,11 +198,15 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
         titleView.addSubview(titleViewLabel)
         self.navBarTitle.titleView = titleView
         
+        searchingBlankView.frame = CGRectZero
+        searchingBlankView.backgroundColor = UIColor.whiteColor()
+        searchingBlankView.alpha = 0
+        self.view.insertSubview(searchingBlankView, aboveSubview: self.tableView)
+        
         searchingActivityIndicator.frame = CGRectZero
         searchingActivityIndicator.startAnimating()
         searchingActivityIndicator.activityIndicatorViewStyle = .Gray
-        searchingActivityIndicator.alpha = 0
-        self.view.insertSubview(searchingActivityIndicator, aboveSubview: self.tableView)
+        self.searchingBlankView.addSubview(searchingActivityIndicator)
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
         self.navBarTitle.titleView?.addGestureRecognizer(tap)
@@ -217,7 +223,8 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
         cantFindLabel.text = "Not in Search Results"
         self.selectedCellView.insertSubview(cantFindLabel, aboveSubview: self.locateButton)
         
-        searchingActivityIndicator.frame = CGRect(x: self.view.frame.width/2-20, y: self.view.frame.height/2, width: 40, height: 40)
+        searchingBlankView.frame = tableView.frame
+        searchingActivityIndicator.frame = CGRect(x: self.searchingBlankView.frame.width/2-20, y: self.searchingBlankView.frame.height/2, width: 40, height: 40)
     }
     
     // MARK: - Other TableView Methods
@@ -289,7 +296,6 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
             }
             self.locateButtonEnabled(self.searchBar.text == "")
         }
-        
         
     }
     
@@ -372,7 +378,7 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
         for key in self.departmentHeadersInOrder{
             self.filteredCourseDicts.setValue(NSMutableArray(), forKey: key)
         }
-        searchingActivityIndicator.alpha = 1
+        searchingBlankView.alpha = 1
         self.tableView.reloadData()
         var shouldCancelThread = false
         let qos = Int(QOS_CLASS_USER_INITIATED.rawValue)
@@ -407,7 +413,7 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
                     }
                     
                     self.tableView.reloadData()
-                    self.searchingActivityIndicator.alpha = 0
+                    self.searchingBlankView.alpha = 0
                     
                     let courseDict = (MyVariables.courses!.get(self.subTitleLabel.text!))!
                     let dept = courseDict["Department"] as! String
@@ -436,6 +442,7 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
         clearButton.hidden = (textField.text == "")
         if textField.text == ""{
             self.locateButtonEnabled(true)
+            self.searchingBlankView.alpha = 0
         }
         if Settings.automaticSearchingOn{
             updateSearchResults()
