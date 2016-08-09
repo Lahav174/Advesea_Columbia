@@ -59,6 +59,7 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate, UINavigation
         self.scrollView.scrollsToTop = false
         self.scrollView.backgroundColor = UIColor.blackColor()
         self.scrollView.bounces = false
+        self.scrollView.showsHorizontalScrollIndicator = false
         
         checkForUpdate()
         

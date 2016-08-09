@@ -232,7 +232,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func handlePan(recognizer: UIPanGestureRecognizer){
         let xVelocity = recognizer.velocityInView(self.view).x
         let viewWidth = self.view.frame.width
-        let scrollToPrevPage = self.delegate!.scrollView.contentOffset.x < 0.45*viewWidth
+        let scrollToPrevPage = self.delegate!.scrollView.contentOffset.x < 0.55*viewWidth
         
         if recognizer.state == .Began{
             
