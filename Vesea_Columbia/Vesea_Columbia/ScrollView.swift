@@ -18,6 +18,17 @@ class ScrollView: UIScrollView, UIGestureRecognizerDelegate {
         return fabs(velocity.y) < fabs(velocity.x)
     }
     
+    func setHorizontalContentOffset(offset: CGPoint, velocity: CGPoint){
+        print("Duration method")
+        let xVelocity = velocity.x < 2400 ? 1200 : velocity.x
+        
+        let xdistance = offset.x - self.contentOffset.x
+        let duration = abs(xdistance/xVelocity)
+        print(xVelocity)
+        UIView.animateWithDuration(Double(duration), delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+            self.contentOffset = offset
+            }, completion: nil)
+    }
     
     func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRequireFailureOfGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         if (otherGestureRecognizer.delegate?.isKindOfClass(BarChartView) == true || otherGestureRecognizer.delegate?.isKindOfClass(HorizontalBarChartView) == true  || otherGestureRecognizer.delegate?.isKindOfClass(PieChartView) == true ){

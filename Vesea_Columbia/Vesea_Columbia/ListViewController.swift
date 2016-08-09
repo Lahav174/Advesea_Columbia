@@ -248,7 +248,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         if recognizer.state == .Ended{
             if (scrollToPrevPage || xVelocity > 500){
                 let prevPage = CGPoint(x: 0, y: 0)
-                delegate!.scrollView.setContentOffset(prevPage, animated: true)
+                delegate!.scrollView.setHorizontalContentOffset(prevPage, velocity: recognizer.velocityInView(self.view))//setContentOffset(prevPage, animated: true)
                 delegate!.scrollView.panGestureRecognizer.enabled = true
             } else {
                 let thisPage = CGPoint(x: viewWidth + K.Others.screenGap, y: 0)

@@ -116,7 +116,7 @@ class TableViewCell: UITableViewCell {
                 let scrollToNextPage = (delegateController?.delegate!.scrollView.contentOffset.x)! > 1.45*viewWidth
                 if (scrollToNextPage || xVelocity < -500){
                     let nextPage = CGPoint(x: viewWidth*2 + K.Others.screenGap*2, y: 0)
-                    delegateController?.delegate!.scrollView.setContentOffset(nextPage, animated: true)
+                    delegateController?.delegate!.scrollView.setHorizontalContentOffset(nextPage, velocity: recognizer.velocityInView(self))//MIGHT CHANGE setContentOffset(nextPage, animated: true)
                     delegateController?.delegate!.scrollView.panGestureRecognizer.enabled = true
                 } else {
                     let thisPage = CGPoint(x: viewWidth + K.Others.screenGap, y: 0)
@@ -126,7 +126,7 @@ class TableViewCell: UITableViewCell {
                 let scrollToPrevPage = (delegateController?.delegate!.scrollView.contentOffset.x)! < 0.45*viewWidth
                 if (scrollToPrevPage || xVelocity > 500){
                     let prevPage = CGPoint(x: 0, y: 0)
-                    delegateController?.delegate!.scrollView.setContentOffset(prevPage, animated: true)
+                    delegateController?.delegate!.scrollView.setHorizontalContentOffset(prevPage, velocity: recognizer.velocityInView(self))//setContentOffset(prevPage, animated: true)
                     delegateController?.delegate!.scrollView.panGestureRecognizer.enabled = true
                 } else {
                     let thisPage = CGPoint(x: viewWidth + K.Others.screenGap, y: 0)
