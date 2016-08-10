@@ -193,8 +193,8 @@
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="cell_arrow" translatesAutoresizingMaskIntoConstraints="NO" id="aN4-VI-xbd">
-                                                            <rect key="frame" x="580" y="14" width="12" height="15"/>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cell_arrow" translatesAutoresizingMaskIntoConstraints="NO" id="aN4-VI-xbd">
+                                                            <rect key="frame" x="580" y="15" width="12" height="15"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="12" id="XtC-jV-igD"/>
                                                                 <constraint firstAttribute="height" constant="15" id="hYP-Mc-zpi"/>
@@ -419,21 +419,21 @@
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WBs-YU-qCS">
-                                                    <rect key="frame" x="53" y="4" width="202" height="21"/>
+                                                    <rect key="frame" x="53" y="4" width="192" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OP2-nj-L1c">
-                                                    <rect key="frame" x="53" y="25" width="202" height="12"/>
+                                                    <rect key="frame" x="53" y="25" width="192" height="12"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JAk-5y-CWN">
-                                                    <rect key="frame" x="255" y="4" width="40" height="36"/>
+                                                    <rect key="frame" x="245" y="4" width="50" height="36"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="40" id="gjS-6h-GjO"/>
+                                                        <constraint firstAttribute="width" constant="50" id="gjS-6h-GjO"/>
                                                     </constraints>
                                                     <color key="tintColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                                                     <state key="normal" image="ic_info"/>
@@ -476,7 +476,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="295" height="44"/>
                                 <items>
                                     <navigationItem title="Title" id="b8i-3i-CZW">
-                                        <barButtonItem key="leftBarButtonItem" image="ic_remove_circle_outline" id="UFe-0i-bfH">
+                                        <barButtonItem key="leftBarButtonItem" title="Close" id="UFe-0i-bfH">
                                             <connections>
                                                 <action selector="removeButtonPressed:" destination="60w-v0-lcK" id="Gl5-j9-ynq"/>
                                             </connections>
@@ -500,9 +500,9 @@
                                 <rect key="frame" x="0.0" y="200" width="295" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wbp-nW-myH">
-                                        <rect key="frame" x="255" y="0.0" width="40" height="50"/>
+                                        <rect key="frame" x="245" y="0.0" width="50" height="50"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="40" id="HR1-Y4-2fE"/>
+                                            <constraint firstAttribute="width" constant="50" id="HR1-Y4-2fE"/>
                                         </constraints>
                                         <state key="normal" image="ic_info"/>
                                         <connections>
@@ -510,35 +510,24 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Art of Engineering" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mhg-Wp-wTy">
-                                        <rect key="frame" x="48" y="0.0" width="199" height="21"/>
+                                        <rect key="frame" x="8" y="0.0" width="237" height="21"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         <color key="textColor" red="0.9137254901960784" green="0.68627450980392157" blue="0.19607843137254902" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ECONW1105" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jjF-gz-PdA">
-                                        <rect key="frame" x="48" y="29" width="199" height="17"/>
+                                        <rect key="frame" x="8" y="29" width="237" height="17"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                         <color key="textColor" red="0.9137254901960784" green="0.68627450980392157" blue="0.19607843137254902" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N0x-x8-LlO">
-                                        <rect key="frame" x="0.0" y="0.0" width="40" height="50"/>
-                                        <state key="normal" image="target"/>
-                                        <connections>
-                                            <action selector="locateButtonPressed:" destination="60w-v0-lcK" eventType="touchUpInside" id="lef-RM-XpB"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.92941176470588238" green="0.92941176470588238" blue="0.92941176470588238" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="N0x-x8-LlO" firstAttribute="top" secondItem="Q90-Ms-DBu" secondAttribute="top" id="1Yb-R9-DVN"/>
-                                    <constraint firstAttribute="bottom" secondItem="N0x-x8-LlO" secondAttribute="bottom" id="3f1-2p-ip0"/>
-                                    <constraint firstItem="N0x-x8-LlO" firstAttribute="leading" secondItem="Q90-Ms-DBu" secondAttribute="leading" id="77c-Vb-zM3"/>
+                                    <constraint firstItem="Mhg-Wp-wTy" firstAttribute="leading" secondItem="Q90-Ms-DBu" secondAttribute="leading" constant="8" id="2Jp-Ae-wvd"/>
                                     <constraint firstItem="jjF-gz-PdA" firstAttribute="trailing" secondItem="Mhg-Wp-wTy" secondAttribute="trailing" id="HrO-wB-TB0"/>
                                     <constraint firstItem="jjF-gz-PdA" firstAttribute="top" secondItem="Mhg-Wp-wTy" secondAttribute="bottom" constant="8" id="HyT-ec-Vll"/>
-                                    <constraint firstItem="Wbp-nW-myH" firstAttribute="leading" secondItem="Mhg-Wp-wTy" secondAttribute="trailing" constant="8" id="Kfu-nw-GYa"/>
-                                    <constraint firstItem="Mhg-Wp-wTy" firstAttribute="leading" secondItem="N0x-x8-LlO" secondAttribute="trailing" constant="8" id="Nau-O5-uQV"/>
-                                    <constraint firstItem="N0x-x8-LlO" firstAttribute="width" secondItem="Wbp-nW-myH" secondAttribute="width" id="Yze-zV-e9d"/>
+                                    <constraint firstItem="Wbp-nW-myH" firstAttribute="leading" secondItem="Mhg-Wp-wTy" secondAttribute="trailing" id="Kfu-nw-GYa"/>
                                     <constraint firstItem="Mhg-Wp-wTy" firstAttribute="top" secondItem="Q90-Ms-DBu" secondAttribute="top" id="Zig-Af-xI1"/>
                                     <constraint firstAttribute="bottom" secondItem="Wbp-nW-myH" secondAttribute="bottom" id="dAk-gl-s53"/>
                                     <constraint firstItem="jjF-gz-PdA" firstAttribute="leading" secondItem="Mhg-Wp-wTy" secondAttribute="leading" id="ezj-nL-3nD"/>
@@ -579,7 +568,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="clearButton" destination="qWd-78-0Gs" id="VEg-Ib-a9y"/>
-                        <outlet property="locateButton" destination="N0x-x8-LlO" id="s3U-6y-hK7"/>
                         <outlet property="navBarTitle" destination="b8i-3i-CZW" id="Bxi-uR-Afz"/>
                         <outlet property="searchBar" destination="GRa-sc-M8y" id="WEs-Xe-lpb"/>
                         <outlet property="selectedCellView" destination="Q90-Ms-DBu" id="JKn-ku-FtU"/>
@@ -621,6 +609,5 @@
         <image name="ic_info" width="20" height="20"/>
         <image name="ic_remove_circle_outline" width="20" height="20"/>
         <image name="magnifyingglass" width="18" height="18"/>
-        <image name="target" width="22" height="22"/>
     </resources>
 </document>

@@ -19,11 +19,13 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
     var searchingActivityIndicator = UIActivityIndicatorView()
     var searchingBlankView = UIView()
     
-    let cantFindLabel = UILabel()
+    var cantFindLabel = UILabel()
     
     var unfilteredCourseDicts = NSMutableDictionary()
     var filteredCourseDicts = NSMutableDictionary()
     var departmentHeadersInOrder = [String]()
+    
+    var courseCanBeLocated = true
     
     var delegateViewController : QuestionViewController?
     
@@ -42,8 +44,6 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
     
     @IBOutlet weak var subTitleLabel: UILabel!
     
-    @IBOutlet weak var locateButton: UIButton!
-    
     // MARK: - Buttons
     
     
@@ -53,11 +53,18 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func locateButtonEnabled(bool: Bool){
-        self.locateButton.enabled = bool
-        self.cantFindLabel.hidden = bool
+        self.courseCanBeLocated = bool
     }
-
-    @IBAction func locateButtonPressed(sender: AnyObject) {
+    
+    func locateCourse(sender: AnyObject) {
+        if !courseCanBeLocated{
+            cantFindLabel.alpha = 1
+            UIView.animateWithDuration(1, delay: 1.5, options: .CurveLinear, animations: {
+                self.cantFindLabel.alpha = 0
+                }, completion: nil)
+            return
+        }
+        
         let courseDict = (MyVariables.courses!.get(self.subTitleLabel.text!))!
         print(courseDict)
         let dept = courseDict["Department"] as! String
@@ -72,7 +79,7 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
                     }
                 }
             }
-        print("Couldn't find it")
+            print("Couldn't find it")
         } else {
             let arr = self.unfilteredCourseDicts[dept]! as! NSArray
             for row in 0...arr.count-1{
@@ -156,6 +163,9 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
         pan.delegate = self
         self.tableView.addGestureRecognizer(pan)
         
+        let locateTap = UITapGestureRecognizer(target: self, action: #selector(self.locateCourse(_:)))
+        self.selectedCellView.addGestureRecognizer(locateTap)
+        
         self.view.layer.masksToBounds = true
         let border = CALayer()
         border.backgroundColor = UIColor.lightGrayColor().CGColor
@@ -214,17 +224,17 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        cantFindLabel.frame = CGRect(origin: CGPoint(x: 0, y: self.locateButton.frame.origin.y), size: self.locateButton.frame.size)
-        cantFindLabel.hidden = true
-        cantFindLabel.textAlignment = NSTextAlignment.Center
-        cantFindLabel.textColor = UIColor.redColor()
-        cantFindLabel.numberOfLines = 3
-        cantFindLabel.font = UIFont(name: "HelveticaNeue-Medium", size: 10)
-        cantFindLabel.text = "Not in Search Results"
-        self.selectedCellView.insertSubview(cantFindLabel, aboveSubview: self.locateButton)
-        
         searchingBlankView.frame = tableView.frame
         searchingActivityIndicator.frame = CGRect(x: self.searchingBlankView.frame.width/2-20, y: self.searchingBlankView.frame.height/2, width: 40, height: 40)
+        
+        cantFindLabel.frame = CGRect(x: (self.view.frame.width-175)/2, y: self.view.frame.height-84, width: 175, height: 30)
+        cantFindLabel.text = "Not in search results"
+        cantFindLabel.backgroundColor = UIColor(red: 202/255, green: 55/255, blue: 55/255, alpha: 0.86)
+        cantFindLabel.textAlignment = .Center
+        cantFindLabel.layer.cornerRadius = 10;
+        cantFindLabel.layer.masksToBounds = true;
+        cantFindLabel.alpha = 0
+        self.view.insertSubview(cantFindLabel, aboveSubview: selectedCellView)
     }
     
     // MARK: - Other TableView Methods
