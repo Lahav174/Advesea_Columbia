@@ -230,6 +230,17 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate, UINavigation
         }
     }
     
+    func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+        assert(vc1 != nil)
+        if indexOfActiveQuestion >= 0{
+           let cell = vc1!.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: indexOfActiveQuestion))! as! TableViewCell
+            if cell.slidingView.frame.origin.x != 0 || cell.slidingImageView?.frame.origin.x != 0{
+                cell.slidingView.frame.origin.x = 0
+                cell.slidingImageView?.frame.origin.x = 0
+            }
+        }
+    }
+    
     func setUpCourses(){
         var courseDict = OrderedDictionary<NSDictionary>()
         var csvColumns = [String : [String]]()
