@@ -10,10 +10,6 @@ import UIKit
 import Charts
 import SwiftCSV
 
-struct Settings {//Move to user defaults
-    static var automaticSearchingOn = true
-}
-
 struct MyVariables {
     static var courses : OrderedDictionary<NSDictionary>?
     struct QuestionData {
@@ -111,7 +107,6 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate, UINavigation
         vc1!.didMoveToParentViewController(self)
         vc1!.delegate = self
         
-        
         vc1!.view.translatesAutoresizingMaskIntoConstraints = false
         
         let widthConstraintVC1 = NSLayoutConstraint(item: view, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: vc1!.view, attribute: NSLayoutAttribute.Width, multiplier: 1, constant: 0)
@@ -128,7 +123,23 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate, UINavigation
         
         questionViewController = self.storyboard?.instantiateViewControllerWithIdentifier("chartquestionvc") as! QuestionViewController
         questionViewController!.delegate = self
-        setUpQuestionFrame(questionViewController!)
+        
+        self.addChildViewController(questionViewController!)
+        self.scrollView.addSubview(questionViewController!.view)
+        questionViewController!.didMoveToParentViewController(self)
+        
+        questionViewController!.view.translatesAutoresizingMaskIntoConstraints = false
+        
+        let widthConstraintVCBAR = NSLayoutConstraint(item: view, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: questionViewController!.view, attribute: NSLayoutAttribute.Width, multiplier: 1, constant: 0)
+        view.addConstraint(widthConstraintVCBAR)
+        
+        let heightConstraintVCBAR = NSLayoutConstraint(item: view, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: questionViewController!.view, attribute: NSLayoutAttribute.Height, multiplier: 1, constant: 0)
+        view.addConstraint(heightConstraintVCBAR)
+        
+        let horizontalConstraintVCBAR = NSLayoutConstraint(item: questionViewController!.view, attribute: NSLayoutAttribute.Left, relatedBy: NSLayoutRelation.Equal, toItem: scrollView, attribute: NSLayoutAttribute.Right, multiplier: 1, constant: self.view.frame.size.width*2 + K.Others.screenGap*2)
+        view.addConstraint(horizontalConstraintVCBAR)
+        let verticalConstraintVCBAR = NSLayoutConstraint(item:  questionViewController!.view, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: scrollView, attribute: NSLayoutAttribute.Top, multiplier: 1, constant: 0)
+        view.addConstraint(verticalConstraintVCBAR)
         
     }
     
@@ -202,27 +213,7 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate, UINavigation
         }
     }
     
-    func setUpQuestionFrame(newViewController: UIViewController){
-        
-       // newViewController.view.frame.origin.x = self.view.frame.size.width*2
-        
-        self.addChildViewController(newViewController)
-        self.scrollView.addSubview(newViewController.view)
-        newViewController.didMoveToParentViewController(self)
-        
-        newViewController.view.translatesAutoresizingMaskIntoConstraints = false
-        
-        let widthConstraintVCBAR = NSLayoutConstraint(item: view, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: newViewController.view, attribute: NSLayoutAttribute.Width, multiplier: 1, constant: 0)
-        view.addConstraint(widthConstraintVCBAR)
-        
-        let heightConstraintVCBAR = NSLayoutConstraint(item: view, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: newViewController.view, attribute: NSLayoutAttribute.Height, multiplier: 1, constant: 0)
-        view.addConstraint(heightConstraintVCBAR)
-        
-        let horizontalConstraintVCBAR = NSLayoutConstraint(item: newViewController.view, attribute: NSLayoutAttribute.Left, relatedBy: NSLayoutRelation.Equal, toItem: scrollView, attribute: NSLayoutAttribute.Right, multiplier: 1, constant: self.view.frame.size.width*2 + K.Others.screenGap*2)
-        view.addConstraint(horizontalConstraintVCBAR)
-        let verticalConstraintVCBAR = NSLayoutConstraint(item:  newViewController.view, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: scrollView, attribute: NSLayoutAttribute.Top, multiplier: 1, constant: 0)
-        view.addConstraint(verticalConstraintVCBAR)
-    }
+    // MARK: - ScrollView Delegate Methods
     
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
         if (scrollView.contentOffset.x == self.view.frame.width + K.Others.screenGap){
@@ -241,44 +232,13 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate, UINavigation
         }
     }
     
-    func setUpCourses(){
-        var courseDict = OrderedDictionary<NSDictionary>()
-        var csvColumns = [String : [String]]()
-        let coursesFile = "CoursesDept"
-        do {
-            let csvURL = NSBundle(forClass: FrontViewController.self).URLForResource(coursesFile, withExtension: "csv")!
-            //print("csvURL: " + String(csvURL))
-            let csv = try CSV(url: csvURL)
-            csvColumns = csv.columns
-        } catch {
-            print("Failed!")
-            fatalError(coursesFile + ".csv could not be found")
-        }
-        for i in 0...csvColumns["Name"]!.count-1{
-            let singleCourseDict : NSDictionary = ["Name":csvColumns["Name"]![i],
-                                       "Credits":csvColumns["Credits"]![i],
-                                       "Department":csvColumns["Department"]![i],
-                                       "Culpa":csvColumns["Culpa"]![i]]
-            courseDict.insert(singleCourseDict, forKey: csvColumns["ID"]![i], atIndex: i)
-        }
-        MyVariables.courses = courseDict
-    }
+    // MARK: - Check Update/New User
     
     func checkNewUser(){
         let def = NSUserDefaults.standardUserDefaults()
         if def.objectForKey("Username") == nil{
             def.setObject(ScrollViewController.generateRandomID(8), forKey: "Username")
         }
-    }
-    
-    class func generateRandomID(length: Int) -> String {
-        let characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890".characters.map { String($0) }
-        var id = ""
-        for _ in 1...length{
-            id += characters[Int(arc4random_uniform(62))]
-        }
-        print(id)
-        return id
     }
     
     func checkForUpdate(){ //Called only when update or first time (Not when load)
@@ -301,8 +261,32 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate, UINavigation
         }
     }
     
+    // MARK: - Setup Data
+    
+    func setUpCourses(){
+        var courseDict = OrderedDictionary<NSDictionary>()
+        var csvColumns = [String : [String]]()
+        let coursesFile = "CoursesDept"
+        do {
+            let csvURL = NSBundle(forClass: FrontViewController.self).URLForResource(coursesFile, withExtension: "csv")!
+            //print("csvURL: " + String(csvURL))
+            let csv = try CSV(url: csvURL)
+            csvColumns = csv.columns
+        } catch {
+            print("Failed!")
+            fatalError(coursesFile + ".csv could not be found")
+        }
+        for i in 0...csvColumns["Name"]!.count-1{
+            let singleCourseDict : NSDictionary = ["Name":csvColumns["Name"]![i],
+                                                   "Credits":csvColumns["Credits"]![i],
+                                                   "Department":csvColumns["Department"]![i],
+                                                   "Culpa":csvColumns["Culpa"]![i]]
+            courseDict.insert(singleCourseDict, forKey: csvColumns["ID"]![i], atIndex: i)
+        }
+        MyVariables.courses = courseDict
+    }
+    
     func setupQuestionData(questionNumber: Int){
-        
         
         switch questionNumber {
         case 0:
@@ -415,10 +399,8 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate, UINavigation
         }
         
     }
-
-    func l(){
-        self.appDelegate.loadingProgress += 1
-    }
+    
+    // MARK: - Navigation Controller Delegate Methods
     
     func navigationController(navigationController: UINavigationController, didShowViewController viewController: UIViewController, animated: Bool) {
         if viewController.isKindOfClass(FrontViewController){
@@ -430,6 +412,21 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate, UINavigation
         }
     }
     
+    // MARK: - Other
+    
+    func l(){
+        self.appDelegate.loadingProgress += 1
+    }
+    
+    class func generateRandomID(length: Int) -> String {
+        let characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890".characters.map { String($0) }
+        var id = ""
+        for _ in 1...length{
+            id += characters[Int(arc4random_uniform(62))]
+        }
+        print(id)
+        return id
+    }
 }
 
 struct K {
