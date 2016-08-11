@@ -20,6 +20,45 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     var cellImages = Array(count: 7, repeatedValue: UIImage())
     
+    @IBAction func gearButtonPressed(sender: UIBarButtonItem) {
+        self.delegate!.scrollView.setContentOffset(CGPointZero, animated: true)
+        self.delegate!.scrollView.panGestureRecognizer.enabled = true
+    }
+        
+    func waveCells(){
+        
+        let qos = Int(QOS_CLASS_USER_INITIATED.rawValue)
+        let queue = dispatch_get_global_queue(qos, 0)
+        dispatch_async(queue) {
+            
+            for i in 0...self.tableView.visibleCells.count-1 {
+                NSThread.sleepForTimeInterval(0.15)
+                let slidingDistance: CGFloat = 25
+                let cell = self.tableView.cellForRowAtIndexPath((self.tableView.visibleCells[i] as! TableViewCell).indexPath)! as! TableViewCell
+                    dispatch_async(dispatch_get_main_queue(), {
+                        UIView.animateWithDuration(0.2, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
+                            cell.slidingView.frame.origin.x = -slidingDistance
+                            cell.slidingImageView?.frame.origin.x = slidingDistance
+                            }, completion: { (true) in
+                                UIView.animateWithDuration(0.2, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { 
+                                    cell.slidingView.frame.origin.x = 0
+                                    cell.slidingImageView?.frame.origin.x = 0
+                                    }, completion: nil)
+                        })
+                })
+            }
+            
+        }
+        
+        
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        for i in 0...self.tableView.numberOfSections-1 {
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -160,6 +199,12 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.slidingViewLabel.attributedText = myMutableString
         cell.userInteractionEnabled = true
         
+        cell.slidingView.clipsToBounds = true
+        cell.iconView.image = UIImage(named: "graph_icon")
+        cell.slidingView.backgroundColor = UIColor.blackColor()
+        cell.originalSlidingViewOrigin = cell.slidingView.frame.origin
+
+        
         return cell
     }
     
@@ -260,7 +305,6 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     
     /*
-     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

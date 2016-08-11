@@ -154,6 +154,9 @@
                                     <navigationItem title="Advesea" id="8MI-s3-QFT">
                                         <barButtonItem key="leftBarButtonItem" image="Gear" id="Sne-qU-RSB">
                                             <color key="tintColor" red="0.16480368589743588" green="0.16480368589743588" blue="0.16480368589743588" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="gearButtonPressed:" destination="33m-5S-TZ7" id="oSZ-YJ-7xd"/>
+                                            </connections>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>

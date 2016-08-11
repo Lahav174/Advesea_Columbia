@@ -57,15 +57,7 @@ class TableViewCell: UITableViewCell {
         let viewWidth = (delegateController?.delegate!.view.frame.width)!
         let xVelocity = recognizer.velocityInView(superview!).x
         if recognizer.state == .Began {
-            if (self.iconView.image == nil){
-                self.slidingView.clipsToBounds = true
-                self.iconView.image = UIImage(named: "graph_icon")
-                self.slidingView.backgroundColor = UIColor.blackColor()
-                self.originalSlidingViewOrigin = self.slidingView.frame.origin
-            }
-            dispatch_async(dispatch_get_main_queue()) {
-                self.delegateController?.delegate!.resetQuestionViewController(self.indexPath.section)
-            }
+            self.delegateController?.delegate!.resetQuestionViewController(self.indexPath.section)
         }
         if recognizer.state == .Changed {
             let translation = recognizer.translationInView(self)
@@ -111,7 +103,7 @@ class TableViewCell: UITableViewCell {
                     delegateController?.delegate!.scrollView.contentOffset.x = viewWidth
                 }
             }
-            
+            slidingView.frame.origin.y = 0
             let offset = slidingView.frame.origin.x
             self.slidingImageView?.frame.origin.x = -offset
             
