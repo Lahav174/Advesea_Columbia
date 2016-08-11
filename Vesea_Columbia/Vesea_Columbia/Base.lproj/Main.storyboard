@@ -151,7 +151,11 @@
                             <navigationBar clipsSubviews="YES" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ufk-O4-qUQ">
                                 <rect key="frame" x="0.0" y="40" width="600" height="44"/>
                                 <items>
-                                    <navigationItem title="Advesea" id="8MI-s3-QFT"/>
+                                    <navigationItem title="Advesea" id="8MI-s3-QFT">
+                                        <barButtonItem key="leftBarButtonItem" image="Gear" id="Sne-qU-RSB">
+                                            <color key="tintColor" red="0.16480368589743588" green="0.16480368589743588" blue="0.16480368589743588" alpha="1" colorSpace="calibratedRGB"/>
+                                        </barButtonItem>
+                                    </navigationItem>
                                 </items>
                             </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="UIm-og-r7B">
@@ -569,6 +573,7 @@
                     <connections>
                         <outlet property="clearButton" destination="qWd-78-0Gs" id="VEg-Ib-a9y"/>
                         <outlet property="navBarTitle" destination="b8i-3i-CZW" id="Bxi-uR-Afz"/>
+                        <outlet property="removeButton" destination="UFe-0i-bfH" id="Rrc-dg-cYQ"/>
                         <outlet property="searchBar" destination="GRa-sc-M8y" id="WEs-Xe-lpb"/>
                         <outlet property="selectedCellView" destination="Q90-Ms-DBu" id="JKn-ku-FtU"/>
                         <outlet property="subTitleLabel" destination="jjF-gz-PdA" id="JtE-oC-riQ"/>
@@ -601,6 +606,7 @@
     </scenes>
     <resources>
         <image name="Back Chevron" width="13" height="21"/>
+        <image name="Gear" width="22" height="23"/>
         <image name="Star_Deselected" width="226" height="227"/>
         <image name="cell_arrow" width="8" height="12"/>
         <image name="cross" width="14" height="14"/>

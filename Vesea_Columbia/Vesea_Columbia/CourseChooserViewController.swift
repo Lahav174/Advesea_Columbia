@@ -32,6 +32,8 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
     var searching : Bool = false
     var shouldBeginEditing : Bool = true
     
+    
+    @IBOutlet weak var removeButton: UIBarButtonItem!
     @IBOutlet weak var clearButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UITextField!
@@ -91,7 +93,7 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     @IBAction func removeButtonPressed(sender: AnyObject) {
-            delegateViewController!.animateContainerOut()
+        delegateViewController!.animateContainerOut()
     }
     
     @IBAction func clearButtonPressed(sender: AnyObject) {

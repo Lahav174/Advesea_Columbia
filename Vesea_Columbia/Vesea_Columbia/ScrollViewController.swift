@@ -262,30 +262,7 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate, UINavigation
     }
     
     // MARK: - Setup Data
-    /*
-    func setUpCourses(){
-        var courseDict = OrderedDictionary<NSDictionary>()
-        var csvColumns = [String : [String]]()
-        let coursesFile = "CoursesDept"
-        do {
-            let csvURL = NSBundle(forClass: FrontViewController.self).URLForResource(coursesFile, withExtension: "csv")!
-            //print("csvURL: " + String(csvURL))
-            let csv = try CSV(url: csvURL)
-            csvColumns = csv.columns
-        } catch {
-            print("Failed!")
-            fatalError(coursesFile + ".csv could not be found")
-        }
-        for i in 0...csvColumns["Name"]!.count-1{
-            let singleCourseDict : NSDictionary = ["Name":csvColumns["Name"]![i],
-                                                   "Credits":csvColumns["Credits"]![i],
-                                                   "Department":csvColumns["Department"]![i],
-                                                   "Culpa":csvColumns["Culpa"]![i]]
-            courseDict.insert(singleCourseDict, forKey: csvColumns["ID"]![i], atIndex: i)
-        }
-        MyVariables.courses = courseDict
-    }
- */
+
     func setUpCourses(){
         var courseDict = OrderedDictionary<NSDictionary>()
         let coursesFile = "CoursesDept"
@@ -470,5 +447,6 @@ struct K {
         static let majorColor = UIColor(red: 191/255, green: 56/255, blue: 26/255, alpha: 1)
         static let course1Color = UIColor(red: 233/255, green: 175/255, blue: 50/255, alpha: 1)
         static let course2Color = UIColor(red: 222/255, green: 116/255, blue: 42/255, alpha: 1)
+        static let standardBlue = UIColor(red: 0, green: 118/255, blue: 1, alpha: 1)
     }
 }
