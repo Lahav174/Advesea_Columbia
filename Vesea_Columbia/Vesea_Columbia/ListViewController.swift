@@ -9,16 +9,45 @@
 import UIKit
 import QuartzCore
 
-class ListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UINavigationBarDelegate {
+class ListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UINavigationBarDelegate, ProblemFormDelegate {
 
     @IBOutlet weak var tableView: UITableView!
         
     @IBOutlet weak var navigationBar: UINavigationBar!
     var delegate : ScrollViewController?
     
+    var form : ProblemFormView?
+    
     let cellHeight : CGFloat = 100
     
     var cellImages = Array(count: 7, repeatedValue: UIImage())
+    
+    func problemFormDidFinish(type: ProblemFormType) {
+        if self.form!.type == .ListVC{
+            UIView.animateWithDuration(0.2, animations: { 
+                self.form!.alpha = 0
+                self.form!.textView.resignFirstResponder()
+                }, completion: { (true) in
+                    self.form?.removeFromSuperview()
+                    self.tableView.userInteractionEnabled = true
+            })
+        }
+    }
+    
+    @IBAction func feedbackButtonPressed(sender: AnyObject) {
+        form = ProblemFormView(frame: CGRect(x: 20, y: 80, width: self.view.frame.width-40, height: self.view.frame.height-310))
+        form!.alpha = 0
+        form!.delegate = self
+        form!.type = .ListVC
+        self.view.addSubview(form!)
+        self.tableView.userInteractionEnabled = false
+        self.form!.textView.becomeFirstResponder()
+        UIView.animateWithDuration(0.2) { 
+            self.form!.alpha = 1
+        }
+//        let v = UIView(frame: CGRect(x: 100, y: 100, width: 100, height: 100))
+//        self.view.insertSubview(v, atIndex: 999)
+    }
     
     @IBAction func gearButtonPressed(sender: UIBarButtonItem) {
         self.delegate!.scrollView.setContentOffset(CGPointZero, animated: true)
@@ -30,7 +59,6 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let qos = Int(QOS_CLASS_USER_INITIATED.rawValue)
         let queue = dispatch_get_global_queue(qos, 0)
         dispatch_async(queue) {
-            
             for i in 0...self.tableView.visibleCells.count-1 {
                 NSThread.sleepForTimeInterval(0.15)
                 let slidingDistance: CGFloat = 25
@@ -55,8 +83,6 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        for i in 0...self.tableView.numberOfSections-1 {
-        }
     }
     
     override func viewDidLoad() {
@@ -85,10 +111,8 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.navigationBar.layer.masksToBounds = false
         self.navigationBar.layer.shouldRasterize = true
         
-//        let gradient: CAGradientLayer = CAGradientLayer()
-//        gradient.colors = [UIColor.blueColor().CGColor, UIColor.redColor().CGColor]
-//        gradient.frame = CGRect(x: 0, y: -20, width: self.navigationBar.frame.width, height: self.navigationBar.frame.height + 20)
-//        self.navigationBar.layer.addSublayer(gradient)
+        let navBarTopConstraint = NSLayoutConstraint(item: self.navigationBar, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Top, multiplier: 1, constant: 20)
+        self.view.addConstraint(navBarTopConstraint)
         
         self.navigationBar.setBackgroundImage(UIImage(named: "Bar"), forBarMetrics: UIBarMetrics.Default)
         let navFont = UIFont(name: "Athelas", size: 30.0)
@@ -266,10 +290,6 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
         return UIBarPosition.TopAttached
-    }
-    
-    func setupNavigationBar(){
-        
     }
     
     // MARK: - Pan Delegate method

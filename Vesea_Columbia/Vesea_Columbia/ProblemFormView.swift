@@ -11,9 +11,11 @@ import Firebase
 
 class ProblemFormView: UIView {
     
-    var delegate : UIViewController?
+    var delegate : ProblemFormDelegate?
     
     var view: UIView!
+    
+    var type: ProblemFormType = .None
     
     var nibName: String = "ProblemFormView"
     
@@ -107,10 +109,11 @@ class ProblemFormView: UIView {
     
     func cancelButtonPressed(sender: UIButton){
         print("Cancel Button Pressed")
-        if delegate is QuestionViewController{
-            let qvc = delegate as! QuestionViewController
-            qvc.flipInfoView("Problem")
-        }
+//        if delegate is QuestionViewController{
+//            let qvc = delegate as! QuestionViewController
+//            qvc.flipInfoView("Problem")
+//        }
+        delegate?.problemFormDidFinish(self.type)
         
     }
     
@@ -155,20 +158,22 @@ class ProblemFormView: UIView {
             let timeFormatter = NSDateFormatter()
             timeFormatter.dateFormat = "HH:mm:ss.S"
             
-            postRef.setValue(["Date":"Date","Course ID":self.courseID!,"Text":self.textView.text])
+            if self.type == .Course{
+                postRef.setValue(["Date":"Date","Course ID":self.courseID!,"Text":self.textView.text])
+            } else {
+                postRef.setValue(["Date":"Date","Text":self.textView.text])
+            }
             postRef.child("Date").setValue(["Date":dateFormatter.stringFromDate(date),"Time":timeFormatter.stringFromDate(date)])
             
             
             self.textView.text = "Thank you"
-            let qvc = self.delegate as! QuestionViewController
-            let timer = NSTimer.scheduledTimerWithTimeInterval(1.5, target: self, selector: #selector(self.flipBack), userInfo: nil, repeats: false)
+            let delay = Int64(1*Double(NSEC_PER_SEC))
+            let dispatchTime = dispatch_time(DISPATCH_TIME_NOW, delay)
+            dispatch_after(dispatchTime, dispatch_get_main_queue()) {
+                self.delegate?.problemFormDidFinish(self.type)
+            }
             
             }, withCancelBlock: nil)
-    }
-    
-    func flipBack(){
-        let qvc = self.delegate as! QuestionViewController
-        qvc.flipInfoView("Problem")
     }
     
     func stylizeFonts(){
@@ -207,4 +212,15 @@ class ProblemFormView: UIView {
         return view
     }
 
+}
+
+protocol ProblemFormDelegate {
+    func problemFormDidFinish(type: ProblemFormType)
+}
+
+enum ProblemFormType {
+    case Course
+    case QuestionVC
+    case ListVC
+    case None
 }

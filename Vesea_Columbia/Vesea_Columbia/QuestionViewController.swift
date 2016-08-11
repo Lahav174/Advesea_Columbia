@@ -9,7 +9,7 @@
 import UIKit
 import Charts
 
-class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UINavigationBarDelegate {
+class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UINavigationBarDelegate, ProblemFormDelegate {
     var chartType: String? = nil
 
     var questionLabel : UIView?
@@ -102,6 +102,12 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         self.activityView.center = graphBackground.center
+    }
+    
+    func problemFormDidFinish(type: ProblemFormType){
+        if type == .Course{
+            self.flipInfoView("Problem")
+        }
     }
     
     func updateChartData(valueFormatter: NSNumberFormatter, xyValues: [(x: String, y: Double)]){
@@ -516,7 +522,8 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
         
         problemForm = ProblemFormView(frame: CGRect(origin: CGPointZero, size: frame.size))
         problemForm!.courseID = course.a! as String
-        problemForm?.delegate = self
+        problemForm!.delegate = self
+        problemForm!.type = .Course
         
     }
     

@@ -149,7 +149,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar clipsSubviews="YES" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ufk-O4-qUQ">
-                                <rect key="frame" x="0.0" y="40" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
                                 <items>
                                     <navigationItem title="Advesea" id="8MI-s3-QFT">
                                         <barButtonItem key="leftBarButtonItem" image="Gear" id="Sne-qU-RSB">
@@ -158,11 +158,22 @@
                                                 <action selector="gearButtonPressed:" destination="33m-5S-TZ7" id="oSZ-YJ-7xd"/>
                                             </connections>
                                         </barButtonItem>
+                                        <rightBarButtonItems>
+                                            <barButtonItem title="Item" id="EDy-kB-MDg">
+                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            </barButtonItem>
+                                            <barButtonItem image="Feedback" id="2lf-w9-BYV">
+                                                <color key="tintColor" red="0.1648036859" green="0.1648036859" blue="0.1648036859" alpha="1" colorSpace="calibratedRGB"/>
+                                                <connections>
+                                                    <action selector="feedbackButtonPressed:" destination="33m-5S-TZ7" id="KuA-zP-YHZ"/>
+                                                </connections>
+                                            </barButtonItem>
+                                        </rightBarButtonItems>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="UIm-og-r7B">
-                                <rect key="frame" x="0.0" y="84" width="600" height="516"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="492"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="SwipeCell" id="Unt-Lv-GW9" customClass="TableViewCell" customModule="Vesea_Columbia" customModuleProvider="target">
@@ -242,7 +253,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Ufk-O4-qUQ" firstAttribute="centerX" secondItem="4Bh-4R-7EE" secondAttribute="centerX" id="PYL-A5-E6O"/>
-                            <constraint firstItem="Ufk-O4-qUQ" firstAttribute="top" secondItem="dtd-d7-NEF" secondAttribute="bottom" constant="20" id="Tia-lM-nBN"/>
+                            <constraint firstItem="Ufk-O4-qUQ" firstAttribute="top" secondItem="dtd-d7-NEF" secondAttribute="bottom" placeholder="YES" id="Tia-lM-nBN"/>
                             <constraint firstItem="Ufk-O4-qUQ" firstAttribute="width" secondItem="4Bh-4R-7EE" secondAttribute="width" id="Tr0-Rq-Ox5"/>
                             <constraint firstItem="UIm-og-r7B" firstAttribute="centerX" secondItem="4Bh-4R-7EE" secondAttribute="centerX" id="dhh-wU-FYD"/>
                             <constraint firstItem="UIm-og-r7B" firstAttribute="top" secondItem="Ufk-O4-qUQ" secondAttribute="bottom" id="hV9-8Q-eFI"/>
@@ -250,6 +261,8 @@
                             <constraint firstItem="UIm-og-r7B" firstAttribute="width" secondItem="4Bh-4R-7EE" secondAttribute="width" id="yFq-rW-6zW"/>
                         </constraints>
                     </view>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="navigationBar" destination="Ufk-O4-qUQ" id="OXx-jD-z1i"/>
                         <outlet property="tableView" destination="UIm-og-r7B" id="ZIa-jh-wlv"/>
@@ -609,6 +622,7 @@
     </scenes>
     <resources>
         <image name="Back Chevron" width="13" height="21"/>
+        <image name="Feedback" width="20" height="20"/>
         <image name="Gear" width="22" height="23"/>
         <image name="Star_Deselected" width="226" height="227"/>
         <image name="cell_arrow" width="8" height="12"/>
