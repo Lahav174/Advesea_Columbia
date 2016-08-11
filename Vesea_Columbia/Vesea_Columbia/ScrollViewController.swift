@@ -262,7 +262,7 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate, UINavigation
     }
     
     // MARK: - Setup Data
-    
+    /*
     func setUpCourses(){
         var courseDict = OrderedDictionary<NSDictionary>()
         var csvColumns = [String : [String]]()
@@ -282,6 +282,33 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate, UINavigation
                                                    "Department":csvColumns["Department"]![i],
                                                    "Culpa":csvColumns["Culpa"]![i]]
             courseDict.insert(singleCourseDict, forKey: csvColumns["ID"]![i], atIndex: i)
+        }
+        MyVariables.courses = courseDict
+    }
+ */
+    func setUpCourses(){
+        var courseDict = OrderedDictionary<NSDictionary>()
+        let coursesFile = "CoursesDept"
+        
+        if let data = NSData(contentsOfURL: NSBundle.mainBundle().URLForResource("CoursesDept", withExtension: "dat")!){
+            
+            if let str = String(data: data, encoding: NSUTF8StringEncoding) {
+                let arr = str.componentsSeparatedByString("#")
+                
+                for i in 0...arr.count-1{
+                    let lineArr = (arr[i]).componentsSeparatedByString(",")
+                    let singleCourseDict : NSDictionary = ["Name":lineArr[2],
+                                                           "Credits":lineArr[1],
+                                                           "Department":lineArr[3],
+                                                           "Culpa":lineArr[4]]
+                    courseDict.insert(singleCourseDict, forKey: lineArr[0], atIndex: i)
+                    
+                }
+            } else {
+                fatalError("Problem turning data into string")
+            }
+        } else {
+            fatalError("Problem reading courses")
         }
         MyVariables.courses = courseDict
     }

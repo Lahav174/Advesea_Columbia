@@ -90,11 +90,11 @@ class LaunchViewController: UIViewController {
         dispatch_async(queue) {
             
             vc.setUpCourses()
-            /*
+            
             for i in 0...6{
                 vc.setupQuestionData(i)
             }
-            */
+ 
             self.timer.invalidate()
             dispatch_async(dispatch_get_main_queue(), { 
                 self.presentViewController(vc, animated: false, completion: nil)

@@ -63,6 +63,13 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
         }) { (true) in
             self.delegate!.scrollView.panGestureRecognizer.enabled = false
         }
+        if self.questionNumber >= 0{
+            let cell = self.delegate!.vc1!.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: self.questionNumber))! as! TableViewCell
+            if cell.slidingView.frame.origin.x != 0 || cell.slidingImageView?.frame.origin.x != 0{
+                cell.slidingView.frame.origin.x = 0
+                cell.slidingImageView?.frame.origin.x = 0
+            }
+        }
     }
     
     

@@ -34,6 +34,7 @@
 		CDC0AB481D52D7F8009B89D0 /* CoursesDept.csv in Resources */ = {isa = PBXBuildFile; fileRef = CDC0AB471D52D7F8009B89D0 /* CoursesDept.csv */; };
 		CDC0AB4A1D52E6BA009B89D0 /* A0_WhenIsCourseTaken.dat in Resources */ = {isa = PBXBuildFile; fileRef = CDC0AB491D52E6BA009B89D0 /* A0_WhenIsCourseTaken.dat */; };
 		CDC0AB4C1D584E1C009B89D0 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC0AB4B1D584E1C009B89D0 /* SettingsTableViewController.swift */; };
+		CDC0ABD41D5C03EC009B89D0 /* CoursesDept.dat in Resources */ = {isa = PBXBuildFile; fileRef = CDC0ABD31D5C03EC009B89D0 /* CoursesDept.dat */; };
 		CDD865E81D315E9600D942CC /* OrderedDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD865E71D315E9600D942CC /* OrderedDictionary.swift */; };
 		CDEB79421D3EB1F500FA6531 /* A2_ConcurrentCourses.dat in Resources */ = {isa = PBXBuildFile; fileRef = CDEB79411D3EB1F500FA6531 /* A2_ConcurrentCourses.dat */; };
 		CDFCD6D11D3950A300561566 /* CourseInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFCD6D01D3950A300561566 /* CourseInfoView.swift */; };
@@ -104,6 +105,7 @@
 		CDC0AB471D52D7F8009B89D0 /* CoursesDept.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CoursesDept.csv; sourceTree = "<group>"; };
 		CDC0AB491D52E6BA009B89D0 /* A0_WhenIsCourseTaken.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = A0_WhenIsCourseTaken.dat; sourceTree = "<group>"; };
 		CDC0AB4B1D584E1C009B89D0 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		CDC0ABD31D5C03EC009B89D0 /* CoursesDept.dat */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CoursesDept.dat; sourceTree = "<group>"; };
 		CDD865E71D315E9600D942CC /* OrderedDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderedDictionary.swift; sourceTree = "<group>"; };
 		CDEB79411D3EB1F500FA6531 /* A2_ConcurrentCourses.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = A2_ConcurrentCourses.dat; sourceTree = "<group>"; };
 		CDFCD6D01D3950A300561566 /* CourseInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseInfoView.swift; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 			children = (
 				CDFCD6E41D3E01C400561566 /* Courses.csv */,
 				CDC0AB471D52D7F8009B89D0 /* CoursesDept.csv */,
+				CDC0ABD31D5C03EC009B89D0 /* CoursesDept.dat */,
 				CDC0AB491D52E6BA009B89D0 /* A0_WhenIsCourseTaken.dat */,
 				CDEB79411D3EB1F500FA6531 /* A2_ConcurrentCourses.dat */,
 				CD73BE591D46F80300582650 /* A3_AlsoTakenBefore.dat */,
@@ -210,11 +213,11 @@
 				CD892ED71CEBB8CD00DF5D24 /* AppDelegate.swift */,
 				CDFF9FD91CF6D02500E64650 /* TestGraphViewController.swift */,
 				CD892EDB1CEBB8CD00DF5D24 /* Main.storyboard */,
-				CDC0AB4B1D584E1C009B89D0 /* SettingsTableViewController.swift */,
+				CDFF9FD71CF394AE00E64650 /* ScrollViewController.swift */,
 				CD73BE651D47EE4100582650 /* LaunchViewController.swift */,
+				CDC0AB4B1D584E1C009B89D0 /* SettingsTableViewController.swift */,
 				CD892F131CEFA16600DF5D24 /* FrontViewController.swift */,
 				CD0BCC611D0DD37B002D7B49 /* QuestionViewController.swift */,
-				CDFF9FD71CF394AE00E64650 /* ScrollViewController.swift */,
 				CD2312A01D04A21400ED6D0D /* CourseChooserViewController.swift */,
 				CD892F1D1CF168B100DF5D24 /* ListViewController.swift */,
 				CD2C7E1A1D29B98300FCAD5E /* SlidingSegmentedControl.swift */,
@@ -389,6 +392,7 @@
 				CDFF9FE91CFBC13000E64650 /* QuestionLabel1.xib in Resources */,
 				CD1350BF1D40501D001C6833 /* QuestionLabel0.xib in Resources */,
 				CDFCD6E51D3E01C400561566 /* Courses.csv in Resources */,
+				CDC0ABD41D5C03EC009B89D0 /* CoursesDept.dat in Resources */,
 				CD73BE5A1D46F80300582650 /* A3_AlsoTakenBefore.dat in Resources */,
 				CDFCD6D31D39529300561566 /* CourseInfoView.xib in Resources */,
 				CD73BE621D47053100582650 /* QuestionLabel3.xib in Resources */,
