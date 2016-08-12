@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UAProgressView
 
 class LaunchViewController: UIViewController {
     
@@ -16,62 +17,37 @@ class LaunchViewController: UIViewController {
     
     var timer = NSTimer()
     
-    let imvLight = UIImageView(frame: CGRectZero)
-    let imvDark = UIImageView(frame: CGRectZero)
-
-    var cicleOrigin = CGPoint()
+    let pv = UAProgressView(frame: CGRect(x: 25, y: 100, width: 200, height: 200))
+    let centerView = UILabel()
 
     func changeProgress(){
         
         if appDelegate.loadingProgress > self.latestProgress{
             latestProgress = appDelegate.loadingProgress
-            print(String(Int(latestProgress*100/15)) + "%")
-            shareImage(Int(latestProgress*100/15))
+            pv.progress = (CGFloat(latestProgress)/15)
         }
     }
-    
-    func shareImage(darkFraction: Int){
-        
-        if darkFraction == 0{
-            imvLight.frame = CGRect(origin: cicleOrigin, size: CGSize(width: 300, height: 300))
-            let imageLight = ListViewController.resizeImage(UIImage(named: "Oval_light")!, newHeight: 300)
-            imvLight.image = imageLight
-            imvDark.image = nil
-            return
-        } else if darkFraction == 100{
-            imvDark.frame = CGRect(origin: cicleOrigin, size: CGSize(width: 300, height: 300))
-            let imageDark = ListViewController.resizeImage(UIImage(named: "Oval_dark")!, newHeight: 300)
-            imvDark.image = imageDark
-            imvLight.image = nil
-            return
-
-        }
-        
-        let darkFrac = Double(darkFraction)/100
-        let lightFrac = 1 - darkFrac
-        imvLight.frame = CGRect(origin: cicleOrigin, size: CGSize(width: 300, height: 300*lightFrac))
-        let imageLight = ListViewController.resizeImage(UIImage(named: "Oval_light")!, newHeight: 300)
-        let croppedLight = CGImageCreateWithImageInRect(imageLight.CGImage, CGRect(origin: CGPointZero, size: CGSize(width: 300, height: 300*lightFrac)))
-        imvLight.image = UIImage(CGImage: croppedLight!)
-        
-        imvDark.frame = CGRect(x: Double(cicleOrigin.x), y: Double(cicleOrigin.y) + 300*lightFrac, width: 300, height: 300*darkFrac)
-        let imageDark = ListViewController.resizeImage(UIImage(named: "Oval_dark")!, newHeight: 300)
-        let croppedDark = CGImageCreateWithImageInRect(imageDark.CGImage, CGRect(origin: CGPoint(x: 0, y: 300*lightFrac), size: CGSize(width: 300, height: 300*darkFrac)))
-        imvDark.image = UIImage(CGImage: croppedDark!)
-    }
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        cicleOrigin = CGPoint(x: self.view.frame.width/2-150, y: self.view.frame.height/2-150)
+        pv.borderWidth = 3
+        pv.lineWidth = 4
+        pv.animationDuration = 1
         
-        self.view.addSubview(imvLight)
-        self.view.addSubview(imvDark)
-        imvLight.contentMode = .ScaleAspectFit
-        imvDark.contentMode = .ScaleAspectFit
-        shareImage(0)
+        centerView.frame = CGRect(origin: CGPointZero
+            , size: CGSize(width: 150, height: 100))
+        centerView.text = "0%"
+        centerView.textAlignment = .Center
+        centerView.textColor = K.colors.standardBlue
+        centerView.font = UIFont(name: "HelveticaNeue-Thin", size: 40)
+        pv.centralView = centerView
+        self.view.addSubview(pv)
+        
+        self.pv.progressChangedBlock = { v, p in
+            self.centerView.text = String(Int(self.pv.progress*100)) + "%"
+        }
+        
         
     }
     
@@ -79,6 +55,8 @@ class LaunchViewController: UIViewController {
         super.viewDidAppear(animated)
         
         appDelegate.loadingProgress += 1
+        
+        self.pv.frame.origin = CGPoint(x: (self.view.frame.width-200)/2, y: (self.view.frame.height-200)/2)
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewControllerWithIdentifier("scroll") as! ScrollViewController
@@ -90,7 +68,6 @@ class LaunchViewController: UIViewController {
         dispatch_async(queue) {
             
             vc.setUpCourses()
-            
             for i in 0...6{
                 vc.setupQuestionData(i)
             }

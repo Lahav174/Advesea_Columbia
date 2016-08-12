@@ -87,9 +87,11 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods/AFNetworking.framework"
   install_framework "Pods/Charts.framework"
   install_framework "Pods/SwiftCSV.framework"
+  install_framework "Pods/UAProgressView.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods/AFNetworking.framework"
   install_framework "Pods/Charts.framework"
   install_framework "Pods/SwiftCSV.framework"
+  install_framework "Pods/UAProgressView.framework"
 fi

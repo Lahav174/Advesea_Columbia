@@ -59,9 +59,9 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate, UINavigation
         
         checkForUpdate()
         
-        print(MyVariables.QuestionData.Q3_Before[7][4])
-        print(MyVariables.QuestionData.Q3_Concurrently[7][4])
-        print(MyVariables.QuestionData.Q3_After[7][4])
+//        print(MyVariables.QuestionData.Q3_Before[7][4])
+//        print(MyVariables.QuestionData.Q3_Concurrently[7][4])
+//        print(MyVariables.QuestionData.Q3_After[7][4])
         
         checkNewUser()
         

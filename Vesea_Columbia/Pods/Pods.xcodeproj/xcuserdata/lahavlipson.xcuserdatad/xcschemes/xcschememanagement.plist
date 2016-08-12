@@ -24,20 +24,30 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>UAProgressView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>00DA66E5A60452725E844AE6BB80E76C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>1C3436CEA5C3D39764C5F54374794ECB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1FB70B837F9BB8C9691D1AFEB87AB169</key>
+		<key>92571C0C77F0F39F63D7F0C21BF78724</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>29B7809E8395A9EA09AD8B89EA8C3C5D</key>
+		<key>ADBEF0AE11BE346C8D7D15BA2343929B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
