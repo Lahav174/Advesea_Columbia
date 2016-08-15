@@ -6,6 +6,8 @@ pod ‘SwiftCSV’
 
 pod 'Firebase/Database'
 
+pod 'Firebase/Storage'
+
 pod 'AFNetworking'
 
 pod 'UAProgressView'

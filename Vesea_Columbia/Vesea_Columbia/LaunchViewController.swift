@@ -67,10 +67,12 @@ class LaunchViewController: UIViewController {
         let queue = dispatch_get_global_queue(qos, 0)
         dispatch_async(queue) {
             
+            vc.checkNewUser()
             vc.setUpCourses()
             for i in 0...6{
                 vc.setupQuestionData(i)
             }
+            vc.checkForUpdate()
  
             self.timer.invalidate()
             dispatch_async(dispatch_get_main_queue(), { 

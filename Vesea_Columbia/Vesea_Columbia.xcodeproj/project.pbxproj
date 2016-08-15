@@ -35,7 +35,6 @@
 		CDC0AB4A1D52E6BA009B89D0 /* A0_WhenIsCourseTaken.dat in Resources */ = {isa = PBXBuildFile; fileRef = CDC0AB491D52E6BA009B89D0 /* A0_WhenIsCourseTaken.dat */; };
 		CDC0AB4C1D584E1C009B89D0 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC0AB4B1D584E1C009B89D0 /* SettingsTableViewController.swift */; };
 		CDC0ABD81D5C29E2009B89D0 /* CoursesDept.dat in Resources */ = {isa = PBXBuildFile; fileRef = CDC0ABD71D5C29E2009B89D0 /* CoursesDept.dat */; };
-		CDC0ABDC1D5D7A17009B89D0 /* GonnaDeleteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC0ABDB1D5D7A17009B89D0 /* GonnaDeleteViewController.m */; };
 		CDD865E81D315E9600D942CC /* OrderedDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD865E71D315E9600D942CC /* OrderedDictionary.swift */; };
 		CDEB79421D3EB1F500FA6531 /* A2_ConcurrentCourses.dat in Resources */ = {isa = PBXBuildFile; fileRef = CDEB79411D3EB1F500FA6531 /* A2_ConcurrentCourses.dat */; };
 		CDFCD6D11D3950A300561566 /* CourseInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFCD6D01D3950A300561566 /* CourseInfoView.swift */; };
@@ -108,8 +107,6 @@
 		CDC0AB4B1D584E1C009B89D0 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		CDC0ABD71D5C29E2009B89D0 /* CoursesDept.dat */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CoursesDept.dat; sourceTree = "<group>"; };
 		CDC0ABD91D5D7A16009B89D0 /* Vesea_Columbia-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Vesea_Columbia-Bridging-Header.h"; sourceTree = "<group>"; };
-		CDC0ABDA1D5D7A17009B89D0 /* GonnaDeleteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GonnaDeleteViewController.h; sourceTree = "<group>"; };
-		CDC0ABDB1D5D7A17009B89D0 /* GonnaDeleteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GonnaDeleteViewController.m; sourceTree = "<group>"; };
 		CDD865E71D315E9600D942CC /* OrderedDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderedDictionary.swift; sourceTree = "<group>"; };
 		CDEB79411D3EB1F500FA6531 /* A2_ConcurrentCourses.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = A2_ConcurrentCourses.dat; sourceTree = "<group>"; };
 		CDFCD6D01D3950A300561566 /* CourseInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseInfoView.swift; sourceTree = "<group>"; };
@@ -216,8 +213,6 @@
 			children = (
 				CD892ED71CEBB8CD00DF5D24 /* AppDelegate.swift */,
 				CDFF9FD91CF6D02500E64650 /* TestGraphViewController.swift */,
-				CDC0ABDA1D5D7A17009B89D0 /* GonnaDeleteViewController.h */,
-				CDC0ABDB1D5D7A17009B89D0 /* GonnaDeleteViewController.m */,
 				CD892EDB1CEBB8CD00DF5D24 /* Main.storyboard */,
 				CDFF9FD71CF394AE00E64650 /* ScrollViewController.swift */,
 				CD73BE651D47EE4100582650 /* LaunchViewController.swift */,
@@ -488,7 +483,6 @@
 				CDFCD6D11D3950A300561566 /* CourseInfoView.swift in Sources */,
 				CDFF9FE01CFA304600E64650 /* QuestionLabel2.swift in Sources */,
 				CD1350BD1D405004001C6833 /* QuestionLabel0.swift in Sources */,
-				CDC0ABDC1D5D7A17009B89D0 /* GonnaDeleteViewController.m in Sources */,
 				CD73BE601D4703FF00582650 /* QuestionLabel3.swift in Sources */,
 				CD73BE661D47EE4100582650 /* LaunchViewController.swift in Sources */,
 				CD2C7E1B1D29B98300FCAD5E /* SlidingSegmentedControl.swift in Sources */,

@@ -32,7 +32,7 @@ class TestGraphViewController: UIViewController {
         self.view.addSubview(pv)
         
         
-        let _ = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: #selector(self.increment), userInfo: nil, repeats: true)
+        //let _ = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: #selector(self.increment), userInfo: nil, repeats: true)
         
         self.pv.progressChangedBlock = { v, p in
             self.centerView.text = String(Int(self.pv.progress*100)) + "%"

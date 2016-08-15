@@ -9,6 +9,7 @@
 import UIKit
 import Charts
 import SwiftCSV
+import Firebase
 
 struct MyVariables {
     static var courses : OrderedDictionary<NSDictionary>?
@@ -24,6 +25,8 @@ struct MyVariables {
 class ScrollViewController: UIViewController, UIScrollViewDelegate, UINavigationControllerDelegate {
     
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    
+    let ref = FIRDatabase.database().reference()
     
     var vc1 : ListViewController?
     
@@ -56,20 +59,9 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate, UINavigation
         self.scrollView.backgroundColor = UIColor.blackColor()
         self.scrollView.bounces = false
         self.scrollView.showsHorizontalScrollIndicator = false
-        
-        checkForUpdate()
-        
-//        print(MyVariables.QuestionData.Q3_Before[7][4])
-//        print(MyVariables.QuestionData.Q3_Concurrently[7][4])
-//        print(MyVariables.QuestionData.Q3_After[7][4])
-        
-        checkNewUser()
-        
-        scrollView.delaysContentTouches = false
-                        
-        scrollView.delegate = self
-        
-        scrollView.contentSize = CGSizeMake(self.view.frame.width * 3 + K.Others.screenGap*2, self.view.frame.height);
+        self.scrollView.delaysContentTouches = false
+        self.scrollView.delegate = self
+        self.scrollView.contentSize = CGSizeMake(self.view.frame.width * 3 + K.Others.screenGap*2, self.view.frame.height);
         
         
         let vc0 = self.storyboard?.instantiateViewControllerWithIdentifier("vc0nav") as! UINavigationController
@@ -236,17 +228,21 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate, UINavigation
     
     func checkNewUser(){
         let def = NSUserDefaults.standardUserDefaults()
+        
+        let date = NSDate()
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-dd-MM"
+        
+        let timeFormatter = NSDateFormatter()
+        timeFormatter.dateFormat = "HH:mm:ss.S"
+        
         if def.objectForKey("Username") == nil{
-            def.setObject(ScrollViewController.generateRandomID(8), forKey: "Username")
-        }
-    }
-    
-    func checkForUpdate(){ //Called only when update or first time (Not when load)
-        let def = NSUserDefaults.standardUserDefaults()
-        
-        //Note: changing the format of "favorites" in nsuserdefaults will cause a crash because this if-statement will fail, simply because it already exists
-        if (true){
-        
+            let userName = ScrollViewController.generateRandomID(8)
+            def.setObject(userName, forKey: "Username")
+            self.ref.child("Users").child(userName).child("Date Created").setValue(dateFormatter.stringFromDate(date) + ", " + timeFormatter.stringFromDate(date))
+            def.setObject(0, forKey: "Last update")
+            
             var favorites = NSMutableArray() //reset favorites MIGHT CHANGE
             let arrayToSet = favorites as NSArray
             def.setObject(arrayToSet, forKey: "favorites")
@@ -258,16 +254,143 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate, UINavigation
             def.setObject(course1IDDefault, forKey: "selectedCourse1")
             def.setObject(course2IDDefault, forKey: "selectedCourse2")
             def.setObject(true, forKey: "Automatic Searching")
+            
+            def.setObject(0, forKey: "Last update")
+            
+            if let dirs : [String] = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true) {
+                let dir = dirs[0] //documents directory
+                var path = String()
+                var fileName = String()
+                var urlpath = NSURL()
+                
+                for i in 0...6 {
+                    
+                    switch i {
+                    case 0:
+                        fileName = "A0_WhenIsCourseTaken"
+                        break
+                    case 2:
+                        fileName = "A2_ConcurrentCourses"
+                        break
+                    case 3:
+                        fileName = "A3_AlsoTakenBefore"
+                        break
+                    case 4:
+                        fileName = "A3_AlsoTakenConcurrently"
+                        break
+                    case 5:
+                        fileName = "A3_AlsoTakenAfter"
+                        break
+                    case 6:
+                        fileName = "CoursesDept"
+                        break
+                    default:
+                        break
+                    }
+                    
+                    path = dir.stringByAppendingString("/" + fileName + ".dat")
+                    urlpath = NSURL.fileURLWithPath(path)
+                    if let data = NSData(contentsOfURL: NSBundle.mainBundle().URLForResource(fileName, withExtension: "dat")!){
+                        ScrollViewController.writeData(data, toFileWithPath: urlpath)
+                    }
+                    
+                }
+                
+                
+            }
+            
+            print("Set up new user!")
         }
+        
+        
+    }
+
+    
+    func checkForUpdate(){
+        
+        let def = NSUserDefaults.standardUserDefaults()
+        var shouldUpdate = false
+        let updateStamp = ref.child("Latest Update")
+        
+        let qos = Int(QOS_CLASS_BACKGROUND.rawValue)
+        let queue = dispatch_get_global_queue(qos, 0)
+        dispatch_async(queue) {
+            
+            updateStamp.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+                let snap = snapshot.value as? Int
+                shouldUpdate = snap >= def.objectForKey("Last update") as! Int
+                print("shouldUpdate:  + \(shouldUpdate)")
+                
+                if !shouldUpdate{
+                    return
+                }
+                
+                print("Updating...")
+                
+                let storage = FIRStorage.storage()
+                let storageRef = storage.referenceForURL("gs://advesea-columbia.appspot.com")
+                
+                var fileName = ""
+                
+                for i in 1...6{
+                    switch i {
+                    case 1:
+                        fileName = "A0_WhenIsCourseTaken.dat"
+                        break
+                    case 2:
+                        fileName = "A2_ConcurrentCourses.dat"
+                        break
+                    case 3:
+                        fileName = "A3_AlsoTakenBefore.dat"
+                        break
+                    case 4:
+                        fileName = "A3_AlsoTakenConcurrently.dat"
+                        break
+                    case 5:
+                        fileName = "A3_AlsoTakenAfter.dat"
+                        break
+                    case 6:
+                        fileName = "CoursesDept.dat"
+                        break
+                    default:
+                        break
+                    }
+                    
+                    let fileData = storageRef.child(fileName)
+                    
+                    
+                    if let dirs : [String] = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true) {
+                        let path = dirs[0].stringByAppendingString("/" + fileName)
+                        let pathURL = NSURL.fileURLWithPath(path)
+                        fileData.writeToFile(pathURL, completion: { (URL, error) in
+                            if error == nil{
+                                print("Wrote updated file")
+                                print(URL!)
+                            } else {
+                                print("Error: \(error)")
+                            }
+                        })
+                    }
+                }
+                
+                let date = NSDate()
+                def.setObject(date.timeIntervalSince1970, forKey: "Last update")
+            })
+        }
+        
     }
     
     // MARK: - Setup Data
 
     func setUpCourses(){
-        var courseDict = OrderedDictionary<NSDictionary>()
-        let coursesFile = "CoursesDept"
+        let courseDict = OrderedDictionary<NSDictionary>()
+        let coursesFile = "CoursesDept.dat"
         
-        if let data = NSData(contentsOfURL: NSBundle.mainBundle().URLForResource("CoursesDept", withExtension: "dat")!){
+        //if let data = NSData(contentsOfURL: NSBundle.mainBundle().URLForResource("CoursesDept", withExtension: "dat")!){
+        if let dirs : [String] = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true) {
+            let path = dirs[0].stringByAppendingString("/" + coursesFile)
+            let pathURL = NSURL.fileURLWithPath(path)
+            let data = NSData(contentsOfURL: pathURL)!
             
             if let str = String(data: data, encoding: NSUTF8StringEncoding) {
                 let arr = str.componentsSeparatedByString("#")
@@ -295,7 +418,11 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate, UINavigation
         switch questionNumber {
         case 0:
             var shorts = [UInt16]()
-            if let data = NSData(contentsOfURL: NSBundle.mainBundle().URLForResource("A0_WhenIsCourseTaken", withExtension: "dat")!){
+//            if let data = NSData(contentsOfURL: NSBundle.mainBundle().URLForResource("A0_WhenIsCourseTaken", withExtension: "dat")!){
+            if let dirs : [String] = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true) {
+                let path = dirs[0].stringByAppendingString("/A0_WhenIsCourseTaken.dat")
+                let pathURL = NSURL.fileURLWithPath(path)
+                let data = NSData(contentsOfURL: pathURL)!
                 var buffer = [UInt8](count: data.length, repeatedValue: 0)
                 data.getBytes(&buffer, length: data.length)
                 l()
@@ -318,7 +445,11 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate, UINavigation
             break
         case 2:
             var shorts = [UInt16]()
-            if let data = NSData(contentsOfURL: NSBundle.mainBundle().URLForResource("A2_ConcurrentCourses", withExtension: "dat")!){
+//            if let data = NSData(contentsOfURL: NSBundle.mainBundle().URLForResource("A2_ConcurrentCourses", withExtension: "dat")!){
+            if let dirs : [String] = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true) {
+                let path = dirs[0].stringByAppendingString("/A2_ConcurrentCourses.dat")
+                let pathURL = NSURL.fileURLWithPath(path)
+                let data = NSData(contentsOfURL: pathURL)!
                 var buffer = [UInt8](count: data.length, repeatedValue: 0)
                 data.getBytes(&buffer, length: data.length)
                 l()
@@ -332,7 +463,7 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate, UINavigation
                 for i in 0...shorts.count/7-1{
                     let shortsSegment = Array(shorts[(i*7)...(6+i*7)])
                     assert(shortsSegment.count == 7, "not 7")
-                    assert(shortsSegment[0] < 3000 && shortsSegment[1] < 3000, "wut")
+                    //assert(shortsSegment[0] < 3000 && shortsSegment[1] < 3000, "wut")
                     MyVariables.QuestionData.Q2[Int(shortsSegment[0])][Int(shortsSegment[1])][0] = shortsSegment[2]
                     MyVariables.QuestionData.Q2[Int(shortsSegment[0])][Int(shortsSegment[1])][1] = shortsSegment[4]
                     MyVariables.QuestionData.Q2[Int(shortsSegment[0])][Int(shortsSegment[1])][2] = shortsSegment[5]
@@ -362,7 +493,11 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate, UINavigation
                     break
                 }
                 var shorts = [UInt16]()
-                if let data = NSData(contentsOfURL: NSBundle.mainBundle().URLForResource(fileName, withExtension: "dat")!){
+//                if let data = NSData(contentsOfURL: NSBundle.mainBundle().URLForResource(fileName, withExtension: "dat")!){
+                if let dirs : [String] = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true) {
+                    let path = dirs[0].stringByAppendingString("/" + fileName + ".dat")
+                    let pathURL = NSURL.fileURLWithPath(path)
+                    let data = NSData(contentsOfURL: pathURL)!
                     var buffer = [UInt8](count: data.length, repeatedValue: 0)
                     data.getBytes(&buffer, length: data.length)
                     l()
@@ -430,6 +565,26 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate, UINavigation
         }
         print(id)
         return id
+    }
+    
+    class func readFileWithPath(path: NSURL){
+            //reading
+            print("Reading")
+            let dat = NSData(contentsOfURL: path)
+            print(dat!.length)
+
+    }
+    
+    class func writeData(data: NSData, toFileWithPath path: NSURL){
+        do {
+            //writing
+            //try data.writeToFile(path, options: NSDataWritingOptions.DataWritingFileProtectionComplete)
+            try data.writeToURL(path, options: NSDataWritingOptions.DataWritingFileProtectionComplete)
+            print("Wrote a file: \(path)")
+            print()
+        } catch {
+            print("Problem Writing")
+        }
     }
 }
 
