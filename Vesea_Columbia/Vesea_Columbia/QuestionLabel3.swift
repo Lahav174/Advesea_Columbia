@@ -156,6 +156,7 @@ class QuestionLabel3: UIView, SlidingSegmentedControlDelegate, QuestionLabel {
     }
     
     func SlidingSegmentedControlDidSelectIndex(index: Int){
+        self.variableIndex = index
         self.enableButtons(false)
         self.delegateViewController!.chart!.alpha = 0
         self.delegateViewController!.activityView.alpha = 1
