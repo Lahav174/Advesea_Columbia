@@ -254,6 +254,7 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate, UINavigation
             def.setObject(course1IDDefault, forKey: "selectedCourse1")
             def.setObject(course2IDDefault, forKey: "selectedCourse2")
             def.setObject(true, forKey: "Automatic Searching")
+            def.setObject(true, forKey: "Automatic File Updating")
             
             def.setObject(0, forKey: "Last update")
             
@@ -318,7 +319,10 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate, UINavigation
             
             updateStamp.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
                 let snap = snapshot.value as? Int
-                shouldUpdate = snap >= def.objectForKey("Last update") as! Int
+                assert((def.objectForKey("Last update") as? Int) != nil)
+                assert(def.objectForKey("Last update") != nil)
+                assert(def.objectForKey("Automatic File Updating") != nil)
+                shouldUpdate = snap >= def.objectForKey("Last update")! as! Int && def.objectForKey("Automatic File Updating")! as! Bool
                 print("shouldUpdate:  + \(shouldUpdate)")
                 
                 if !shouldUpdate{
