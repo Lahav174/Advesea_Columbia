@@ -127,6 +127,8 @@ import UIKit
         param1.numberStyle = NSNumberFormatterStyle.PercentStyle
         param1.multiplier = 1
         
+        self.delegateViewController!.chart!.alpha = 1
+        self.delegateViewController!.activityView.alpha = 0
         delegateViewController!.updateChartData(param1, xyValues: param2)
         
         

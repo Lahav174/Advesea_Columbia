@@ -449,8 +449,6 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
                     break
                 }
                 
-                self.activityView.alpha = 0
-                self.chart?.alpha = 1
             }
         }
         

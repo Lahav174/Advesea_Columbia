@@ -104,8 +104,6 @@ import UIKit
         let dispatchTime = dispatch_time(DISPATCH_TIME_NOW, delay)
         dispatch_after(dispatchTime, dispatch_get_main_queue()) {
             if self.delegateViewController?.questionNumber == 0{
-                self.delegateViewController!.chart!.alpha = 1
-                self.delegateViewController!.activityView.alpha = 0
                 self.enableButtons(true)
                 self.displayChartData()
             }
@@ -135,7 +133,10 @@ import UIKit
         param1.numberStyle = NSNumberFormatterStyle.PercentStyle
         param1.multiplier = 1
         
-            delegateViewController!.updateChartData(param1, xyValues: param2)
+        
+        self.delegateViewController!.chart!.alpha = 1
+        self.delegateViewController!.activityView.alpha = 0
+        delegateViewController!.updateChartData(param1, xyValues: param2)
         
     }
     
