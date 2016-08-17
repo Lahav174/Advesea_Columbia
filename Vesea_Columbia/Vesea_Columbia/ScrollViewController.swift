@@ -138,6 +138,13 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate, UINavigation
     func resetQuestionViewController(preset: Int){
         if (preset == self.indexOfActiveQuestion){
             return
+        } else {
+            let qvc = self.questionViewController!
+            qvc.flipView?.alpha = 0
+            qvc.infoView = nil
+            qvc.infoViewBeingDisplayed = false
+            qvc.container.userInteractionEnabled = true
+            qvc.animateContainerOut(0.01)
         }
         self.indexOfActiveQuestion = preset
         
@@ -210,6 +217,7 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate, UINavigation
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
         if (scrollView.contentOffset.x == self.view.frame.width + K.Others.screenGap){
             scrollView.panGestureRecognizer.enabled = false
+            
         }
     }
     
@@ -528,7 +536,7 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate, UINavigation
                         let shortsSegment = Array(shorts[(i*12)...(11+i*12)])
                         assert(shortsSegment.count == 12, "not 12")
                         for i in 0...10{
-                            assert(Int(shortsSegment[0]) != 0)
+                            assert(Int(shortsSegment[0]) != 0, "shortsSegment \(shortsSegment)")
                             arr[Int(shortsSegment[0])-1][i] = shortsSegment[i+1]
                         }
                     }

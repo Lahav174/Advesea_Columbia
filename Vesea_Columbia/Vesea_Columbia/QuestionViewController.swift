@@ -397,7 +397,7 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
         }
     }
     
-    func animateContainerOut(){
+    func animateContainerOut(animationTime: Double = 0.5){
         let def = NSUserDefaults.standardUserDefaults()
         chooser!.searchBar.resignFirstResponder()
         
@@ -458,7 +458,7 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
         
         self.enableChartInteraction(true)
         if (self.chooserBeingDisplayed){
-            UIView.animateWithDuration(0.5, delay: 0, options: UIViewAnimationOptions.CurveEaseIn, animations: {
+            UIView.animateWithDuration(animationTime, delay: 0, options: UIViewAnimationOptions.CurveEaseIn, animations: {
                 self.container.frame.origin.y = -400
                 }, completion: { (true) in
                     self.chooserBeingDisplayed = false

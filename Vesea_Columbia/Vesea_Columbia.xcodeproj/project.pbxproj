@@ -13,9 +13,6 @@
 		CD1350BF1D40501D001C6833 /* QuestionLabel0.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD1350BE1D40501D001C6833 /* QuestionLabel0.xib */; };
 		CD2312A11D04A21400ED6D0D /* CourseChooserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2312A01D04A21400ED6D0D /* CourseChooserViewController.swift */; };
 		CD2C7E1B1D29B98300FCAD5E /* SlidingSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2C7E1A1D29B98300FCAD5E /* SlidingSegmentedControl.swift */; };
-		CD73BE5A1D46F80300582650 /* A3_AlsoTakenBefore.dat in Resources */ = {isa = PBXBuildFile; fileRef = CD73BE591D46F80300582650 /* A3_AlsoTakenBefore.dat */; };
-		CD73BE5C1D46F80A00582650 /* A3_AlsoTakenConcurrently.dat in Resources */ = {isa = PBXBuildFile; fileRef = CD73BE5B1D46F80A00582650 /* A3_AlsoTakenConcurrently.dat */; };
-		CD73BE5E1D46F81400582650 /* A3_AlsoTakenAfter.dat in Resources */ = {isa = PBXBuildFile; fileRef = CD73BE5D1D46F81400582650 /* A3_AlsoTakenAfter.dat */; };
 		CD73BE601D4703FF00582650 /* QuestionLabel3.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD73BE5F1D4703FF00582650 /* QuestionLabel3.swift */; };
 		CD73BE621D47053100582650 /* QuestionLabel3.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD73BE611D47053100582650 /* QuestionLabel3.xib */; };
 		CD73BE661D47EE4100582650 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD73BE651D47EE4100582650 /* LaunchViewController.swift */; };
@@ -30,6 +27,9 @@
 		CD892F141CEFA16600DF5D24 /* FrontViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD892F131CEFA16600DF5D24 /* FrontViewController.swift */; };
 		CD892F1C1CF15C1900DF5D24 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD892F1B1CF15C1900DF5D24 /* TableViewCell.swift */; };
 		CD892F1E1CF168B100DF5D24 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD892F1D1CF168B100DF5D24 /* ListViewController.swift */; };
+		CD89975C1D6430CC00C36F4A /* A3_AlsoTakenConcurrently.dat in Resources */ = {isa = PBXBuildFile; fileRef = CD8997591D6430CC00C36F4A /* A3_AlsoTakenConcurrently.dat */; };
+		CD89975D1D6430CC00C36F4A /* A3_AlsoTakenBefore.dat in Resources */ = {isa = PBXBuildFile; fileRef = CD89975A1D6430CC00C36F4A /* A3_AlsoTakenBefore.dat */; };
+		CD89975E1D6430CC00C36F4A /* A3_AlsoTakenAfter.dat in Resources */ = {isa = PBXBuildFile; fileRef = CD89975B1D6430CC00C36F4A /* A3_AlsoTakenAfter.dat */; };
 		CDB82A281D05F46E00F01678 /* CourseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB82A271D05F46E00F01678 /* CourseTableViewCell.swift */; };
 		CDC0AB481D52D7F8009B89D0 /* CoursesDept.csv in Resources */ = {isa = PBXBuildFile; fileRef = CDC0AB471D52D7F8009B89D0 /* CoursesDept.csv */; };
 		CDC0AB4A1D52E6BA009B89D0 /* A0_WhenIsCourseTaken.dat in Resources */ = {isa = PBXBuildFile; fileRef = CDC0AB491D52E6BA009B89D0 /* A0_WhenIsCourseTaken.dat */; };
@@ -78,9 +78,6 @@
 		CD1350BE1D40501D001C6833 /* QuestionLabel0.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuestionLabel0.xib; sourceTree = "<group>"; };
 		CD2312A01D04A21400ED6D0D /* CourseChooserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseChooserViewController.swift; sourceTree = "<group>"; };
 		CD2C7E1A1D29B98300FCAD5E /* SlidingSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlidingSegmentedControl.swift; sourceTree = "<group>"; };
-		CD73BE591D46F80300582650 /* A3_AlsoTakenBefore.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = A3_AlsoTakenBefore.dat; sourceTree = "<group>"; };
-		CD73BE5B1D46F80A00582650 /* A3_AlsoTakenConcurrently.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = A3_AlsoTakenConcurrently.dat; sourceTree = "<group>"; };
-		CD73BE5D1D46F81400582650 /* A3_AlsoTakenAfter.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = A3_AlsoTakenAfter.dat; sourceTree = "<group>"; };
 		CD73BE5F1D4703FF00582650 /* QuestionLabel3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionLabel3.swift; sourceTree = "<group>"; };
 		CD73BE611D47053100582650 /* QuestionLabel3.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuestionLabel3.xib; sourceTree = "<group>"; };
 		CD73BE651D47EE4100582650 /* LaunchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
@@ -101,6 +98,9 @@
 		CD892F131CEFA16600DF5D24 /* FrontViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrontViewController.swift; sourceTree = "<group>"; };
 		CD892F1B1CF15C1900DF5D24 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		CD892F1D1CF168B100DF5D24 /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		CD8997591D6430CC00C36F4A /* A3_AlsoTakenConcurrently.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = A3_AlsoTakenConcurrently.dat; sourceTree = "<group>"; };
+		CD89975A1D6430CC00C36F4A /* A3_AlsoTakenBefore.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = A3_AlsoTakenBefore.dat; sourceTree = "<group>"; };
+		CD89975B1D6430CC00C36F4A /* A3_AlsoTakenAfter.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = A3_AlsoTakenAfter.dat; sourceTree = "<group>"; };
 		CDB82A271D05F46E00F01678 /* CourseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseTableViewCell.swift; sourceTree = "<group>"; };
 		CDC0AB471D52D7F8009B89D0 /* CoursesDept.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CoursesDept.csv; sourceTree = "<group>"; };
 		CDC0AB491D52E6BA009B89D0 /* A0_WhenIsCourseTaken.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = A0_WhenIsCourseTaken.dat; sourceTree = "<group>"; };
@@ -179,9 +179,9 @@
 				CDC0ABD71D5C29E2009B89D0 /* CoursesDept.dat */,
 				CDC0AB491D52E6BA009B89D0 /* A0_WhenIsCourseTaken.dat */,
 				CDEB79411D3EB1F500FA6531 /* A2_ConcurrentCourses.dat */,
-				CD73BE591D46F80300582650 /* A3_AlsoTakenBefore.dat */,
-				CD73BE5B1D46F80A00582650 /* A3_AlsoTakenConcurrently.dat */,
-				CD73BE5D1D46F81400582650 /* A3_AlsoTakenAfter.dat */,
+				CD8997591D6430CC00C36F4A /* A3_AlsoTakenConcurrently.dat */,
+				CD89975A1D6430CC00C36F4A /* A3_AlsoTakenBefore.dat */,
+				CD89975B1D6430CC00C36F4A /* A3_AlsoTakenAfter.dat */,
 			);
 			name = Files;
 			sourceTree = "<group>";
@@ -381,10 +381,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD73BE5C1D46F80A00582650 /* A3_AlsoTakenConcurrently.dat in Resources */,
+				CD89975C1D6430CC00C36F4A /* A3_AlsoTakenConcurrently.dat in Resources */,
 				CDC0AB481D52D7F8009B89D0 /* CoursesDept.csv in Resources */,
 				CDFCD6DB1D3A1CE800561566 /* GoogleService-Info.plist in Resources */,
-				CD73BE5E1D46F81400582650 /* A3_AlsoTakenAfter.dat in Resources */,
+				CD89975D1D6430CC00C36F4A /* A3_AlsoTakenBefore.dat in Resources */,
 				CDEB79421D3EB1F500FA6531 /* A2_ConcurrentCourses.dat in Resources */,
 				CD892EE21CEBB8CD00DF5D24 /* LaunchScreen.storyboard in Resources */,
 				CDC0AB4A1D52E6BA009B89D0 /* A0_WhenIsCourseTaken.dat in Resources */,
@@ -395,8 +395,8 @@
 				CD1350BF1D40501D001C6833 /* QuestionLabel0.xib in Resources */,
 				CDFCD6E51D3E01C400561566 /* Courses.csv in Resources */,
 				CDC0ABD81D5C29E2009B89D0 /* CoursesDept.dat in Resources */,
-				CD73BE5A1D46F80300582650 /* A3_AlsoTakenBefore.dat in Resources */,
 				CDFCD6D31D39529300561566 /* CourseInfoView.xib in Resources */,
+				CD89975E1D6430CC00C36F4A /* A3_AlsoTakenAfter.dat in Resources */,
 				CD73BE621D47053100582650 /* QuestionLabel3.xib in Resources */,
 				CDFF9FE41CFA347F00E64650 /* QuestionLabel2.xib in Resources */,
 			);

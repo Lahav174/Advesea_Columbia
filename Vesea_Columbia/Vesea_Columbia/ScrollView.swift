@@ -20,7 +20,7 @@ class ScrollView: UIScrollView, UIGestureRecognizerDelegate {
     
     func setHorizontalContentOffset(offset: CGPoint, velocity: CGPoint){
         print("Duration method")
-        let xVelocity = velocity.x < 2400 ? 1200 : velocity.x
+        let xVelocity = velocity.x < 2400 ? 1000 : velocity.x
         
         let xdistance = offset.x - self.contentOffset.x
         let duration = abs(xdistance/xVelocity)
