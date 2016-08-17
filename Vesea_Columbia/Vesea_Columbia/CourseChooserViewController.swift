@@ -175,28 +175,7 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
         border.borderWidth = 0
         self.view.layer.addSublayer(border)
         
-        for i in 0...MyVariables.courses!.count-1{
-            let course = MyVariables.courses!.get(i)
-            if let arr = self.unfilteredCourseDicts.valueForKey(course!.b!["Department"]! as! String){
-                (arr as! NSMutableArray).addObject(["ID":course!.a! as String,"Name":course!.b!["Name"]! as! String])
-            } else {
-                self.unfilteredCourseDicts.setValue(NSMutableArray.init(array: [["ID":course!.a! as String,"Name":course!.b!["Name"]! as! String]]), forKey: course!.b!["Department"]! as! String)
-            }
-        }
-        let def = NSUserDefaults.standardUserDefaults()
-        self.unfilteredCourseDicts.setValue(NSMutableArray.init(array: NSMutableArray(array: [])), forKey: "Favorites")
-        for favID in def.arrayForKey("favorites")!{
-            let dict = MyVariables.courses!.get((favID as! String))
-            let arr = self.unfilteredCourseDicts.valueForKey("Favorites")
-            (arr as! NSMutableArray).addObject(["ID":(favID as! String),"Name":dict!["Name"]! as! String])
-        }
-        
-        self.departmentHeadersInOrder = self.unfilteredCourseDicts.allKeys as! [String]
-        self.departmentHeadersInOrder = self.departmentHeadersInOrder.filter{$0 != "Core" && $0 != "Other" && $0 != "Favorites"}
-        self.departmentHeadersInOrder.sortInPlace()
-        self.departmentHeadersInOrder.insert("Core", atIndex: 0)
-        self.departmentHeadersInOrder.insert("Favorites", atIndex: 0)
-        self.departmentHeadersInOrder.insert("Other", atIndex: departmentHeadersInOrder.count)
+        setupUnfilteredCourses()
         
         let titleView = UIView(frame: CGRect(origin: CGPointZero, size: CGSize(width: 72, height: 40)))
         let titleViewLabel = UILabel(frame: CGRect(origin: CGPointZero, size: CGSize(width: 72, height: 40)))
@@ -223,6 +202,43 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
         self.navBarTitle.titleView?.addGestureRecognizer(tap)
     }
+    
+    func setupUnfilteredCourses(){
+        print("UNO")
+        let unfilteredCourseDictsOutput = NSMutableDictionary()
+        var departmentHeadersInOrderOutput = [String]()
+        
+        for i in 0...MyVariables.courses!.count-1{
+            let course = MyVariables.courses!.get(i)
+            if let arr = unfilteredCourseDictsOutput.valueForKey(course!.b!["Department"]! as! String){
+                (arr as! NSMutableArray).addObject(["ID":course!.a! as String,"Name":course!.b!["Name"]! as! String])
+            } else {
+                unfilteredCourseDictsOutput.setValue(NSMutableArray.init(array: [["ID":course!.a! as String,"Name":course!.b!["Name"]! as! String]]), forKey: course!.b!["Department"]! as! String)
+            }
+        }
+        let def = NSUserDefaults.standardUserDefaults()
+        unfilteredCourseDictsOutput.setValue(NSMutableArray.init(array: NSMutableArray(array: [])), forKey: "Favorites")
+        for favID in def.arrayForKey("favorites")!{
+            let dict = MyVariables.courses!.get((favID as! String))
+            let arr = unfilteredCourseDictsOutput.valueForKey("Favorites")
+            (arr as! NSMutableArray).addObject(["ID":(favID as! String),"Name":dict!["Name"]! as! String])
+        }
+        
+        departmentHeadersInOrderOutput = unfilteredCourseDictsOutput.allKeys as! [String]
+        departmentHeadersInOrderOutput = departmentHeadersInOrderOutput.filter{$0 != "Core" && $0 != "Other" && $0 != "Favorites"}
+        departmentHeadersInOrderOutput.sortInPlace()
+        departmentHeadersInOrderOutput.insert("Core", atIndex: 0)
+        departmentHeadersInOrderOutput.insert("Favorites", atIndex: 0)
+        departmentHeadersInOrderOutput.insert("Other", atIndex: departmentHeadersInOrderOutput.count)
+        
+        self.departmentHeadersInOrder = departmentHeadersInOrderOutput
+        self.unfilteredCourseDicts = unfilteredCourseDictsOutput
+        
+        print("DOS")
+    }
+    
+    
+    
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)

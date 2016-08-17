@@ -370,8 +370,18 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate, UINavigation
                             if error == nil{
                                 print("Wrote updated file")
                                 print(URL!)
+                                let qos = Int(QOS_CLASS_USER_INITIATED.rawValue)
+                                let queue = dispatch_get_global_queue(qos, 0)
+                                dispatch_async(queue) {
+                                    self.setupQuestionData(i)
+                                    if i == 6{
+                                        self.setUpCourses()
+                                        self.questionViewController!.chooser!.setupUnfilteredCourses()
+                                    }
+                                }
                             } else {
                                 print("Error: \(error)")
+                                NSThread.exit()
                             }
                         })
                     }
