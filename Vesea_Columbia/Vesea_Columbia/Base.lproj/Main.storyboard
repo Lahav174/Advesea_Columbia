@@ -264,6 +264,8 @@
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="feedbackButton" destination="2lf-w9-BYV" id="pb5-29-uDJ"/>
+                        <outlet property="gearButton" destination="Sne-qU-RSB" id="eHf-8V-VkO"/>
                         <outlet property="navigationBar" destination="Ufk-O4-qUQ" id="OXx-jD-z1i"/>
                         <outlet property="tableView" destination="UIm-og-r7B" id="ZIa-jh-wlv"/>
                     </connections>

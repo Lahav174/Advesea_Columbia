@@ -57,19 +57,17 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
     @IBOutlet weak var graphBackgroundY: NSLayoutConstraint!
     
     @IBAction func backButtonPressed(sender: AnyObject) {
-        if !problemFormBeingDisplayed{
-            let menuPage = CGPoint(x: self.view.frame.width, y: 0)
-            UIView.animateWithDuration(0.2, animations: {
-                self.delegate?.scrollView.contentOffset = menuPage
-            }) { (true) in
-                self.delegate!.scrollView.panGestureRecognizer.enabled = false
-            }
-            if self.questionNumber >= 0{
-                let cell = self.delegate!.vc1!.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: self.questionNumber))! as! TableViewCell
-                if cell.slidingView.frame.origin.x != 0 || cell.slidingImageView?.frame.origin.x != 0{
-                    cell.slidingView.frame.origin.x = 0
-                    cell.slidingImageView?.frame.origin.x = 0
-                }
+        let menuPage = CGPoint(x: self.view.frame.width, y: 0)
+        UIView.animateWithDuration(0.2, animations: {
+            self.delegate?.scrollView.contentOffset = menuPage
+        }) { (true) in
+            self.delegate!.scrollView.panGestureRecognizer.enabled = false
+        }
+        if self.questionNumber >= 0{
+            let cell = self.delegate!.vc1!.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: self.questionNumber))! as! TableViewCell
+            if cell.slidingView.frame.origin.x != 0 || cell.slidingImageView?.frame.origin.x != 0{
+                cell.slidingView.frame.origin.x = 0
+                cell.slidingImageView?.frame.origin.x = 0
             }
         }
     }
@@ -535,6 +533,7 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
             self.infoViewBeingDisplayed = false
             self.delegate!.scrollView.scrollEnabled = false
             self.problemFormBeingDisplayed = true
+            self.backButton.enabled = false
             UIView.transitionFromView(infoView!, toView: problemForm!, duration: 0.4, options: UIViewAnimationOptions.TransitionFlipFromTop, completion: { (true) in
                 self.problemForm?.textView.becomeFirstResponder()
             })
@@ -543,6 +542,7 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
             self.problemFormBeingDisplayed = false
             self.delegate!.scrollView.scrollEnabled = true
             self.infoViewBeingDisplayed = true
+            self.backButton.enabled = true
             UIView.transitionFromView(problemForm!, toView: infoView!, duration: 0.4, options: UIViewAnimationOptions.TransitionFlipFromBottom, completion: { (true) in
             })
         }

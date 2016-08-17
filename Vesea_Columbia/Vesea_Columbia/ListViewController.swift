@@ -16,17 +16,26 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var navigationBar: UINavigationBar!
     var delegate : ScrollViewController?
     
+    @IBOutlet weak var gearButton: UIBarButtonItem!
+    
+    @IBOutlet weak var feedbackButton: UIBarButtonItem!
+    
     var form : ProblemFormView?
     
     let cellHeight : CGFloat = 100
+    
+    var panRecognizer = UIPanGestureRecognizer()
     
     var cellImages = Array(count: 7, repeatedValue: UIImage())
     
     func problemFormDidFinish(type: ProblemFormType) {
         if self.form!.type == .ListVC{
+            self.panRecognizer.enabled = true
+            self.form!.textView.resignFirstResponder()
+            self.gearButton.enabled = true
+            self.feedbackButton.enabled = true
             UIView.animateWithDuration(0.2, animations: { 
                 self.form!.alpha = 0
-                self.form!.textView.resignFirstResponder()
                 }, completion: { (true) in
                     self.form?.removeFromSuperview()
                     self.tableView.userInteractionEnabled = true
@@ -35,13 +44,16 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     @IBAction func feedbackButtonPressed(sender: AnyObject) {
-        form = ProblemFormView(frame: CGRect(x: 20, y: 80, width: self.view.frame.width-40, height: self.view.frame.height-310))
+        form = ProblemFormView(frame: CGRect(x: 20, y: 80, width: self.view.frame.width-40, height: self.view.frame.height-340))
         form!.alpha = 0
         form!.delegate = self
         form!.type = .ListVC
         self.view.addSubview(form!)
         self.tableView.userInteractionEnabled = false
         self.form!.textView.becomeFirstResponder()
+        self.panRecognizer.enabled = false
+        self.gearButton.enabled = false
+        self.feedbackButton.enabled = false
         UIView.animateWithDuration(0.2) { 
             self.form!.alpha = 1
         }
@@ -124,7 +136,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         self.navigationBar.layer.zPosition = 990
         
-        let panRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePan(_:)))
+        panRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePan(_:)))
         self.view.addGestureRecognizer(panRecognizer)
         
         self.tableView.scrollsToTop = true

@@ -60,7 +60,7 @@ import UIKit
             let attributedText = NSMutableAttributedString(string: courseDepartment)
             attributedText.addAttribute(NSUnderlineStyleAttributeName , value:NSUnderlineStyle.StyleSingle.rawValue, range: textRange)
             departmentLabel.attributedText = attributedText
-            courseDirectoryNumLabel.text = "Course Dir. #: " + courseDirectoryNumber
+            courseDirectoryNumLabel.text = ""//"Course Dir. #: " + courseDirectoryNumber
             culpaIndex = courseDict["Culpa"] as! String
             if culpaIndex == ""{
                 culpaButton.hidden = true
