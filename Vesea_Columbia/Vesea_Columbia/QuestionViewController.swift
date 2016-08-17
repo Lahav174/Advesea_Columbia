@@ -57,17 +57,19 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
     @IBOutlet weak var graphBackgroundY: NSLayoutConstraint!
     
     @IBAction func backButtonPressed(sender: AnyObject) {
-        let menuPage = CGPoint(x: self.view.frame.width, y: 0)
-        UIView.animateWithDuration(0.2, animations: {
-            self.delegate?.scrollView.contentOffset = menuPage
-        }) { (true) in
-            self.delegate!.scrollView.panGestureRecognizer.enabled = false
-        }
-        if self.questionNumber >= 0{
-            let cell = self.delegate!.vc1!.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: self.questionNumber))! as! TableViewCell
-            if cell.slidingView.frame.origin.x != 0 || cell.slidingImageView?.frame.origin.x != 0{
-                cell.slidingView.frame.origin.x = 0
-                cell.slidingImageView?.frame.origin.x = 0
+        if !problemFormBeingDisplayed{
+            let menuPage = CGPoint(x: self.view.frame.width, y: 0)
+            UIView.animateWithDuration(0.2, animations: {
+                self.delegate?.scrollView.contentOffset = menuPage
+            }) { (true) in
+                self.delegate!.scrollView.panGestureRecognizer.enabled = false
+            }
+            if self.questionNumber >= 0{
+                let cell = self.delegate!.vc1!.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: self.questionNumber))! as! TableViewCell
+                if cell.slidingView.frame.origin.x != 0 || cell.slidingImageView?.frame.origin.x != 0{
+                    cell.slidingView.frame.origin.x = 0
+                    cell.slidingImageView?.frame.origin.x = 0
+                }
             }
         }
     }
@@ -486,7 +488,7 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
                         self.container.userInteractionEnabled = true
                 })
             }
-            else if !(self.container.frame.contains(touchLocation)) && chooserBeingDisplayed && self.container.frame.origin.y == 100 && !infoViewBeingDisplayed{
+            else if !(self.container.frame.contains(touchLocation)) && chooserBeingDisplayed && self.container.frame.origin.y == 100 && !infoViewBeingDisplayed && !problemFormBeingDisplayed{
                 animateContainerOut()
             }
             
@@ -531,15 +533,17 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
         if viewType == "Info"{
             self.problemForm!.reappearSetup()
             self.infoViewBeingDisplayed = false
+            self.delegate!.scrollView.scrollEnabled = false
+            self.problemFormBeingDisplayed = true
             UIView.transitionFromView(infoView!, toView: problemForm!, duration: 0.4, options: UIViewAnimationOptions.TransitionFlipFromTop, completion: { (true) in
-                self.problemFormBeingDisplayed = true
                 self.problemForm?.textView.becomeFirstResponder()
             })
         } else if viewType == "Problem"{
             self.problemForm?.textView.resignFirstResponder()
             self.problemFormBeingDisplayed = false
+            self.delegate!.scrollView.scrollEnabled = true
+            self.infoViewBeingDisplayed = true
             UIView.transitionFromView(problemForm!, toView: infoView!, duration: 0.4, options: UIViewAnimationOptions.TransitionFlipFromBottom, completion: { (true) in
-                self.infoViewBeingDisplayed = true
             })
         }
     }
