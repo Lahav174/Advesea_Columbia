@@ -67,6 +67,7 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate, UINavigation
         let vc0 = self.storyboard?.instantiateViewControllerWithIdentifier("vc0nav") as! UINavigationController
         
         vc0.delegate = self
+        (vc0.topViewController! as! FrontViewController).delegate = self
         
         self.addChildViewController(vc0)
         self.scrollView.addSubview(vc0.view)

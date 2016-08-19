@@ -8,8 +8,11 @@
 
 import UIKit
 import Firebase
+import MessageUI
 
-class FrontViewController: UIViewController, UIScrollViewDelegate {
+class FrontViewController: UIViewController, UIScrollViewDelegate, MFMailComposeViewControllerDelegate {
+    
+    var delegate : ScrollViewController?
     
     var sizeThatFits = CGSize()
     
@@ -106,5 +109,41 @@ class FrontViewController: UIViewController, UIScrollViewDelegate {
     @IBAction func buttonPressed(sender: AnyObject) {
         performSegueWithIdentifier("Settings", sender: self)
     }
+    
+    @IBAction func listButtonPressed(sender: AnyObject) {
+        delegate!.scrollView.panGestureRecognizer.enabled = false
+        delegate!.scrollView.setContentOffset(CGPoint(x: self.view.frame.width + K.Others.screenGap, y: 0), animated: true)
+    }
+    
+    @IBAction func contactButtonPressed(sender: AnyObject) {
+//        let mailComposeViewController = configuredMailComeposeViewController()
+//        if MFMailComposeViewController.canSendMail() {
+//            print("Trying to send mail")
+//            self.presentViewController(mailComposeViewController, animated: true, completion: nil)
+//            //self.navigationController!.pushViewController(mailComposeViewController, animated: true)
+//        } else {
+//            print("Couldn't print")
+//        }
+    }
+    
+//    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
+//        if result.rawValue == MFMailComposeResultSent.rawValue ||
+//            result.rawValue == MFMailComposeResultCancelled.rawValue ||
+//            result.rawValue == MFMailComposeResultSaved.rawValue {
+//            
+//        } else {
+//
+//        }
+//        self.dismissViewControllerAnimated(false, completion: nil)
+//    }
+//    
+//    func configuredMailComeposeViewController() -> MFMailComposeViewController {
+//        let mailComposerVC = MFMailComposeViewController()
+//        mailComposerVC.mailComposeDelegate = self
+//        mailComposerVC.setToRecipients(["lol2107@columbia.edu"])
+//        //mailComposerVC.setSubject("")
+//        
+//        return mailComposerVC
+//    }
     
 }
