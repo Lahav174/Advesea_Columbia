@@ -31,6 +31,7 @@ class LaunchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        pv.userInteractionEnabled = false
         pv.borderWidth = 3
         pv.lineWidth = 4
         pv.animationDuration = 1

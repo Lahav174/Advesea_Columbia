@@ -276,7 +276,7 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate, UINavigation
                     
                     switch i {
                     case 0:
-                        fileName = "A0_WhenIsCourseTaken"
+                        fileName = "CoursesDept"
                         break
                     case 2:
                         fileName = "A2_ConcurrentCourses"
@@ -291,7 +291,7 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate, UINavigation
                         fileName = "A3_AlsoTakenAfter"
                         break
                     case 6:
-                        fileName = "CoursesDept"
+                        fileName = "A0_WhenIsCourseTaken"
                         break
                     default:
                         break
