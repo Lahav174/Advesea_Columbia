@@ -412,6 +412,7 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate, UINavigation
         if let dirs : [String] = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true) {
             let path = dirs[0].stringByAppendingString("/" + coursesFile)
             let pathURL = NSURL.fileURLWithPath(path)
+            assert(NSData(contentsOfURL: pathURL) != nil)
             let data = NSData(contentsOfURL: pathURL)!
             
             if let str = String(data: data, encoding: NSUTF8StringEncoding) {

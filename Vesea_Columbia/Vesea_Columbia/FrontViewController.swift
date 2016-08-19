@@ -9,12 +9,15 @@
 import UIKit
 import Firebase
 
-class FrontViewController: UIViewController {
+class FrontViewController: UIViewController, UIScrollViewDelegate {
     
-    var textViewWidth = CGFloat()
+    var sizeThatFits = CGSize()
+    
+    var backgroundImageView = UIImageView()
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var contentViewHeight: NSLayoutConstraint!
     
     @IBOutlet weak var firstIntroTextView: UITextView!
     @IBOutlet weak var secondIntroTextView: UITextView!
@@ -24,25 +27,80 @@ class FrontViewController: UIViewController {
     @IBOutlet weak var secondIntroHeight: NSLayoutConstraint!
     @IBOutlet weak var thirdIntroHeight: NSLayoutConstraint!
     
+    @IBOutlet weak var whatIsFirstTextView: UITextView!
+    @IBOutlet weak var whatisSecondTextView: UITextView!
+    
+    @IBOutlet weak var whatIsFirstHeight: NSLayoutConstraint!
+    @IBOutlet weak var whatIsSecondHeight: NSLayoutConstraint!
+    
+    @IBOutlet weak var beforeYouGoTextView: UITextView!
+    @IBOutlet weak var beforeYouGoHeight: NSLayoutConstraint!
+    
+    @IBOutlet weak var firstTipsTextView: UITextView!
+    @IBOutlet weak var secondTipsTextView: UITextView!
+    
+    @IBOutlet weak var firstTipsHeight: NSLayoutConstraint!
+    @IBOutlet weak var secondTipsHeight: NSLayoutConstraint!
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        textViewWidth = self.view.frame.width - 60
-        scrollView.contentSize.height = 1000
+        sizeThatFits = CGSize(width: self.view.frame.width - 60, height: 10000)
+        //scrollView.contentSize.height = 1000
         scrollView.contentSize.width = self.view.frame.width
+        scrollView.delegate = self
+        
+        backgroundImageView = UIImageView(frame: self.view.frame)
+        backgroundImageView.contentMode = .ScaleAspectFill
+        backgroundImageView.image = UIImage(named: "cloudsCropped")
+        self.contentView.insertSubview(backgroundImageView, atIndex: 0)
         
         firstIntroTextView.text = "Choose from any one of the preset questions. Each question is modular, and contains one or more highlighted keywords, which can be altered."
         firstIntroTextView.font = UIFont(name: "HelveticaNeue-Medium", size: 14)
-        firstIntroHeight.constant = firstIntroTextView.sizeThatFits(CGSize(width: textViewWidth, height: 10000)).height
+        firstIntroHeight.constant = firstIntroTextView.sizeThatFits(sizeThatFits).height
         
         secondIntroTextView.text = "To change a keyword, open a question and tap on the highlighted word. Then, choose a replacement from the drop down menu. Changing a keyword will also change every keyword of the same color."
         secondIntroTextView.font = UIFont(name: "HelveticaNeue-Medium", size: 14)
-        secondIntroHeight.constant = secondIntroTextView.sizeThatFits(CGSize(width: textViewWidth, height: 10000)).height
+        secondIntroHeight.constant = secondIntroTextView.sizeThatFits(sizeThatFits).height
         
         thirdIntroTextView.text = "The questions can be altered to reflect any courses relevant to you. This will hopefully help  you in the course selection process."
         thirdIntroTextView.font = UIFont(name: "HelveticaNeue-Medium", size: 14)
-        thirdIntroHeight.constant = thirdIntroTextView.sizeThatFits(CGSize(width: textViewWidth, height: 10000)).height
+        thirdIntroHeight.constant = thirdIntroTextView.sizeThatFits(sizeThatFits).height
         
+        whatIsFirstTextView.text = "Choosing your course schedule can be stressful, despite the availability of teacher reviews and peer/administration suggestions."
+        whatIsFirstTextView.font = UIFont(name: "HelveticaNeue-Medium", size: 14)
+        whatIsFirstHeight.constant = whatIsFirstTextView.sizeThatFits(sizeThatFits).height
         
+        whatisSecondTextView.text = "Advesea examines the course enrollment history of students from the past 10 years and allows students to access information on what other students in similar situation are doing, and get their questions answered."
+        whatisSecondTextView.font = UIFont(name: "HelveticaNeue-Medium", size: 14)
+        whatIsSecondHeight.constant = whatisSecondTextView.sizeThatFits(sizeThatFits).height
+        
+        beforeYouGoTextView.text = "Feel free to give feedback! Does Advesea crash sometimes? Is an animation broken? Any ideas on how we could improve the app? New ideas for questions?"
+        beforeYouGoTextView.font = UIFont(name: "HelveticaNeue-Medium", size: 14)
+        beforeYouGoHeight.constant = beforeYouGoTextView.sizeThatFits(sizeThatFits).height
+        
+        firstTipsTextView.text = "Try searching for courses by ID, rather than by name. The courses you know might not be spelled exactly the same way on Advesea, but the ID will be identical. "
+        firstTipsTextView.font = UIFont(name: "HelveticaNeue-Medium", size: 14)
+        firstTipsHeight.constant = firstTipsTextView.sizeThatFits(sizeThatFits).height
+        
+        secondTipsTextView.text = "Tap the star next to classes you are thinking about taking. This will make sure they are always at the top of the course menu, so you can always find them easily."
+        secondTipsTextView.font = UIFont(name: "HelveticaNeue-Medium", size: 14)
+        secondTipsHeight.constant = secondTipsTextView.sizeThatFits(sizeThatFits).height
+        
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        contentViewHeight.constant = secondTipsTextView.frame.maxY + 40
+        contentView.layoutIfNeeded()
+        
+        print("second Tips height: \(secondTipsTextView.frame.maxY)")
+    }
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        backgroundImageView.frame.origin.y = scrollView.contentOffset.y
     }
     
     @IBAction func buttonPressed(sender: AnyObject) {
