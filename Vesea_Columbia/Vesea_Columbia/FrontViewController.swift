@@ -116,34 +116,28 @@ class FrontViewController: UIViewController, UIScrollViewDelegate, MFMailCompose
     }
     
     @IBAction func contactButtonPressed(sender: AnyObject) {
-//        let mailComposeViewController = configuredMailComeposeViewController()
-//        if MFMailComposeViewController.canSendMail() {
-//            print("Trying to send mail")
-//            self.presentViewController(mailComposeViewController, animated: true, completion: nil)
-//            //self.navigationController!.pushViewController(mailComposeViewController, animated: true)
-//        } else {
-//            print("Couldn't print")
-//        }
+        let composeVC = MFMailComposeViewController()
+        composeVC.mailComposeDelegate = self
+        composeVC.setToRecipients(["contact@advesea.com"])
+        composeVC.setSubject("Contact Advesea")
+        if MFMailComposeViewController.canSendMail() {
+            print("Trying to send mail")
+            self.presentViewController(composeVC, animated: true, completion: nil)
+            //self.navigationController!.pushViewController(mailComposeViewController, animated: true)
+        } else {
+            print("Couldn't print")
+        }
     }
     
-//    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
-//        if result.rawValue == MFMailComposeResultSent.rawValue ||
-//            result.rawValue == MFMailComposeResultCancelled.rawValue ||
-//            result.rawValue == MFMailComposeResultSaved.rawValue {
-//            
-//        } else {
-//
-//        }
-//        self.dismissViewControllerAnimated(false, completion: nil)
-//    }
-//    
-//    func configuredMailComeposeViewController() -> MFMailComposeViewController {
-//        let mailComposerVC = MFMailComposeViewController()
-//        mailComposerVC.mailComposeDelegate = self
-//        mailComposerVC.setToRecipients(["lol2107@columbia.edu"])
-//        //mailComposerVC.setSubject("")
-//        
-//        return mailComposerVC
-//    }
+    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
+        if result.rawValue == MFMailComposeResultSent.rawValue ||
+            result.rawValue == MFMailComposeResultCancelled.rawValue ||
+            result.rawValue == MFMailComposeResultSaved.rawValue {
+            
+        } else {
+
+        }
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
     
 }
