@@ -86,6 +86,7 @@ class QuestionLabel3: UIView, SlidingSegmentedControlDelegate, QuestionLabel {
     }
     
     func setup(){
+        
         view = loadViewFromNib()
         
         view.frame = bounds
@@ -102,7 +103,7 @@ class QuestionLabel3: UIView, SlidingSegmentedControlDelegate, QuestionLabel {
         let delay = Int64(1.3*Double(NSEC_PER_SEC))
         let dispatchTime = dispatch_time(DISPATCH_TIME_NOW, delay)
         dispatch_after(dispatchTime, dispatch_get_main_queue()) {
-            if self.delegateViewController?.questionNumber == 3{
+            if self.delegateViewController?.questionNumber == 1{
                 self.enableButtons(true)
                 self.displayChartData(self.variableIndex)
             }

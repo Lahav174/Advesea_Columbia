@@ -49,8 +49,6 @@
 		CDFF9FDE1CF8DE5700E64650 /* ScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFF9FDD1CF8DE5700E64650 /* ScrollView.swift */; };
 		CDFF9FE01CFA304600E64650 /* QuestionLabel2.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFF9FDF1CFA304600E64650 /* QuestionLabel2.swift */; };
 		CDFF9FE41CFA347F00E64650 /* QuestionLabel2.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDFF9FE31CFA347F00E64650 /* QuestionLabel2.xib */; };
-		CDFF9FE71CFBC0FB00E64650 /* QuestionLabel1.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFF9FE61CFBC0FB00E64650 /* QuestionLabel1.swift */; };
-		CDFF9FE91CFBC13000E64650 /* QuestionLabel1.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDFF9FE81CFBC13000E64650 /* QuestionLabel1.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -122,8 +120,6 @@
 		CDFF9FDD1CF8DE5700E64650 /* ScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollView.swift; sourceTree = "<group>"; };
 		CDFF9FDF1CFA304600E64650 /* QuestionLabel2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionLabel2.swift; sourceTree = "<group>"; };
 		CDFF9FE31CFA347F00E64650 /* QuestionLabel2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuestionLabel2.xib; sourceTree = "<group>"; };
-		CDFF9FE61CFBC0FB00E64650 /* QuestionLabel1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionLabel1.swift; sourceTree = "<group>"; };
-		CDFF9FE81CFBC13000E64650 /* QuestionLabel1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuestionLabel1.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -272,8 +268,6 @@
 				CD73BE611D47053100582650 /* QuestionLabel3.xib */,
 				CDFF9FDF1CFA304600E64650 /* QuestionLabel2.swift */,
 				CDFF9FE31CFA347F00E64650 /* QuestionLabel2.xib */,
-				CDFF9FE61CFBC0FB00E64650 /* QuestionLabel1.swift */,
-				CDFF9FE81CFBC13000E64650 /* QuestionLabel1.xib */,
 			);
 			name = QuestionLabels;
 			sourceTree = "<group>";
@@ -395,7 +389,6 @@
 				CD892EDF1CEBB8CD00DF5D24 /* Assets.xcassets in Resources */,
 				CDFCD6D71D39701200561566 /* ProblemFormView.xib in Resources */,
 				CD892EDD1CEBB8CD00DF5D24 /* Main.storyboard in Resources */,
-				CDFF9FE91CFBC13000E64650 /* QuestionLabel1.xib in Resources */,
 				CD1350BF1D40501D001C6833 /* QuestionLabel0.xib in Resources */,
 				CDFCD6E51D3E01C400561566 /* Courses.csv in Resources */,
 				CDC0ABD81D5C29E2009B89D0 /* CoursesDept.dat in Resources */,
@@ -481,7 +474,6 @@
 				CDB82A281D05F46E00F01678 /* CourseTableViewCell.swift in Sources */,
 				CD892F1C1CF15C1900DF5D24 /* TableViewCell.swift in Sources */,
 				CD2312A11D04A21400ED6D0D /* CourseChooserViewController.swift in Sources */,
-				CDFF9FE71CFBC0FB00E64650 /* QuestionLabel1.swift in Sources */,
 				CDFF9FD81CF394AE00E64650 /* ScrollViewController.swift in Sources */,
 				CDFCD6D51D396E6B00561566 /* ProblemFormView.swift in Sources */,
 				CDFCD6D11D3950A300561566 /* CourseInfoView.swift in Sources */,

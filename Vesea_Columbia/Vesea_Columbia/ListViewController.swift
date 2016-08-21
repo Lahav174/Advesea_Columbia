@@ -145,7 +145,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     // MARK: - Tableview Datasource Methods
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 6
+        return 3
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -182,16 +182,16 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         var myMutableString = NSMutableAttributedString()
         switch indexPath.section{
         case 0:
-            myString = "Enrollment Trends for " + course1ID
+            myString = "When do students stypically take " + course1ID + "?"
             myMutableString = NSMutableAttributedString(string: myString as String, attributes: [NSFontAttributeName:UIFont(name: "HelveticaNeue-Light", size: 22.0)!])
-            myMutableString.addAttribute(NSForegroundColorAttributeName, value: course1Color, range: NSRange(location:22,length:course1ID.characters.count))
-            myMutableString.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-Medium", size: 22.0)!, range: NSRange(location:22,length:course1ID.characters.count))
+            myMutableString.addAttribute(NSForegroundColorAttributeName, value: course1Color, range: NSRange(location:33,length:course1ID.characters.count))
+            myMutableString.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-Medium", size: 22.0)!, range: NSRange(location:33,length:course1ID.characters.count))
             break
         case 1:
-            myString = "Which majors typically take " + course1ID + "?"
+            myString = "What courses do students who take " + course1ID + ", also take?"
             myMutableString = NSMutableAttributedString(string: myString as String, attributes: [NSFontAttributeName:UIFont(name: "HelveticaNeue-Light", size: 22.0)!])
-            myMutableString.addAttribute(NSForegroundColorAttributeName, value: course1Color, range: NSRange(location:28,length:course1ID.characters.count))
-            myMutableString.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-Medium", size: 22.0)!, range: NSRange(location:28,length:course1ID.characters.count))
+            myMutableString.addAttribute(NSForegroundColorAttributeName, value: course1Color, range: NSRange(location:34,length:course1ID.characters.count))
+            myMutableString.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-Medium", size: 22.0)!, range: NSRange(location:34,length:course1ID.characters.count))
             break;
         case 2:
             myString = "Do students who take " + course1ID + " also take " + course2ID + "?"

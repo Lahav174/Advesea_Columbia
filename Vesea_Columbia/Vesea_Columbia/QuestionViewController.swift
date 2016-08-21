@@ -57,12 +57,11 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
     @IBOutlet weak var graphBackgroundY: NSLayoutConstraint!
     
     @IBAction func backButtonPressed(sender: AnyObject) {
-        let menuPage = CGPoint(x: self.view.frame.width, y: 0)
-        UIView.animateWithDuration(0.2, animations: {
-            self.delegate?.scrollView.contentOffset = menuPage
-        }) { (true) in
-            self.delegate!.scrollView.panGestureRecognizer.enabled = false
-        }
+        let menuPage = CGPoint(x: self.view.frame.width + K.Others.screenGap, y: 0)
+        
+        self.delegate?.scrollView.setContentOffset(menuPage, animated: true)
+        self.delegate!.scrollView.panGestureRecognizer.enabled = false
+        
         if self.questionNumber >= 0{
             let cell = self.delegate!.vc1!.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: self.questionNumber))! as! TableViewCell
             if cell.slidingView.frame.origin.x != 0 || cell.slidingImageView?.frame.origin.x != 0{
@@ -421,14 +420,6 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
                     }
                     qLabel.enableButtons(true)
                     break
-                case 1:
-                    let qLabel = self.questionLabel as! QuestionLabel1
-                    if (self.chooser!.courseChooserType == "class 1"){
-                        qLabel.class1 = QuestionViewController.abreviateID(def.objectForKey("selectedCourse1") as! String)
-                    } else if (self.chooser!.courseChooserType == "class 2"){
-                        qLabel.class2 = QuestionViewController.abreviateID(def.objectForKey("selectedCourse2") as! String)
-                    }
-                    break
                 case 2:
                     let qLabel = self.questionLabel as! QuestionLabel2
                     if (self.chooser!.courseChooserType == "class 1"){
@@ -438,7 +429,7 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
                     }
                     qLabel.enableButtons(true)
                     break
-                case 3:
+                case 1:
                     let qLabel = self.questionLabel as! QuestionLabel3
                     if (self.chooser!.courseChooserType == "class 1"){
                         qLabel.class1 = def.objectForKey("selectedCourse1") as! String
@@ -572,19 +563,13 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
             self.graphBackgroundY.constant = 44 + gapSize
             arr = [0, 64 + gapSize,-60,150]
             break
-        case 1:
-            questionLabel = QuestionLabel1(frame: CGRectZero)
-            let gapSize = (self.view.frame.height-108 - self.graphBackground.frame.height - 175)/3
-            self.graphBackgroundY.constant = 44 + gapSize
-            arr = [0, 64 + gapSize,-60,175]
-            break
         case 2:
             questionLabel = QuestionLabel2(frame: CGRectZero)
             let gapSize = (self.view.frame.height-108 - self.graphBackground.frame.height - 150)/3
             self.graphBackgroundY.constant = 44 + gapSize
             arr = [0, 64 + gapSize,-60,150]
             break
-        case 3:
+        case 1:
             questionLabel = QuestionLabel3(frame: CGRectZero)
             self.segmentedControl?.delegate = (questionLabel as! QuestionLabel3)
             let gapSize = (self.view.frame.height-152 - self.graphBackground.frame.height - 150)/3

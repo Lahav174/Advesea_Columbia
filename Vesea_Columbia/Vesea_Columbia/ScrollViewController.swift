@@ -167,40 +167,18 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate, UINavigation
             param0 = "Bar Chart"
             param2 = "Term"
             break;
-        case 1:
-            height?.constant = 200
-            yPos?.constant = 70
-            param0 = "Horizontal Bar Chart"
-            param2 = "Term"
-            break;
         case 2:
             height?.constant = 200
             yPos?.constant = 110
             param0 = "Bar Chart"
             param2 = "Semester"
             break;
-        case 3:
+        case 1:
             height?.constant = 200
             yPos?.constant = 110
             param0 = "Horizontal Bar Chart"
             param2 = ""
             param4 = ["Before", "Concurrently", "After"]
-            break;
-        case 4:
-            height?.constant = 200
-            yPos?.constant = 110
-            param0 = "Pie Chart"
-            //param1.numberStyle = NSNumberFormatterStyle.PercentStyle
-            //param1.multiplier = 1
-            param2 = ""
-            //param3 = [("Computer Science", 40),("Mathematics", 30),("Physics", 20),("Other", 10)]
-            break;
-        case 5:
-            height?.constant = 200
-            yPos?.constant = 110
-            param0 = "Bar Chart"
-
-            param2 = "Semester"
             break;
         default:
             break
