@@ -29,6 +29,8 @@ class ProblemFormView: UIView {
 
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
+    @IBOutlet weak var formTitle: UILabel!
+    
     @IBOutlet weak var textView: UITextView!
     
     override init(frame: CGRect) {

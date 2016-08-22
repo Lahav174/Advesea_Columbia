@@ -11,8 +11,8 @@ import QuartzCore
 
 class ListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UINavigationBarDelegate, ProblemFormDelegate {
 
-    @IBOutlet weak var tableView: UITableView!
-        
+    @IBOutlet weak var tableView: ListTableView!
+    
     @IBOutlet weak var navigationBar: UINavigationBar!
     var delegate : ScrollViewController?
     
@@ -65,9 +65,13 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.delegate!.scrollView.setContentOffset(CGPointZero, animated: true)
         self.delegate!.scrollView.panGestureRecognizer.enabled = true
     }
-        
+    
+    func showQuestionForm(){
+        print("show Q form!!!!")
+    }
+    
     func waveCells(){
-        
+        //Will crash because not all cells are TableViewCells
         let qos = Int(QOS_CLASS_USER_INITIATED.rawValue)
         let queue = dispatch_get_global_queue(qos, 0)
         dispatch_async(queue) {
@@ -95,6 +99,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        print("tableview's delays content touches = \(tableView.delaysContentTouches)")
     }
     
     override func viewDidLoad() {
@@ -110,6 +115,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tableView.delegate = self
         tableView.registerClass(TableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.backgroundColor = K.colors.tableviewBackgroundColor
+        tableView.delaysContentTouches = false
         navigationBar.delegate = self
         
         let headerView = UIView(frame: CGRectMake(0, 0, tableView.bounds.size.width, 20))
@@ -145,7 +151,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     // MARK: - Tableview Datasource Methods
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 3
+        return 4
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -165,83 +171,83 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("SwipeCell", forIndexPath: indexPath) as! TableViewCell
-        cell.delegateController = self
-        cell.indexPath = indexPath
-        var myString = NSString()
-        cell.textLabel?.numberOfLines = 2
-        
-        let def = NSUserDefaults.standardUserDefaults()
-        let course1ID : String = QuestionViewController.abreviateID(def.objectForKey("selectedCourse1") as! String).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
-        let course2ID : String = QuestionViewController.abreviateID(def.objectForKey("selectedCourse2") as! String).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
-        let course1Color = K.colors.course1Color
-        let course2Color = K.colors.course2Color
-        let majorColor = K.colors.majorColor
-
-        let major : String = def.objectForKey("selectedMajor") as! String
-        var myMutableString = NSMutableAttributedString()
-        switch indexPath.section{
-        case 0:
-            myString = "When do students stypically take " + course1ID + "?"
-            myMutableString = NSMutableAttributedString(string: myString as String, attributes: [NSFontAttributeName:UIFont(name: "HelveticaNeue-Light", size: 22.0)!])
-            myMutableString.addAttribute(NSForegroundColorAttributeName, value: course1Color, range: NSRange(location:33,length:course1ID.characters.count))
-            myMutableString.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-Medium", size: 22.0)!, range: NSRange(location:33,length:course1ID.characters.count))
-            break
-        case 1:
-            myString = "What courses do students who take " + course1ID + ", also take?"
-            myMutableString = NSMutableAttributedString(string: myString as String, attributes: [NSFontAttributeName:UIFont(name: "HelveticaNeue-Light", size: 22.0)!])
-            myMutableString.addAttribute(NSForegroundColorAttributeName, value: course1Color, range: NSRange(location:34,length:course1ID.characters.count))
-            myMutableString.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-Medium", size: 22.0)!, range: NSRange(location:34,length:course1ID.characters.count))
-            break;
-        case 2:
-            myString = "Do students who take " + course1ID + " also take " + course2ID + "?"
-            myMutableString = NSMutableAttributedString(string: myString as String, attributes: [NSFontAttributeName:UIFont(name: "HelveticaNeue-Light", size: 22.0)!])
-            myMutableString.addAttribute(NSForegroundColorAttributeName, value: course1Color, range: NSRange(location:21,length:course1ID.characters.count))
-            myMutableString.addAttribute(NSForegroundColorAttributeName, value: course2Color, range: NSRange(location:32 + course1ID.characters.count,length:course2ID.characters.count))
-            myMutableString.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-Medium", size: 22.0)!, range: NSRange(location:21,length:course1ID.characters.count))
-            myMutableString.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-Medium", size: 22.0)!, range: NSRange(location:32 + course1ID.characters.count,length:course2ID.characters.count))
-            break;
-        case 3:
-            myString = "What other classes are taken along with " + course1ID
-            myMutableString = NSMutableAttributedString(string: myString as String, attributes: [NSFontAttributeName:UIFont(name: "HelveticaNeue-Light", size: 22.0)!])
-            myMutableString.addAttribute(NSForegroundColorAttributeName, value: course1Color, range: NSRange(location:40,length:course1ID.characters.count))
-            myMutableString.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-Medium", size: 22.0)!, range: NSRange(location:40,length:course1ID.characters.count))
-            break;
-        case 4:
-            myString = "What courses do " + major + " majors typically take and when?"
-            myMutableString = NSMutableAttributedString(string: myString as String, attributes: [NSFontAttributeName:UIFont(name: "HelveticaNeue-Light", size: 22.0)!])
-            myMutableString.addAttribute(NSForegroundColorAttributeName, value: majorColor, range: NSRange(location:16,length:major.characters.count))
-            myMutableString.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-Medium", size: 22.0)!, range: NSRange(location:16,length:major.characters.count))
-            break;
-        case 5:
-            myString = "How long does it take " + major + " majors to graduate?"
-            myMutableString = NSMutableAttributedString(string: myString as String, attributes: [NSFontAttributeName:UIFont(name: "HelveticaNeue-Light", size: 22.0)!])
-            myMutableString.addAttribute(NSForegroundColorAttributeName, value: majorColor, range: NSRange(location:22,length:major.characters.count))
-            myMutableString.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-Medium", size: 22.0)!, range: NSRange(location:22,length:major.characters.count))
-            break;
-        default:
-            break
+        if indexPath.section < 3 {
+            let cell = tableView.dequeueReusableCellWithIdentifier("SwipeCell", forIndexPath: indexPath) as! TableViewCell
+            cell.delegateController = self
+            cell.indexPath = indexPath
+            var myString = NSString()
+            cell.textLabel?.numberOfLines = 2
+            
+            let def = NSUserDefaults.standardUserDefaults()
+            let course1ID : String = QuestionViewController.abreviateID(def.objectForKey("selectedCourse1") as! String).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+            let course2ID : String = QuestionViewController.abreviateID(def.objectForKey("selectedCourse2") as! String).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+            let course1Color = K.colors.course1Color
+            let course2Color = K.colors.course2Color
+            let majorColor = K.colors.majorColor
+            
+            let major : String = def.objectForKey("selectedMajor") as! String
+            var myMutableString = NSMutableAttributedString()
+            switch indexPath.section{
+            case 0:
+                myString = "When do students stypically take " + course1ID + "?"
+                myMutableString = NSMutableAttributedString(string: myString as String, attributes: [NSFontAttributeName:UIFont(name: "HelveticaNeue-Light", size: 22.0)!])
+                myMutableString.addAttribute(NSForegroundColorAttributeName, value: course1Color, range: NSRange(location:33,length:course1ID.characters.count))
+                myMutableString.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-Medium", size: 22.0)!, range: NSRange(location:33,length:course1ID.characters.count))
+                break
+            case 1:
+                myString = "What courses do students who take " + course1ID + ", also take?"
+                myMutableString = NSMutableAttributedString(string: myString as String, attributes: [NSFontAttributeName:UIFont(name: "HelveticaNeue-Light", size: 22.0)!])
+                myMutableString.addAttribute(NSForegroundColorAttributeName, value: course1Color, range: NSRange(location:34,length:course1ID.characters.count))
+                myMutableString.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-Medium", size: 22.0)!, range: NSRange(location:34,length:course1ID.characters.count))
+                break;
+            case 2:
+                myString = "Do students who take " + course1ID + " also take " + course2ID + "?"
+                myMutableString = NSMutableAttributedString(string: myString as String, attributes: [NSFontAttributeName:UIFont(name: "HelveticaNeue-Light", size: 22.0)!])
+                myMutableString.addAttribute(NSForegroundColorAttributeName, value: course1Color, range: NSRange(location:21,length:course1ID.characters.count))
+                myMutableString.addAttribute(NSForegroundColorAttributeName, value: course2Color, range: NSRange(location:32 + course1ID.characters.count,length:course2ID.characters.count))
+                myMutableString.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-Medium", size: 22.0)!, range: NSRange(location:21,length:course1ID.characters.count))
+                myMutableString.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-Medium", size: 22.0)!, range: NSRange(location:32 + course1ID.characters.count,length:course2ID.characters.count))
+                break;
+            default:
+                break
+            }
+            var paragraphStyle = NSMutableParagraphStyle()
+            paragraphStyle.lineSpacing = 8
+            myMutableString.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: NSMakeRange(0, myString.length))
+            
+            let slidingImageView = UIImageView(frame: CGRect(origin: CGPointZero, size: cell.frame.size))
+            slidingImageView.image = cellImages[indexPath.section]
+            slidingImageView.contentMode = .ScaleAspectFill
+            cell.slidingView.insertSubview(slidingImageView, belowSubview: cell.slidingViewLabel)
+            cell.slidingImageView = slidingImageView
+            
+            cell.slidingViewLabel.attributedText = myMutableString
+            cell.userInteractionEnabled = true
+            
+            cell.slidingView.clipsToBounds = true
+            cell.iconView.image = UIImage(named: "graph_icon")
+            cell.slidingView.backgroundColor = UIColor.blackColor()
+            cell.originalSlidingViewOrigin = cell.slidingView.frame.origin
+            
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCellWithIdentifier("ComingSoon", forIndexPath: indexPath) as! ComingSoonTableViewCell
+            cell.backgroundImageView.image = cellImages[indexPath.section]
+            cell.selectionStyle = .None
+            
+            let comingSoonLabel = UILabel()
+            comingSoonLabel.text = "Coming Soon"
+            comingSoonLabel.frame = CGRect(origin: CGPoint(x: 50, y: 13), size: CGSize(width: 200, height: 50))
+            comingSoonLabel.textColor = UIColor.whiteColor()
+            comingSoonLabel.font = UIFont(name: "HelveticaNeue-Medium", size: 22.0)
+            comingSoonLabel.transform = CGAffineTransformMakeRotation(CGFloat(348.0*M_PI/180.0))
+            cell.addSubview(comingSoonLabel)
+            cell.button.titleLabel?.numberOfLines = 2
+            
+            cell.delegate = self
+            
+            return cell
         }
-        var paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = 8
-        myMutableString.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: NSMakeRange(0, myString.length))
-        
-        let slidingImageView = UIImageView(frame: CGRect(origin: CGPointZero, size: cell.frame.size))
-        slidingImageView.image = cellImages[indexPath.section]
-        slidingImageView.contentMode = .ScaleAspectFill
-        cell.slidingView.insertSubview(slidingImageView, belowSubview: cell.slidingViewLabel)
-        cell.slidingImageView = slidingImageView
-        
-        cell.slidingViewLabel.attributedText = myMutableString
-        cell.userInteractionEnabled = true
-        
-        cell.slidingView.clipsToBounds = true
-        cell.iconView.image = UIImage(named: "graph_icon")
-        cell.slidingView.backgroundColor = UIColor.blackColor()
-        cell.originalSlidingViewOrigin = cell.slidingView.frame.origin
-
-        
-        return cell
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -268,10 +274,12 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     // MARK: - Tableview Delegate Methods
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        delegate!.resetQuestionViewController(indexPath.section)
-        let nextPage = CGPoint(x: self.view.frame.width*2 + K.Others.screenGap*2, y: 0)
-        delegate!.scrollView.setContentOffset(nextPage, animated: true)
-        delegate!.scrollView.panGestureRecognizer.enabled = true
+        if indexPath.section != self.numberOfSectionsInTableView(tableView)-1{
+            delegate!.resetQuestionViewController(indexPath.section)
+            let nextPage = CGPoint(x: self.view.frame.width*2 + K.Others.screenGap*2, y: 0)
+            delegate!.scrollView.setContentOffset(nextPage, animated: true)
+            delegate!.scrollView.panGestureRecognizer.enabled = true
+        }
     }
     
     // MARK: - Class Functions
@@ -319,7 +327,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
             if (translation.x >= 0){
                 delegate!.scrollView.contentOffset.x = viewWidth - translation.x
             } else {
-                delegate!.scrollView.contentOffset.x = viewWidth
+                delegate!.scrollView.contentOffset.x = viewWidth + K.Others.screenGap
             }
         }
         if recognizer.state == .Ended{
@@ -334,15 +342,14 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
     
-    
-    
-    /*
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+}
+
+class ListTableView: UITableView {
+    override func touchesShouldCancelInContentView(view: UIView) -> Bool {
+        if view is UIButton {
+            return  true
+        }
+        return  super.touchesShouldCancelInContentView(view)
     }
-    */
-
 }

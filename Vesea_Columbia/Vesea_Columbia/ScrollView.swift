@@ -38,5 +38,11 @@ class ScrollView: UIScrollView, UIGestureRecognizerDelegate {
         }
     }
  
+    override func touchesShouldCancelInContentView(view: UIView) -> Bool {
+        if view is UIButton {
+            return  true
+        }
+        return  super.touchesShouldCancelInContentView(view)
+    }
 
 }

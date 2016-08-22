@@ -53,6 +53,7 @@ class FrontViewController: UIViewController, UIScrollViewDelegate, MFMailCompose
         //scrollView.contentSize.height = 1000
         scrollView.contentSize.width = self.view.frame.width
         scrollView.delegate = self
+        scrollView.showsVerticalScrollIndicator = false
         
         backgroundImageView = UIImageView(frame: self.view.frame)
         backgroundImageView.contentMode = .ScaleAspectFill

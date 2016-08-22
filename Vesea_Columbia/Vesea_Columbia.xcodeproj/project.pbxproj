@@ -38,6 +38,7 @@
 		CDC0ABD81D5C29E2009B89D0 /* CoursesDept.dat in Resources */ = {isa = PBXBuildFile; fileRef = CDC0ABD71D5C29E2009B89D0 /* CoursesDept.dat */; };
 		CDD865E81D315E9600D942CC /* OrderedDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD865E71D315E9600D942CC /* OrderedDictionary.swift */; };
 		CDEB79421D3EB1F500FA6531 /* A2_ConcurrentCourses.dat in Resources */ = {isa = PBXBuildFile; fileRef = CDEB79411D3EB1F500FA6531 /* A2_ConcurrentCourses.dat */; };
+		CDFA79F71D69794200F51F32 /* ComingSoonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFA79F61D69794200F51F32 /* ComingSoonTableViewCell.swift */; };
 		CDFCD6D11D3950A300561566 /* CourseInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFCD6D01D3950A300561566 /* CourseInfoView.swift */; };
 		CDFCD6D31D39529300561566 /* CourseInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDFCD6D21D39529300561566 /* CourseInfoView.xib */; };
 		CDFCD6D51D396E6B00561566 /* ProblemFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFCD6D41D396E6B00561566 /* ProblemFormView.swift */; };
@@ -109,6 +110,7 @@
 		CDC0ABD91D5D7A16009B89D0 /* Vesea_Columbia-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Vesea_Columbia-Bridging-Header.h"; sourceTree = "<group>"; };
 		CDD865E71D315E9600D942CC /* OrderedDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderedDictionary.swift; sourceTree = "<group>"; };
 		CDEB79411D3EB1F500FA6531 /* A2_ConcurrentCourses.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = A2_ConcurrentCourses.dat; sourceTree = "<group>"; };
+		CDFA79F61D69794200F51F32 /* ComingSoonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComingSoonTableViewCell.swift; sourceTree = "<group>"; };
 		CDFCD6D01D3950A300561566 /* CourseInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseInfoView.swift; sourceTree = "<group>"; };
 		CDFCD6D21D39529300561566 /* CourseInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CourseInfoView.xib; sourceTree = "<group>"; };
 		CDFCD6D41D396E6B00561566 /* ProblemFormView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProblemFormView.swift; sourceTree = "<group>"; };
@@ -214,9 +216,10 @@
 				CD892ED71CEBB8CD00DF5D24 /* AppDelegate.swift */,
 				CDFF9FD91CF6D02500E64650 /* TestGraphViewController.swift */,
 				CD892EDB1CEBB8CD00DF5D24 /* Main.storyboard */,
+				CDFA79F61D69794200F51F32 /* ComingSoonTableViewCell.swift */,
 				CDFF9FD71CF394AE00E64650 /* ScrollViewController.swift */,
-				CD73BE651D47EE4100582650 /* LaunchViewController.swift */,
 				CDC0AB4B1D584E1C009B89D0 /* SettingsTableViewController.swift */,
+				CD73BE651D47EE4100582650 /* LaunchViewController.swift */,
 				CD892F131CEFA16600DF5D24 /* FrontViewController.swift */,
 				CD0BCC611D0DD37B002D7B49 /* QuestionViewController.swift */,
 				CD2312A01D04A21400ED6D0D /* CourseChooserViewController.swift */,
@@ -471,6 +474,7 @@
 				CDFF9FDE1CF8DE5700E64650 /* ScrollView.swift in Sources */,
 				CD0BCC621D0DD37B002D7B49 /* QuestionViewController.swift in Sources */,
 				CD892F141CEFA16600DF5D24 /* FrontViewController.swift in Sources */,
+				CDFA79F71D69794200F51F32 /* ComingSoonTableViewCell.swift in Sources */,
 				CDB82A281D05F46E00F01678 /* CourseTableViewCell.swift in Sources */,
 				CD892F1C1CF15C1900DF5D24 /* TableViewCell.swift in Sources */,
 				CD2312A11D04A21400ED6D0D /* CourseChooserViewController.swift in Sources */,
