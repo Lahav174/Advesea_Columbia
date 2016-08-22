@@ -13,9 +13,13 @@ class LaunchViewController: UIViewController {
     
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
+    let def = NSUserDefaults.standardUserDefaults()
+    
     var latestProgress = 0
     
     var timer = NSTimer()
+    
+    var numberOfQuestionsLoaded = 0
     
     let pv = UAProgressView(frame: CGRect(x: 25, y: 100, width: 200, height: 200))
     let centerView = UILabel()
@@ -24,7 +28,7 @@ class LaunchViewController: UIViewController {
         
         if appDelegate.loadingProgress > self.latestProgress{
             latestProgress = appDelegate.loadingProgress
-            pv.progress = (CGFloat(latestProgress)/15)
+            pv.progress = (CGFloat(latestProgress)/16)
         }
     }
     
@@ -62,7 +66,7 @@ class LaunchViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewControllerWithIdentifier("scroll") as! ScrollViewController
         
-        timer = NSTimer.scheduledTimerWithTimeInterval(0.05, target: self, selector: #selector(changeProgress), userInfo: nil, repeats: true)
+        timer = NSTimer.scheduledTimerWithTimeInterval(0.025, target: self, selector: #selector(changeProgress), userInfo: nil, repeats: true)
         
         let qos = Int(QOS_CLASS_USER_INITIATED.rawValue)
         let queue = dispatch_get_global_queue(qos, 0)
@@ -70,13 +74,26 @@ class LaunchViewController: UIViewController {
             
             vc.checkNewUser()
             vc.setUpCourses()
+            
             for i in 0...6{
-                vc.setupQuestionData(i)
+                let qos = Int(QOS_CLASS_USER_INITIATED.rawValue)
+                let queue = dispatch_get_global_queue(qos, 0)
+                dispatch_async(queue) {
+                    vc.setupQuestionData(i)
+                    self.numberOfQuestionsLoaded += 1
+                    print("FINISHED SETING UP QUESTION \(i)")
+                }
             }
-            vc.checkForUpdate()
- 
+            while self.numberOfQuestionsLoaded < 7{
+                NSThread.sleepForTimeInterval(0.04)
+            }
+            print("NOW GOING TO CHECK FOR UPDATE \(self.numberOfQuestionsLoaded)")
+            if self.def.objectForKey("Automatic File Updating")! as! Bool{
+                vc.checkForUpdate()
+            }
+            
             self.timer.invalidate()
-            dispatch_async(dispatch_get_main_queue(), { 
+            dispatch_async(dispatch_get_main_queue(), {
                 self.presentViewController(vc, animated: false, completion: nil)
             })
         }

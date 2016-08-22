@@ -474,6 +474,8 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate, UINavigation
                     MyVariables.QuestionData.Q2[Int(shortsSegment[0])][Int(shortsSegment[1])][3] = shortsSegment[6]
                 }
                 l()
+                
+                print(self.appDelegate.loadingProgress)
             }
             break
         case 3:

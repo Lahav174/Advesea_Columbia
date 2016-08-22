@@ -369,6 +369,38 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection headerTitle="File" footerTitle="Course and Question files will update when restarting Advesea" id="tqg-lj-15b">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="yEi-gU-Zxn">
+                                        <rect key="frame" x="0.0" y="145" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yEi-gU-Zxn" id="Tkl-Ua-d9Q">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3rC-0X-ju7">
+                                                    <rect key="frame" x="543" y="6" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="backgroundFileUpdatingSwitched:" destination="1xD-Z6-B3E" eventType="valueChanged" id="zBW-Js-Sbu"/>
+                                                    </connections>
+                                                </switch>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Background File Updating" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QER-6v-EfE">
+                                                    <rect key="frame" x="16" y="11" width="198" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="3rC-0X-ju7" secondAttribute="trailing" id="WRG-tn-zen"/>
+                                                <constraint firstItem="QER-6v-EfE" firstAttribute="centerY" secondItem="Tkl-Ua-d9Q" secondAttribute="centerY" id="d6n-nR-xf7"/>
+                                                <constraint firstAttribute="leadingMargin" secondItem="QER-6v-EfE" secondAttribute="leading" constant="-8" id="nPq-dw-0I3"/>
+                                                <constraint firstItem="3rC-0X-ju7" firstAttribute="centerY" secondItem="Tkl-Ua-d9Q" secondAttribute="centerY" id="oIz-qR-cSr"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="1xD-Z6-B3E" id="9eh-my-Qmb"/>
@@ -377,6 +409,7 @@
                     </tableView>
                     <connections>
                         <outlet property="automaticSearchingSwitch" destination="Qpe-uv-z87" id="XVP-vp-ad0"/>
+                        <outlet property="backgroundFileUpdatingSwitch" destination="3rC-0X-ju7" id="EIV-3d-qDc"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0M3-gl-lmX" userLabel="First Responder" sceneMemberID="firstResponder"/>

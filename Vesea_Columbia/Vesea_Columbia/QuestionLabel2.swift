@@ -113,14 +113,16 @@ import UIKit
             let before:Double = Double(answerArr[1]!)*100/takenboth
             let concurrently:Double = Double(answerArr[2]!)*100/takenboth
             let after:Double = Double(answerArr[3]!)*100/takenboth
-            param2 = [("Before", before),("During", concurrently),("After", after)]
+            param2 = [(QuestionViewController.abreviateID(self.class2ID) + " Beforehand", before),
+                      ("Both Taken Concurrently", concurrently),
+                      (QuestionViewController.abreviateID(self.class2ID) + " Afterwards", after)]
             self.variable = v1
             
             
         } else {
             self.variable = 0
             param2 = [(QuestionViewController.abreviateID(self.class2ID) + " Beforehand", 0),
-                      ("Same Time", 0),
+                      ("Both Taken Concurrently", 0),
                       (QuestionViewController.abreviateID(self.class2ID) + " Afterwards", 0)]
         }
         
