@@ -249,6 +249,15 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
             cell.slidingView.backgroundColor = UIColor.blackColor()
             cell.originalSlidingViewOrigin = cell.slidingView.frame.origin
             
+            if indexPath.section == 2{
+                let onlineLabel = UILabel(frame: CGRect(x: 10, y: self.cellHeight-17, width: self.view.frame.width-30, height: 15))
+                onlineLabel.font = UIFont(name: onlineLabel.font.fontName, size: 10)
+                onlineLabel.textColor = UIColor.whiteColor()
+                onlineLabel.textAlignment = .Left
+                onlineLabel.text = "*This question requires internet connection"
+                cell.slidingView.addSubview(onlineLabel)
+            }
+            
             return cell
         } else {
             let cell = tableView.dequeueReusableCellWithIdentifier("ComingSoon", forIndexPath: indexPath) as! ComingSoonTableViewCell

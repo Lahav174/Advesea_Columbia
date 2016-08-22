@@ -49,9 +49,9 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Advesea Columbia" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mCx-fH-sQe">
-                                                <rect key="frame" x="200" y="65" width="200" height="89"/>
+                                                <rect key="frame" x="215" y="65" width="170" height="89"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="200" id="r1o-az-OCt"/>
+                                                    <constraint firstAttribute="width" constant="170" id="r1o-az-OCt"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="40"/>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -207,6 +207,12 @@
                                                     <constraint firstAttribute="width" constant="7" id="iwc-MO-k2w"/>
                                                 </constraints>
                                             </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BETA" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2rT-G7-Iug">
+                                                <rect key="frame" x="280" y="154" width="41" height="16"/>
+                                                <fontDescription key="fontDescription" name="Georgia-Bold" family="Georgia" pointSize="14"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" red="0.60258613910000003" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
@@ -223,6 +229,7 @@
                                             <constraint firstAttribute="trailing" secondItem="TLS-Er-B8L" secondAttribute="trailing" constant="30" id="6Zz-wI-f47"/>
                                             <constraint firstItem="TLS-Er-B8L" firstAttribute="leading" secondItem="ZiK-XV-cG9" secondAttribute="leading" constant="30" id="7a5-aD-Ihw"/>
                                             <constraint firstItem="TLS-Er-B8L" firstAttribute="top" secondItem="ZB8-Uw-X0i" secondAttribute="bottom" id="7km-vy-fVJ"/>
+                                            <constraint firstItem="2rT-G7-Iug" firstAttribute="top" secondItem="mCx-fH-sQe" secondAttribute="bottom" id="89c-Rr-Xfh"/>
                                             <constraint firstItem="amc-7F-c2W" firstAttribute="top" secondItem="sad-vn-vib" secondAttribute="bottom" constant="8" id="9ES-8I-jan"/>
                                             <constraint firstAttribute="trailing" secondItem="d9j-uc-IQ7" secondAttribute="trailing" constant="30" id="CP9-UM-Fre"/>
                                             <constraint firstItem="D5D-VV-WUt" firstAttribute="top" secondItem="ZiK-XV-cG9" secondAttribute="top" constant="44" id="EEY-4u-BBV"/>
@@ -251,6 +258,7 @@
                                             <constraint firstItem="sUt-gy-Dqc" firstAttribute="width" secondItem="TLS-Er-B8L" secondAttribute="width" id="akL-8Y-3B6"/>
                                             <constraint firstItem="22w-fx-rih" firstAttribute="top" secondItem="sUt-gy-Dqc" secondAttribute="bottom" id="cg6-ty-4kk"/>
                                             <constraint firstItem="22w-fx-rih" firstAttribute="leading" secondItem="MJ5-fo-Vl6" secondAttribute="trailing" constant="4" id="cpx-fk-VnX"/>
+                                            <constraint firstItem="2rT-G7-Iug" firstAttribute="centerX" secondItem="ZiK-XV-cG9" secondAttribute="centerX" id="e27-0I-rDU"/>
                                             <constraint firstItem="sad-vn-vib" firstAttribute="width" secondItem="GYE-7I-Hj6" secondAttribute="width" id="esv-jc-S5o"/>
                                             <constraint firstItem="w8U-Uc-vqb" firstAttribute="top" secondItem="d9j-uc-IQ7" secondAttribute="bottom" constant="58" id="eu4-F3-kMu"/>
                                             <constraint firstItem="MJ5-fo-Vl6" firstAttribute="top" secondItem="22w-fx-rih" secondAttribute="top" constant="14" id="fEF-Fq-wyW"/>
