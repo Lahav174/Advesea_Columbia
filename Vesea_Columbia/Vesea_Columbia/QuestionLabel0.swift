@@ -127,7 +127,7 @@ import UIKit
                 param2[i-1] = (String(i),val)
             }
             
-            self.variable = CGFloat(answerArr[0]!)/50 //5000 students overall?
+            self.variable = CGFloat(answerArr[0]!)/150 //5000 students overall?
         }
         
         param1.numberStyle = NSNumberFormatterStyle.PercentStyle

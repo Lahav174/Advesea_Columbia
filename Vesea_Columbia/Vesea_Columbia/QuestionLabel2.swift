@@ -83,7 +83,7 @@ import UIKit
         } set (str){
             if str != nil && str! != class1ID{
                 class2ID = str!
-                class2Button.setTitle(QuestionViewController.abreviateID(str!), forState: UIControlState.Normal)
+                //class2Button.setTitle(QuestionViewController.abreviateID(str!), forState: UIControlState.Normal)
                 class2Button.idLabel.text = QuestionViewController.abreviateID(str!)
                 if class2AlreadySet{
                     displayChartData()
@@ -119,7 +119,9 @@ import UIKit
             
         } else {
             self.variable = 0
-            param2 = [("Before", 0),("During", 0),("After", 0)]
+            param2 = [(QuestionViewController.abreviateID(self.class2ID) + " Beforehand", 0),
+                      ("Same Time", 0),
+                      (QuestionViewController.abreviateID(self.class2ID) + " Afterwards", 0)]
         }
         
         

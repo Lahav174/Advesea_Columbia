@@ -180,6 +180,15 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
         
         configureChartSettings(chartType)
         
+        //Any last minute settings changes
+        switch questionNumber {
+        case 2:
+            (chart as! BarChartView).extraBottomOffset = 15
+            break
+        default:
+            break
+        }
+        
     }
     
     func customInitializer(chartKind: String, titleTxt: String, tabLabels: [String]? = nil){
@@ -266,7 +275,7 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
     
     func configureChartSettings(type: String?){
         chart!.backgroundColor = UIColor.clearColor()
-        //chart?.clipsToBounds = true
+        chart?.clipsToBounds = false
         
         if type == "Bar Chart"{
             let barChart = (chart as! BarChartView)
@@ -294,6 +303,8 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
             barChart.xAxis.drawLabelsEnabled = true
             barChart.leftAxis.drawLabelsEnabled = true
             barChart.xAxis.drawLabelsEnabled = true
+            barChart.extraBottomOffset = 0
+            barChart.xAxis.wordWrapEnabled = true
             barChart.animate(yAxisDuration: 1.5, easingOption: .EaseOutQuart)
         } else if type == "Horizontal Bar Chart"{
             let hBarChart = (chart as! HorizontalBarChartView)
@@ -328,7 +339,7 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
             pieChart.drawSliceTextEnabled = false
             pieChart.backgroundColor = UIColor.clearColor()
             pieChart.descriptionText = ""
-            pieChart.legend.position = ChartLegend.ChartLegendPosition.LeftOfChart
+            pieChart.legend.position = ChartLegend.Position.LeftOfChart
             pieChart.legend.yEntrySpace = 100
             pieChart.holeColor = UIColor.clearColor()
             pieChart.holeRadiusPercent = 0.50

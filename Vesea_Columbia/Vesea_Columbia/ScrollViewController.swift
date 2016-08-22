@@ -165,12 +165,6 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate, UINavigation
             height?.constant = 200
             yPos?.constant = 110
             param0 = "Bar Chart"
-            param2 = "Term"
-            break;
-        case 2:
-            height?.constant = 200
-            yPos?.constant = 110
-            param0 = "Bar Chart"
             param2 = "Semester"
             break;
         case 1:
@@ -179,6 +173,12 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate, UINavigation
             param0 = "Horizontal Bar Chart"
             param2 = ""
             param4 = ["Before", "Concurrently", "After"]
+            break;
+        case 2:
+            height?.constant = 200
+            yPos?.constant = 110
+            param0 = "Bar Chart"
+            param2 = "Term"
             break;
         default:
             break
