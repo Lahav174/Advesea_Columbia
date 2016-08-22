@@ -8,13 +8,13 @@
 
 import UIKit
 
-class QuestionLabel3: UIView, SlidingSegmentedControlDelegate, QuestionLabel {
+class QuestionLabel1: UIView, SlidingSegmentedControlDelegate, QuestionLabel {
 
     var delegateViewController : QuestionViewController?
     
     var view: UIView!
     
-    var nibName: String = "QuestionLabel3"
+    var nibName: String = "QuestionLabel1"
     
     private var classID: String = ""
     
@@ -114,13 +114,13 @@ class QuestionLabel3: UIView, SlidingSegmentedControlDelegate, QuestionLabel {
         var dataSet = [[UInt16?]]()
         switch index {
         case 0:
-            dataSet = MyVariables.QuestionData.Q3_Before
+            dataSet = MyVariables.QuestionData.Q1_Before
             break
         case 1:
-            dataSet = MyVariables.QuestionData.Q3_Concurrently
+            dataSet = MyVariables.QuestionData.Q1_Concurrently
             break
         case 2:
-            dataSet = MyVariables.QuestionData.Q3_After
+            dataSet = MyVariables.QuestionData.Q1_After
             break
         default:
             break

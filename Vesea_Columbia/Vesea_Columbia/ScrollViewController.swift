@@ -16,9 +16,9 @@ struct MyVariables {
     struct QuestionData {
         static var Q2 : [[[UInt16?]]] = Array(count: (MyVariables.courses?.count)! + 100, repeatedValue: Array(count : (MyVariables.courses?.count)! + 100, repeatedValue: Array(count: 4, repeatedValue: nil)))
         static var Q0 : [[UInt16?]] = Array(count: (MyVariables.courses?.count)! + 100, repeatedValue: Array(count : 10, repeatedValue: nil))
-        static var Q3_Before : [[UInt16?]] = Array(count: (MyVariables.courses?.count)! + 100, repeatedValue: Array(count : 11, repeatedValue: nil))
-        static var Q3_Concurrently : [[UInt16?]] = Array(count: (MyVariables.courses?.count)! + 100, repeatedValue: Array(count : 11, repeatedValue: nil))
-        static var Q3_After : [[UInt16?]] = Array(count: (MyVariables.courses?.count)! + 100, repeatedValue: Array(count : 11, repeatedValue: nil))
+        static var Q1_Before : [[UInt16?]] = Array(count: (MyVariables.courses?.count)! + 100, repeatedValue: Array(count : 11, repeatedValue: nil))
+        static var Q1_Concurrently : [[UInt16?]] = Array(count: (MyVariables.courses?.count)! + 100, repeatedValue: Array(count : 11, repeatedValue: nil))
+        static var Q1_After : [[UInt16?]] = Array(count: (MyVariables.courses?.count)! + 100, repeatedValue: Array(count : 11, repeatedValue: nil))
     }
 }
 
@@ -255,19 +255,19 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate, UINavigation
                     
                     switch i {
                     case 0:
-                        fileName = "CoursesDept"
+                        fileName = "Courses"
                         break
                     case 2:
                         fileName = "A2_ConcurrentCourses"
                         break
                     case 3:
-                        fileName = "A3_AlsoTakenBefore"
+                        fileName = "A1_AlsoTakenBefore"
                         break
                     case 4:
-                        fileName = "A3_AlsoTakenConcurrently"
+                        fileName = "A1_AlsoTakenConcurrently"
                         break
                     case 5:
-                        fileName = "A3_AlsoTakenAfter"
+                        fileName = "A1_AlsoTakenAfter"
                         break
                     case 6:
                         fileName = "A0_WhenIsCourseTaken"
@@ -332,16 +332,16 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate, UINavigation
                         fileName = "A2_ConcurrentCourses.dat"
                         break
                     case 3:
-                        fileName = "A3_AlsoTakenBefore.dat"
+                        fileName = "A1_AlsoTakenBefore.dat"
                         break
                     case 4:
-                        fileName = "A3_AlsoTakenConcurrently.dat"
+                        fileName = "A1_AlsoTakenConcurrently.dat"
                         break
                     case 5:
-                        fileName = "A3_AlsoTakenAfter.dat"
+                        fileName = "A1_AlsoTakenAfter.dat"
                         break
                     case 6:
-                        fileName = "CoursesDept.dat"
+                        fileName = "Courses.dat"
                         break
                     default:
                         break
@@ -385,9 +385,9 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate, UINavigation
 
     func setUpCourses(){
         let courseDict = OrderedDictionary<NSDictionary>()
-        let coursesFile = "CoursesDept.dat"
+        let coursesFile = "Courses.dat"
         
-        //if let data = NSData(contentsOfURL: NSBundle.mainBundle().URLForResource("CoursesDept", withExtension: "dat")!){
+        //if let data = NSData(contentsOfURL: NSBundle.mainBundle().URLForResource("Courses", withExtension: "dat")!){
         if let dirs : [String] = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true) {
             let path = dirs[0].stringByAppendingString("/" + coursesFile)
             let pathURL = NSURL.fileURLWithPath(path)
@@ -484,16 +484,16 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate, UINavigation
                 var fileName = String()
                 switch i {
                 case 1:
-                    arr = MyVariables.QuestionData.Q3_Before
-                    fileName = "A3_AlsoTakenBefore"
+                    arr = MyVariables.QuestionData.Q1_Before
+                    fileName = "A1_AlsoTakenBefore"
                     break
                 case 2:
-                    arr = MyVariables.QuestionData.Q3_Concurrently
-                    fileName = "A3_AlsoTakenConcurrently"
+                    arr = MyVariables.QuestionData.Q1_Concurrently
+                    fileName = "A1_AlsoTakenConcurrently"
                     break
                 case 3:
-                    arr = MyVariables.QuestionData.Q3_After
-                    fileName = "A3_AlsoTakenAfter"
+                    arr = MyVariables.QuestionData.Q1_After
+                    fileName = "A1_AlsoTakenAfter"
                     break
                 default:
                     break
@@ -526,13 +526,13 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate, UINavigation
                 }
                 switch i {
                 case 1:
-                    MyVariables.QuestionData.Q3_Before = arr
+                    MyVariables.QuestionData.Q1_Before = arr
                     break
                 case 2:
-                    MyVariables.QuestionData.Q3_Concurrently = arr
+                    MyVariables.QuestionData.Q1_Concurrently = arr
                     break
                 case 3:
-                    MyVariables.QuestionData.Q3_After = arr
+                    MyVariables.QuestionData.Q1_After = arr
                     break
                 default:
                     break

@@ -13,8 +13,8 @@
 		CD1350BF1D40501D001C6833 /* QuestionLabel0.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD1350BE1D40501D001C6833 /* QuestionLabel0.xib */; };
 		CD2312A11D04A21400ED6D0D /* CourseChooserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2312A01D04A21400ED6D0D /* CourseChooserViewController.swift */; };
 		CD2C7E1B1D29B98300FCAD5E /* SlidingSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2C7E1A1D29B98300FCAD5E /* SlidingSegmentedControl.swift */; };
-		CD73BE601D4703FF00582650 /* QuestionLabel3.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD73BE5F1D4703FF00582650 /* QuestionLabel3.swift */; };
-		CD73BE621D47053100582650 /* QuestionLabel3.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD73BE611D47053100582650 /* QuestionLabel3.xib */; };
+		CD73BE601D4703FF00582650 /* QuestionLabel1.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD73BE5F1D4703FF00582650 /* QuestionLabel1.swift */; };
+		CD73BE621D47053100582650 /* QuestionLabel1.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD73BE611D47053100582650 /* QuestionLabel1.xib */; };
 		CD73BE661D47EE4100582650 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD73BE651D47EE4100582650 /* LaunchViewController.swift */; };
 		CD892ED81CEBB8CD00DF5D24 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD892ED71CEBB8CD00DF5D24 /* AppDelegate.swift */; };
 		CD892EDD1CEBB8CD00DF5D24 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD892EDB1CEBB8CD00DF5D24 /* Main.storyboard */; };
@@ -27,24 +27,22 @@
 		CD892F141CEFA16600DF5D24 /* FrontViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD892F131CEFA16600DF5D24 /* FrontViewController.swift */; };
 		CD892F1C1CF15C1900DF5D24 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD892F1B1CF15C1900DF5D24 /* TableViewCell.swift */; };
 		CD892F1E1CF168B100DF5D24 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD892F1D1CF168B100DF5D24 /* ListViewController.swift */; };
-		CD89975C1D6430CC00C36F4A /* A3_AlsoTakenConcurrently.dat in Resources */ = {isa = PBXBuildFile; fileRef = CD8997591D6430CC00C36F4A /* A3_AlsoTakenConcurrently.dat */; };
-		CD89975D1D6430CC00C36F4A /* A3_AlsoTakenBefore.dat in Resources */ = {isa = PBXBuildFile; fileRef = CD89975A1D6430CC00C36F4A /* A3_AlsoTakenBefore.dat */; };
-		CD89975E1D6430CC00C36F4A /* A3_AlsoTakenAfter.dat in Resources */ = {isa = PBXBuildFile; fileRef = CD89975B1D6430CC00C36F4A /* A3_AlsoTakenAfter.dat */; };
+		CD89975C1D6430CC00C36F4A /* A1_AlsoTakenConcurrently.dat in Resources */ = {isa = PBXBuildFile; fileRef = CD8997591D6430CC00C36F4A /* A1_AlsoTakenConcurrently.dat */; };
+		CD89975D1D6430CC00C36F4A /* A1_AlsoTakenBefore.dat in Resources */ = {isa = PBXBuildFile; fileRef = CD89975A1D6430CC00C36F4A /* A1_AlsoTakenBefore.dat */; };
+		CD89975E1D6430CC00C36F4A /* A1_AlsoTakenAfter.dat in Resources */ = {isa = PBXBuildFile; fileRef = CD89975B1D6430CC00C36F4A /* A1_AlsoTakenAfter.dat */; };
 		CD8997601D67834000C36F4A /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD89975F1D67834000C36F4A /* MessageUI.framework */; };
 		CDB82A281D05F46E00F01678 /* CourseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB82A271D05F46E00F01678 /* CourseTableViewCell.swift */; };
-		CDC0AB481D52D7F8009B89D0 /* CoursesDept.csv in Resources */ = {isa = PBXBuildFile; fileRef = CDC0AB471D52D7F8009B89D0 /* CoursesDept.csv */; };
 		CDC0AB4A1D52E6BA009B89D0 /* A0_WhenIsCourseTaken.dat in Resources */ = {isa = PBXBuildFile; fileRef = CDC0AB491D52E6BA009B89D0 /* A0_WhenIsCourseTaken.dat */; };
 		CDC0AB4C1D584E1C009B89D0 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC0AB4B1D584E1C009B89D0 /* SettingsTableViewController.swift */; };
-		CDC0ABD81D5C29E2009B89D0 /* CoursesDept.dat in Resources */ = {isa = PBXBuildFile; fileRef = CDC0ABD71D5C29E2009B89D0 /* CoursesDept.dat */; };
 		CDD865E81D315E9600D942CC /* OrderedDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD865E71D315E9600D942CC /* OrderedDictionary.swift */; };
 		CDEB79421D3EB1F500FA6531 /* A2_ConcurrentCourses.dat in Resources */ = {isa = PBXBuildFile; fileRef = CDEB79411D3EB1F500FA6531 /* A2_ConcurrentCourses.dat */; };
 		CDFA79F71D69794200F51F32 /* ComingSoonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFA79F61D69794200F51F32 /* ComingSoonTableViewCell.swift */; };
+		CDFA79F91D6BC00100F51F32 /* Courses.dat in Resources */ = {isa = PBXBuildFile; fileRef = CDFA79F81D6BC00100F51F32 /* Courses.dat */; };
 		CDFCD6D11D3950A300561566 /* CourseInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFCD6D01D3950A300561566 /* CourseInfoView.swift */; };
 		CDFCD6D31D39529300561566 /* CourseInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDFCD6D21D39529300561566 /* CourseInfoView.xib */; };
 		CDFCD6D51D396E6B00561566 /* ProblemFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFCD6D41D396E6B00561566 /* ProblemFormView.swift */; };
 		CDFCD6D71D39701200561566 /* ProblemFormView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDFCD6D61D39701200561566 /* ProblemFormView.xib */; };
 		CDFCD6DB1D3A1CE800561566 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CDFCD6DA1D3A1CE800561566 /* GoogleService-Info.plist */; };
-		CDFCD6E51D3E01C400561566 /* Courses.csv in Resources */ = {isa = PBXBuildFile; fileRef = CDFCD6E41D3E01C400561566 /* Courses.csv */; };
 		CDFF9FD81CF394AE00E64650 /* ScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFF9FD71CF394AE00E64650 /* ScrollViewController.swift */; };
 		CDFF9FDA1CF6D02500E64650 /* TestGraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFF9FD91CF6D02500E64650 /* TestGraphViewController.swift */; };
 		CDFF9FDE1CF8DE5700E64650 /* ScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFF9FDD1CF8DE5700E64650 /* ScrollView.swift */; };
@@ -78,8 +76,8 @@
 		CD1350BE1D40501D001C6833 /* QuestionLabel0.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuestionLabel0.xib; sourceTree = "<group>"; };
 		CD2312A01D04A21400ED6D0D /* CourseChooserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseChooserViewController.swift; sourceTree = "<group>"; };
 		CD2C7E1A1D29B98300FCAD5E /* SlidingSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlidingSegmentedControl.swift; sourceTree = "<group>"; };
-		CD73BE5F1D4703FF00582650 /* QuestionLabel3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionLabel3.swift; sourceTree = "<group>"; };
-		CD73BE611D47053100582650 /* QuestionLabel3.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuestionLabel3.xib; sourceTree = "<group>"; };
+		CD73BE5F1D4703FF00582650 /* QuestionLabel1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionLabel1.swift; sourceTree = "<group>"; };
+		CD73BE611D47053100582650 /* QuestionLabel1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuestionLabel1.xib; sourceTree = "<group>"; };
 		CD73BE651D47EE4100582650 /* LaunchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		CD892ED41CEBB8CD00DF5D24 /* Vesea_Columbia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vesea_Columbia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD892ED71CEBB8CD00DF5D24 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -98,25 +96,23 @@
 		CD892F131CEFA16600DF5D24 /* FrontViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrontViewController.swift; sourceTree = "<group>"; };
 		CD892F1B1CF15C1900DF5D24 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		CD892F1D1CF168B100DF5D24 /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
-		CD8997591D6430CC00C36F4A /* A3_AlsoTakenConcurrently.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = A3_AlsoTakenConcurrently.dat; sourceTree = "<group>"; };
-		CD89975A1D6430CC00C36F4A /* A3_AlsoTakenBefore.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = A3_AlsoTakenBefore.dat; sourceTree = "<group>"; };
-		CD89975B1D6430CC00C36F4A /* A3_AlsoTakenAfter.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = A3_AlsoTakenAfter.dat; sourceTree = "<group>"; };
+		CD8997591D6430CC00C36F4A /* A1_AlsoTakenConcurrently.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = A1_AlsoTakenConcurrently.dat; sourceTree = "<group>"; };
+		CD89975A1D6430CC00C36F4A /* A1_AlsoTakenBefore.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = A1_AlsoTakenBefore.dat; sourceTree = "<group>"; };
+		CD89975B1D6430CC00C36F4A /* A1_AlsoTakenAfter.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = A1_AlsoTakenAfter.dat; sourceTree = "<group>"; };
 		CD89975F1D67834000C36F4A /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		CDB82A271D05F46E00F01678 /* CourseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseTableViewCell.swift; sourceTree = "<group>"; };
-		CDC0AB471D52D7F8009B89D0 /* CoursesDept.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CoursesDept.csv; sourceTree = "<group>"; };
 		CDC0AB491D52E6BA009B89D0 /* A0_WhenIsCourseTaken.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = A0_WhenIsCourseTaken.dat; sourceTree = "<group>"; };
 		CDC0AB4B1D584E1C009B89D0 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
-		CDC0ABD71D5C29E2009B89D0 /* CoursesDept.dat */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CoursesDept.dat; sourceTree = "<group>"; };
 		CDC0ABD91D5D7A16009B89D0 /* Vesea_Columbia-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Vesea_Columbia-Bridging-Header.h"; sourceTree = "<group>"; };
 		CDD865E71D315E9600D942CC /* OrderedDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderedDictionary.swift; sourceTree = "<group>"; };
 		CDEB79411D3EB1F500FA6531 /* A2_ConcurrentCourses.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = A2_ConcurrentCourses.dat; sourceTree = "<group>"; };
 		CDFA79F61D69794200F51F32 /* ComingSoonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComingSoonTableViewCell.swift; sourceTree = "<group>"; };
+		CDFA79F81D6BC00100F51F32 /* Courses.dat */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Courses.dat; sourceTree = "<group>"; };
 		CDFCD6D01D3950A300561566 /* CourseInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseInfoView.swift; sourceTree = "<group>"; };
 		CDFCD6D21D39529300561566 /* CourseInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CourseInfoView.xib; sourceTree = "<group>"; };
 		CDFCD6D41D396E6B00561566 /* ProblemFormView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProblemFormView.swift; sourceTree = "<group>"; };
 		CDFCD6D61D39701200561566 /* ProblemFormView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProblemFormView.xib; sourceTree = "<group>"; };
 		CDFCD6DA1D3A1CE800561566 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		CDFCD6E41D3E01C400561566 /* Courses.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Courses.csv; sourceTree = "<group>"; };
 		CDFF9FD71CF394AE00E64650 /* ScrollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollViewController.swift; sourceTree = "<group>"; };
 		CDFF9FD91CF6D02500E64650 /* TestGraphViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestGraphViewController.swift; sourceTree = "<group>"; };
 		CDFF9FDD1CF8DE5700E64650 /* ScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollView.swift; sourceTree = "<group>"; };
@@ -176,14 +172,12 @@
 		CD2C7E191D2890DE00FCAD5E /* Files */ = {
 			isa = PBXGroup;
 			children = (
-				CDFCD6E41D3E01C400561566 /* Courses.csv */,
-				CDC0AB471D52D7F8009B89D0 /* CoursesDept.csv */,
-				CDC0ABD71D5C29E2009B89D0 /* CoursesDept.dat */,
+				CDFA79F81D6BC00100F51F32 /* Courses.dat */,
 				CDC0AB491D52E6BA009B89D0 /* A0_WhenIsCourseTaken.dat */,
 				CDEB79411D3EB1F500FA6531 /* A2_ConcurrentCourses.dat */,
-				CD8997591D6430CC00C36F4A /* A3_AlsoTakenConcurrently.dat */,
-				CD89975A1D6430CC00C36F4A /* A3_AlsoTakenBefore.dat */,
-				CD89975B1D6430CC00C36F4A /* A3_AlsoTakenAfter.dat */,
+				CD8997591D6430CC00C36F4A /* A1_AlsoTakenConcurrently.dat */,
+				CD89975A1D6430CC00C36F4A /* A1_AlsoTakenBefore.dat */,
+				CD89975B1D6430CC00C36F4A /* A1_AlsoTakenAfter.dat */,
 			);
 			name = Files;
 			sourceTree = "<group>";
@@ -267,8 +261,8 @@
 			children = (
 				CD1350BC1D405004001C6833 /* QuestionLabel0.swift */,
 				CD1350BE1D40501D001C6833 /* QuestionLabel0.xib */,
-				CD73BE5F1D4703FF00582650 /* QuestionLabel3.swift */,
-				CD73BE611D47053100582650 /* QuestionLabel3.xib */,
+				CD73BE5F1D4703FF00582650 /* QuestionLabel1.swift */,
+				CD73BE611D47053100582650 /* QuestionLabel1.xib */,
 				CDFF9FDF1CFA304600E64650 /* QuestionLabel2.swift */,
 				CDFF9FE31CFA347F00E64650 /* QuestionLabel2.xib */,
 			);
@@ -382,10 +376,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD89975C1D6430CC00C36F4A /* A3_AlsoTakenConcurrently.dat in Resources */,
-				CDC0AB481D52D7F8009B89D0 /* CoursesDept.csv in Resources */,
+				CD89975C1D6430CC00C36F4A /* A1_AlsoTakenConcurrently.dat in Resources */,
 				CDFCD6DB1D3A1CE800561566 /* GoogleService-Info.plist in Resources */,
-				CD89975D1D6430CC00C36F4A /* A3_AlsoTakenBefore.dat in Resources */,
+				CD89975D1D6430CC00C36F4A /* A1_AlsoTakenBefore.dat in Resources */,
 				CDEB79421D3EB1F500FA6531 /* A2_ConcurrentCourses.dat in Resources */,
 				CD892EE21CEBB8CD00DF5D24 /* LaunchScreen.storyboard in Resources */,
 				CDC0AB4A1D52E6BA009B89D0 /* A0_WhenIsCourseTaken.dat in Resources */,
@@ -393,12 +386,11 @@
 				CDFCD6D71D39701200561566 /* ProblemFormView.xib in Resources */,
 				CD892EDD1CEBB8CD00DF5D24 /* Main.storyboard in Resources */,
 				CD1350BF1D40501D001C6833 /* QuestionLabel0.xib in Resources */,
-				CDFCD6E51D3E01C400561566 /* Courses.csv in Resources */,
-				CDC0ABD81D5C29E2009B89D0 /* CoursesDept.dat in Resources */,
 				CDFCD6D31D39529300561566 /* CourseInfoView.xib in Resources */,
-				CD89975E1D6430CC00C36F4A /* A3_AlsoTakenAfter.dat in Resources */,
-				CD73BE621D47053100582650 /* QuestionLabel3.xib in Resources */,
+				CD89975E1D6430CC00C36F4A /* A1_AlsoTakenAfter.dat in Resources */,
+				CD73BE621D47053100582650 /* QuestionLabel1.xib in Resources */,
 				CDFF9FE41CFA347F00E64650 /* QuestionLabel2.xib in Resources */,
+				CDFA79F91D6BC00100F51F32 /* Courses.dat in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -483,7 +475,7 @@
 				CDFCD6D11D3950A300561566 /* CourseInfoView.swift in Sources */,
 				CDFF9FE01CFA304600E64650 /* QuestionLabel2.swift in Sources */,
 				CD1350BD1D405004001C6833 /* QuestionLabel0.swift in Sources */,
-				CD73BE601D4703FF00582650 /* QuestionLabel3.swift in Sources */,
+				CD73BE601D4703FF00582650 /* QuestionLabel1.swift in Sources */,
 				CD73BE661D47EE4100582650 /* LaunchViewController.swift in Sources */,
 				CD2C7E1B1D29B98300FCAD5E /* SlidingSegmentedControl.swift in Sources */,
 				CD892ED81CEBB8CD00DF5D24 /* AppDelegate.swift in Sources */,
