@@ -26,6 +26,8 @@ class ProblemFormView: UIView {
     var courseID : String?
     
     let ref = FIRDatabase.database().reference()
+    
+    var backgroundSegControl = UISegmentedControl()
 
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
@@ -121,61 +123,71 @@ class ProblemFormView: UIView {
     
     func sendButtonPressed(sender: UIButton){
         print("Send Button Pressed")
-        
-        var problemType = ""
-        switch self.segmentedControl.selectedSegmentIndex {
-        case 0:
-            problemType = "Other"
-            break
-        case 1:
-            problemType = "Incorrect Info"
-            break
-        case 2:
-            problemType = "Mislabeled"
-            break
-        default:
-            break
-        }
-        
+        let randomNum = Int(arc4random_uniform(10000) + 1)
         var postTitle = String()
         let def = NSUserDefaults.standardUserDefaults()
-        let probCountRef = ref.child("Problems").child("Course-Specific").child("Problem Count")
-        probCountRef.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
-            var newVal = String()
-            if let val = snapshot.value as? String{
-                newVal = String(Int(val)!+1)
-            } else if let val = snapshot.value as? NSNumber{
-                newVal = String(val.intValue + 1)
+        postTitle = String(randomNum) + " - " + def.stringForKey("Username")!
+        
+        let date = NSDate()
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-dd-MM"
+        
+        let timeFormatter = NSDateFormatter()
+        timeFormatter.dateFormat = "HH:mm:ss.S"
+        
+        if self.type == ProblemFormType.Course{
+            var problemType = ""
+            switch self.segmentedControl.selectedSegmentIndex {
+            case 0:
+                problemType = "Other"
+                break
+            case 1:
+                problemType = "Incorrect Info"
+                break
+            case 2:
+                problemType = "Mislabeled"
+                break
+            default:
+                break
             }
-            postTitle = newVal + " - " + def.stringForKey("Username")!
-            probCountRef.setValue(newVal)
             
             let postRef = self.ref.child("Problems").child("Course-Specific").child(problemType).child(postTitle)
             
-            let date = NSDate()
-            
-            let dateFormatter = NSDateFormatter()
-            dateFormatter.dateFormat = "yyyy-dd-MM"
-            
-            let timeFormatter = NSDateFormatter()
-            timeFormatter.dateFormat = "HH:mm:ss.S"
-            
-            if self.type == .Course{
-                postRef.setValue(["Date":"Date","Course ID":self.courseID!,"Text":self.textView.text])
-            } else {
-                postRef.setValue(["Date":"Date","Text":self.textView.text])
-            }
+            postRef.setValue(["Date":"Date","Course ID":self.courseID!,"Text":self.textView.text])
             postRef.child("Date").setValue(["Date":dateFormatter.stringFromDate(date),"Time":timeFormatter.stringFromDate(date)])
             
-            
-            self.textView.text = "Thank you"
-            let delay = Int64(1*Double(NSEC_PER_SEC))
-            let dispatchTime = dispatch_time(DISPATCH_TIME_NOW, delay)
-            dispatch_after(dispatchTime, dispatch_get_main_queue()) {
-                self.delegate?.problemFormDidFinish(self.type)
+        } else if self.type == ProblemFormType.ListVC{
+            var problemType = ""
+            switch self.segmentedControl.selectedSegmentIndex {
+            case 0:
+                problemType = "Suggestion"
+                break
+            case 1:
+                problemType = "Bug"
+                break
+            default:
+                break
             }
             
-            }, withCancelBlock: nil)
+            let postRef = self.ref.child("Problems").child("General").child(problemType).child(postTitle)
+            
+            postRef.setValue(["Date":"Date","Text":self.textView.text])
+            postRef.child("Date").setValue(["Date":dateFormatter.stringFromDate(date),"Time":timeFormatter.stringFromDate(date)])
+        } else if (self.type == ProblemFormType.SuggestQuestion) {
+            
+            let postRef = self.ref.child("Question Suggestions").child(postTitle)
+            
+            postRef.setValue(["Date":"Date","Text":self.textView.text])
+            postRef.child("Date").setValue(["Date":dateFormatter.stringFromDate(date),"Time":timeFormatter.stringFromDate(date)])
+        }
+        
+        self.textView.text = "Thank you"
+        let delay = Int64(1*Double(NSEC_PER_SEC))
+        let dispatchTime = dispatch_time(DISPATCH_TIME_NOW, delay)
+        dispatch_after(dispatchTime, dispatch_get_main_queue()) {
+            self.delegate?.problemFormDidFinish(self.type)
+        }
     }
     
     func stylizeFonts(){
@@ -192,7 +204,7 @@ class ProblemFormView: UIView {
         self.segmentedControl.setTitleTextAttributes(normalTextAttributes, forState: .Highlighted)
         self.segmentedControl.setTitleTextAttributes(normalTextAttributes, forState: .Selected)
         
-        let backgroundSegControl = UISegmentedControl(items: ["","",""])
+        backgroundSegControl = UISegmentedControl(items: ["","",""])
         backgroundSegControl.frame = segmentedControl.frame
         backgroundSegControl.tintColor = UIColor(white: 151/255, alpha: 0.65)
         backgroundSegControl.userInteractionEnabled = false
@@ -216,6 +228,15 @@ class ProblemFormView: UIView {
 
 }
 
+extension UISegmentedControl {
+    func replaceSegments(segments: Array<String>) {
+        self.removeAllSegments()
+        for segment in segments {
+            self.insertSegmentWithTitle(segment, atIndex: self.numberOfSegments, animated: false)
+        }
+    }
+}
+
 protocol ProblemFormDelegate {
     func problemFormDidFinish(type: ProblemFormType)
 }
@@ -224,5 +245,6 @@ enum ProblemFormType {
     case Course
     case QuestionVC
     case ListVC
+    case SuggestQuestion
     case None
 }

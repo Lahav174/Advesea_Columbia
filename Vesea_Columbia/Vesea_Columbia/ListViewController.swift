@@ -29,7 +29,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var cellImages = Array(count: 7, repeatedValue: UIImage())
     
     func problemFormDidFinish(type: ProblemFormType) {
-        if self.form!.type == .ListVC{
+        if self.form!.type == .ListVC || self.form!.type == .SuggestQuestion{
             self.panRecognizer.enabled = true
             self.form!.textView.resignFirstResponder()
             self.gearButton.enabled = true
@@ -48,6 +48,10 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         form!.alpha = 0
         form!.delegate = self
         form!.type = .ListVC
+        form!.formTitle.text = "Report Feedback"
+        form!.segmentedControl.replaceSegments(["Suggestion","Bug"])
+        form!.backgroundSegControl.replaceSegments(["",""])
+        form!.reappearSetup()
         self.view.addSubview(form!)
         self.tableView.userInteractionEnabled = false
         self.form!.textView.becomeFirstResponder()
@@ -67,7 +71,24 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func showQuestionForm(){
-        print("show Q form!!!!")
+        form = ProblemFormView(frame: CGRect(x: 20, y: 80, width: self.view.frame.width-40, height: self.view.frame.height-340))
+        form!.alpha = 0
+        form?.formTitle.text = "Suggest a Question"
+        form!.delegate = self
+        form!.type = .SuggestQuestion
+        form!.segmentedControl.replaceSegments(["The more descriptive, the better"])
+        form!.backgroundSegControl.replaceSegments([""])
+        form?.segmentedControl.enabled = false
+        form?.backgroundSegControl.enabled = false
+        self.view.addSubview(form!)
+        self.tableView.userInteractionEnabled = false
+        self.form!.textView.becomeFirstResponder()
+        self.panRecognizer.enabled = false
+        self.gearButton.enabled = false
+        self.feedbackButton.enabled = false
+        UIView.animateWithDuration(0.2) {
+            self.form!.alpha = 1
+        }
     }
     
     func waveCells(){
@@ -115,7 +136,6 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tableView.delegate = self
         tableView.registerClass(TableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.backgroundColor = K.colors.tableviewBackgroundColor
-        tableView.delaysContentTouches = false
         navigationBar.delegate = self
         
         let headerView = UIView(frame: CGRectMake(0, 0, tableView.bounds.size.width, 20))
@@ -237,12 +257,16 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
             
             let comingSoonLabel = UILabel()
             comingSoonLabel.text = "Coming Soon"
-            comingSoonLabel.frame = CGRect(origin: CGPoint(x: 50, y: 13), size: CGSize(width: 200, height: 50))
+            comingSoonLabel.frame = CGRect(origin: CGPoint(x: 20, y: 13), size: CGSize(width: 200, height: 50))
             comingSoonLabel.textColor = UIColor.whiteColor()
             comingSoonLabel.font = UIFont(name: "HelveticaNeue-Medium", size: 22.0)
             comingSoonLabel.transform = CGAffineTransformMakeRotation(CGFloat(348.0*M_PI/180.0))
             cell.addSubview(comingSoonLabel)
             cell.button.titleLabel?.numberOfLines = 2
+            
+            let space = (self.view.frame.width - 350)/3
+            cell.trailingConstraint.constant = space
+            comingSoonLabel.frame.origin.x = space + 20
             
             cell.delegate = self
             

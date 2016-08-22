@@ -455,8 +455,8 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" delaysContentTouches="NO" canCancelContentTouches="NO" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="UIm-og-r7B" customClass="ListTableView" customModule="Vesea_Columbia" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="64" width="600" height="448"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="UIm-og-r7B" customClass="ListTableView" customModule="Vesea_Columbia" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="64" width="600" height="492"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="SwipeCell" id="Unt-Lv-GW9" customClass="TableViewCell" customModule="Vesea_Columbia" customModuleProvider="target">
@@ -544,7 +544,7 @@
                                                     <color key="backgroundColor" red="0.86274509803921573" green="0.86274509803921573" blue="0.86274509803921573" alpha="0.40000000000000002" colorSpace="calibratedRGB"/>
                                                 </view>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Le-Uz-OQQ">
-                                                    <rect key="frame" x="422" y="5" width="150" height="33"/>
+                                                    <rect key="frame" x="442" y="5" width="150" height="33"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="150" id="HGi-w6-6tk"/>
                                                     </constraints>
@@ -568,7 +568,7 @@
                                             <constraints>
                                                 <constraint firstItem="4Le-Uz-OQQ" firstAttribute="centerY" secondItem="DjC-qm-fwo" secondAttribute="centerY" id="1oH-m2-1n6"/>
                                                 <constraint firstItem="fPE-Wb-EcC" firstAttribute="centerX" secondItem="DjC-qm-fwo" secondAttribute="centerX" id="4XD-JY-nEV"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="4Le-Uz-OQQ" secondAttribute="trailing" constant="20" id="6Q8-Xd-8T9"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="4Le-Uz-OQQ" secondAttribute="trailing" id="6Q8-Xd-8T9"/>
                                                 <constraint firstItem="fPE-Wb-EcC" firstAttribute="centerY" secondItem="DjC-qm-fwo" secondAttribute="centerY" id="7GZ-zJ-KIV"/>
                                                 <constraint firstItem="fPE-Wb-EcC" firstAttribute="height" secondItem="DjC-qm-fwo" secondAttribute="height" id="7bZ-TV-YWH"/>
                                                 <constraint firstItem="fPE-Wb-EcC" firstAttribute="width" secondItem="DjC-qm-fwo" secondAttribute="width" id="Ens-0K-gbk"/>
@@ -581,29 +581,21 @@
                                         <connections>
                                             <outlet property="backgroundImageView" destination="9Rz-OY-jDA" id="1JW-C3-bV6"/>
                                             <outlet property="button" destination="4Le-Uz-OQQ" id="YQr-ev-l3G"/>
+                                            <outlet property="trailingConstraint" destination="6Q8-Xd-8T9" id="R1u-Ld-Rb4"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <sections/>
                             </tableView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nmh-HM-Uux">
-                                <rect key="frame" x="0.0" y="512" width="600" height="44"/>
-                                <color key="backgroundColor" red="0.43137254901960786" green="0.60968959731543626" blue="0.8835989932885906" alpha="1" colorSpace="calibratedRGB"/>
-                                <items/>
-                                <color key="barTintColor" red="0.43137254899999999" green="0.60968959730000005" blue="0.88359899330000002" alpha="1" colorSpace="calibratedRGB"/>
-                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="nmh-HM-Uux" firstAttribute="centerX" secondItem="4Bh-4R-7EE" secondAttribute="centerX" id="39W-eC-z1j"/>
                             <constraint firstItem="Ufk-O4-qUQ" firstAttribute="centerX" secondItem="4Bh-4R-7EE" secondAttribute="centerX" id="PYL-A5-E6O"/>
                             <constraint firstItem="Ufk-O4-qUQ" firstAttribute="top" secondItem="dtd-d7-NEF" secondAttribute="bottom" placeholder="YES" id="Tia-lM-nBN"/>
                             <constraint firstItem="Ufk-O4-qUQ" firstAttribute="width" secondItem="4Bh-4R-7EE" secondAttribute="width" id="Tr0-Rq-Ox5"/>
                             <constraint firstItem="UIm-og-r7B" firstAttribute="centerX" secondItem="4Bh-4R-7EE" secondAttribute="centerX" id="dhh-wU-FYD"/>
                             <constraint firstItem="UIm-og-r7B" firstAttribute="top" secondItem="Ufk-O4-qUQ" secondAttribute="bottom" id="hV9-8Q-eFI"/>
-                            <constraint firstItem="nmh-HM-Uux" firstAttribute="width" secondItem="4Bh-4R-7EE" secondAttribute="width" id="kHB-wm-e8E"/>
-                            <constraint firstItem="G2V-sj-1HW" firstAttribute="top" secondItem="nmh-HM-Uux" secondAttribute="bottom" id="n5t-qa-eo9"/>
-                            <constraint firstItem="nmh-HM-Uux" firstAttribute="top" secondItem="UIm-og-r7B" secondAttribute="bottom" id="s56-4e-hzV"/>
+                            <constraint firstItem="G2V-sj-1HW" firstAttribute="top" secondItem="UIm-og-r7B" secondAttribute="bottom" id="r5x-3s-Z91"/>
                             <constraint firstItem="UIm-og-r7B" firstAttribute="width" secondItem="4Bh-4R-7EE" secondAttribute="width" id="yFq-rW-6zW"/>
                         </constraints>
                     </view>
