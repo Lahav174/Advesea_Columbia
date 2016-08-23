@@ -136,7 +136,7 @@ class QuestionLabel1: UIView, SlidingSegmentedControlDelegate, QuestionLabel {
             let total = Double(answerArr[0]!)/100.0
             for i in 0...4{
                 assert(Int(answerArr[1 + i*2]!) != 0)
-                let courseID = MyVariables.courses?.get(Int(answerArr[1 + i*2]!)-1)?.a! as! String
+                let courseID = MyVariables.courses?.get(Int(answerArr[1 + i*2]!))?.a! as! String
                 let value = Double(answerArr[2*i+2]!)/total
                 param2[4-i] = (courseID,value)
             }

@@ -27,17 +27,17 @@
 		CD892F141CEFA16600DF5D24 /* FrontViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD892F131CEFA16600DF5D24 /* FrontViewController.swift */; };
 		CD892F1C1CF15C1900DF5D24 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD892F1B1CF15C1900DF5D24 /* TableViewCell.swift */; };
 		CD892F1E1CF168B100DF5D24 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD892F1D1CF168B100DF5D24 /* ListViewController.swift */; };
-		CD89975C1D6430CC00C36F4A /* A1_AlsoTakenConcurrently.dat in Resources */ = {isa = PBXBuildFile; fileRef = CD8997591D6430CC00C36F4A /* A1_AlsoTakenConcurrently.dat */; };
-		CD89975D1D6430CC00C36F4A /* A1_AlsoTakenBefore.dat in Resources */ = {isa = PBXBuildFile; fileRef = CD89975A1D6430CC00C36F4A /* A1_AlsoTakenBefore.dat */; };
-		CD89975E1D6430CC00C36F4A /* A1_AlsoTakenAfter.dat in Resources */ = {isa = PBXBuildFile; fileRef = CD89975B1D6430CC00C36F4A /* A1_AlsoTakenAfter.dat */; };
 		CD8997601D67834000C36F4A /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD89975F1D67834000C36F4A /* MessageUI.framework */; };
 		CDB82A281D05F46E00F01678 /* CourseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB82A271D05F46E00F01678 /* CourseTableViewCell.swift */; };
-		CDC0AB4A1D52E6BA009B89D0 /* A0_WhenIsCourseTaken.dat in Resources */ = {isa = PBXBuildFile; fileRef = CDC0AB491D52E6BA009B89D0 /* A0_WhenIsCourseTaken.dat */; };
 		CDC0AB4C1D584E1C009B89D0 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC0AB4B1D584E1C009B89D0 /* SettingsTableViewController.swift */; };
 		CDD865E81D315E9600D942CC /* OrderedDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD865E71D315E9600D942CC /* OrderedDictionary.swift */; };
-		CDEB79421D3EB1F500FA6531 /* A2_ConcurrentCourses.dat in Resources */ = {isa = PBXBuildFile; fileRef = CDEB79411D3EB1F500FA6531 /* A2_ConcurrentCourses.dat */; };
 		CDFA79F71D69794200F51F32 /* ComingSoonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFA79F61D69794200F51F32 /* ComingSoonTableViewCell.swift */; };
 		CDFA79F91D6BC00100F51F32 /* Courses.dat in Resources */ = {isa = PBXBuildFile; fileRef = CDFA79F81D6BC00100F51F32 /* Courses.dat */; };
+		CDFA79FB1D6BC8E600F51F32 /* A0_WhenIsCourseTaken.dat in Resources */ = {isa = PBXBuildFile; fileRef = CDFA79FA1D6BC8E600F51F32 /* A0_WhenIsCourseTaken.dat */; };
+		CDFA79FF1D6BD6DF00F51F32 /* A1_AlsoTakenBefore.dat in Resources */ = {isa = PBXBuildFile; fileRef = CDFA79FC1D6BD6DF00F51F32 /* A1_AlsoTakenBefore.dat */; };
+		CDFA7A001D6BD6DF00F51F32 /* A1_AlsoTakenConcurrently.dat in Resources */ = {isa = PBXBuildFile; fileRef = CDFA79FD1D6BD6DF00F51F32 /* A1_AlsoTakenConcurrently.dat */; };
+		CDFA7A011D6BD6DF00F51F32 /* A1_AlsoTakenAfter.dat in Resources */ = {isa = PBXBuildFile; fileRef = CDFA79FE1D6BD6DF00F51F32 /* A1_AlsoTakenAfter.dat */; };
+		CDFA7A031D6BDDCA00F51F32 /* A2_ConcurrentCourses.dat in Resources */ = {isa = PBXBuildFile; fileRef = CDFA7A021D6BDDCA00F51F32 /* A2_ConcurrentCourses.dat */; };
 		CDFCD6D11D3950A300561566 /* CourseInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFCD6D01D3950A300561566 /* CourseInfoView.swift */; };
 		CDFCD6D31D39529300561566 /* CourseInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDFCD6D21D39529300561566 /* CourseInfoView.xib */; };
 		CDFCD6D51D396E6B00561566 /* ProblemFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFCD6D41D396E6B00561566 /* ProblemFormView.swift */; };
@@ -96,18 +96,18 @@
 		CD892F131CEFA16600DF5D24 /* FrontViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrontViewController.swift; sourceTree = "<group>"; };
 		CD892F1B1CF15C1900DF5D24 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		CD892F1D1CF168B100DF5D24 /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
-		CD8997591D6430CC00C36F4A /* A1_AlsoTakenConcurrently.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = A1_AlsoTakenConcurrently.dat; sourceTree = "<group>"; };
-		CD89975A1D6430CC00C36F4A /* A1_AlsoTakenBefore.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = A1_AlsoTakenBefore.dat; sourceTree = "<group>"; };
-		CD89975B1D6430CC00C36F4A /* A1_AlsoTakenAfter.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = A1_AlsoTakenAfter.dat; sourceTree = "<group>"; };
 		CD89975F1D67834000C36F4A /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		CDB82A271D05F46E00F01678 /* CourseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseTableViewCell.swift; sourceTree = "<group>"; };
-		CDC0AB491D52E6BA009B89D0 /* A0_WhenIsCourseTaken.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = A0_WhenIsCourseTaken.dat; sourceTree = "<group>"; };
 		CDC0AB4B1D584E1C009B89D0 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		CDC0ABD91D5D7A16009B89D0 /* Vesea_Columbia-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Vesea_Columbia-Bridging-Header.h"; sourceTree = "<group>"; };
 		CDD865E71D315E9600D942CC /* OrderedDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderedDictionary.swift; sourceTree = "<group>"; };
-		CDEB79411D3EB1F500FA6531 /* A2_ConcurrentCourses.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = A2_ConcurrentCourses.dat; sourceTree = "<group>"; };
 		CDFA79F61D69794200F51F32 /* ComingSoonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComingSoonTableViewCell.swift; sourceTree = "<group>"; };
 		CDFA79F81D6BC00100F51F32 /* Courses.dat */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Courses.dat; sourceTree = "<group>"; };
+		CDFA79FA1D6BC8E600F51F32 /* A0_WhenIsCourseTaken.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = A0_WhenIsCourseTaken.dat; sourceTree = "<group>"; };
+		CDFA79FC1D6BD6DF00F51F32 /* A1_AlsoTakenBefore.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = A1_AlsoTakenBefore.dat; sourceTree = "<group>"; };
+		CDFA79FD1D6BD6DF00F51F32 /* A1_AlsoTakenConcurrently.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = A1_AlsoTakenConcurrently.dat; sourceTree = "<group>"; };
+		CDFA79FE1D6BD6DF00F51F32 /* A1_AlsoTakenAfter.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = A1_AlsoTakenAfter.dat; sourceTree = "<group>"; };
+		CDFA7A021D6BDDCA00F51F32 /* A2_ConcurrentCourses.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = A2_ConcurrentCourses.dat; sourceTree = "<group>"; };
 		CDFCD6D01D3950A300561566 /* CourseInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseInfoView.swift; sourceTree = "<group>"; };
 		CDFCD6D21D39529300561566 /* CourseInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CourseInfoView.xib; sourceTree = "<group>"; };
 		CDFCD6D41D396E6B00561566 /* ProblemFormView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProblemFormView.swift; sourceTree = "<group>"; };
@@ -173,11 +173,11 @@
 			isa = PBXGroup;
 			children = (
 				CDFA79F81D6BC00100F51F32 /* Courses.dat */,
-				CDC0AB491D52E6BA009B89D0 /* A0_WhenIsCourseTaken.dat */,
-				CDEB79411D3EB1F500FA6531 /* A2_ConcurrentCourses.dat */,
-				CD8997591D6430CC00C36F4A /* A1_AlsoTakenConcurrently.dat */,
-				CD89975A1D6430CC00C36F4A /* A1_AlsoTakenBefore.dat */,
-				CD89975B1D6430CC00C36F4A /* A1_AlsoTakenAfter.dat */,
+				CDFA79FA1D6BC8E600F51F32 /* A0_WhenIsCourseTaken.dat */,
+				CDFA79FC1D6BD6DF00F51F32 /* A1_AlsoTakenBefore.dat */,
+				CDFA79FD1D6BD6DF00F51F32 /* A1_AlsoTakenConcurrently.dat */,
+				CDFA79FE1D6BD6DF00F51F32 /* A1_AlsoTakenAfter.dat */,
+				CDFA7A021D6BDDCA00F51F32 /* A2_ConcurrentCourses.dat */,
 			);
 			name = Files;
 			sourceTree = "<group>";
@@ -376,18 +376,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD89975C1D6430CC00C36F4A /* A1_AlsoTakenConcurrently.dat in Resources */,
 				CDFCD6DB1D3A1CE800561566 /* GoogleService-Info.plist in Resources */,
-				CD89975D1D6430CC00C36F4A /* A1_AlsoTakenBefore.dat in Resources */,
-				CDEB79421D3EB1F500FA6531 /* A2_ConcurrentCourses.dat in Resources */,
 				CD892EE21CEBB8CD00DF5D24 /* LaunchScreen.storyboard in Resources */,
-				CDC0AB4A1D52E6BA009B89D0 /* A0_WhenIsCourseTaken.dat in Resources */,
+				CDFA7A031D6BDDCA00F51F32 /* A2_ConcurrentCourses.dat in Resources */,
 				CD892EDF1CEBB8CD00DF5D24 /* Assets.xcassets in Resources */,
+				CDFA7A011D6BD6DF00F51F32 /* A1_AlsoTakenAfter.dat in Resources */,
 				CDFCD6D71D39701200561566 /* ProblemFormView.xib in Resources */,
+				CDFA79FB1D6BC8E600F51F32 /* A0_WhenIsCourseTaken.dat in Resources */,
+				CDFA7A001D6BD6DF00F51F32 /* A1_AlsoTakenConcurrently.dat in Resources */,
+				CDFA79FF1D6BD6DF00F51F32 /* A1_AlsoTakenBefore.dat in Resources */,
 				CD892EDD1CEBB8CD00DF5D24 /* Main.storyboard in Resources */,
 				CD1350BF1D40501D001C6833 /* QuestionLabel0.xib in Resources */,
 				CDFCD6D31D39529300561566 /* CourseInfoView.xib in Resources */,
-				CD89975E1D6430CC00C36F4A /* A1_AlsoTakenAfter.dat in Resources */,
 				CD73BE621D47053100582650 /* QuestionLabel1.xib in Resources */,
 				CDFF9FE41CFA347F00E64650 /* QuestionLabel2.xib in Resources */,
 				CDFA79F91D6BC00100F51F32 /* Courses.dat in Resources */,

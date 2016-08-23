@@ -439,9 +439,9 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate, UINavigation
                     let shortsSegment = Array(shorts[(i*12)...(11+i*12)])
                     assert(shortsSegment.count == 12, "not 12")
                     for i in 0...9{
-                        assert(Int(shortsSegment[0]) != 0)
+                        //assert(Int(shortsSegment[0]) != 0)
                         //minus 1 b/c excel sheet starts at index = 1
-                         MyVariables.QuestionData.Q0[Int(shortsSegment[0])-1][i] = shortsSegment[i+1]
+                         MyVariables.QuestionData.Q0[Int(shortsSegment[0])][i] = shortsSegment[i+1]
                     }
                 }
                 l()
@@ -518,8 +518,8 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate, UINavigation
                         let shortsSegment = Array(shorts[(i*12)...(11+i*12)])
                         assert(shortsSegment.count == 12, "not 12")
                         for i in 0...10{
-                            assert(Int(shortsSegment[0]) != 0, "shortsSegment \(shortsSegment)")
-                            arr[Int(shortsSegment[0])-1][i] = shortsSegment[i+1]
+                            //assert(Int(shortsSegment[0]) != 0, "shortsSegment \(shortsSegment)")
+                            arr[Int(shortsSegment[0])][i] = shortsSegment[i+1]
                         }
                     }
                     l()
