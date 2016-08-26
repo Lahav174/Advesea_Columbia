@@ -13,6 +13,7 @@ import Firebase
 
 struct MyVariables {
     static var courses : OrderedDictionary<NSDictionary>?
+    static var connectedToFirebase = true
     struct QuestionData {
         static var Q2 : [[[UInt16?]]] = Array(count: (MyVariables.courses?.count)! + 100, repeatedValue: Array(count : (MyVariables.courses?.count)! + 100, repeatedValue: Array(count: 4, repeatedValue: nil)))
         static var Q0 : [[UInt16?]] = Array(count: (MyVariables.courses?.count)! + 100, repeatedValue: Array(count : 10, repeatedValue: nil))
@@ -42,6 +43,15 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate, UINavigation
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let connectedRef = FIRDatabase.database().referenceWithPath(".info/connected")
+        connectedRef.observeEventType(.Value, withBlock: { snapshot in
+            if let connected = snapshot.value as? Bool where connected {
+                MyVariables.connectedToFirebase = true
+            } else {
+                MyVariables.connectedToFirebase = false
+            }
+        })
         
         //self.view.translatesAutoresizingMaskIntoConstraints = false
         
@@ -447,7 +457,7 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate, UINavigation
                 l()
             }
             break
-        case 2:
+        case 20:
             var shorts = [UInt16]()
 //            if let data = NSData(contentsOfURL: NSBundle.mainBundle().URLForResource("A2_ConcurrentCourses", withExtension: "dat")!){
             if let dirs : [String] = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true) {

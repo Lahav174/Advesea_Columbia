@@ -136,6 +136,7 @@ import UIKit
         
         self.delegateViewController!.chart!.alpha = 1
         self.delegateViewController!.activityView.alpha = 0
+        self.enableButtons(true)
         delegateViewController!.updateChartData(param1, xyValues: param2)
         
     }

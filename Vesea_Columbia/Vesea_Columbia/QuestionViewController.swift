@@ -429,7 +429,6 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
                     if (self.chooser!.courseChooserType == "class 1"){
                         qLabel.class1 = def.objectForKey("selectedCourse1") as! String
                     }
-                    qLabel.enableButtons(true)
                     break
                 case 2:
                     let qLabel = self.questionLabel as! QuestionLabel2
@@ -438,14 +437,12 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
                     } else if (self.chooser!.courseChooserType == "class 2"){
                         qLabel.class2 = def.objectForKey("selectedCourse2") as! String
                     }
-                    qLabel.enableButtons(true)
                     break
                 case 1:
                     let qLabel = self.questionLabel as! QuestionLabel1
                     if (self.chooser!.courseChooserType == "class 1"){
                         qLabel.class1 = def.objectForKey("selectedCourse1") as! String
                     }
-                    qLabel.enableButtons(true)
                     break
                 default:
                     break
@@ -669,7 +666,6 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
     
     func enableButtonsOfLabel(number: Int, bool: Bool){
         var qLbl: QuestionLabel = questionLabel as! QuestionLabel
-        if number == 0 || number == 2{return}//remove later
         qLbl.enableButtons(bool)
     }
     

@@ -28,7 +28,7 @@ class LaunchViewController: UIViewController {
         
         if appDelegate.loadingProgress > self.latestProgress{
             latestProgress = appDelegate.loadingProgress
-            pv.progress = (CGFloat(latestProgress)/16)
+            pv.progress = (CGFloat(latestProgress)/13)
         }
     }
     

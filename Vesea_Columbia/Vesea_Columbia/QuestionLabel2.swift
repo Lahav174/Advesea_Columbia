@@ -7,10 +7,13 @@
 //
 
 import UIKit
+import Firebase
 
 @IBDesignable class QuestionLabel2: UIView, QuestionLabel {
     
     private var delegateViewController : QuestionViewController?
+    
+    let ref = FIRDatabase.database().reference()
     
     //var arr : [[[UInt16?]]] = Array(count: (MyVariables.courses?.count)! + 100, repeatedValue: Array(count : (MyVariables.courses?.count)! + 100, repeatedValue: Array(count: 4, repeatedValue: nil)))
 
@@ -68,11 +71,13 @@ import UIKit
             if str != nil && str! != class1ID{
                 class1ID = str!
                 //class1Button.setTitle(QuestionViewController.abreviateID(str!), forState: UIControlState.Normal)
-                class1Button.idLabel.text = QuestionViewController.abreviateID(str!)
+                //class1Button.idLabel.text = QuestionViewController.abreviateID(str!)
                 if class1AlreadySet{
                     displayChartData()
                 }
                 class1AlreadySet = true
+            } else {
+                print("INVALID CLASS 1 SET \(str)")
             }
         }
     }
@@ -81,14 +86,16 @@ import UIKit
         get{
             return class2ID
         } set (str){
-            if str != nil && str! != class1ID{
+            if str != nil && str! != class2ID{
                 class2ID = str!
                 //class2Button.setTitle(QuestionViewController.abreviateID(str!), forState: UIControlState.Normal)
-                class2Button.idLabel.text = QuestionViewController.abreviateID(str!)
+                //class2Button.idLabel.text = QuestionViewController.abreviateID(str!)
                 if class2AlreadySet{
                     displayChartData()
                 }
                 class2AlreadySet = true
+            } else {
+                print("INVALID CLASS 2 SET \(str)")
             }
         }
     }
@@ -101,43 +108,63 @@ import UIKit
     }
     
     func displayChartData(){
+        print("disp")
         let index1 = MyVariables.courses!.indexForKey(self.class1ID)
         let index2 = MyVariables.courses!.indexForKey(self.class2ID)
+        print("index 1 is \(index1) and index 2 is \(index2)")
         let param1 = NSNumberFormatter()
+        param1.numberStyle = NSNumberFormatterStyle.PercentStyle
+        param1.multiplier = 1
         var param2 = [(x: String, y: Double)]()
         
-        let answerArr = Array(MyVariables.QuestionData.Q2[index1][index2][0...3])
-        if (answerArr[0] != nil){
-            let takenboth = Double(answerArr[1]!+answerArr[2]!+answerArr[3]!)
-            let v1:CGFloat = CGFloat(takenboth * 100)/CGFloat(answerArr[0]!)
-            let before:Double = Double(answerArr[1]!)*100/takenboth
-            let concurrently:Double = Double(answerArr[2]!)*100/takenboth
-            let after:Double = Double(answerArr[3]!)*100/takenboth
-            param2 = [(QuestionViewController.abreviateID(self.class2ID) + " Beforehand", before),
-                      ("Both Taken Concurrently", concurrently),
-                      (QuestionViewController.abreviateID(self.class2ID) + " Afterwards", after)]
-            self.variable = v1
-            
-            
+        //let answerArr = Array(MyVariables.QuestionData.Q2[index1][index2][0...3])
+        var answerArr = Array<Int?>(count: 4, repeatedValue:  nil)
+        
+        if MyVariables.connectedToFirebase{
+            ref.child("Q2").child(String(index1)).child(String(index2)).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+                if let nsArr = snapshot.value! as? NSArray{
+                    for i in 0...nsArr.count-1{
+                        let val = nsArr[i] as! String
+                        answerArr[i] = Int(val)
+                    }
+                    let takenboth = Double(answerArr[1]!+answerArr[2]!+answerArr[3]!)
+                    let v1:CGFloat = CGFloat(takenboth * 100)/CGFloat(answerArr[0]!)
+                    let before:Double = Double(answerArr[1]!)*100/takenboth
+                    let concurrently:Double = Double(answerArr[2]!)*100/takenboth
+                    let after:Double = Double(answerArr[3]!)*100/takenboth
+                    param2 = [(QuestionViewController.abreviateID(self.class2ID) + " Beforehand", before),
+                        ("Both Taken Concurrently", concurrently),
+                        (QuestionViewController.abreviateID(self.class2ID) + " Afterwards", after)]
+                    self.variable = v1
+                } else {
+                    self.variable = 0
+                    param2 = [(QuestionViewController.abreviateID(self.class2ID) + " Beforehand", 0),
+                        ("Both Taken Concurrently", 0),
+                        (QuestionViewController.abreviateID(self.class2ID) + " Afterwards", 0)]
+                }
+                
+                self.enableButtons(true)
+                self.class1Button.idLabel.text = QuestionViewController.abreviateID(self.class1ID)
+                self.class2Button.idLabel.text = QuestionViewController.abreviateID(self.class2ID)
+                self.delegateViewController!.chart!.alpha = 1
+                self.delegateViewController!.activityView.alpha = 0
+                self.delegateViewController!.updateChartData(param1, xyValues: param2)
+                
+            })
         } else {
             self.variable = 0
             param2 = [(QuestionViewController.abreviateID(self.class2ID) + " Beforehand", 0),
                       ("Both Taken Concurrently", 0),
                       (QuestionViewController.abreviateID(self.class2ID) + " Afterwards", 0)]
+            self.enableButtons(true)
+            self.class1Button.idLabel.text = QuestionViewController.abreviateID(self.class1ID)
+            self.class2Button.idLabel.text = QuestionViewController.abreviateID(self.class2ID)
+            self.delegateViewController!.chart!.alpha = 1
+            self.delegateViewController!.activityView.alpha = 0
+            self.delegateViewController!.updateChartData(param1, xyValues: param2)
         }
-        
-        
-        
-        param1.numberStyle = NSNumberFormatterStyle.PercentStyle
-        param1.multiplier = 1
-        
-        self.delegateViewController!.chart!.alpha = 1
-        self.delegateViewController!.activityView.alpha = 0
-        delegateViewController!.updateChartData(param1, xyValues: param2)
-        
-        
     }
-    
+    //ALSO FIND OUT WHY BUTTONS TURN ON NO MATTER WHAT
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -164,14 +191,13 @@ import UIKit
         enableButtons(false)
         class1Button.setTitle("", forState: UIControlState.Normal)
         class2Button.setTitle("", forState: UIControlState.Normal)
+        class1Button.idLabel.text = QuestionViewController.abreviateID(def.objectForKey("selectedCourse1") as! String)
+        class2Button.idLabel.text = QuestionViewController.abreviateID(def.objectForKey("selectedCourse2") as! String)
         
         let delay = Int64(1.3*Double(NSEC_PER_SEC))
         let dispatchTime = dispatch_time(DISPATCH_TIME_NOW, delay)
         dispatch_after(dispatchTime, dispatch_get_main_queue()) {
             if self.delegateViewController?.questionNumber == 2{
-                self.delegateViewController!.chart!.alpha = 1
-                self.delegateViewController!.activityView.alpha = 0
-                self.enableButtons(true)
                 self.displayChartData()
             }
             

@@ -37,7 +37,6 @@
 		CDFA79FF1D6BD6DF00F51F32 /* A1_AlsoTakenBefore.dat in Resources */ = {isa = PBXBuildFile; fileRef = CDFA79FC1D6BD6DF00F51F32 /* A1_AlsoTakenBefore.dat */; };
 		CDFA7A001D6BD6DF00F51F32 /* A1_AlsoTakenConcurrently.dat in Resources */ = {isa = PBXBuildFile; fileRef = CDFA79FD1D6BD6DF00F51F32 /* A1_AlsoTakenConcurrently.dat */; };
 		CDFA7A011D6BD6DF00F51F32 /* A1_AlsoTakenAfter.dat in Resources */ = {isa = PBXBuildFile; fileRef = CDFA79FE1D6BD6DF00F51F32 /* A1_AlsoTakenAfter.dat */; };
-		CDFA7A031D6BDDCA00F51F32 /* A2_ConcurrentCourses.dat in Resources */ = {isa = PBXBuildFile; fileRef = CDFA7A021D6BDDCA00F51F32 /* A2_ConcurrentCourses.dat */; };
 		CDFCD6D11D3950A300561566 /* CourseInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFCD6D01D3950A300561566 /* CourseInfoView.swift */; };
 		CDFCD6D31D39529300561566 /* CourseInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDFCD6D21D39529300561566 /* CourseInfoView.xib */; };
 		CDFCD6D51D396E6B00561566 /* ProblemFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFCD6D41D396E6B00561566 /* ProblemFormView.swift */; };
@@ -107,7 +106,6 @@
 		CDFA79FC1D6BD6DF00F51F32 /* A1_AlsoTakenBefore.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = A1_AlsoTakenBefore.dat; sourceTree = "<group>"; };
 		CDFA79FD1D6BD6DF00F51F32 /* A1_AlsoTakenConcurrently.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = A1_AlsoTakenConcurrently.dat; sourceTree = "<group>"; };
 		CDFA79FE1D6BD6DF00F51F32 /* A1_AlsoTakenAfter.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = A1_AlsoTakenAfter.dat; sourceTree = "<group>"; };
-		CDFA7A021D6BDDCA00F51F32 /* A2_ConcurrentCourses.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = A2_ConcurrentCourses.dat; sourceTree = "<group>"; };
 		CDFCD6D01D3950A300561566 /* CourseInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseInfoView.swift; sourceTree = "<group>"; };
 		CDFCD6D21D39529300561566 /* CourseInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CourseInfoView.xib; sourceTree = "<group>"; };
 		CDFCD6D41D396E6B00561566 /* ProblemFormView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProblemFormView.swift; sourceTree = "<group>"; };
@@ -177,7 +175,6 @@
 				CDFA79FC1D6BD6DF00F51F32 /* A1_AlsoTakenBefore.dat */,
 				CDFA79FD1D6BD6DF00F51F32 /* A1_AlsoTakenConcurrently.dat */,
 				CDFA79FE1D6BD6DF00F51F32 /* A1_AlsoTakenAfter.dat */,
-				CDFA7A021D6BDDCA00F51F32 /* A2_ConcurrentCourses.dat */,
 			);
 			name = Files;
 			sourceTree = "<group>";
@@ -378,7 +375,6 @@
 			files = (
 				CDFCD6DB1D3A1CE800561566 /* GoogleService-Info.plist in Resources */,
 				CD892EE21CEBB8CD00DF5D24 /* LaunchScreen.storyboard in Resources */,
-				CDFA7A031D6BDDCA00F51F32 /* A2_ConcurrentCourses.dat in Resources */,
 				CD892EDF1CEBB8CD00DF5D24 /* Assets.xcassets in Resources */,
 				CDFA7A011D6BD6DF00F51F32 /* A1_AlsoTakenAfter.dat in Resources */,
 				CDFCD6D71D39701200561566 /* ProblemFormView.xib in Resources */,
