@@ -44,5 +44,18 @@ class ScrollView: UIScrollView, UIGestureRecognizerDelegate {
         }
         return  super.touchesShouldCancelInContentView(view)
     }
+    
+    override func setContentOffset(contentOffset: CGPoint, animated: Bool) {
+        if animated{
+            self.userInteractionEnabled = false
+            UIView.animateWithDuration(0.3, animations: {
+                self.contentOffset = contentOffset
+            }) { (true) in
+                self.userInteractionEnabled = true
+            }
+        } else {
+            self.contentOffset = contentOffset
+        }
+    }
 
 }

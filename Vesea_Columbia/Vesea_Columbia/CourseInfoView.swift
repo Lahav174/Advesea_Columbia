@@ -24,7 +24,7 @@ import UIKit
     
     private var culpaIndex: String = ""
     
-    private var courseDirectoryNumber: String = "123456"
+    private var courseCredits: String = ""
     
     @IBOutlet weak var departmentLabel: UILabel!
     
@@ -60,7 +60,8 @@ import UIKit
             let attributedText = NSMutableAttributedString(string: courseDepartment)
             attributedText.addAttribute(NSUnderlineStyleAttributeName , value:NSUnderlineStyle.StyleSingle.rawValue, range: textRange)
             departmentLabel.attributedText = attributedText
-            courseDirectoryNumLabel.text = ""//"Course Dir. #: " + courseDirectoryNumber
+            self.courseCredits = "Credits: " + (courseDict["Credits"] as! String)
+            courseDirectoryNumLabel.text = self.courseCredits
             culpaIndex = courseDict["Culpa"] as! String
             if culpaIndex == ""{
                 culpaButton.hidden = true
