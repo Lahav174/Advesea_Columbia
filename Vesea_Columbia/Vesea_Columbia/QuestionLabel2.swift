@@ -121,7 +121,37 @@ import Firebase
         var answerArr = Array<Int?>(count: 4, repeatedValue:  nil)
         
         if MyVariables.connectedToFirebase{
-            ref.child("Q2").child(String(index1)).child(String(index2)).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+            var range = ""
+            switch index1 {
+            case 0...726:
+                range = "0-726"
+                break
+            case 727...1453:
+                range = "727-1453"
+                break
+            case 1454...2180:
+                range = "1454-2180"
+                break
+            case 2181...2907:
+                range = "2181-2907"
+                break
+            case 2908...3634:
+                range = "2908-3634"
+                break
+            case 3635...4361:
+                range = "3635-4361"
+                break
+            case 4362...5088:
+                range = "4362-5088"
+                break
+            case 5089...5813:
+                range = "5089-5813"
+                break
+            default:
+                break
+            }
+            
+            ref.child("Q2").child(range).child(String(index1)).child(String(index2)).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
                 if let nsArr = snapshot.value! as? NSArray{
                     for i in 0...nsArr.count-1{
                         let val = nsArr[i] as! String

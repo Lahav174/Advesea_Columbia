@@ -267,7 +267,7 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate, UINavigation
                     case 0:
                         fileName = "Courses"
                         break
-                    case 2:
+                    case 20:
                         fileName = "A2_ConcurrentCourses"
                         break
                     case 3:
@@ -338,7 +338,7 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate, UINavigation
                     case 1:
                         fileName = "A0_WhenIsCourseTaken.dat"
                         break
-                    case 2:
+                    case 20:
                         fileName = "A2_ConcurrentCourses.dat"
                         break
                     case 3:
