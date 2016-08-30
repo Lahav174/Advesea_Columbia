@@ -18,7 +18,6 @@ struct AdvesiaColors {
 class TableViewCell: UITableViewCell {
     
     var originalCenter = CGPoint()
-    var originalSlidingViewOrigin = CGPoint()
     var swipingRight : Bool? = nil
     weak var delegateController = ListViewController()
     var indexPath = NSIndexPath()
@@ -71,21 +70,21 @@ class TableViewCell: UITableViewCell {
                     print("#1")
                     self.slidingView.frame.origin.x = maxSlidingDistance
                     if (translation.x < 0){
-                        slidingView.frame.origin = CGPoint(x: originalSlidingViewOrigin.x + translation.x, y: originalSlidingViewOrigin.y)
+                        slidingView.frame.origin = CGPoint(x: translation.x, y: 0)
                     } else if (translation.x >= 0){
-                        slidingView.frame.origin = originalSlidingViewOrigin
+                        slidingView.frame.origin = CGPointZero
                     }
                 } else if (xVelocity > 0 && (delegateController?.delegate!.scrollView.contentOffset.x)! < viewWidth+3){
                     //pushing forward, less than max forward distance
                     print("#2")
                     if (translation.x < 0){
-                        slidingView.frame.origin = CGPoint(x: originalSlidingViewOrigin.x + translation.x, y: originalSlidingViewOrigin.y)
+                        slidingView.frame.origin = CGPoint(x: translation.x, y: 0)
                     } else if (translation.x >= 0){
-                        slidingView.frame.origin = originalSlidingViewOrigin
+                        slidingView.frame.origin = CGPointZero
                         let thisPage = CGPoint(x: viewWidth, y: 0)
                         delegateController?.delegate!.scrollView.setContentOffset(thisPage, animated: true)
                     }
-                } else if (slidingView.frame.origin.x < originalSlidingViewOrigin.x && slidingView.frame.origin.x - originalSlidingViewOrigin.x < (maxSlidingDistance + 5)){
+                } else if (slidingView.frame.origin.x < 0 && slidingView.frame.origin.x < (maxSlidingDistance + 5)){
                     print("#3")
                     slidingView.frame.origin.x = maxSlidingDistance
                     if ((delegateController?.delegate!.scrollView.contentOffset.x)! >= viewWidth && maxSlidingDistance >= translation.x){

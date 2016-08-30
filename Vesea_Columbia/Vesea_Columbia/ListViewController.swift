@@ -247,7 +247,6 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
             cell.slidingView.clipsToBounds = true
             cell.iconView.image = UIImage(named: "graph_icon")
             cell.slidingView.backgroundColor = UIColor.blackColor()
-            cell.originalSlidingViewOrigin = cell.slidingView.frame.origin
             
             if indexPath.section == 2{
                 let onlineLabel = UILabel(frame: CGRect(x: 10, y: self.cellHeight-17, width: self.view.frame.width-30, height: 15))

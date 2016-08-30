@@ -530,7 +530,7 @@
                                                     <rect key="frame" x="0.0" y="-1" width="600" height="45"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kb3-bD-y6W">
-                                                            <rect key="frame" x="10" y="9" width="582" height="26"/>
+                                                            <rect key="frame" x="10" y="9" width="562" height="26"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="22"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
@@ -547,9 +547,9 @@
                                                     <constraints>
                                                         <constraint firstItem="Kb3-bD-y6W" firstAttribute="leading" secondItem="McQ-FA-jWK" secondAttribute="leading" constant="10" id="FcV-1u-Hcz"/>
                                                         <constraint firstItem="aN4-VI-xbd" firstAttribute="centerY" secondItem="McQ-FA-jWK" secondAttribute="centerY" id="JD8-k1-hPt"/>
+                                                        <constraint firstItem="aN4-VI-xbd" firstAttribute="leading" secondItem="Kb3-bD-y6W" secondAttribute="trailing" constant="8" id="ObI-XW-foH"/>
                                                         <constraint firstItem="Kb3-bD-y6W" firstAttribute="centerY" secondItem="McQ-FA-jWK" secondAttribute="centerY" id="R9u-Hl-R0z"/>
                                                         <constraint firstAttribute="trailing" secondItem="aN4-VI-xbd" secondAttribute="trailing" constant="8" id="W8r-sH-L0L"/>
-                                                        <constraint firstAttribute="trailing" secondItem="Kb3-bD-y6W" secondAttribute="trailing" constant="8" id="ocz-oQ-bUG"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
