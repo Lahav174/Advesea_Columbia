@@ -18,6 +18,17 @@ class ScrollView: UIScrollView, UIGestureRecognizerDelegate {
         return fabs(velocity.y) < fabs(velocity.x)
     }
     
+    func setHorizontalContentOffset(offset: CGPoint, velocity: CGPoint){
+        print("Duration method")
+        let xVelocity = velocity.x < 2400 ? 800 : velocity.x
+        
+        let xdistance = offset.x - self.contentOffset.x
+        let duration = abs(xdistance/xVelocity)
+        print(xVelocity)
+        UIView.animateWithDuration(Double(duration), delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+            self.contentOffset = offset
+            }, completion: nil)
+    }
     
     func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRequireFailureOfGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         if (otherGestureRecognizer.delegate?.isKindOfClass(BarChartView) == true || otherGestureRecognizer.delegate?.isKindOfClass(HorizontalBarChartView) == true  || otherGestureRecognizer.delegate?.isKindOfClass(PieChartView) == true ){
@@ -27,5 +38,24 @@ class ScrollView: UIScrollView, UIGestureRecognizerDelegate {
         }
     }
  
+    override func touchesShouldCancelInContentView(view: UIView) -> Bool {
+        if view is UIButton {
+            return  true
+        }
+        return  super.touchesShouldCancelInContentView(view)
+    }
+    
+    override func setContentOffset(contentOffset: CGPoint, animated: Bool) {
+        if animated{
+            self.userInteractionEnabled = false
+            UIView.animateWithDuration(0.3, animations: {
+                self.contentOffset = contentOffset
+            }) { (true) in
+                self.userInteractionEnabled = true
+            }
+        } else {
+            self.contentOffset = contentOffset
+        }
+    }
 
 }

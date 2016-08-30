@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>184429609588-cj9dbbc3grqtvd5jb8umbj0pp81q22ce.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.184429609588-cj9dbbc3grqtvd5jb8umbj0pp81q22ce</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAKM2cGXNkITzuqDcRD3BkRTy9b1MJL4UA</string>
+	<key>GCM_SENDER_ID</key>
+	<string>184429609588</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>Lahav-Lipson.Vesea-Columbia</string>
+	<key>PROJECT_ID</key>
+	<string>advesea-columbia</string>
+	<key>STORAGE_BUCKET</key>
+	<string>advesea-columbia.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:184429609588:ios:7df150de78b1b57d</string>
+	<key>DATABASE_URL</key>
+	<string>https://advesea-columbia.firebaseio.com</string>
+</dict>
+</plist>

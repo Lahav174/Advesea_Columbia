@@ -2,7 +2,15 @@ use_frameworks!
 
 pod 'Charts'
 
+pod ‘SwiftCSV’
+
+pod 'Firebase/Database'
+
+pod 'Firebase/Storage'
+
 pod 'AFNetworking'
+
+pod 'UAProgressView'
 
 source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.1'
