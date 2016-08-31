@@ -603,6 +603,17 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate, UINavigation
             print("Problem Writing")
         }
     }
+    
+    class func incrementQuestionsAsked(){
+        let ref = FIRDatabase.database().reference().child("Number of Questions Asked")
+        ref.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+            var output = 0
+            if let nsArr = snapshot.value! as? Int{
+                output = nsArr + 1
+            }
+            ref.setValue(output)
+        })
+    }
 }
 
 struct K {

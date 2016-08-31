@@ -208,6 +208,8 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
         
         self.chartSelectionLabel.frame = CGRect(x: graphBackground.frame.origin.x, y: graphBackground.frame.origin.y-30, width: graphBackground.frame.width, height: 25)
         
+        ScrollViewController.incrementQuestionsAsked()
+        
     }
     
     func customInitializer(chartKind: String, titleTxt: String, tabLabels: [String]? = nil){
