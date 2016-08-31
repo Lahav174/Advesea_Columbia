@@ -105,22 +105,9 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
         self.activityView.startAnimating()
         self.view.insertSubview(activityView, aboveSubview: graphBackground)
         
-        let selectionLabelTap = UITapGestureRecognizer(target: self, action: #selector(self.handleSelectionLabelTap(_:)))
-        self.view.addGestureRecognizer(selectionLabelTap)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
+        self.view.addGestureRecognizer(tap)
         
-    }
-    
-    func handleSelectionLabelTap(sender: UITapGestureRecognizer){
-        if !((chart?.frame.contains(sender.locationInView(self.view)))!){
-            if let graph = chart as? BarChartView{
-                graph.highlightValue(nil)
-            } else if let graph = chart as? HorizontalBarChartView{
-                graph.highlightValue(nil)
-            }
-            UIView.animateWithDuration(0.15, animations: {
-                self.chartSelectionLabel.alpha = 0
-            })
-        }
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -501,26 +488,31 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
         }
     }
     
-    // MARK: - touchesBegan
+    // MARK: - Handle Taps
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        print("Screen touched")
-        for touch: AnyObject! in touches {
-            
-            let touchLocation = touch.locationInView(self.view)
-            if infoViewBeingDisplayed && !(self.flipView?.frame.contains(touchLocation))! && flipView?.alpha == 1{
-                print("Info View should go away")
-                UIView.animateWithDuration(0.2, animations: {
-                    self.flipView?.alpha = 0
-                    }, completion: { (true) in
-                        self.infoView = nil
-                        self.infoViewBeingDisplayed = false
-                        self.container.userInteractionEnabled = true
-                })
+    func handleTap(sender: UITapGestureRecognizer){
+        if infoViewBeingDisplayed && !(self.flipView?.frame.contains(sender.locationInView(self.view)))! && flipView?.alpha == 1{
+            print("Info View should go away")
+            UIView.animateWithDuration(0.2, animations: {
+                self.flipView?.alpha = 0
+                }, completion: { (true) in
+                    self.infoView = nil
+                    self.infoViewBeingDisplayed = false
+                    self.container.userInteractionEnabled = true
+            })
+        } else if !(self.container.frame.contains(sender.locationInView(self.view))) && chooserBeingDisplayed && self.container.frame.origin.y == 100 && !infoViewBeingDisplayed && !problemFormBeingDisplayed{
+            animateContainerOut()
+        }
+        
+        if !((chart?.frame.contains(sender.locationInView(self.view)))!){
+            if let graph = chart as? BarChartView{
+                graph.highlightValue(nil)
+            } else if let graph = chart as? HorizontalBarChartView{
+                graph.highlightValue(nil)
             }
-            else if !(self.container.frame.contains(touchLocation)) && chooserBeingDisplayed && self.container.frame.origin.y == 100 && !infoViewBeingDisplayed && !problemFormBeingDisplayed{
-                animateContainerOut()
-            }
+            UIView.animateWithDuration(0.15, animations: {
+                self.chartSelectionLabel.alpha = 0
+            })
         }
     }
     
