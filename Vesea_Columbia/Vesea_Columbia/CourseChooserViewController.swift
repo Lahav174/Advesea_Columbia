@@ -129,13 +129,12 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
     @IBAction func downSectionPressed(sender: AnyObject) {
         
         if let currentSection = self.tableView.visibleSections.minElement() {
-            
             var sectionToGoTo = currentSection + 1
             while self.tableView.numberOfRowsInSection(sectionToGoTo) == 0{//don't have to check that its in range
                 sectionToGoTo += 1
             }
             if searching && searchBar.text != "" {
-                if currentSection < self.filteredCourseDicts.allKeys.count-1{
+                if currentSection < self.filteredCourseDicts.allKeys.count-1 && sectionToGoTo != departmentHeadersInOrder.count{
                     self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: sectionToGoTo), atScrollPosition: UITableViewScrollPosition.Top, animated: true)
                 }
             } else {

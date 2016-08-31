@@ -9,7 +9,7 @@
 import UIKit
 import Charts
 
-class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UINavigationBarDelegate, ProblemFormDelegate {
+class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UINavigationBarDelegate, ProblemFormDelegate, ChartViewDelegate {
     var chartType: String? = nil
 
     var questionLabel : UIView?
@@ -29,6 +29,8 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
     var flipView : UIView?
     
     var activityView = UIActivityIndicatorView()
+    
+    var chartSelectionLabel = UILabel()
     
     var chooser : CourseChooserViewController?
     
@@ -71,7 +73,6 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
         }
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpBackgroundImages()
@@ -90,12 +91,36 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
         self.view.addConstraints([heightConstraint, yConstraint])
         self.container.layoutIfNeeded()
         
+        self.chartSelectionLabel.text = "Sample Text Goes Here"
+        self.chartSelectionLabel.textAlignment = .Center
+        self.chartSelectionLabel.textColor = UIColor.whiteColor()
+        self.chartSelectionLabel.backgroundColor = UIColor(white: 81/255, alpha: 0.85)
+        self.chartSelectionLabel.layer.cornerRadius = 6
+        self.chartSelectionLabel.layer.masksToBounds = true
+        self.view.addSubview(chartSelectionLabel)
+        
         
         self.activityView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
         self.activityView.alpha = 0
         self.activityView.startAnimating()
         self.view.insertSubview(activityView, aboveSubview: graphBackground)
         
+        let selectionLabelTap = UITapGestureRecognizer(target: self, action: #selector(self.handleSelectionLabelTap(_:)))
+        self.view.addGestureRecognizer(selectionLabelTap)
+        
+    }
+    
+    func handleSelectionLabelTap(sender: UITapGestureRecognizer){
+        if !((chart?.frame.contains(sender.locationInView(self.view)))!){
+            if let graph = chart as? BarChartView{
+                graph.highlightValue(nil)
+            } else if let graph = chart as? HorizontalBarChartView{
+                graph.highlightValue(nil)
+            }
+            UIView.animateWithDuration(0.15, animations: {
+                self.chartSelectionLabel.alpha = 0
+            })
+        }
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -167,14 +192,17 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
                 
         if chartType == "Horizontal Bar Chart"{
             let graph = (chart as! HorizontalBarChartView)
+            graph.delegate = self
             graph.notifyDataSetChanged()
             //graph.animate(yAxisDuration: 1.5, easingOption: .EaseOutQuart)
         } else if chartType == "Pie Chart"{
             let graph = (chart as! PieChartView)
+            graph.delegate = self
             graph.notifyDataSetChanged()
             //graph.animate(yAxisDuration: 1.5, easingOption: .EaseOutQuart)
         } else {
             let graph = (chart as! BarChartView)
+            graph.delegate = self
             graph.notifyDataSetChanged()
         }
         
@@ -188,6 +216,10 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
         default:
             break
         }
+        
+        enableChartInteraction(true)
+        
+        self.chartSelectionLabel.frame = CGRect(x: graphBackground.frame.origin.x, y: graphBackground.frame.origin.y-30, width: graphBackground.frame.width, height: 25)
         
     }
     
@@ -234,6 +266,8 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
         
         chart!.alpha = 0
         activityView.alpha = 1
+        
+        self.chartSelectionLabel.alpha = 0
         
     }
     
@@ -472,6 +506,7 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         print("Screen touched")
         for touch: AnyObject! in touches {
+            
             let touchLocation = touch.locationInView(self.view)
             if infoViewBeingDisplayed && !(self.flipView?.frame.contains(touchLocation))! && flipView?.alpha == 1{
                 print("Info View should go away")
@@ -486,7 +521,6 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
             else if !(self.container.frame.contains(touchLocation)) && chooserBeingDisplayed && self.container.frame.origin.y == 100 && !infoViewBeingDisplayed && !problemFormBeingDisplayed{
                 animateContainerOut()
             }
-            
         }
     }
     
@@ -669,6 +703,25 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
         qLbl.enableButtons(bool)
     }
     
+    // MARK: - Chart Delegate Method
+    
+    func chartValueSelected(chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: ChartHighlight) {
+        let courseID = chartView.data!.xVals[entry.xIndex]!
+        let courseDict = MyVariables.courses?.get(courseID)
+        self.chartSelectionLabel.text = courseDict!["Name"]! as? String
+        
+        UIView.animateWithDuration(0.15, animations: {
+            self.chartSelectionLabel.alpha = 1
+        })
+    }
+    
+    func chartValueNothingSelected(chartView: ChartViewBase) {
+        print("Un-selected")
+        UIView.animateWithDuration(0.15, animations: {
+            self.chartSelectionLabel.alpha = 0
+        })
+    }
+    
     // MARK: - Other
     
     func calcGranularity(max: Double) -> Double{
@@ -683,7 +736,11 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
     }
     
     func enableChartInteraction(bool: Bool){
-        chart?.userInteractionEnabled = false//bool
+        if self.questionNumber == 1{
+            chart?.userInteractionEnabled = bool
+        } else {
+            chart?.userInteractionEnabled = false
+        }
         //Always false, for now.
         //Changing it will allow interaction, and will work properly
     }

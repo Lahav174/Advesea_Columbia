@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Charts
 
 class QuestionLabel1: UIView, SlidingSegmentedControlDelegate, QuestionLabel {
 
@@ -29,6 +30,8 @@ class QuestionLabel1: UIView, SlidingSegmentedControlDelegate, QuestionLabel {
     
     @IBAction func classButtonPressed(sender: AnyObject) {
         delegateViewController!.animateContainerIn(sender as! UIButton, buttonType: "class 1")
+        UIView.animateWithDuration(0.15) { self.delegateViewController!.chartSelectionLabel.alpha = 0 }
+        (delegateViewController?.chart! as! ChartViewBase).highlightValue(nil)
     }
     
     var delegate : QuestionViewController {
@@ -163,6 +166,9 @@ class QuestionLabel1: UIView, SlidingSegmentedControlDelegate, QuestionLabel {
         self.enableButtons(false)
         self.delegateViewController!.chart!.alpha = 0
         self.delegateViewController!.activityView.alpha = 1
+        
+        (self.delegateViewController!.chart! as! ChartViewBase).highlightValue(nil)
+        self.delegateViewController!.chartSelectionLabel.alpha = 0
         
         let delay = Int64(0.6*Double(NSEC_PER_SEC))
         let dispatchTime = dispatch_time(DISPATCH_TIME_NOW, delay)
