@@ -32,6 +32,8 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
     
     var chartSelectionLabel = UILabel()
     
+    var noDataLabel = UILabel()
+    
     var chooser : CourseChooserViewController?
     
 //    var formatter = NSNumberFormatter()
@@ -99,6 +101,13 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
         self.chartSelectionLabel.layer.masksToBounds = true
         self.view.addSubview(chartSelectionLabel)
         
+        self.noDataLabel.text = "No Data"
+        self.noDataLabel.textAlignment = .Center
+        self.noDataLabel.textColor = UIColor.whiteColor()
+        self.noDataLabel.backgroundColor = UIColor.clearColor()
+        self.noDataLabel.alpha = 0
+        self.view.insertSubview(noDataLabel, belowSubview: container)
+        
         
         self.activityView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
         self.activityView.alpha = 0
@@ -122,18 +131,24 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
     }
     
     func updateChartData(valueFormatter: NSNumberFormatter, xyValues: [(x: String, y: Double)]){
+        print("Updating chart data")
         var formatter = valueFormatter
         var values = xyValues
-        
+        print("vals: \(values)")
         var xValues = [String]()
-        
-        for i in 0...values.count-1{
-            xValues.append(values[i].x)
-        }
         
         var yValues = [BarChartDataEntry]()
         for i in 0...values.count-1{
-            yValues.append(BarChartDataEntry(value: Double(values[i].y), xIndex: i))
+            if values[i].y > 1{
+                xValues.append(values[i].x)
+                yValues.append(BarChartDataEntry(value: Double(values[i].y), xIndex: yValues.count))
+            }
+        }
+        
+        if yValues.count == 0{
+            yValues = []
+            xValues = []
+            noDataLabel.alpha = 1
         }
         
         switch self.chartType! {
@@ -207,6 +222,8 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
         enableChartInteraction(true)
         
         self.chartSelectionLabel.frame = CGRect(x: graphBackground.frame.origin.x, y: graphBackground.frame.origin.y-30, width: graphBackground.frame.width, height: 25)
+        let noDataOrigin = CGPoint(x: graphBackground.frame.midX - noDataLabel.intrinsicContentSize().width/2, y: graphBackground.frame.midY - noDataLabel.intrinsicContentSize().height/2)
+        self.noDataLabel.frame = CGRect(origin: noDataOrigin, size: noDataLabel.intrinsicContentSize())
         
         ScrollViewController.incrementQuestionsAsked()
         
@@ -255,6 +272,7 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
         
         chart!.alpha = 0
         activityView.alpha = 1
+        noDataLabel.alpha = 0
         
         self.chartSelectionLabel.alpha = 0
         
@@ -438,6 +456,7 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
             chooser!.courseChooserType == "class 2" && courseChooserOriginalSelectedCourse! != def.objectForKey("selectedCourse2") as! String{
             
             activityView.alpha = 1
+            noDataLabel.alpha = 0
             chart?.alpha = 0
             self.enableButtonsOfLabel(self.questionNumber, bool: false)
             let delayInSeconds = 0.6

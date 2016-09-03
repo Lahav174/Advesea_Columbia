@@ -138,7 +138,6 @@ class QuestionLabel1: UIView, SlidingSegmentedControlDelegate, QuestionLabel {
         if (answerArr[0] != nil){
             let total = Double(answerArr[0]!)/100.0
             for i in 0...4{
-                assert(Int(answerArr[1 + i*2]!) != 0)
                 let courseID = MyVariables.courses?.get(Int(answerArr[1 + i*2]!))?.a! as! String
                 let value = Double(answerArr[2*i+2]!)/total
                 param2[4-i] = (courseID,value)
@@ -166,6 +165,7 @@ class QuestionLabel1: UIView, SlidingSegmentedControlDelegate, QuestionLabel {
         self.enableButtons(false)
         self.delegateViewController!.chart!.alpha = 0
         self.delegateViewController!.activityView.alpha = 1
+        self.delegateViewController?.noDataLabel.alpha = 0
         
         (self.delegateViewController!.chart! as! ChartViewBase).highlightValue(nil)
         self.delegateViewController!.chartSelectionLabel.alpha = 0
