@@ -44,7 +44,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     @IBAction func feedbackButtonPressed(sender: AnyObject) {
-        form = ProblemFormView(frame: CGRect(x: 20, y: 80, width: self.view.frame.width-40, height: self.view.frame.height-340))
+        form = ProblemFormView(frame: CGRect(x: 20, y: 80, width: self.view.frame.width-40, height: self.view.frame.height-100-getKeyboardHeight()))
         form!.alpha = 0
         form!.delegate = self
         form!.type = .ListVC
@@ -71,7 +71,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func showQuestionForm(){
-        form = ProblemFormView(frame: CGRect(x: 20, y: 80, width: self.view.frame.width-40, height: self.view.frame.height-340))
+        form = ProblemFormView(frame: CGRect(x: 20, y: 80, width: self.view.frame.width-40, height: self.view.frame.height-100-getKeyboardHeight()))
         form!.alpha = 0
         form?.formTitle.text = "Suggest a Question"
         form!.delegate = self
@@ -373,7 +373,20 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }
         }
     }
+    // MARK: - Other
     
+    func getKeyboardHeight() -> CGFloat {
+        switch self.view.frame.width {
+        case 300...350:
+            return 224
+        case 351...390:
+            return 271
+        case 391...450:
+            return 258
+        default:
+            fatalError("Couldn't find a keyboard height for view-height: \(self.view.frame.height)")
+        }
+    }
 
 }
 
