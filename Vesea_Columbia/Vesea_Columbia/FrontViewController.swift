@@ -68,7 +68,7 @@ class FrontViewController: UIViewController, UIScrollViewDelegate, MFMailCompose
         secondIntroTextView.font = UIFont(name: "HelveticaNeue-Medium", size: 14)
         secondIntroHeight.constant = secondIntroTextView.sizeThatFits(sizeThatFits).height
         
-        thirdIntroTextView.text = "The questions can be altered to reflect any courses relevant to you. This will hopefully help  you in the course selection process."
+        thirdIntroTextView.text = "The questions can be altered to reflect any courses relevant to you. This will hopefully help you in the course selection process."
         thirdIntroTextView.font = UIFont(name: "HelveticaNeue-Medium", size: 14)
         thirdIntroHeight.constant = thirdIntroTextView.sizeThatFits(sizeThatFits).height
         

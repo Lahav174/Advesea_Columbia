@@ -26,6 +26,8 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
     var problemForm : ProblemFormView?
     var problemFormBeingDisplayed = false
     
+    var noDataLabel = UILabel()
+    
     var flipView : UIView?
     
     var activityView = UIActivityIndicatorView()
@@ -105,6 +107,13 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
         self.activityView.startAnimating()
         self.view.insertSubview(activityView, aboveSubview: graphBackground)
         
+        self.noDataLabel.text = "No Data"
+        self.noDataLabel.textAlignment = .Center
+        self.noDataLabel.textColor = UIColor.whiteColor()
+        self.noDataLabel.backgroundColor = UIColor.clearColor()
+        self.noDataLabel.alpha = 0
+        self.view.insertSubview(noDataLabel, belowSubview: container)
+        
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
         self.view.addGestureRecognizer(tap)
         
@@ -112,7 +121,7 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        self.activityView.center = graphBackground.center
+        
     }
     
     func problemFormDidFinish(type: ProblemFormType){
@@ -121,19 +130,28 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
         }
     }
     
+    // MARK: - Chart Setup
+    
     func updateChartData(valueFormatter: NSNumberFormatter, xyValues: [(x: String, y: Double)]){
         var formatter = valueFormatter
         var values = xyValues
         
         var xValues = [String]()
         
-        for i in 0...values.count-1{
-            xValues.append(values[i].x)
-        }
-        
         var yValues = [BarChartDataEntry]()
+        var dataIsNonZero = false
         for i in 0...values.count-1{
             yValues.append(BarChartDataEntry(value: Double(values[i].y), xIndex: i))
+            xValues.append(values[i].x)
+            if values[i].y > 0{
+                dataIsNonZero = true
+            }
+        }
+        
+        if !dataIsNonZero{
+            xValues = []
+            yValues = []
+            noDataLabel.alpha = 1
         }
         
         switch self.chartType! {
@@ -210,6 +228,8 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
         
         ScrollViewController.incrementQuestionsAsked()
         
+        self.view.layoutIfNeeded()
+        
     }
     
     func customInitializer(chartKind: String, titleTxt: String, tabLabels: [String]? = nil){
@@ -255,12 +275,16 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
         
         chart!.alpha = 0
         activityView.alpha = 1
+        noDataLabel.alpha = 0
         
         self.chartSelectionLabel.alpha = 0
         
+        self.activityView.center = graphBackground.center
+        
+        let noDataOrigin = CGPoint(x: graphBackground.frame.midX - noDataLabel.intrinsicContentSize().width/2, y: graphBackground.frame.midY - noDataLabel.intrinsicContentSize().height/2)
+        self.noDataLabel.frame = CGRect(origin: noDataOrigin, size: noDataLabel.intrinsicContentSize())
+        
     }
-    
-    // MARK: - Chart Setup
     
     func constrainChart(){
         chart!.translatesAutoresizingMaskIntoConstraints = false
@@ -438,6 +462,7 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
             chooser!.courseChooserType == "class 2" && courseChooserOriginalSelectedCourse! != def.objectForKey("selectedCourse2") as! String{
             
             activityView.alpha = 1
+            noDataLabel.alpha = 0
             chart?.alpha = 0
             self.enableButtonsOfLabel(self.questionNumber, bool: false)
             let delayInSeconds = 0.6
