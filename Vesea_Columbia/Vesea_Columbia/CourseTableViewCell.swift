@@ -24,6 +24,8 @@ class CourseTableViewCell: UITableViewCell {
     
     @IBOutlet weak var subLabel: UILabel!
     
+    @IBOutlet weak var greenDot: UIImageView!
+    
     @IBOutlet weak var starButton: UIButton!
     
     @IBAction func infoButtonPressed(sender: AnyObject) {

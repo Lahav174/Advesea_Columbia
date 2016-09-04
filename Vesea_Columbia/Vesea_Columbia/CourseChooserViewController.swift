@@ -375,15 +375,14 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
         let deptName = self.departmentHeadersInOrder[indexPath.section]
         if searching && searchBar.text != "" {
             courseDict = (self.filteredCourseDicts[deptName]! as! [NSDictionary])[indexPath.row]
-            cell.mainLabel.text = courseDict["Name"]! as! String
-            cell.subLabel.text = courseDict["ID"]! as! String
-            cell.courseObject = ObjectTuple(first: courseDict["ID"]! as! String, second: courseDict)
         } else {
             courseDict = (self.unfilteredCourseDicts[deptName]! as! [NSDictionary])[indexPath.row]
-            cell.mainLabel.text = courseDict["Name"]! as! String
-            cell.subLabel.text = courseDict["ID"]! as! String
-            cell.courseObject = ObjectTuple(first: courseDict["ID"]! as! String, second: courseDict)
         }
+        let courseID = courseDict["ID"]! as! String
+        cell.mainLabel.text = courseDict["Name"]! as! String
+        cell.subLabel.text = courseID
+        cell.courseObject = ObjectTuple(first: courseDict["ID"]! as! String, second: courseDict)
+        cell.greenDot.hidden = Int(MyVariables.courses!.get(courseID)!["Taken 2014"]! as! String)! < 1000
         
         //Selects the correct cells
         if (selectedCourseID == courseDict["ID"]! as! String){

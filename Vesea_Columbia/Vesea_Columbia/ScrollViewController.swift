@@ -409,10 +409,11 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate, UINavigation
                 
                 for i in 0...arr.count-1{
                     let lineArr = (arr[i]).componentsSeparatedByString(",")
-                    let singleCourseDict : NSDictionary = ["Name":lineArr[2],
+                    let singleCourseDict : NSDictionary = ["Name":lineArr[3],
                                                            "Credits":lineArr[1],
-                                                           "Department":lineArr[3],
-                                                           "Culpa":lineArr[4]]
+                                                           "Department":lineArr[4],
+                                                           "Culpa":lineArr[5],
+                                                            "Taken 2014": lineArr[2]]
                     courseDict.insert(singleCourseDict, forKey: lineArr[0], atIndex: i)
                     
                 }

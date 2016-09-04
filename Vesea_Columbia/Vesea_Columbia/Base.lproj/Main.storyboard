@@ -825,8 +825,8 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OP2-nj-L1c">
-                                                    <rect key="frame" x="53" y="25" width="192" height="12"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="COMSW3134" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OP2-nj-L1c">
+                                                    <rect key="frame" x="53" y="25" width="65" height="12"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -842,22 +842,31 @@
                                                         <action selector="infoButtonPressed:" destination="9HT-Wl-K7Q" eventType="touchUpInside" id="ncM-lP-sGL"/>
                                                     </connections>
                                                 </button>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="greenCircle" translatesAutoresizingMaskIntoConstraints="NO" id="Ozh-24-JNu">
+                                                    <rect key="frame" x="123" y="28" width="6" height="6"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="6" id="1uk-UX-vBZ"/>
+                                                        <constraint firstAttribute="height" constant="6" id="wCF-P7-Bbx"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="OP2-nj-L1c" firstAttribute="trailing" secondItem="WBs-YU-qCS" secondAttribute="trailing" id="4BO-qC-n7h"/>
                                                 <constraint firstItem="JAk-5y-CWN" firstAttribute="height" secondItem="Gpk-fX-YwL" secondAttribute="height" id="4l6-16-0H0"/>
                                                 <constraint firstItem="JAk-5y-CWN" firstAttribute="leading" secondItem="WBs-YU-qCS" secondAttribute="trailing" id="57f-KZ-znY"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="JAk-5y-CWN" secondAttribute="trailing" constant="-8" id="5wy-4F-sHb"/>
                                                 <constraint firstItem="OP2-nj-L1c" firstAttribute="top" secondItem="WBs-YU-qCS" secondAttribute="bottom" id="FMz-yf-iAM"/>
                                                 <constraint firstItem="OP2-nj-L1c" firstAttribute="leading" secondItem="WBs-YU-qCS" secondAttribute="leading" id="IWr-vB-lpo"/>
+                                                <constraint firstItem="Ozh-24-JNu" firstAttribute="leading" secondItem="OP2-nj-L1c" secondAttribute="trailing" constant="5" id="Ixr-wl-cQq"/>
                                                 <constraint firstItem="JAk-5y-CWN" firstAttribute="centerY" secondItem="U6p-AR-mEQ" secondAttribute="centerY" id="Kmh-PL-o5E"/>
                                                 <constraint firstItem="Gpk-fX-YwL" firstAttribute="centerY" secondItem="U6p-AR-mEQ" secondAttribute="centerY" id="XLF-HK-0Hn"/>
+                                                <constraint firstItem="Ozh-24-JNu" firstAttribute="centerY" secondItem="OP2-nj-L1c" secondAttribute="centerY" id="eZ6-x0-wNT"/>
                                                 <constraint firstItem="WBs-YU-qCS" firstAttribute="top" secondItem="U6p-AR-mEQ" secondAttribute="topMargin" constant="-4" id="k9w-ZK-SD1"/>
                                                 <constraint firstAttribute="leadingMargin" secondItem="Gpk-fX-YwL" secondAttribute="leading" id="tCE-VQ-4Wo"/>
                                                 <constraint firstItem="WBs-YU-qCS" firstAttribute="leading" secondItem="Gpk-fX-YwL" secondAttribute="trailing" constant="8" id="vQR-yO-IO2"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="greenDot" destination="Ozh-24-JNu" id="rK8-OF-SqV"/>
                                             <outlet property="mainLabel" destination="WBs-YU-qCS" id="Qpd-de-sNd"/>
                                             <outlet property="starButton" destination="Gpk-fX-YwL" id="3M5-5S-x93"/>
                                             <outlet property="subLabel" destination="OP2-nj-L1c" id="udr-Xx-IhM"/>
@@ -1014,6 +1023,7 @@
         <image name="cross" width="14" height="14"/>
         <image name="double_arrow_down" width="12" height="15"/>
         <image name="double_arrow_up" width="12" height="15"/>
+        <image name="greenCircle" width="6" height="6"/>
         <image name="ic_info" width="20" height="20"/>
         <image name="ic_remove_circle_outline" width="20" height="20"/>
         <image name="magnifyingglass" width="18" height="18"/>
