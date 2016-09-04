@@ -143,6 +143,15 @@ class QuestionLabel1: UIView, SlidingSegmentedControlDelegate, QuestionLabel {
                 param2[4-i] = (courseID,value)
             }
             
+            
+            param2 = param2.filter({ (tuple) -> Bool in
+                if tuple.y != 0{
+                    return true
+                } else {
+                    return false
+                }
+            })
+            
         }
         
         param1.numberStyle = NSNumberFormatterStyle.PercentStyle
