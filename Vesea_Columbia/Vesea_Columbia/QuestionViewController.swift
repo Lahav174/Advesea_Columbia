@@ -138,18 +138,14 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
         var xValues = [String]()
         
         var yValues = [BarChartDataEntry]()
-        var dataIsNonZero = false
-        if values.count > 0{
-            for i in 0...values.count-1{
+        for i in 0...values.count-1{
+            if values[i].y > 1{
                 xValues.append(values[i].x)
                 yValues.append(BarChartDataEntry(value: Double(values[i].y), xIndex: yValues.count))
-                if values[i].y > 0{
-                    dataIsNonZero = true
-                }
             }
         }
         
-        if !dataIsNonZero{
+        if yValues.count == 0{
             yValues = []
             xValues = []
             noDataLabel.alpha = 1
