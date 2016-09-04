@@ -176,8 +176,7 @@ import Firebase
                 self.enableButtons(true)
                 self.class1Button.idLabel.text = QuestionViewController.abreviateID(self.class1ID)
                 self.class2Button.idLabel.text = QuestionViewController.abreviateID(self.class2ID)
-                self.delegateViewController!.chart!.alpha = 1
-                self.delegateViewController!.activityView.alpha = 0
+                self.delegateViewController!.chartShouldBeLoading(false)
                 self.delegateViewController!.updateChartData(param1, xyValues: param2)
                 
             })
@@ -189,8 +188,7 @@ import Firebase
             self.enableButtons(true)
             self.class1Button.idLabel.text = QuestionViewController.abreviateID(self.class1ID)
             self.class2Button.idLabel.text = QuestionViewController.abreviateID(self.class2ID)
-            self.delegateViewController!.chart!.alpha = 1
-            self.delegateViewController!.activityView.alpha = 0
+            self.delegateViewController!.chartShouldBeLoading(false)
             self.delegateViewController!.updateChartData(param1, xyValues: param2)
         }
     }

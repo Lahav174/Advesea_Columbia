@@ -148,8 +148,7 @@ class QuestionLabel1: UIView, SlidingSegmentedControlDelegate, QuestionLabel {
         param1.numberStyle = NSNumberFormatterStyle.PercentStyle
         param1.multiplier = 1
         
-        self.delegateViewController!.chart!.alpha = 1
-        self.delegateViewController!.activityView.alpha = 0
+        self.delegateViewController!.chartShouldBeLoading(false)
         self.enableButtons(true)
         delegateViewController!.updateChartData(param1, xyValues: param2)
         
@@ -163,9 +162,7 @@ class QuestionLabel1: UIView, SlidingSegmentedControlDelegate, QuestionLabel {
     func SlidingSegmentedControlDidSelectIndex(index: Int){
         self.variableIndex = index
         self.enableButtons(false)
-        self.delegateViewController!.chart!.alpha = 0
-        self.delegateViewController!.activityView.alpha = 1
-        self.delegateViewController?.noDataLabel.alpha = 0
+        self.delegateViewController!.chartShouldBeLoading(true)
         
         (self.delegateViewController!.chart! as! ChartViewBase).highlightValue(nil)
         self.delegateViewController!.chartSelectionLabel.alpha = 0
@@ -187,8 +184,7 @@ class QuestionLabel1: UIView, SlidingSegmentedControlDelegate, QuestionLabel {
             break
         }
             self.enableButtons(true)
-            self.delegateViewController!.chart!.alpha = 1
-            self.delegateViewController!.activityView.alpha = 0
+            self.delegateViewController!.chartShouldBeLoading(false)
             self.displayChartData(self.variableIndex)
         }
     }

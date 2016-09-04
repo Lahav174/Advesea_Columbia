@@ -114,6 +114,20 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
         self.noDataLabel.alpha = 0
         self.view.insertSubview(noDataLabel, belowSubview: container)
         
+        self.activityView.center = graphBackground.center
+        self.noDataLabel.center = graphBackground.center
+        
+        self.activityView.translatesAutoresizingMaskIntoConstraints = false
+        self.noDataLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        let activityViewCenterXConstraint = NSLayoutConstraint(item: activityView, attribute: .CenterX, relatedBy: .Equal, toItem: graphBackground, attribute: .CenterX, multiplier: 1, constant: 0)
+        activityViewCenterXConstraint.identifier = "activityViewCenterXConstraint"
+        let activityViewCenterYConstraint = NSLayoutConstraint(item: activityView, attribute: .CenterY, relatedBy: .Equal, toItem: graphBackground, attribute: .CenterY, multiplier: 1, constant: 0)
+        activityViewCenterYConstraint.identifier = "activityViewCenterYConstraint"
+        let noDataLabelCenterXConstraint = NSLayoutConstraint(item: noDataLabel, attribute: .CenterX, relatedBy: .Equal, toItem: graphBackground, attribute: .CenterX, multiplier: 1, constant: 0)
+        let noDataLabelCenterYConstraint = NSLayoutConstraint(item: noDataLabel, attribute: .CenterY, relatedBy: .Equal, toItem: graphBackground, attribute: .CenterY, multiplier: 1, constant: 0)
+        self.view.addConstraints([activityViewCenterXConstraint,activityViewCenterYConstraint,noDataLabelCenterXConstraint,noDataLabelCenterYConstraint])
+        
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
         self.view.addGestureRecognizer(tap)
         
@@ -273,17 +287,21 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
             self.segmentedControl = nil
         }
         
-        chart!.alpha = 0
-        activityView.alpha = 1
-        noDataLabel.alpha = 0
+        chartShouldBeLoading(true)
         
         self.chartSelectionLabel.alpha = 0
         
-        self.activityView.center = graphBackground.center
-        
-        let noDataOrigin = CGPoint(x: graphBackground.frame.midX - noDataLabel.intrinsicContentSize().width/2, y: graphBackground.frame.midY - noDataLabel.intrinsicContentSize().height/2)
-        self.noDataLabel.frame = CGRect(origin: noDataOrigin, size: noDataLabel.intrinsicContentSize())
-        
+    }
+    
+    func chartShouldBeLoading(bool: Bool){
+        noDataLabel.alpha = 0
+        if bool {
+            chart!.alpha = 0
+            activityView.alpha = 1
+        } else {
+            chart!.alpha = 1
+            activityView.alpha = 0
+        }
     }
     
     func constrainChart(){
@@ -461,9 +479,7 @@ class QuestionViewController: UIViewController, UIGestureRecognizerDelegate, UIN
         if chooser!.courseChooserType == "class 1" && courseChooserOriginalSelectedCourse! != def.objectForKey("selectedCourse1") as! String ||
             chooser!.courseChooserType == "class 2" && courseChooserOriginalSelectedCourse! != def.objectForKey("selectedCourse2") as! String{
             
-            activityView.alpha = 1
-            noDataLabel.alpha = 0
-            chart?.alpha = 0
+            chartShouldBeLoading(true)
             self.enableButtonsOfLabel(self.questionNumber, bool: false)
             let delayInSeconds = 0.6
             
