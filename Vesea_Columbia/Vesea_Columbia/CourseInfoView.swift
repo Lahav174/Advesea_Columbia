@@ -30,6 +30,8 @@ import UIKit
     
     @IBOutlet weak var idLabel: UILabel!
     
+    @IBOutlet weak var commonlyTakenLabel: UILabel!
+    
     @IBOutlet weak var courseDirectoryNumLabel: UILabel!
     
     @IBOutlet weak var nameLabel: UILabel!
@@ -53,6 +55,7 @@ import UIKit
             courseID = id
             idLabel.text = id
             let courseDict = MyVariables.courses!.get(id)!
+            commonlyTakenLabel.hidden = Int(courseDict["Taken 2014"]! as! String) < 800
             courseName = courseDict["Name"] as! String
             nameLabel.text = courseName
             courseDepartment = courseDict["Department"] as! String

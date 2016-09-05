@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CourseInfoView" customModule="Vesea_Columbia" customModuleProvider="target">
             <connections>
+                <outlet property="commonlyTakenLabel" destination="jeG-OR-QCe" id="PQP-ee-FbQ"/>
                 <outlet property="courseDirectoryNumLabel" destination="Yx8-6o-qIG" id="hrx-IX-HDR"/>
                 <outlet property="culpaButton" destination="CVU-88-BXV" id="qDo-zE-3aF"/>
                 <outlet property="departmentLabel" destination="GkY-eu-w7n" id="tcX-py-79r"/>
@@ -69,14 +70,25 @@
                         <action selector="flipView:" destination="-1" eventType="touchUpInside" id="vtW-KK-U0O"/>
                     </connections>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Commonly Taken" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jeG-OR-QCe">
+                    <rect key="frame" x="153" y="31" width="88" height="34"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="88" id="Dp3-yU-97C"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="14"/>
+                    <color key="textColor" red="0.33333333333333331" green="0.59215686274509804" blue="0.035294117647058823" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="JTQ-CF-D7c" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="5v4-UH-RBz"/>
                 <constraint firstAttribute="trailing" secondItem="Yx8-6o-qIG" secondAttribute="trailing" constant="8" id="DYl-zv-AHb"/>
+                <constraint firstItem="jeG-OR-QCe" firstAttribute="top" secondItem="GkY-eu-w7n" secondAttribute="bottom" constant="3" id="FBf-Ig-c2t"/>
                 <constraint firstItem="GkY-eu-w7n" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="Ix1-ei-sHw"/>
                 <constraint firstAttribute="trailing" secondItem="Yo9-MU-sIC" secondAttribute="trailing" constant="10" id="LBi-ko-3l7"/>
                 <constraint firstItem="GkY-eu-w7n" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="MSg-Wg-tmg"/>
+                <constraint firstItem="jeG-OR-QCe" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="NG4-hn-KyW"/>
                 <constraint firstAttribute="bottom" secondItem="CVU-88-BXV" secondAttribute="bottom" constant="15" id="OJ2-Bw-rde"/>
                 <constraint firstAttribute="bottom" secondItem="Yo9-MU-sIC" secondAttribute="bottom" constant="15" id="RzL-uF-rKV"/>
                 <constraint firstItem="zd4-e6-5Mf" firstAttribute="trailing" secondItem="Yx8-6o-qIG" secondAttribute="trailing" id="UFG-Fn-xqa"/>
@@ -89,7 +101,7 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="568" y="289.5"/>
+            <point key="canvasLocation" x="568" y="289"/>
         </view>
     </objects>
 </document>

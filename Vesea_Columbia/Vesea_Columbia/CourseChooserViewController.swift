@@ -382,7 +382,7 @@ class CourseChooserViewController: UIViewController, UITableViewDelegate, UITabl
         cell.mainLabel.text = courseDict["Name"]! as! String
         cell.subLabel.text = courseID
         cell.courseObject = ObjectTuple(first: courseDict["ID"]! as! String, second: courseDict)
-        cell.greenDot.hidden = Int(MyVariables.courses!.get(courseID)!["Taken 2014"]! as! String)! < 1000
+        cell.greenDot.hidden = Int(MyVariables.courses!.get(courseID)!["Taken 2014"]! as! String)! < 800
         
         //Selects the correct cells
         if (selectedCourseID == courseDict["ID"]! as! String){
