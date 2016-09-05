@@ -829,6 +829,10 @@ class CourseButton: UIButton {
         idLabel.textAlignment = .Center
         self.addSubview(idLabel)
     }
-    
 }
 
+extension Double {
+    func format(f: String) -> String {
+        return String(format: "%\(f)f", self)
+    }
+}

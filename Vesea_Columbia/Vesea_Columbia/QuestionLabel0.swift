@@ -44,10 +44,11 @@ import UIKit
         } set (value){
             if value != nil{
                 variableValue = CGFloat(value!)
-                let decimal = Int(value!*10)%10
-                let str1 = String(Int(value!)) + "."
-                let str2 = String(decimal) + "%"
-                variableLabel.text = str1 + str2
+                if value! < 10{
+                    variableLabel.text = Double(value!).format("0.2") + "%"
+                } else {
+                    variableLabel.text = Double(value!).format("0.1") + "%"
+                }
             }
         }
     }

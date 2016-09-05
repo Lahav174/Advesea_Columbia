@@ -59,7 +59,11 @@ import Firebase
         } set (value){
             if value != nil{
                 variableValue = CGFloat(value!)
-                variableLabel.text = String(Int(value!)) + "%"
+                if value! < 10{
+                    variableLabel.text = String(Double(value!).format("0.2")) + "%"
+                } else {
+                    variableLabel.text = String(Double(value!).format("0.1")) + "%"
+                }
             }
         }
     }
