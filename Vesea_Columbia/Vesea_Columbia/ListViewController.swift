@@ -378,11 +378,11 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func getKeyboardHeight() -> CGFloat {
         switch self.view.frame.width {
         case 300...350:
-            return 224
+            return 244//224
         case 351...390:
-            return 271
+            return 291//271
         case 391...450:
-            return 258
+            return 278//258
         default:
             fatalError("Couldn't find a keyboard height for view-height: \(self.view.frame.height)")
         }

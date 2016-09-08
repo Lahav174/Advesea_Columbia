@@ -108,7 +108,7 @@ class TableViewCell: UITableViewCell {
             
         }
         if recognizer.state == .Ended {
-           
+            if swipingRight == nil {return}
             if (!swipingRight!){
                 let scrollToNextPage = (delegateController?.delegate!.scrollView.contentOffset.x)! > 1.35*viewWidth
                 if (scrollToNextPage || xVelocity < -500){

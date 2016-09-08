@@ -19,15 +19,18 @@ class ScrollView: UIScrollView, UIGestureRecognizerDelegate {
     }
     
     func setHorizontalContentOffset(offset: CGPoint, velocity: CGPoint){
-        print("Duration method")
-        let xVelocity = velocity.x < 2400 ? 800 : velocity.x
-        
+        //print("swiping velocity: \(velocity.x)")
+        if abs(velocity.x) > 900{
+        let xVelocity = velocity.x < 2400 ? 900 : velocity.x
         let xdistance = offset.x - self.contentOffset.x
         let duration = abs(xdistance/xVelocity)
-        print(xVelocity)
         UIView.animateWithDuration(Double(duration), delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
             self.contentOffset = offset
             }, completion: nil)
+        } else {
+            setContentOffset(offset, animated: true)
+        }
+    
     }
     
     func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRequireFailureOfGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
