@@ -209,10 +209,10 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
             var myMutableString = NSMutableAttributedString()
             switch indexPath.section{
             case 0:
-                myString = "When do students stypically take " + course1ID + "?"
+                myString = "When do students typically take " + course1ID + "?"
                 myMutableString = NSMutableAttributedString(string: myString as String, attributes: [NSFontAttributeName:UIFont(name: "HelveticaNeue-Light", size: 22.0)!])
-                myMutableString.addAttribute(NSForegroundColorAttributeName, value: course1Color, range: NSRange(location:33,length:course1ID.characters.count))
-                myMutableString.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-Medium", size: 22.0)!, range: NSRange(location:33,length:course1ID.characters.count))
+                myMutableString.addAttribute(NSForegroundColorAttributeName, value: course1Color, range: NSRange(location:32,length:course1ID.characters.count))
+                myMutableString.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-Medium", size: 22.0)!, range: NSRange(location:32,length:course1ID.characters.count))
                 break
             case 1:
                 myString = "What courses do students who take " + course1ID + ", also take?"
